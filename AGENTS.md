@@ -20,5 +20,6 @@ Focus on: Deterministic logic, high-performance Edge computing, and strict acces
 ## 3. Governance & Quality Gate
 
 - [cite_start]**Accessibility:** Strictly reject any UI code that doesn't meet **WCAG 2.1 Level AA**[cite: 88, 90].
-- **Security:** Every supply chain event must be auditable. [cite_start]Every PR must be validated for "AI-generated technical debt"[cite: 80, 84].
-- [cite_start]**Verification:** Analyze model confidence scores and logs for every agentic workflow[cite: 33, 34].
+- **Security:** Every supply chain event must be auditable. Every PR must be validated for **"AI-generated technical debt"** and scalability[cite: 80, 84].
+- [cite_start]**Senior Audit:** Every AI-generated suggestion must undergo a technical audit focusing on architectural sustainability and performance impact before merging[cite: 33, 34].
+- **Verification:** Analyze model confidence scores and logs for every agentic workflow.
