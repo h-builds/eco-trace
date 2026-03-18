@@ -8,13 +8,13 @@
 
 ## 🎯 Project Vision
 
-**Eco-Trace** es un ecosistema de trazabilidad industrial diseñado para la transparencia radical. Proporcionamos validación determinista y entrega de datos de ultra-baja latencia en el **Edge** para transformar métricas ESG (Environmental, Social, and Governance) en activos digitales verificables.
+**Eco-Trace** is an industrial traceability ecosystem designed for radical transparency. We provide deterministic validation and ultra-low latency data delivery at the **Edge** to transform ESG (Environmental, Social, and Governance) metrics into verifiable digital assets.
 
 ---
 
 ## 🏗️ Agentic Architecture
 
-Este monorepo funciona como un **Sustrato Cognitivo**, optimizando la colaboración entre humanos y agentes de IA mediante el protocolo **UCP**.
+This monorepo functions as a **Cognitive Substrate**, optimizing human-AI collaboration through the **UCP** (Unified Context Protocol).
 
 ### **The Three Pillars**
 
@@ -28,42 +28,42 @@ Este monorepo funciona como un **Sustrato Cognitivo**, optimizando la colaboraci
 
 ## 🧠 Intelligence Infrastructure (`.ai/`)
 
-La gobernanza del proyecto reside en una capa de inteligencia descentralizada que guía la ejecución autónoma.
+Project governance resides in a decentralized intelligence layer that guides autonomous execution.
 
-- **[Context](./.ai/context/CONTEXT.md):** Estado activo y gestión de la memoria de sesión.
-- **[Rules](./.ai/rules/RULES.md):** Constitución técnica con políticas de **Zero-Hallucination** y **Zero-Slop Commenting**.
-- **[Skills](./.ai/skills/):** Habilidades operativas para auditoría de accesibilidad y lógica ESG.
-- **[Library](./.ai/prompts/LIBRARY.md):** Biblioteca de prompts versionados para flujos de trabajo de misión crítica.
+- **[Context](./.ai/context/CONTEXT.md):** Active state and session memory management.
+- **[Rules](./.ai/rules/RULES.md):** Technical constitution enforcing **Zero-Hallucination** and **Zero-Slop Commenting** policies.
+- **[Skills](./.ai/skills/):** Operational capabilities for accessibility auditing and deterministic ESG logic.
+- **[Library](./.ai/prompts/LIBRARY.md):** Versioned prompt library for mission-critical workflows.
 
 ---
 
 ## ⚡ Technical Pillars
 
-- **Deterministic Math:** Todos los cálculos de huella de carbono siguen la fórmula inmutable:
+- **Deterministic Math:** All carbon footprint calculations strictly follow the immutable formula:
   $$CF_{total} = \sum_{i=1}^{n} (E_i \times EF_i)$$
-- **Edge-Native Persistence:** Arquitectura sobre **Cloudflare Workers + D1** para persistencia global inmutable.
-- **Shared Identity:** Sistema de diseño agnóstico en `@eco-trace/ui` con validación de contraste automatizada.
+- **Edge-Native Persistence:** Architected on **Cloudflare Workers + D1** for immutable global persistence.
+- **Shared Identity:** Framework-agnostic design system at `@eco-trace/ui` with automated compile-time contrast validation.
 
 ---
 
 ## 🚦 Current Operational Status
 
 **Current Phase:** `Phase 2: Implementation Setup`
-**Focus:** Construcción del puente criptográfico entre el motor Go/Wasm y las interfaces de usuario.
+**Focus:** Building the cryptographic bridge between the Go/Wasm engine and user interfaces.
 
 > [!CAUTION]
-> **Strict Governance:** Todo cambio en la infraestructura del "Bridge" requiere una auditoría técnica y validación contra los casos de prueba de [EVALS.md](./.ai/knowledge/EVALS.md).
+> **Strict Governance:** Any changes to the "Bridge" infrastructure require a Staff-level technical audit and validation against [EVALS.md](./.ai/knowledge/EVALS.md) test cases.
 
 ---
 
 ## 🛠️ Quick Start (Agentic Workflow)
 
-Para desarrolladores y agentes:
+For developers and AI agents:
 
-1.  Adoptar la **Operational Persona** definida en [AGENTS.md](./.ai/rules/AGENTS.md).
-2.  Consultar flujos de trabajo en [.ai/skills/](./.ai/skills/).
-3.  Ejecutar plantillas de la [LIBRARY.md](./.ai/prompts/LIBRARY.md) para tareas estandarizadas.
+1.  Adopt the **Operational Persona** defined in [AGENTS.md](./.ai/rules/AGENTS.md).
+2.  Consult available workflows in [.ai/skills/](./.ai/skills/).
+3.  Execute templates from the [LIBRARY.md](./.ai/prompts/LIBRARY.md) for standardized tasks.
 
 ---
 
-_Built for the Edge. Engineered for Trust. Managed from Venezuela._
+_Built for the Edge. Engineered for Trust. Managed from South America._
