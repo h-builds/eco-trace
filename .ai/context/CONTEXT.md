@@ -1,69 +1,38 @@
-# 🌿 Eco-Trace: Radical ESG Traceability
+# Project Context: Eco-Trace
 
-> **High-Performance, Edge-Native Supply Chain Intelligence**
+Active state and recent operational focus for the Eco-Trace monorepo.
 
-![Phase: Alpha](https://img.shields.io/badge/Phase-Alpha--Implementation_Setup-blueviolet?style=for-the-badge) ![Stack: Hybrid Edge](https://img.shields.io/badge/Stack-React_19_+_Vue_3.5_Vapor_+_Go_Wasm-blue?style=for-the-badge) ![Compliance: WCAG 2.1 AA](https://img.shields.io/badge/Compliance-WCAG_2.1_AA-green?style=for-the-badge)
+## ## Session Phase
 
----
+**Current Phase:** Phase 2: Implementation Setup
+**Focus:** Establishing the "Agent-Ready" infrastructure and governance protocols.
 
-## 🎯 Project Vision
+## ## Active Blockers
 
-**Eco-Trace** is an industrial traceability ecosystem designed for radical transparency. We provide deterministic validation and ultra-low latency data delivery at the **Edge** to transform ESG (Environmental, Social, and Governance) metrics into verifiable digital assets.
+- **None:** All core documentation and directory structures are initialized.
 
----
+## Project Brief
 
-## 🏗️ Agentic Architecture
+Eco-Trace is a high-performance, Edge-native supply chain traceability platform focusing on ESG (Environmental, Social, and Governance) metrics.
 
-This monorepo functions as a **Cognitive Substrate**, optimizing human-AI collaboration through the **UCP** (Unified Context Protocol).
+## Key Decisions Log
 
-### **The Three Pillars**
+| Date       | Decision                       | Rationale                                                                                                                |
+| ---------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| 2026-03-18 | Unified Context Protocol (UCP) | To provide a standardized, high-density context layer for AI agents, reducing hallucinations.                            |
+| 2026-03-18 | Cloudflare Edge & D1           | To ensure zero-latency verification for consumers and immutable audit logs at the Edge.                                  |
+| 2026-03-18 | Go/Wasm Validation Engine      | To enable high-performance, cryptographically secure validation logic that runs natively in the browser and at the Edge. |
+| 2026-03-18 | Pinecone (Serverless)          | To provide a robust, scalable long-term memory for factual ESG data and architectural decisions.                         |
+| 2026-03-18 | LangGraph Orchestration        | To manage complex, stateful, and cyclic agent workflows with deterministic control.                                      |
 
-| Component           | Technology         | Role                | Operational Focus                                      |
-| :------------------ | :----------------- | :------------------ | :----------------------------------------------------- |
-| **Core Engine**     | **Go / Wasm**      | Deterministic Logic | Cryptographic integrity and $CF_{total}$ validation.   |
-| **Admin Dashboard** | **React 19 + RSC** | Auditor Interface   | High-density monitoring leveraging the React Compiler. |
-| **Consumer App**    | **Vue 3.5 Vapor**  | Transparency App    | Mobile-first speed with Signals-based reactivity.      |
+## Recent Changes
 
----
+- Created `.ai/` directory structure for UCP.
+- Established `SPEC.md`, `ARCHITECTURE.md`, `EVALS.md`, and `RULES.md`.
+- Generated detailed implementation roadmap in `/packages/engine/TASKS.md`.
+- Migrated framework-specific rules to `.ai/rules/FRAMEWORKS.md`.
 
-## 🧠 Intelligence Infrastructure (`.ai/`)
+## Working Context
 
-Project governance resides in a decentralized intelligence layer that guides autonomous execution.
-
-- **[Context](./.ai/context/CONTEXT.md):** Active state and session memory management.
-- **[Rules](./.ai/rules/RULES.md):** Technical constitution enforcing **Zero-Hallucination** and **Zero-Slop Commenting** policies.
-- **[Skills](./.ai/skills/):** Operational capabilities for accessibility auditing and deterministic ESG logic.
-- **[Library](./.ai/prompts/LIBRARY.md):** Versioned prompt library for mission-critical workflows.
-
----
-
-## ⚡ Technical Pillars
-
-- **Deterministic Math:** All carbon footprint calculations strictly follow the immutable formula:
-  $$CF_{total} = \sum_{i=1}^{n} (E_i \times EF_i)$$
-- **Edge-Native Persistence:** Architected on **Cloudflare Workers + D1** for immutable global persistence.
-- **Shared Identity:** Framework-agnostic design system at `@eco-trace/ui` with automated compile-time contrast validation.
-
----
-
-## 🚦 Current Operational Status
-
-**Current Phase:** `Phase 2: Implementation Setup`
-**Focus:** Building the cryptographic bridge between the Go/Wasm engine and user interfaces.
-
-> [!CAUTION]
-> **Strict Governance:** Any changes to the "Bridge" infrastructure require a Staff-level technical audit and validation against [EVALS.md](./.ai/knowledge/EVALS.md) test cases.
-
----
-
-## 🛠️ Quick Start (Agentic Workflow)
-
-For developers and AI agents:
-
-1.  Adopt the **Operational Persona** defined in [AGENTS.md](./.ai/rules/AGENTS.md).
-2.  Consult available workflows in [.ai/skills/](./.ai/skills/).
-3.  Execute templates from the [LIBRARY.md](./.ai/prompts/LIBRARY.md) for standardized tasks.
-
----
-
-_Built for the Edge. Engineered for Trust. Managed from South America._
+- **Stack:** React 19 (Admin), Vue 3 (Consumer), Go/Wasm (Engine).
+- **Core Governance:** Zero-Hallucination Policy, Hierarchy of Authority, Security No-Go Zones.
