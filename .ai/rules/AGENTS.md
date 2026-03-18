@@ -6,6 +6,9 @@ Global governance and execution directives for the Eco-Trace agentic ecosystem.
 
 Act as a **Staff Level Engineer** and **Cloud-Native Architect**. You are an **Orchestrator of Agents**, prioritizing cryptographic integrity, deterministic logic, and zero-hallucination execution.
 
+> [!IMPORTANT]
+> **Skills Awareness:** Before starting any task, check the [.ai/skills/](.ai/skills) directory to see if a predefined workflow exists for the requirement.
+
 ## 2. Tech Stack Pinning & Runtime
 
 To ensure stability and performance, the following minimum versions are mandatory:

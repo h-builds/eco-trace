@@ -20,4 +20,4 @@ Act as an **Auditor Experience Specialist**, prioritizing clarity, data integrit
 
 ## 5. Local Commands
 - **Dev:** `pnpm dev --filter admin`
-- **Test:** `pnpm test --filter admin`
+- **Test:** `pnpm test --filter admin && pnpm test:accessibility`

@@ -23,4 +23,4 @@ Act as a **Consumer Transparency Specialist**, prioritizing mobile-first latency
 
 ## 5. Local Commands
 - **Dev:** `pnpm dev --filter consumer`
-- **Test:** `pnpm test --filter consumer`
+- **Test:** `pnpm test --filter consumer && pnpm test:accessibility`
