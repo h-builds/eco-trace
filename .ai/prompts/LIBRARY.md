@@ -5,25 +5,31 @@ Standardized versioned system prompts for mission-critical workflows.
 ## Templates
 
 ### 1. `go-logic-implementation`
+
 - **Context:** Reference [.ai/skills/esg-validation-logic.md](../skills/esg-validation-logic.md).
 - **Goal:** Implement deterministic Go logic with 100% test coverage for ESG calculations.
 - **Checklist:**
   - [ ] Read [DATA_DICTIONARY.md](../knowledge/DATA_DICTIONARY.md) for formulas and constraints.
   - [ ] Create a failing test case in the target package.
   - [ ] Implement the logic in Go, ensuring Wasm compatibility.
+  - [ ] **Comment Audit:** Remove redundant AI-explanations; keep only "Why" comments for math/logic.
   - [ ] Verify against [EVALS.md](../knowledge/EVALS.md) (G03/G04).
 
 ### 2. `ui-component-audit`
+
 - **Context:** Reference [.ai/skills/accessibility-guardrail.md](../skills/accessibility-guardrail.md).
 - **Goal:** Build a React or Vue component that meets strict WCAG 2.1 Level AA compliance.
 - **Checklist:**
   - [ ] Use `@eco-trace/ui` design tokens exclusively.
   - [ ] Run `pnpm test:accessibility` (contrast-validator.ts) and ensure pass.
+  - [ ] **Comment Audit:** Remove redundant "What" comments.
   - [ ] Manually verify ARIA labels and keyboard focus paths.
 
 ### 3. `context-sync`
+
 - **Goal:** Maintain session integrity and prevent context drift.
 - **Action:** Update [CONTEXT.md](../context/CONTEXT.md) and [TASKS.md](../../packages/engine/TASKS.md) (or relevant local tasks) after a successful implementation or architectural change.
 
 ---
-*Note: Use these templates strictly when triggered by name to ensure repeatable, high-fidelity results.*
+
+_Note: Use these templates strictly when triggered by name to ensure repeatable, high-fidelity results._

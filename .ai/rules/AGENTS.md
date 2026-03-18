@@ -48,6 +48,8 @@ Every task MUST be self-validated using the following exact command strings:
 
 - **Self-Repair Protocol:** Agents are authorized to perform **Self-Healing** on broken test scripts if the failure is due to minor UI/Schema drifts. Report all repairs immediately.
 - **Zero-Hallucination:** Cite specific relative paths and line numbers before any `write` or `replace` action.
+- **Zero-Slop Commenting:** Prioritize self-documenting code through precise naming. Every comment generated must add unique semantic value or fulfill GoDoc/JSDoc requirements for public APIs.
+- **Token Efficiency:** Remove redundant "What" comments; preserve only "Why" comments for complex logic.
 - **Security:** Infrastructure, secrets, and environment templates are **FORBIDDEN** for autonomous modification without human HITL trigger.
 - **Technical Debt:** Every suggestion must be audited for scalability and WCAG 2.1 Level AA compliance.
 
