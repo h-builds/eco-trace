@@ -7,6 +7,7 @@ Act as a **Consumer Transparency Specialist**, prioritizing mobile-first latency
 
 ## 2. Implementation Focus
 - **Vue 3.5 & Vapor Mode:** Strictly enforce **Vapor Mode** for all consumer-facing components to ensure zero-latency QR scan response.
+- **Performance-First UI:** Implement UI components natively using Vapor Mode logic, consuming only raw **@eco-trace/ui** tokens. Do NOT import heavy React-based or generic component libraries.
 - **Patterns:** Use **Vite-specific optimizations** (e.g., image compression, code splitting) for Edge-first delivery.
 - **Signals-based Reactivity:** Use fine-grained updates to minimize re-renders.
 
@@ -15,6 +16,8 @@ Act as a **Consumer Transparency Specialist**, prioritizing mobile-first latency
 - **FORBIDDEN:** Do not alter Vapor Mode compiler settings or internal hydration-less runtime configurations.
 
 ## 4. Validation & Compliance
+- **Design Token Consistency:** Use **@eco-trace/ui** design tokens (CSS variables/Tailwind config) exclusively to ensure 100% brand alignment with the Admin Dashboard.
+- **Visual Audit:** Require a "Visual Consistency Check" against the **@eco-trace/ui** specification after every UI-related task.
 - **Accessibility:** Perform an automated accessibility scan after every UI change to ensure **WCAG 2.1 Level AA** compliance.
 - **Performance:** QR scan to verification result MUST be < 100ms. Perform a performance audit on every asset change.
 

@@ -31,10 +31,29 @@ fields:
     fields:
       energy_kwh: 
         type: Float
+        unit: kWh
+        constraints: [MIN_0]
         description: Energy consumed during the action.
       emission_factor: 
         type: Float
+        unit: kgCO2e/kWh
+        constraints: [MIN_0]
         description: Emission intensity for the energy source.
+
+## Validation States
+Schemas for representing the integrity and confidence of ESG events.
+
+### `IntegrityStatus`
+- **Type:** Enum
+- **Options:** 
+  - `VALID`: Cryptographic and logical verification passed.
+  - `WARNING`: Logical discrepancy detected (e.g., calculation mismatch).
+  - `INVALID`: Cryptographic failure or schema violation.
+
+### `ConfidenceScore`
+- **Type:** Float
+- **Range:** `0.0` to `1.0`
+- **Description:** Qualitative measure of data reliability and metadata completeness.
 ```
 
 ## Deterministic Logic: Carbon Footprint
@@ -56,5 +75,17 @@ Where:
   - [React 19 Admin Dashboard](../../packages/admin) (Audit & Monitoring).
   - [Vue 3 Vapor App](../../packages/consumer) (Consumer Transparency).
 
+## Shared UI Design Tokens
+Immutable visual constants for the Eco-Trace ecosystem (Admin & Consumer).
+
+### Colors
+- **Primary (Brand Green):** `#10B981` (Success/Trust)
+- **Secondary (Audit Blue):** `#3B82F6` (Information/Monitoring)
+- **Alert (Integrity Red):** `#EF4444` (System Error/Violation)
+
+### Spacing & Typography
+- **System:** Base-4 spacing scale (4px, 8px, 16px, 24px, 32px).
+- **Fonts:** System sans-serif stack for zero-latency loading and performance.
+
 ---
-*Goal: Establish a "Schema Freeze" to prevent AI hallucinations and improve query precision.*
+*Goal: Create a single, immutable source of truth for both data integrity and visual identity.*
