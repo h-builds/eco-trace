@@ -50,3 +50,6 @@ Every task MUST be self-validated using the following exact command strings:
 - **Zero-Hallucination:** Cite specific relative paths and line numbers before any `write` or `replace` action.
 - **Security:** Infrastructure, secrets, and environment templates are **FORBIDDEN** for autonomous modification without human HITL trigger.
 - **Technical Debt:** Every suggestion must be audited for scalability and WCAG 2.1 Level AA compliance.
+
+> [!TIP]
+> **Prompt Library Usage:** When a task matches a library template from [.ai/prompts/LIBRARY.md](.ai/prompts/LIBRARY.md), the user will trigger it by name (e.g., "Execute `go-logic-implementation`"). Follow the template steps strictly.
