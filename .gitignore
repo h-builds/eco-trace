@@ -50,3 +50,4 @@ node_modules/.cache/
 .d1/
 *.sqlite
 *.sqlite3
+seed.sql

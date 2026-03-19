@@ -42,7 +42,8 @@ Eco-Trace is a high-performance, Edge-native supply chain traceability platform 
 - **(2026-03-19)** Architectural Alignment: Updated `DATA_DICTIONARY.md` to officially support an `UNAUTHORIZED` state for `IntegrityStatus`. Fixed `build.sh` target path resolving an impasse where Next.js served aggressively cached obsolete Wasm, preventing security states from executing on the frontend. Re-implemented zero-slop commenting policies.
 - **(2026-03-19)** D1 Persistence integration: Mapped `SupplyChainEvent` to D1 `schema.sql`, configured `wrangler.toml` bindings, and created zero-slop `GET/POST` endpoints in Next.js `route.ts`.
 - **(2026-03-19)** EventTable Live Integration: Refactored Admin Dashboard `page.tsx` removing local mock data for live `GET /api/events` fetching. Transformed Tamper and Impersonation security tests to persist real `INVALID` and `UNAUTHORIZED` event logs onto the edge database with integrated UI notification styling strictly adhering to `@eco-trace/ui` tokens.
-- **(2026-03-19)** DevX Enhancement: Added `dev:edge` script for Next.js wrapping Wrangler D1. Established constraints that `pages_build_output_dir` in `wrangler.toml` must be disabled to support local proxy mode.
+- **(2026-03-19)** DevX Enhancement: Added `dev:edge` script for Next.js wrapping Wrangler D1. Established constraints that `pages_build_output_dir` in `wrangler.toml` must be disabled to support local proxy mode. Shifted injection to `getRequestContext().env.DB` powered by dynamically configured `setupDevPlatform()`.
+- **(2026-03-19)** D1 Cryptographic Seeding: Built dynamic Javascript-to-Go registry mapper (`seed.ts`) synthesizing real Ed25519 node pairs into local D1 `seed.sql` generation for perfect `main.wasm` integration payload testing. Replaced all zero-slop violations globally.
 
 ## Working Context
 
