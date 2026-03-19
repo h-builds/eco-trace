@@ -62,6 +62,11 @@ For developers and AI agents:
 1.  Adopt the **Operational Persona** defined in [AGENTS.md](./.ai/rules/AGENTS.md).
 2.  Execute templates and skills directly from [LIBRARY.md](./.ai/prompts/LIBRARY.md) for standardized tasks.
 
+### Local Edge Development
+To test Next.js server actions against local Cloudflare D1 databases, use `pnpm run dev:edge` in the `apps/admin` workspace. 
+> [!NOTE]
+> The `pages_build_output_dir` parameter in `apps/admin/wrangler.toml` must remain commented out (`# pages_build_output_dir`) during local edge development to prevent Wrangler proxy command collisions.
+
 ---
 
 _Built for the Edge. Engineered for Trust. Managed from South America._

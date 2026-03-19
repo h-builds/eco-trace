@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getRequestContext } from "@cloudflare/next-on-pages";
 
 export const runtime = "edge";
 
@@ -35,7 +36,7 @@ interface Env {
 
 export async function GET(request: NextRequest) {
   try {
-    const db = (process.env as unknown as Env).DB; 
+    const db = (getRequestContext().env as unknown as Env).DB; 
     
     if (!db) {
       return NextResponse.json({ error: "Database binding 'DB' not found in environment." }, { status: 500 });
@@ -85,7 +86,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const db = (process.env as unknown as Env).DB;
+    const db = (getRequestContext().env as unknown as Env).DB;
     if (!db) {
       return NextResponse.json({ error: "Database binding 'DB' not found in environment." }, { status: 500 });
     }

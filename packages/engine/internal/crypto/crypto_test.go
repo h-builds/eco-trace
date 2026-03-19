@@ -31,12 +31,10 @@ func TestSignAndVerifyEvent(t *testing.T) {
 		t.Fatalf("SignEvent failed: %v", err)
 	}
 
-	// Verify valid signature
 	if !VerifyEvent(event, sig, pub) {
 		t.Error("VerifyEvent failed for valid signature")
 	}
 
-	// Verify hex wrapper
 	sigHex := hex.EncodeToString(sig)
 	pubHex := hex.EncodeToString(pub)
 	if !VerifyEventHex(event, sigHex, pubHex) {
@@ -62,7 +60,6 @@ func TestTamperDetection(t *testing.T) {
 
 	sig, _ := SignEvent(event, priv)
 
-	// Tamper with EnergyKWh
 	tamperedEvent := event
 	tamperedEvent.ESG.EnergyKWh = 999.9
 
@@ -70,7 +67,6 @@ func TestTamperDetection(t *testing.T) {
 		t.Error("VerifyEvent incorrectly validated tampered event payload (EnergyKWh changed)")
 	}
 
-	// Tamper with ActorID
 	tamperedEvent2 := event
 	tamperedEvent2.ActorID = "malicious-actor"
 
@@ -89,11 +85,10 @@ func TestUnauthorizedActor(t *testing.T) {
 	actorID := "Trusted Supplier A"
 	TrustedActors[actorID] = trustedPub
 
-	// Malicious actor signs a payload claiming to be "Trusted Supplier A"
 	event := types.SupplyChainEvent{
 		EventID:   "123e4567-e89b-12d3-a456-426614174000",
 		AssetID:   "asset-123",
-		ActorID:   actorID, // Impersonating the trustworthy actor
+		ActorID:   actorID,
 		Timestamp: "2026-03-19T00:00:00Z",
 		Action:    types.ActionOrigin,
 		ESG: types.ESGMetadata{
@@ -102,15 +97,12 @@ func TestUnauthorizedActor(t *testing.T) {
 		},
 	}
 
-	// Mathematically valid signature from the Evil actor
 	sig, _ := SignEvent(event, evilPriv)
 
-	// Step 1: Signature passes mathematics
 	if !VerifyEvent(event, sig, evilPub) {
 		t.Fatal("Expected malicious signature to be mathematically valid for their own key")
 	}
 
-	// Step 2: Identity mapping fails
 	if IsAuthorized(event.ActorID, evilPub) {
 		t.Error("Expected IsAuthorized to reject the evil public key for the impersonated ActorID")
 	}
