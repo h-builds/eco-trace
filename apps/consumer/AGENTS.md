@@ -1,10 +1,10 @@
 # Vue 3.5 Vapor Operational Directive (apps/consumer)
 
-Specialized agent rules for the Eco-Trace Consumer Transparency App.
+> **Inherits:** [.ai/rules/AGENTS.md](../../.ai/rules/AGENTS.md) — all global governance, stack pinning, and [RULES.md](../../.ai/rules/RULES.md) constraints apply.
 
 ## 1. Mission
 
-Act as a **Consumer Transparency Specialist**, prioritizing mobile-first latency, "Zero-Knowledge" verification, and high-fidelity product storytelling. Maintain a **Zero-Slop Commenting** standard (Why over What).
+Act as a **Consumer Transparency Specialist**, prioritizing mobile-first latency, "Zero-Knowledge" verification, and high-fidelity product storytelling.
 
 ## 2. Implementation Focus
 
@@ -18,12 +18,9 @@ Act as a **Consumer Transparency Specialist**, prioritizing mobile-first latency
 - **FORBIDDEN:** Do not modify core Go/Wasm validation bindings or the integrity hash verification gate.
 - **FORBIDDEN:** Do not alter Vapor Mode compiler settings or internal hydration-less runtime configurations.
 
-## 4. Validation & Compliance
+## 4. Performance Constraint
 
-- **Design Token Consistency:** Use **@eco-trace/ui** design tokens (CSS variables/Tailwind config) exclusively to ensure 100% brand alignment with the Admin Dashboard.
-- **Visual Audit:** Require a "Visual Consistency Check" against the **@eco-trace/ui** specification after every UI-related task.
-- **Accessibility:** Perform an automated accessibility scan after every UI change to ensure **WCAG 2.1 Level AA** compliance.
-- **Performance:** QR scan to verification result MUST be < 100ms. Perform a performance audit on every asset change.
+QR scan to verification result MUST be < 100ms. Perform a performance audit on every asset change.
 
 ## 5. Local Commands
 

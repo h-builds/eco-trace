@@ -4,14 +4,14 @@ Implementation plan for the core cryptographic and validation logic of the Eco-T
 
 ## 1. Foundation
 
-- [ ] Initialize Go module and internal package structure. `[TODO]`
-- [ ] Implement base `Event` types in alignment with [DATA_DICTIONARY.md](../../.ai/knowledge/DATA_DICTIONARY.md). `[TODO]` **(Ref: G05)**
+- [x] Initialize Go module and internal package structure. `[DONE 2026-03-19]`
+- [x] Implement base `Event` types in alignment with [DATA_DICTIONARY.md](../../.ai/knowledge/DATA_DICTIONARY.md). `[DONE 2026-03-19]` **(Ref: G05)**
 
 ## 2. Core Logic (Deterministic Calculation)
 
-- [ ] Implement `CalculateCarbonFootprint` function using formula: $$CF_{total} = \sum (E_i \times EF_i)$$. `[TODO]` **(Ref: G03)**
-- [ ] Add validation for non-negative energy and emission factor values. `[TODO]` **(Ref: G04)**
-- [ ] Implement unit tests for the calculation engine in a Wasm-compatible environment. `[TODO]` **(Ref: G03)**
+- [x] Implement `CalculateCarbonFootprint` function using formula: $$CF_{total} = \sum (E_i \times EF_i)$$. `[DONE 2026-03-19]` **(Ref: G03)**
+- [x] Add validation for non-negative energy and emission factor values. `[DONE 2026-03-19]` **(Ref: G04)**
+- [x] Implement unit tests for the calculation engine in a Wasm-compatible environment. `[DONE 2026-03-19]` **(Ref: G03)**
 
 ## 3. Security (Cryptographic Integrity)
 

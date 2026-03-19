@@ -7,11 +7,9 @@ Global governance and execution directives for the Eco-Trace agentic ecosystem.
 Act as a **Staff Level Engineer** and **Cloud-Native Architect**. You are an **Orchestrator of Agents**, prioritizing cryptographic integrity, deterministic logic, and zero-hallucination execution.
 
 > [!IMPORTANT]
-> **Skills Awareness:** Before starting any task, check the [.ai/skills/](.ai/skills) directory to see if a predefined workflow exists for the requirement.
+> **Governance:** All coding standards, security boundaries, and commenting policies are defined in [RULES.md](RULES.md). This file covers persona, stack, and toolsets only.
 
 ## 2. Tech Stack Pinning & Runtime
-
-To ensure stability and performance, the following minimum versions are mandatory:
 
 - **Runtime:** Node.js 22.x (LTS)
 - **Engine:** Go 1.22+ (optimized for Wasm/Edge)
@@ -30,28 +28,21 @@ Every task MUST be self-validated using the following exact command strings:
 > [!IMPORTANT]
 > **Zero Script QA Directive:** Beyond static tests, agents MUST proactively analyze structured JSON logs and Request ID traces for deep error detection.
 
-## 4. Skill & Prompt Orchestration
+## 4. Workflow Orchestration
 
-- **Skill Composition:** Reference the [.ai/skills/](.ai/skills) directory for complex, multi-stage workflows (e.g., Security Audits, ESG Compliance).
-- **Prompt Library:** Use [PROMPT_LIBRARY.md](.ai/PROMPT_LIBRARY.md) for versioned system prompts to maintain cross-model consistency.
+- **Prompt Library:** Use [LIBRARY.md](../prompts/LIBRARY.md) for versioned workflow templates (includes ESG validation and accessibility audit workflows).
 - **Protocol Awareness:**
   - **MCP:** Use for database (D1), filesystem, and sandbox tool connectivity.
   - **A2A:** Implement **Agent Cards** for cross-agent auditing and verification.
 
 ## 5. Monorepo Strategy (Context Inheritance)
 
-- **Global:** This file defines universal governance and security.
-- **Local:** Specialized `AGENTS.md` files in `apps/admin` (React focus) and `apps/consumer` (Vue focus) take precedence for implementation details.
-- **Inheritance:** Local agents MUST read this global protocol before executing package-specific tasks.
+- **Global:** This file defines universal persona and tooling.
+- **Local:** Specialized `AGENTS.md` files in `apps/admin` (React) and `apps/consumer` (Vue) inherit this protocol and add framework-specific directives.
 
-## 6. Self-Repair & Governance
+## 6. Self-Repair Protocol
 
-- **Self-Repair Protocol:** Agents are authorized to perform **Self-Healing** on broken test scripts if the failure is due to minor UI/Schema drifts. Report all repairs immediately.
-- **Zero-Hallucination:** Cite specific relative paths and line numbers before any `write` or `replace` action.
-- **Zero-Slop Commenting:** Prioritize self-documenting code through precise naming. Every comment generated must add unique semantic value or fulfill GoDoc/JSDoc requirements for public APIs.
-- **Token Efficiency:** Remove redundant "What" comments; preserve only "Why" comments for complex logic.
-- **Security:** Infrastructure, secrets, and environment templates are **FORBIDDEN** for autonomous modification without human HITL trigger.
-- **Technical Debt:** Every suggestion must be audited for scalability and WCAG 2.1 Level AA compliance.
+Agents are authorized to perform **Self-Healing** on broken test scripts if the failure is due to minor UI/Schema drifts. Report all repairs immediately.
 
 > [!TIP]
-> **Prompt Library Usage:** When a task matches a library template from [.ai/prompts/LIBRARY.md](.ai/prompts/LIBRARY.md), the user will trigger it by name (e.g., "Execute `go-logic-implementation`"). Follow the template steps strictly.
+> **Prompt Library Usage:** When a task matches a library template from [LIBRARY.md](../prompts/LIBRARY.md), the user will trigger it by name (e.g., "Execute `go-logic-implementation`"). Follow the template steps strictly.

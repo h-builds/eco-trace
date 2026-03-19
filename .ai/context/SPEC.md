@@ -38,13 +38,13 @@ If the cryptographic signature or hash verification fails:
 - **Notification:** Notify the Auditor via a High-Contrast Alert in the Admin Dashboard.
 
 ### 2. Calculation Discrepancy
-If the reported Carbon Footprint in metadata does not match the deterministic calculation $CF_{total} = \sum (E_i \times EF_i)$ performed by the Go/Wasm engine:
+If the reported Carbon Footprint in metadata does not match the deterministic calculation defined in [DATA_DICTIONARY.md](../knowledge/DATA_DICTIONARY.md) performed by the Go/Wasm engine:
 - **Action:** Flag the event as `WARNING: CALCULATION_DISCREPANCY`.
 - **UI:** Display a warning icon next to the metric in both Admin and Consumer views.
 
 ### 3. Schema Non-Compliance
 - **Action:** Reject any certificate or event missing mandatory fields defined in the [DATA_DICTIONARY.md](../knowledge/DATA_DICTIONARY.md).
-- **Mandatory Fields:** `event_id`, `asset_id`, `actor_id`, `timestamp`, `energy_kwh`, `emission_factor`.
+- **Mandatory Fields:** As defined in the `SupplyChainEvent` schema in [DATA_DICTIONARY.md](../knowledge/DATA_DICTIONARY.md).
 
 ### 4. Actor Verification Failure
 - **Action:** If the `actor_id` cannot be verified against the trusted entity list:

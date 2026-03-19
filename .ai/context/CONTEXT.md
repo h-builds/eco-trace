@@ -4,8 +4,8 @@ Active state and recent operational focus for the Eco-Trace monorepo.
 
 ## ## Session Phase
 
-**Current Phase:** Phase 2: Implementation Setup
-**Focus:** Establishing the "Agent-Ready" infrastructure and governance protocols.
+**Current Phase:** Phase 3: Go Engine Core Initialized
+**Focus:** Core validation engine operational with deterministic ESG logic and TDD test suite.
 
 ## ## Active Blockers
 
@@ -31,6 +31,8 @@ Eco-Trace is a high-performance, Edge-native supply chain traceability platform 
 - Established `SPEC.md`, `ARCHITECTURE.md`, `EVALS.md`, and `RULES.md`.
 - Generated detailed implementation roadmap in `/packages/engine/TASKS.md`.
 - Migrated framework-specific rules to `.ai/rules/FRAMEWORKS.md`.
+- **(2026-03-19)** Initialized Go engine: `internal/types` (SupplyChainEvent, ESGMetadata with `Validate()`, enums), `internal/logic` (`CalculateCarbonFootprint` with float rounding, 7/7 tests pass — G03/G04), `internal/crypto` (placeholder). Zero-Slop Commenting enforced.
+- **(2026-03-19)** Lean Governance Migration: consolidated 12→8 files (−33%). Inlined skills into `LIBRARY.md` v2.0, deleted `.ai/skills/`. Trimmed `SPEC.md`, `AGENTS.md` (global + local). Zero constraint loss.
 
 ## Working Context
 
