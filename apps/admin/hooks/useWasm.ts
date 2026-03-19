@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getWasmInit } from "@/lib/wasmLoader";
-import type { WasmFootprintResult } from "@/lib/wasm.d";
+import type { WasmFootprintResult, WasmIntegrityResult } from "@/lib/wasm.d";
 
 interface ESGEntry {
   energy_kwh: number;
@@ -13,9 +13,11 @@ interface UseWasmReturn {
   isLoading: boolean;
   error: string | null;
   calculateFootprint: (entries: ESGEntry[]) => WasmFootprintResult;
+  verifyIntegrity: (event: any, signature: string, publicKey: string) => WasmIntegrityResult;
 }
 
 const NOOP_RESULT: WasmFootprintResult = { result: 0, error: "Engine not ready" };
+const NOOP_INTEGRITY: WasmIntegrityResult = { status: "INVALID", error: "Engine not ready" };
 
 export function useWasm(): UseWasmReturn {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,5 +40,12 @@ export function useWasm(): UseWasmReturn {
     return window.calculateFootprint(entries);
   };
 
-  return { isLoading, error, calculateFootprint };
+  const verifyIntegrity = (event: any, signature: string, publicKey: string): WasmIntegrityResult => {
+    if (typeof window.verifyIntegrity !== "function") {
+      return NOOP_INTEGRITY;
+    }
+    return window.verifyIntegrity(event, signature, publicKey);
+  };
+
+  return { isLoading, error, calculateFootprint, verifyIntegrity };
 }

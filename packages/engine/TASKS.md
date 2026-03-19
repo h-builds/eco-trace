@@ -22,9 +22,9 @@ Implementation plan for the core cryptographic and validation logic of the Eco-T
 
 ## 4. Integrity Gates (Schema & Error Handling)
 
-- [ ] Implement `ValidateSchema` function to enforce [DATA_DICTIONARY.md](file:///home/hguerra/eco-trace/.ai/knowledge/DATA_DICTIONARY.md) constraints. `[TODO]` **(Ref: G05)**
+- [ ] Implement `ValidateSchema` function to enforce [DATA_DICTIONARY.md](../../.ai/knowledge/DATA_DICTIONARY.md) constraints. `[TODO]` **(Ref: G05)**
 - [ ] Build the Error Reporting module:
-  - [ ] `INTEGRITY_VIOLATION` handler. `[TODO]` **(Ref: G02, G10)**
+  - [x] `INTEGRITY_VIOLATION` handler. `[DONE 2026-03-19]` **(Ref: G02, G10)**
   - [ ] `CALCULATION_DISCREPANCY` handler. `[TODO]` **(Ref: G03)**
   - [ ] `UNAUTHORIZED_ACTOR` handler. `[TODO]` **(Ref: G07)**
 

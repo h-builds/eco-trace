@@ -4,11 +4,21 @@ interface WasmFootprintResult {
   error: string | null;
 }
 
+interface WasmIntegrityResult {
+  status: "VALID" | "INVALID";
+  error: string | null;
+}
+
 interface EcoTraceGlobals {
   getEngineVersion: () => string;
   calculateFootprint: (
     entries: Array<{ energy_kwh: number; emission_factor: number }>
   ) => WasmFootprintResult;
+  verifyIntegrity: (
+    event: any,
+    signature: string,
+    publicKey: string
+  ) => WasmIntegrityResult;
 }
 
 declare global {
@@ -18,4 +28,4 @@ declare global {
   var Go: any;
 }
 
-export type { WasmFootprintResult, EcoTraceGlobals };
+export type { WasmFootprintResult, WasmIntegrityResult, EcoTraceGlobals };
