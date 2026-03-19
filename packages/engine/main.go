@@ -12,13 +12,23 @@ import (
 	"github.com/eco-trace/engine/internal/types"
 )
 
+var isReady bool
+
 func main() {
-	fmt.Println("Eco-Trace Engine Initialized (Wasm)")
+	// Deterministic init order: registry MUST be live before any JS function is exposed.
+	crypto.InitializeRegistry()
 
 	js.Global().Set("getEngineVersion", js.FuncOf(getEngineVersion))
 	js.Global().Set("calculateFootprint", js.FuncOf(jsCalculateFootprint))
 	js.Global().Set("verifyIntegrity", js.FuncOf(jsVerifyIntegrity))
-	js.Global().Set("registerTrustedActor", js.FuncOf(jsRegisterTrustedActor))
+
+	isReady = true
+	fmt.Println("Eco-Trace Engine Initialized (Wasm)")
+
+	cb := js.Global().Get("__ecotraceOnReady")
+	if cb.Type() == js.TypeFunction {
+		cb.Invoke()
+	}
 
 	select {}
 }
@@ -27,13 +37,6 @@ func getEngineVersion(this js.Value, args []js.Value) interface{} {
 	return "1.0.0"
 }
 
-// jsCalculateFootprint bridges JS ↔ Go for deterministic CF_total calculation.
-// Accepts: JS Array of objects with { energy_kwh: number, emission_factor: number }
-// Returns: JS Object { result: number, error: string|null }
-//
-// Marshals JS values into types.ESGMetadata (types.go L31–L35),
-// delegates to logic.CalculateCarbonFootprint (calculator.go L14),
-// which enforces MIN_0 via ESGMetadata.Validate() (types.go L38–L47).
 func jsCalculateFootprint(this js.Value, args []js.Value) interface{} {
 	if len(args) < 1 || args[0].Type() != js.TypeObject {
 		return errorResponse("argument must be a JS array of ESG entries")
@@ -73,10 +76,11 @@ func errorResponse(msg string) map[string]interface{} {
 	}
 }
 
-// jsVerifyIntegrity validates an event object signature against a public key.
-// Accepts: JS Object (SupplyChainEvent), sigHex (string), pubKeyHex (string)
-// Returns: JS Object { status: "VALID" | "INVALID", error: string|null }
 func jsVerifyIntegrity(this js.Value, args []js.Value) interface{} {
+	if !isReady {
+		return errorStatusResponse("PENDING", "Engine registry initializing — retry shortly")
+	}
+
 	if len(args) < 3 || args[0].Type() != js.TypeObject || args[1].Type() != js.TypeString || args[2].Type() != js.TypeString {
 		return errorStatusResponse("INVALID", "arguments must be: event payload object, signature hex string, public key hex string")
 	}
@@ -85,7 +89,6 @@ func jsVerifyIntegrity(this js.Value, args []js.Value) interface{} {
 	sigHex := args[1].String()
 	pubKeyHex := args[2].String()
 
-	// Reconstruct the Go SupplyChainEvent from JS object
 	esgObj := jsObj.Get("esg_metadata")
 	if esgObj.Type() != js.TypeObject {
 		return errorStatusResponse("INVALID", "esg_metadata object missing or invalid")
@@ -113,32 +116,14 @@ func jsVerifyIntegrity(this js.Value, args []js.Value) interface{} {
 		return errorStatusResponse("INVALID", "invalid public key hex")
 	}
 
-	if !crypto.IsAuthorizedActor(event.ActorID, pub) {
-		return errorStatusResponse("UNAUTHORIZED_ACTOR", "signature is mathematically valid but actor is unauthorized")
+	if !crypto.IsAuthorized(event.ActorID, pub) {
+		return errorStatusResponse("UNAUTHORIZED", "Data signature is mathematically valid, but the Actor's Public Key is not found in the Trusted Actor Registry (G07 Check Failure).")
 	}
 
 	return map[string]interface{}{
 		"status": "VALID",
 		"error":  js.Null(),
 	}
-}
-
-// jsRegisterTrustedActor seeds the authorized participant map for UI demonstration logic.
-// Accepts: JS Strings (ActorID string, PublicKeyHex string)
-func jsRegisterTrustedActor(this js.Value, args []js.Value) interface{} {
-	if len(args) < 2 || args[0].Type() != js.TypeString || args[1].Type() != js.TypeString {
-		return js.Null()
-	}
-	
-	actorID := args[0].String()
-	pubKeyHex := args[1].String()
-	pub, err := hex.DecodeString(pubKeyHex)
-	
-	if err == nil {
-		crypto.RegisterActor(actorID, pub)
-	}
-	
-	return js.Null()
 }
 
 func errorStatusResponse(status string, msg string) map[string]interface{} {

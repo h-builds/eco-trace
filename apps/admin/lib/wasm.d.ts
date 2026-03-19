@@ -1,11 +1,10 @@
-// Wasm bridge globals injected by engine.wasm (packages/engine/main.go L16–L17).
 interface WasmFootprintResult {
   result: number;
   error: string | null;
 }
 
 interface WasmIntegrityResult {
-  status: "VALID" | "INVALID" | "UNAUTHORIZED_ACTOR";
+  status: "VALID" | "INVALID" | "UNAUTHORIZED" | "PENDING";
   error: string | null;
 }
 
@@ -23,6 +22,8 @@ interface EcoTraceGlobals {
     actorId: string,
     publicKey: string
   ) => void;
+  // Go engine readiness callback — set by wasmLoader before go.run().
+  __ecotraceOnReady?: () => void;
 }
 
 declare global {

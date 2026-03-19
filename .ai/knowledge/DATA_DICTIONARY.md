@@ -49,6 +49,7 @@ Schemas for representing the integrity and confidence of ESG events.
   - `VALID`: Cryptographic and logical verification passed.
   - `WARNING`: Logical discrepancy detected (e.g., calculation mismatch).
   - `INVALID`: Cryptographic failure or schema violation.
+  - `UNAUTHORIZED`: Data signature is mathematically valid, but the Actor's Public Key is not found in the Trusted Actor Registry (G07 Check Failure).
 
 ### `ConfidenceScore`
 - **Type:** Float

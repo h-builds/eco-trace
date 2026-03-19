@@ -81,11 +81,13 @@ func TestTamperDetection(t *testing.T) {
 
 func TestUnauthorizedActor(t *testing.T) {
 	// G07: Verify Actor logic ensures unauthorized but mathematically correct signatures fail identity checks.
+	InitializeRegistry()
+
 	trustedPub, _, _ := GenerateKeyPair()
 	evilPub, evilPriv, _ := GenerateKeyPair()
 
 	actorID := "Trusted Supplier A"
-	RegisterActor(actorID, trustedPub)
+	TrustedActors[actorID] = trustedPub
 
 	// Malicious actor signs a payload claiming to be "Trusted Supplier A"
 	event := types.SupplyChainEvent{
@@ -109,7 +111,7 @@ func TestUnauthorizedActor(t *testing.T) {
 	}
 
 	// Step 2: Identity mapping fails
-	if IsAuthorizedActor(event.ActorID, evilPub) {
-		t.Error("Expected IsAuthorizedActor to reject the evil public key for the impersonated ActorID")
+	if IsAuthorized(event.ActorID, evilPub) {
+		t.Error("Expected IsAuthorized to reject the evil public key for the impersonated ActorID")
 	}
 }
