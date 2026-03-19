@@ -1,6 +1,7 @@
 # React 19 Operational Directive (apps/admin)
 
-> **Inherits:** [.ai/rules/AGENTS.md](../../.ai/rules/AGENTS.md) — all global governance, stack pinning, and [RULES.md](../../.ai/rules/RULES.md) constraints apply.
+> **Inherits and enforces:** [.ai/rules/RULES.md](../../.ai/rules/RULES.md)
+> **Inherits:** [.ai/rules/AGENTS.md](../../.ai/rules/AGENTS.md) — all global governance and stack pinning constraints apply.
 
 ## 1. Mission
 

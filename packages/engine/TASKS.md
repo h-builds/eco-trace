@@ -15,9 +15,9 @@ Implementation plan for the core cryptographic and validation logic of the Eco-T
 
 ## 3. Security (Cryptographic Integrity)
 
-- [ ] Implement Ed25519 key pair generation and management utilities. `[TODO]`
-- [ ] Implement `SignEvent` function to cryptographically secure `SupplyChainEvent` payloads. `[TODO]` **(Ref: G01)**
-- [ ] Implement `VerifySignature` gate to detect tampered payloads. `[TODO]` **(Ref: G02)**
+- [x] Implement Ed25519 key pair generation and management utilities. `[DONE 2026-03-19]`
+- [x] Implement `SignEvent` function to cryptographically secure `SupplyChainEvent` payloads. `[DONE 2026-03-19]` **(Ref: G01)**
+- [x] Implement `VerifySignature` gate to detect tampered payloads. `[DONE 2026-03-19]` **(Ref: G02)**
 - [ ] Implement `VerifyActor` check against a trusted entity list. `[TODO]` **(Ref: G07)**
 
 ## 4. Integrity Gates (Schema & Error Handling)
@@ -30,7 +30,7 @@ Implementation plan for the core cryptographic and validation logic of the Eco-T
 
 ## 5. Wasm Bindings (Edge Readiness)
 
-- [ ] Expose core validation functions to JavaScript via `syscall/js`. `[TODO]`
+- [x] Expose core validation functions to JavaScript via `syscall/js`. `[DONE 2026-03-19]`
 - [ ] Optimize memory management for high-frequency execution in Cloudflare Workers. `[TODO]`
 - [ ] Verify Wasm execution latency meets target. `[TODO]` **(Ref: G08)**
 

@@ -55,6 +55,7 @@ type SupplyChainEvent struct {
 	Timestamp string
 	Action    ActionType
 	ESG       ESGMetadata
+	Signature string
 }
 
 // ValidateUUID checks that EventID is a non-empty, RFC 4122–shaped UUID.

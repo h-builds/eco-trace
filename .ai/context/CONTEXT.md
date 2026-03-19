@@ -33,6 +33,10 @@ Eco-Trace is a high-performance, Edge-native supply chain traceability platform 
 - Migrated framework-specific rules to `.ai/rules/FRAMEWORKS.md`.
 - **(2026-03-19)** Initialized Go engine: `internal/types` (SupplyChainEvent, ESGMetadata with `Validate()`, enums), `internal/logic` (`CalculateCarbonFootprint` with float rounding, 7/7 tests pass — G03/G04), `internal/crypto` (placeholder). Zero-Slop Commenting enforced.
 - **(2026-03-19)** Lean Governance Migration: consolidated 12→8 files (−33%). Inlined skills into `LIBRARY.md` v2.0, deleted `.ai/skills/`. Trimmed `SPEC.md`, `AGENTS.md` (global + local). Zero constraint loss.
+- **(2026-03-19)** Wasm Bridge: `jsCalculateFootprint` in `main.go` exposes `CalculateCarbonFootprint` to JS via `syscall/js`. `build.sh` compiles `engine.wasm` (2.6M) to `public/`.
+- **(2026-03-19)** Admin Wasm Bootstrap: React 19 hook `useWasm.ts` uses singleton loader `wasmLoader.ts` to manage Wasm lifecycle. Created `AuditTester.tsx` PoC component.
+- **(2026-03-19)** High-Density Event Log: Built the primary auditing table in `apps/admin/app/dashboard/events/page.tsx` integrating Wasm (`calculateFootprint`) and adhering 100% to the UI Dependency First rule using `@eco-trace/ui` tokens (`tokens.json`).
+- **(2026-03-19)** Ed25519 Cryptographic Gate: Implemented `SignEvent` and `VerifyEvent` in `internal/crypto`. Extended Wasm bridge with `verifyIntegrity`. SupplyChainEvent now accepts `Signature`. Validated via G01/G02 testing pipeline.
 
 ## Working Context
 

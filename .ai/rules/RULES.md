@@ -48,6 +48,13 @@ To maximize model focus and minimize token waste, rules are segmented for granul
   - **Local**: "Framework Rules" (React 19, Vue 3, Go) are loaded ONLY when analyzing files within their respective packages.
 - **Validation Logic**: Before any major tool-call or code generation, the agent MUST verify that the specific context for that module (e.g., Go/Wasm) is active and being followed.
 
+## 7. UI Dependency First
+
+- **Inheritance**: All UI components and styles MUST inherit from `@eco-trace/ui` tokens (colors, spacing, typography).
+- **Prohibition**: The use of arbitrary Tailwind classes or inline styles that bypass the design tokens defined in `.ai/knowledge/DATA_DICTIONARY.md` is strictly **PROHIBITED**.
+- **Enforcement**: Any PR or code block that recreates existing components or tokens locally in `apps/` is a violation of the Golden Standard.
+- **Requirement Verification**: The agent MUST verify the contents of `packages/ui/` before proposing any new UI logic.
+
 ---
 
 _Goal: Maximize architectural sustainability, eliminate AI slop, and ensure high-density context usage._

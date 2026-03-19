@@ -4,10 +4,10 @@ node_modules/
 .npm/
 
 # Build outputs
-/dist/
-/build/
-/out/
-/.next/
+dist/
+build/
+out/
+.next/
 *.wasm
 /packages/engine/engine
 
@@ -43,4 +43,4 @@ Thumbs.db
 # Local cache
 .eslintcache
 .stylelintcache
-/node_modules/.cache/
+node_modules/.cache/
