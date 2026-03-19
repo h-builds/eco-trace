@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useTransition, useCallback } from "react";
+import { useEffect, useState, useTransition } from "react";
 import tokens from "../../../../../packages/ui/tokens.json";
 import { useWasm } from "../../../hooks/useWasm";
 
@@ -26,12 +26,15 @@ export default function EventLogPage() {
   const [validityStatuses, setValidityStatuses] = useState<Record<string, SupplyChainEvent["status"]>>({});
   const [toastMsg, setToastMsg] = useState<{ message: string; type: "success" | "error" | "warning" } | null>(null);
   
+  const [filter, setFilter] = useState<"ALL" | "INVALID" | "UNAUTHORIZED">("ALL");
+
   const { isLoading, isEngineReady, error, calculateFootprint, verifyIntegrity } = useWasm();
   const [isPending, startTransition] = useTransition();
 
-  const fetchEvents = useCallback(async () => {
+  const fetchEvents = async () => {
     try {
-      const res = await fetch("/api/events");
+      const url = filter === "ALL" ? "/api/events" : `/api/events?status=${filter}`;
+      const res = await fetch(url);
       if (!res.ok) throw new Error("Failed to fetch events from D1");
       const data: SupplyChainEvent[] = await res.json();
       setEvents(data);
@@ -39,11 +42,11 @@ export default function EventLogPage() {
       console.error(err);
       setToastMsg({ message: "Failed to load events from D1.", type: "error" });
     }
-  }, []);
+  };
 
   useEffect(() => {
     fetchEvents();
-  }, [fetchEvents]);
+  }, [filter]);
 
   useEffect(() => {
     if (isEngineReady && !error && events.length > 0) {
@@ -213,6 +216,8 @@ export default function EventLogPage() {
     }
   };
 
+  const nonValidCount = events.filter(e => e.status !== "VALID").length;
+
   return (
     <div
       style={{
@@ -223,15 +228,57 @@ export default function EventLogPage() {
         color: textPrimary
       }}
     >
-      <h1
-        style={{
-          fontSize: "24px",
-          fontWeight: typography.weights.bold.value,
-          marginBottom: spacing.scale.value[4] + "px"
-        }}
-      >
-        High-Density Event Log
-      </h1>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: spacing.scale.value[4] + "px" }}>
+        <h1
+          style={{
+            fontSize: "24px",
+            fontWeight: typography.weights.bold.value
+          }}
+        >
+          High-Density Event Log
+        </h1>
+        <div 
+          style={{
+            padding: `${spacing.scale.value[1]}px ${spacing.scale.value[3]}px`,
+            backgroundColor: nonValidCount > 0 ? invalidColor : bgCanvas,
+            color: nonValidCount > 0 ? "#FFFFFF" : textPrimary,
+            border: `1px solid ${nonValidCount > 0 ? invalidColor : borderColor}`,
+            borderRadius: "8px",
+            fontWeight: typography.weights.bold.value,
+            fontSize: "14px",
+          }}
+          aria-live="polite"
+        >
+          Security Counter: {nonValidCount} Non-Valid Event{nonValidCount !== 1 ? "s" : ""}
+        </div>
+      </div>
+
+      <div style={{ display: "flex", gap: "8px", marginBottom: spacing.scale.value[4] + "px" }} role="group" aria-label="Event Status Filters">
+        {[
+          { label: "All Events", value: "ALL" },
+          { label: "Integrity Failures (INVALID)", value: "INVALID" },
+          { label: "Identity Alerts (UNAUTHORIZED)", value: "UNAUTHORIZED" }
+        ].map((btn) => (
+          <button
+            key={btn.value}
+            aria-pressed={filter === btn.value}
+            onClick={() => setFilter(btn.value as "ALL" | "INVALID" | "UNAUTHORIZED")}
+            style={{
+              padding: `${spacing.scale.value[2]}px ${spacing.scale.value[3]}px`,
+              backgroundColor: filter === btn.value ? textPrimary : bgCanvas,
+              color: filter === btn.value ? bgCanvas : textPrimary,
+              border: `1px solid ${filter === btn.value ? textPrimary : borderColor}`,
+              borderRadius: "20px",
+              cursor: "pointer",
+              fontWeight: typography.weights.medium.value,
+              fontSize: "14px",
+              transition: "all 0.2s"
+            }}
+          >
+            {btn.label}
+          </button>
+        ))}
+      </div>
 
       {toastMsg && (
         <div 
@@ -262,7 +309,7 @@ export default function EventLogPage() {
       >
         {events.length === 0 && !error ? (
           <div style={{ padding: spacing.scale.value[4] + "px", textAlign: "center", color: textPrimary }}>
-            Loading live events from D1 Edge Route...
+            No live events match the filtered criteria from D1 Edge Route.
           </div>
         ) : (
           <table

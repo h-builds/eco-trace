@@ -41,9 +41,24 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Database binding 'DB' not found in environment." }, { status: 500 });
     }
 
-    const { results } = await db.prepare(
-      "SELECT * FROM events ORDER BY timestamp DESC LIMIT 50"
-    ).all<DBRow>();
+    const { searchParams } = new URL(request.url);
+    const statusParam = searchParams.get("status");
+
+    let query = "SELECT * FROM events";
+    const params: unknown[] = [];
+
+    if (statusParam === "alerts") {
+      query += " WHERE integrity_status IN ('INVALID', 'UNAUTHORIZED')";
+    } else if (statusParam === "INVALID" || statusParam === "UNAUTHORIZED") {
+      query += " WHERE integrity_status = ?";
+      params.push(statusParam);
+    }
+
+    query += " ORDER BY timestamp DESC LIMIT 50";
+
+    let stmt = db.prepare(query);
+    if (params.length > 0) stmt = stmt.bind(...params);
+    const { results } = await stmt.all<DBRow>();
 
     const formattedResults = results.map((row: DBRow) => ({
       id: row.id,
