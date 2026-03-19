@@ -44,3 +44,9 @@ Thumbs.db
 .eslintcache
 .stylelintcache
 node_modules/.cache/
+
+# Cloudflare Wrangler & D1 Local State
+.wrangler/
+.d1/
+*.sqlite
+*.sqlite3

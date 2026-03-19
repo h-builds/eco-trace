@@ -1,0 +1,12 @@
+name = "admin"
+compatibility_date = "2024-03-12"
+pages_build_output_dir = ".vercel/output/static"
+
+# D1 Database Binding
+[[d1_databases]]
+binding = "DB" # Available as env.DB in Next.js/Pages Functions
+database_name = "eco-trace-events"
+database_id = "a68339af-3c78-46c3-987b-4f8792a5159b" # Replace in production
+
+# preview_database_id allows local development to use a distinct testing DB or local file
+preview_database_id = "preview-0000-0000-0000-00000000"

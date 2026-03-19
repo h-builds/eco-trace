@@ -40,6 +40,8 @@ Eco-Trace is a high-performance, Edge-native supply chain traceability platform 
 - **(2026-03-19)** Admin Cryptographic Gate GUI: Linked Event Log to `verifyIntegrity` in `useWasm.ts`. Verified deterministic real-time `VALID`/`INVALID` integrity badging, adhering to `IntegrityStatus` enums constraints via `useTransition` thread-safe hooks, featuring a "Tamper Test" GUI mode.
 - **(2026-03-19)** Trusted Actor Registry (G07): Implemented internal pre-authorized registry map in Go `crypto`. `VerifyIntegrity` now checks strictly against `IsAuthorizedActor` rejecting impersonator events as `UNAUTHORIZED_ACTOR`, preventing trusted keys from assuming unowned `actor_id` payloads.
 - **(2026-03-19)** Architectural Alignment: Updated `DATA_DICTIONARY.md` to officially support an `UNAUTHORIZED` state for `IntegrityStatus`. Fixed `build.sh` target path resolving an impasse where Next.js served aggressively cached obsolete Wasm, preventing security states from executing on the frontend. Re-implemented zero-slop commenting policies.
+- **(2026-03-19)** D1 Persistence integration: Mapped `SupplyChainEvent` to D1 `schema.sql`, configured `wrangler.toml` bindings, and created zero-slop `GET/POST` endpoints in Next.js `route.ts`.
+- **(2026-03-19)** EventTable Live Integration: Refactored Admin Dashboard `page.tsx` removing local mock data for live `GET /api/events` fetching. Transformed Tamper and Impersonation security tests to persist real `INVALID` and `UNAUTHORIZED` event logs onto the edge database with integrated UI notification styling strictly adhering to `@eco-trace/ui` tokens.
 
 ## Working Context
 
