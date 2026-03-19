@@ -32,8 +32,7 @@ Project governance resides in a decentralized intelligence layer that guides aut
 
 - **[Context](./.ai/context/CONTEXT.md):** Active state and session memory management.
 - **[Rules](./.ai/rules/RULES.md):** Technical constitution enforcing **Zero-Hallucination** and **Zero-Slop Commenting** policies.
-- **[Skills](./.ai/skills/):** Operational capabilities for accessibility auditing and deterministic ESG logic.
-- **[Library](./.ai/prompts/LIBRARY.md):** Versioned prompt library for mission-critical workflows.
+- **[Library](./.ai/prompts/LIBRARY.md):** Versioned prompt library for mission-critical workflows and skill execution.
 
 ---
 
@@ -48,8 +47,8 @@ Project governance resides in a decentralized intelligence layer that guides aut
 
 ## 🚦 Current Operational Status
 
-**Current Phase:** `Phase 2: Implementation Setup`
-**Focus:** Building the cryptographic bridge between the Go/Wasm engine and user interfaces.
+**Current Phase:** `Phase 3: Go Engine Core Initialized`
+**Focus:** Core validation engine operational with deterministic ESG logic, live Ed25519 Cryptographic Gate (Wasm), and Trusted Actor Registry active on the React Admin UI.
 
 > [!CAUTION]
 > **Strict Governance:** Any changes to the "Bridge" infrastructure require a Staff-level technical audit and validation against [EVALS.md](./.ai/knowledge/EVALS.md) test cases.
@@ -61,8 +60,7 @@ Project governance resides in a decentralized intelligence layer that guides aut
 For developers and AI agents:
 
 1.  Adopt the **Operational Persona** defined in [AGENTS.md](./.ai/rules/AGENTS.md).
-2.  Consult available workflows in [.ai/skills/](./.ai/skills/).
-3.  Execute templates from the [LIBRARY.md](./.ai/prompts/LIBRARY.md) for standardized tasks.
+2.  Execute templates and skills directly from [LIBRARY.md](./.ai/prompts/LIBRARY.md) for standardized tasks.
 
 ---
 
