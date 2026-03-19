@@ -38,6 +38,7 @@ Eco-Trace is a high-performance, Edge-native supply chain traceability platform 
 - **(2026-03-19)** High-Density Event Log: Built the primary auditing table in `apps/admin/app/dashboard/events/page.tsx` integrating Wasm (`calculateFootprint`) and adhering 100% to the UI Dependency First rule using `@eco-trace/ui` tokens (`tokens.json`).
 - **(2026-03-19)** Ed25519 Cryptographic Gate: Implemented `SignEvent` and `VerifyEvent` in `internal/crypto`. Extended Wasm bridge with `verifyIntegrity`. SupplyChainEvent now accepts `Signature`. Validated via G01/G02 testing pipeline.
 - **(2026-03-19)** Admin Cryptographic Gate GUI: Linked Event Log to `verifyIntegrity` in `useWasm.ts`. Verified deterministic real-time `VALID`/`INVALID` integrity badging, adhering to `IntegrityStatus` enums constraints via `useTransition` thread-safe hooks, featuring a "Tamper Test" GUI mode.
+- **(2026-03-19)** Trusted Actor Registry (G07): Implemented internal pre-authorized registry map in Go `crypto`. `VerifyIntegrity` now checks strictly against `IsAuthorizedActor` rejecting impersonator events as `UNAUTHORIZED_ACTOR`, preventing trusted keys from assuming unowned `actor_id` payloads.
 
 ## Working Context
 

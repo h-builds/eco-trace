@@ -3,6 +3,7 @@
 package main
 
 import (
+	"encoding/hex"
 	"fmt"
 	"syscall/js"
 
@@ -17,6 +18,7 @@ func main() {
 	js.Global().Set("getEngineVersion", js.FuncOf(getEngineVersion))
 	js.Global().Set("calculateFootprint", js.FuncOf(jsCalculateFootprint))
 	js.Global().Set("verifyIntegrity", js.FuncOf(jsVerifyIntegrity))
+	js.Global().Set("registerTrustedActor", js.FuncOf(jsRegisterTrustedActor))
 
 	select {}
 }
@@ -106,10 +108,37 @@ func jsVerifyIntegrity(this js.Value, args []js.Value) interface{} {
 		return errorStatusResponse("INVALID", "cryptographic signature verification failed")
 	}
 
+	pub, err := hex.DecodeString(pubKeyHex)
+	if err != nil {
+		return errorStatusResponse("INVALID", "invalid public key hex")
+	}
+
+	if !crypto.IsAuthorizedActor(event.ActorID, pub) {
+		return errorStatusResponse("UNAUTHORIZED_ACTOR", "signature is mathematically valid but actor is unauthorized")
+	}
+
 	return map[string]interface{}{
 		"status": "VALID",
 		"error":  js.Null(),
 	}
+}
+
+// jsRegisterTrustedActor seeds the authorized participant map for UI demonstration logic.
+// Accepts: JS Strings (ActorID string, PublicKeyHex string)
+func jsRegisterTrustedActor(this js.Value, args []js.Value) interface{} {
+	if len(args) < 2 || args[0].Type() != js.TypeString || args[1].Type() != js.TypeString {
+		return js.Null()
+	}
+	
+	actorID := args[0].String()
+	pubKeyHex := args[1].String()
+	pub, err := hex.DecodeString(pubKeyHex)
+	
+	if err == nil {
+		crypto.RegisterActor(actorID, pub)
+	}
+	
+	return js.Null()
 }
 
 func errorStatusResponse(status string, msg string) map[string]interface{} {

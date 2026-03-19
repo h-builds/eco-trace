@@ -18,7 +18,7 @@ Implementation plan for the core cryptographic and validation logic of the Eco-T
 - [x] Implement Ed25519 key pair generation and management utilities. `[DONE 2026-03-19]`
 - [x] Implement `SignEvent` function to cryptographically secure `SupplyChainEvent` payloads. `[DONE 2026-03-19]` **(Ref: G01)**
 - [x] Implement `VerifySignature` gate to detect tampered payloads. `[DONE 2026-03-19]` **(Ref: G02)**
-- [ ] Implement `VerifyActor` check against a trusted entity list. `[TODO]` **(Ref: G07)**
+- [x] Implement `VerifyActor` check against a trusted entity list. `[DONE 2026-03-19]` **(Ref: G07)**
 
 ## 4. Integrity Gates (Schema & Error Handling)
 
@@ -26,7 +26,7 @@ Implementation plan for the core cryptographic and validation logic of the Eco-T
 - [ ] Build the Error Reporting module:
   - [x] `INTEGRITY_VIOLATION` handler. `[DONE 2026-03-19]` **(Ref: G02, G10)**
   - [ ] `CALCULATION_DISCREPANCY` handler. `[TODO]` **(Ref: G03)**
-  - [ ] `UNAUTHORIZED_ACTOR` handler. `[TODO]` **(Ref: G07)**
+  - [x] `UNAUTHORIZED_ACTOR` handler. `[DONE 2026-03-19]` **(Ref: G07)**
 
 ## 5. Wasm Bindings (Edge Readiness)
 

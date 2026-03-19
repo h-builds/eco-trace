@@ -78,3 +78,38 @@ func TestTamperDetection(t *testing.T) {
 		t.Error("VerifyEvent incorrectly validated tampered event payload (ActorID changed)")
 	}
 }
+
+func TestUnauthorizedActor(t *testing.T) {
+	// G07: Verify Actor logic ensures unauthorized but mathematically correct signatures fail identity checks.
+	trustedPub, _, _ := GenerateKeyPair()
+	evilPub, evilPriv, _ := GenerateKeyPair()
+
+	actorID := "Trusted Supplier A"
+	RegisterActor(actorID, trustedPub)
+
+	// Malicious actor signs a payload claiming to be "Trusted Supplier A"
+	event := types.SupplyChainEvent{
+		EventID:   "123e4567-e89b-12d3-a456-426614174000",
+		AssetID:   "asset-123",
+		ActorID:   actorID, // Impersonating the trustworthy actor
+		Timestamp: "2026-03-19T00:00:00Z",
+		Action:    types.ActionOrigin,
+		ESG: types.ESGMetadata{
+			EnergyKWh:      200.0,
+			EmissionFactor: 0.5,
+		},
+	}
+
+	// Mathematically valid signature from the Evil actor
+	sig, _ := SignEvent(event, evilPriv)
+
+	// Step 1: Signature passes mathematics
+	if !VerifyEvent(event, sig, evilPub) {
+		t.Fatal("Expected malicious signature to be mathematically valid for their own key")
+	}
+
+	// Step 2: Identity mapping fails
+	if IsAuthorizedActor(event.ActorID, evilPub) {
+		t.Error("Expected IsAuthorizedActor to reject the evil public key for the impersonated ActorID")
+	}
+}

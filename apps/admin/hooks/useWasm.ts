@@ -14,6 +14,7 @@ interface UseWasmReturn {
   error: string | null;
   calculateFootprint: (entries: ESGEntry[]) => WasmFootprintResult;
   verifyIntegrity: (event: any, signature: string, publicKey: string) => WasmIntegrityResult;
+  registerTrustedActor: (actorId: string, publicKey: string) => void;
 }
 
 const NOOP_RESULT: WasmFootprintResult = { result: 0, error: "Engine not ready" };
@@ -47,5 +48,11 @@ export function useWasm(): UseWasmReturn {
     return window.verifyIntegrity(event, signature, publicKey);
   };
 
-  return { isLoading, error, calculateFootprint, verifyIntegrity };
+  const registerTrustedActor = (actorId: string, publicKey: string): void => {
+    if (typeof window.registerTrustedActor === "function") {
+      window.registerTrustedActor(actorId, publicKey);
+    }
+  };
+
+  return { isLoading, error, calculateFootprint, verifyIntegrity, registerTrustedActor };
 }

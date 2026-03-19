@@ -5,7 +5,7 @@ interface WasmFootprintResult {
 }
 
 interface WasmIntegrityResult {
-  status: "VALID" | "INVALID";
+  status: "VALID" | "INVALID" | "UNAUTHORIZED_ACTOR";
   error: string | null;
 }
 
@@ -19,6 +19,10 @@ interface EcoTraceGlobals {
     signature: string,
     publicKey: string
   ) => WasmIntegrityResult;
+  registerTrustedActor: (
+    actorId: string,
+    publicKey: string
+  ) => void;
 }
 
 declare global {

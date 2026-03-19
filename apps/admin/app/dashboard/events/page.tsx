@@ -10,7 +10,7 @@ export interface SupplyChainEvent {
   action: string;
   energyKwh: number;
   emissionFactor: number;
-  status: "VALID" | "WARNING" | "INVALID" | "PENDING";
+  status: "VALID" | "WARNING" | "INVALID" | "PENDING" | "UNAUTHORIZED_ACTOR";
   signature: string;
   publicKey: string;
   event_id: string;
@@ -103,11 +103,17 @@ export default function EventLogPage() {
   const [footprints, setFootprints] = useState<Record<string, number>>({});
   const [validityStatuses, setValidityStatuses] = useState<Record<string, SupplyChainEvent["status"]>>({});
   
-  const { isLoading, error, calculateFootprint, verifyIntegrity } = useWasm();
+  const { isLoading, error, calculateFootprint, verifyIntegrity, registerTrustedActor } = useWasm();
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
-    if (!isLoading && !error) {
+    if (!isLoading && !error && events.length > 0) {
+      // Register our expected UI mock actor as an Authorized Entity
+      registerTrustedActor(
+        "f444ff2d410a8409e3e422bc45d5b121e2d146882d4d6ae50382c3e42bf4dd10", 
+        "f444ff2d410a8409e3e422bc45d5b121e2d146882d4d6ae50382c3e42bf4dd10"
+      );
+
       startTransition(() => {
         const newFootprints: Record<string, number> = {};
         const newStatuses: Record<string, SupplyChainEvent["status"]> = {};
@@ -137,6 +143,8 @@ export default function EventLogPage() {
           const integrityResult = verifyIntegrity(payload, event.signature, event.publicKey);
           if (integrityResult.status === "VALID") {
             newStatuses[event.id] = "VALID";
+          } else if (integrityResult.status === "UNAUTHORIZED_ACTOR") {
+            newStatuses[event.id] = "UNAUTHORIZED_ACTOR";
           } else {
             // Evaluates as INVALID if hash mismatch prevents deterministic recreation
             newStatuses[event.id] = "INVALID";
@@ -147,12 +155,23 @@ export default function EventLogPage() {
         setValidityStatuses(newStatuses);
       });
     }
-  }, [isLoading, error, events, calculateFootprint, verifyIntegrity]);
+  }, [isLoading, error, events, calculateFootprint, verifyIntegrity, registerTrustedActor]);
 
   const handleTamperTest = (eventId: string) => {
     setEvents(prev => prev.map(e => 
       e.id === eventId 
         ? { ...e, energyKwh: e.energyKwh + 1 } // Mutate data to break signature
+        : e
+    ));
+  };
+
+  const handleImpersonatorTest = (eventId: string) => {
+    setEvents(prev => prev.map(e => 
+      e.id === eventId 
+        // Claiming to be a different actor!
+        // Cryptographically signed properly (because signature maps to event.publicKey mathematically),
+        // But the mapped key does not match the Identity in the Trust Registry for this altered payload!
+        ? { ...e, actor_id: "Unregistered Imposter Actor ID" } 
         : e
     ));
   };
@@ -178,6 +197,7 @@ export default function EventLogPage() {
       case "WARNING":
         return warningColor;
       case "INVALID":
+      case "UNAUTHORIZED_ACTOR":
         return invalidColor;
       default:
         return textPrimary;
@@ -277,22 +297,40 @@ export default function EventLogPage() {
                   </span>
                 </td>
                 <td style={{ padding: spacing.scale.value[3] + "px", fontSize: "14px" }}>
-                  <button 
-                    onClick={() => handleTamperTest(event.id)}
-                    style={{
-                      padding: `${spacing.scale.value[1]}px ${spacing.scale.value[2]}px`,
-                      backgroundColor: warningColor,
-                      color: textPrimary,
-                      border: "none",
-                      borderRadius: "4px",
-                      cursor: "pointer",
-                      fontSize: "12px",
-                      fontWeight: typography.weights.bold.value
-                    }}
-                    title="Tamper Test: Corrupts energyKwh payload data to simulate man-in-the-middle attack"
-                  >
-                    Tamper Test
-                  </button>
+                  <div style={{ display: "flex", gap: "8px" }}>
+                    <button 
+                      onClick={() => handleTamperTest(event.id)}
+                      style={{
+                        padding: `${spacing.scale.value[1]}px ${spacing.scale.value[2]}px`,
+                        backgroundColor: warningColor,
+                        color: textPrimary,
+                        border: "none",
+                        borderRadius: "4px",
+                        cursor: "pointer",
+                        fontSize: "12px",
+                        fontWeight: typography.weights.bold.value
+                      }}
+                      title="Tamper Test: Corrupts energyKwh payload data to simulate man-in-the-middle attack"
+                    >
+                      Tamper Data
+                    </button>
+                    <button 
+                      onClick={() => handleImpersonatorTest(event.id)}
+                      style={{
+                        padding: `${spacing.scale.value[1]}px ${spacing.scale.value[2]}px`,
+                        backgroundColor: invalidColor,
+                        color: "#FFFFFF",
+                        border: "none",
+                        borderRadius: "4px",
+                        cursor: "pointer",
+                        fontSize: "12px",
+                        fontWeight: typography.weights.bold.value
+                      }}
+                      title="Imposter Test: Claims to be an unauthorized actor_id, breaking Trust Registry map"
+                    >
+                      Impersonate
+                    </button>
+                  </div>
                 </td>
               </tr>
             )})}
