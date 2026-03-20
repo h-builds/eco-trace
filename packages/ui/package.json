@@ -2,6 +2,7 @@
   "name": "@eco-trace/ui",
   "version": "1.0.0",
   "private": true,
+  "main": "index.ts",
   "description": "Eco-Trace Design System tokens and validators.",
   "devDependencies": {
     "@types/node": "latest",

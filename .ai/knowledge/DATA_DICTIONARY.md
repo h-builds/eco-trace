@@ -6,10 +6,14 @@ Structural and operational context for the Eco-Trace ecosystem.
 ```yaml
 entity: SupplyChainEvent
 fields:
+  id:
+    type: UUID
+    constraints: [PRIMARY_KEY, REQUIRED]
+    description: Audit Log Record ID for this specific historical entry.
   event_id: 
     type: UUID
-    constraints: [PRIMARY_KEY]
-    description: Unique identifier for the event.
+    constraints: [REQUIRED]
+    description: Core Supply Chain Object ID (groups threaded audit entries).
   asset_id: 
     type: String
     constraints: [REQUIRED]
@@ -18,6 +22,10 @@ fields:
     type: String
     constraints: [REQUIRED]
     description: Entity performing the action (cryptographic identity).
+  public_key: 
+    type: String
+    constraints: [REQUIRED]
+    description: Ed25519 public key in hex format used to verify the signature.
   timestamp: 
     type: ISO8601
     constraints: [REQUIRED]
@@ -80,13 +88,18 @@ Where:
 Immutable visual constants for the Eco-Trace ecosystem (Admin & Consumer).
 
 ### Colors
-- **Primary (Brand Green):** `#10B981` (Success/Trust)
-- **Secondary (Audit Blue):** `#3B82F6` (Information/Monitoring)
-- **Alert (Integrity Red):** `#EF4444` (System Error/Violation)
+- **Brand Deep Charcoal:** `#1A1C1E` (Primary background and text)
+- **Verification Green:** `#287A33` (Success/Trust indicator)
+- **Integrity Blue:** `#005FB8` (Primary action and trust color)
+- **Functional Alert:** `#D32F2F` (System Error/Violation)
+- **Functional Pending:** `#F57C00` (Warning/In-Progress)
+- **Functional Neutral:** `#607D8B` (Secondary text/borders)
 
-### Spacing & Typography
-- **System:** Base-4 spacing scale (4px, 8px, 16px, 24px, 32px).
-- **Fonts:** System sans-serif stack for zero-latency loading and performance.
+### Spacing, Typography & Radii
+- **Spacing:** Base-4 spacing scale via `spacing.scale` (4px, 8px, 12px, 16px, 24px, 32px, 48px, 64px).
+- **Fonts:** `Inter, system-ui, sans-serif` for zero-latency loading.
+- **Font Sizes:** Typography sizing dictionary (`xs: 10px`, `sm: 12px`, `md: 14px`, `lg: 16px`, `xl: 24px`).
+- **Border Radii:** Semantic shape configurations (`sm: 4px`, `md: 8px`, `lg: 12px`, `pill: 24px`).
 
 ---
 *Goal: Create a single, immutable source of truth for both data integrity and visual identity.*

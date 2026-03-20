@@ -12,7 +12,8 @@
   "dependencies": {
     "next": "^16.1.7",
     "react": "^19.0.0-rc.1",
-    "react-dom": "^19.0.0-rc.1"
+    "react-dom": "^19.0.0-rc.1",
+    "@eco-trace/ui": "workspace:*"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.16",

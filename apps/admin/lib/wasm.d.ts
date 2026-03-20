@@ -6,6 +6,8 @@ interface WasmFootprintResult {
 interface WasmIntegrityResult {
   status: "VALID" | "INVALID" | "UNAUTHORIZED" | "PENDING";
   error: string | null;
+  signature?: string;
+  publicKey?: string;
 }
 
 interface EcoTraceGlobals {
@@ -14,9 +16,12 @@ interface EcoTraceGlobals {
     entries: Array<{ energy_kwh: number; emission_factor: number }>
   ) => WasmFootprintResult;
   verifyIntegrity: (
-    event: any,
+    event: Record<string, unknown>,
     signature: string,
     publicKey: string
+  ) => WasmIntegrityResult;
+  generateUntrustedSignature: (
+    event: Record<string, unknown>
   ) => WasmIntegrityResult;
   registerTrustedActor: (
     actorId: string,

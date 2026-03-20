@@ -46,11 +46,11 @@ function signPayload(eventId: string, assetId: string, actorId: string, timestam
 }
 
 const mockEvents = [
-  { uuid: crypto.randomUUID(), actor_id: "Supplier A", key: keyA.privateKey, ev_id: "EVT-001", act: "ORIGIN", e: 100.5, f: 0.8 },
-  { uuid: crypto.randomUUID(), actor_id: "Supplier A", key: keyA.privateKey, ev_id: "EVT-002", act: "TRANSFORM", e: 200.0, f: 0.9 },
-  { uuid: crypto.randomUUID(), actor_id: "Factory B", key: keyB.privateKey, ev_id: "EVT-003", act: "TRANSFORM", e: 500.2, f: 0.5 },
-  { uuid: crypto.randomUUID(), actor_id: "Factory B", key: keyB.privateKey, ev_id: "EVT-004", act: "AUDIT", e: 150.0, f: 0.5 },
-  { uuid: crypto.randomUUID(), actor_id: "Logistics D", key: keyD.privateKey, ev_id: "EVT-005", act: "TRANSPORT", e: 50.0, f: 1.2, override: "UNAUTHORIZED" },
+  { uuid: crypto.randomUUID(), actor_id: "Supplier A", key: keyA.privateKey, pub: pubA, ev_id: "EVT-001", act: "ORIGIN", e: 100.5, f: 0.8 },
+  { uuid: crypto.randomUUID(), actor_id: "Supplier A", key: keyA.privateKey, pub: pubA, ev_id: "EVT-002", act: "TRANSFORM", e: 200.0, f: 0.9 },
+  { uuid: crypto.randomUUID(), actor_id: "Factory B", key: keyB.privateKey, pub: pubB, ev_id: "EVT-003", act: "TRANSFORM", e: 500.2, f: 0.5 },
+  { uuid: crypto.randomUUID(), actor_id: "Factory B", key: keyB.privateKey, pub: pubB, ev_id: "EVT-004", act: "AUDIT", e: 150.0, f: 0.5 },
+  { uuid: crypto.randomUUID(), actor_id: "Logistics D", key: keyD.privateKey, pub: getRawPublicKey(keyD), ev_id: "EVT-005", act: "TRANSPORT", e: 50.0, f: 1.2, override: "UNAUTHORIZED" },
 ];
 
 let sql = "DELETE FROM events;\n";
@@ -60,7 +60,7 @@ for (const e of mockEvents) {
   const signature = signPayload(e.ev_id, "ASSET-999", e.actor_id, ts, e.act, e.e, e.f, e.key);
   const status = e.override || "VALID";
   
-  sql += `INSERT INTO events (id, asset_id, actor_id, timestamp, action_type, energy_kwh, emission_factor, signature, integrity_status) VALUES ('${e.uuid}', 'ASSET-999', '${e.actor_id}', '${ts}', '${e.act}', ${e.e}, ${e.f}, '${signature}', '${status}');\n`;
+  sql += `INSERT INTO events (id, event_id, asset_id, actor_id, timestamp, action_type, energy_kwh, emission_factor, signature, public_key, integrity_status) VALUES ('${e.uuid}', '${e.ev_id}', 'ASSET-999', '${e.actor_id}', '${ts}', '${e.act}', ${e.e}, ${e.f}, '${signature}', '${e.pub}', '${status}');\n`;
 }
 
 const sqlTarget = path.resolve(__dirname, '../seed.sql');

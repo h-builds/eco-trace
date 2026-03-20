@@ -30,9 +30,9 @@ type ConfidenceScore float64
 // ESGMetadata holds energy and emission data for a supply chain action.
 type ESGMetadata struct {
 	// EnergyKWh is the energy consumed during the action (unit: kWh, constraint: >= 0).
-	EnergyKWh float64
+	EnergyKWh float64 `json:"energy_kwh"`
 	// EmissionFactor is the emission intensity for the energy source (unit: kgCO₂e/kWh, constraint: >= 0).
-	EmissionFactor float64
+	EmissionFactor float64 `json:"emission_factor"`
 }
 
 // Validate enforces MIN_0 constraints on ESGMetadata fields.

@@ -14,7 +14,8 @@ interface UseWasmReturn {
   isEngineReady: boolean;
   error: string | null;
   calculateFootprint: (entries: ESGEntry[]) => WasmFootprintResult;
-  verifyIntegrity: (event: any, signature: string, publicKey: string) => WasmIntegrityResult;
+  verifyIntegrity: (event: Record<string, unknown>, signature: string, publicKey: string) => WasmIntegrityResult;
+  generateUntrustedSignature: (event: Record<string, unknown>) => WasmIntegrityResult;
 }
 
 const NOOP_RESULT: WasmFootprintResult = { result: 0, error: "Engine not ready" };
@@ -44,12 +45,19 @@ export function useWasm(): UseWasmReturn {
     return window.calculateFootprint(entries);
   };
 
-  const verifyIntegrity = (event: any, signature: string, publicKey: string): WasmIntegrityResult => {
+  const verifyIntegrity = (event: Record<string, unknown>, signature: string, publicKey: string): WasmIntegrityResult => {
     if (!isEngineReady || typeof window.verifyIntegrity !== "function") {
       return NOOP_INTEGRITY;
     }
     return window.verifyIntegrity(event, signature, publicKey);
   };
 
-  return { isLoading, isEngineReady, error, calculateFootprint, verifyIntegrity };
+  const generateUntrustedSignature = (event: Record<string, unknown>): WasmIntegrityResult => {
+    if (!isEngineReady || typeof window.generateUntrustedSignature !== "function") {
+      return NOOP_INTEGRITY;
+    }
+    return window.generateUntrustedSignature(event);
+  };
+
+  return { isLoading, isEngineReady, error, calculateFootprint, verifyIntegrity, generateUntrustedSignature };
 }

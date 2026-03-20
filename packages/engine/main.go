@@ -21,6 +21,7 @@ func main() {
 	js.Global().Set("getEngineVersion", js.FuncOf(getEngineVersion))
 	js.Global().Set("calculateFootprint", js.FuncOf(jsCalculateFootprint))
 	js.Global().Set("verifyIntegrity", js.FuncOf(jsVerifyIntegrity))
+	js.Global().Set("generateUntrustedSignature", js.FuncOf(jsGenerateUntrustedSignature))
 
 	isReady = true
 	fmt.Println("Eco-Trace Engine Initialized (Wasm)")
@@ -108,7 +109,8 @@ func jsVerifyIntegrity(this js.Value, args []js.Value) interface{} {
 
 	isValid := crypto.VerifyEventHex(event, sigHex, pubKeyHex)
 	if !isValid {
-		return errorStatusResponse("INVALID", "cryptographic signature verification failed")
+		// DEBUG: Let's dump the struct to see what we actually verified
+		return errorStatusResponse("INVALID", fmt.Sprintf("crypto failed for event: %+v", event))
 	}
 
 	pub, err := hex.DecodeString(pubKeyHex)
@@ -130,5 +132,50 @@ func errorStatusResponse(status string, msg string) map[string]interface{} {
 	return map[string]interface{}{
 		"status": status,
 		"error":  msg,
+	}
+}
+
+func jsGenerateUntrustedSignature(this js.Value, args []js.Value) interface{} {
+	if !isReady {
+		return errorStatusResponse("PENDING", "Engine registry initializing")
+	}
+
+	if len(args) < 1 || args[0].Type() != js.TypeObject {
+		return errorStatusResponse("INVALID", "argument must be event payload object")
+	}
+
+	jsObj := args[0]
+	esgObj := jsObj.Get("esg_metadata")
+	if esgObj.Type() != js.TypeObject {
+		return errorStatusResponse("INVALID", "esg_metadata object missing or invalid")
+	}
+
+	event := types.SupplyChainEvent{
+		EventID:   jsObj.Get("event_id").String(),
+		AssetID:   jsObj.Get("asset_id").String(),
+		ActorID:   jsObj.Get("actor_id").String(),
+		Timestamp: jsObj.Get("timestamp").String(),
+		Action:    types.ActionType(jsObj.Get("action_type").String()),
+		ESG: types.ESGMetadata{
+			EnergyKWh:      esgObj.Get("energy_kwh").Float(),
+			EmissionFactor: esgObj.Get("emission_factor").Float(),
+		},
+	}
+
+	pub, priv, err := crypto.GenerateKeyPair()
+	if err != nil {
+		return errorStatusResponse("INVALID", "failed to generate mock keys")
+	}
+
+	sigBytes, err := crypto.SignEvent(event, priv)
+	if err != nil {
+		return errorStatusResponse("INVALID", "failed to sign mock payload")
+	}
+
+	return map[string]interface{}{
+		"status":    "VALID",
+		"error":     js.Null(),
+		"signature": hex.EncodeToString(sigBytes),
+		"publicKey": hex.EncodeToString(pub),
 	}
 }

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getRequestContext } from "@cloudflare/next-on-pages";
 
 export const runtime = "edge";
+export const dynamic = "force-dynamic";
 
 interface D1Database {
   prepare(query: string): D1PreparedStatement;
@@ -20,6 +21,7 @@ interface D1Result<T = unknown> {
 
 interface DBRow {
   id: string;
+  event_id: string;
   asset_id: string;
   actor_id: string;
   timestamp: string;
@@ -27,6 +29,7 @@ interface DBRow {
   energy_kwh: number;
   emission_factor: number;
   signature: string;
+  public_key: string;
   integrity_status: string;
 }
 
@@ -61,23 +64,23 @@ export async function GET(request: NextRequest) {
     if (params.length > 0) stmt = stmt.bind(...params);
     const { results } = await stmt.all<DBRow>();
 
-    const formattedResults = results.map((row: DBRow) => ({
+    const events = results.map(row => ({
       id: row.id,
+      event_id: row.event_id,
+      asset_id: row.asset_id,
+      actor_id: row.actor_id,
+      timestamp: row.timestamp,
+      action_type: row.action_type,
       actor: row.actor_id,
       action: row.action_type,
       energyKwh: row.energy_kwh,
       emissionFactor: row.emission_factor,
       status: row.integrity_status,
       signature: row.signature,
-      publicKey: row.actor_id,
-      event_id: row.id,
-      asset_id: row.asset_id,
-      actor_id: row.actor_id,
-      timestamp: row.timestamp,
-      action_type: row.action_type,
+      publicKey: row.public_key,
     }));
     
-    return NextResponse.json(formattedResults);
+    return NextResponse.json(events);
   } catch (error) {
     console.error("D1 GET /api/events error:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
@@ -94,9 +97,9 @@ export async function POST(request: NextRequest) {
     const payload = await request.json();
     
     const requiredFields = [
-      "id", "asset_id", "actor_id", "timestamp", 
+      "id", "event_id", "asset_id", "actor_id", "timestamp", 
       "action_type", "energy_kwh", "emission_factor", 
-      "signature", "integrity_status"
+      "signature", "public_key", "integrity_status"
     ];
     
     for (const field of requiredFields) {
@@ -107,11 +110,12 @@ export async function POST(request: NextRequest) {
 
     const { success } = await db.prepare(
       `INSERT INTO events (
-        id, asset_id, actor_id, timestamp, action_type, 
-        energy_kwh, emission_factor, signature, integrity_status
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+        id, event_id, asset_id, actor_id, timestamp, action_type, 
+        energy_kwh, emission_factor, signature, public_key, integrity_status
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     ).bind(
       payload.id,
+      payload.event_id,
       payload.asset_id,
       payload.actor_id,
       payload.timestamp,
@@ -119,6 +123,7 @@ export async function POST(request: NextRequest) {
       payload.energy_kwh,
       payload.emission_factor,
       payload.signature,
+      payload.public_key,
       payload.integrity_status
     ).run();
 
