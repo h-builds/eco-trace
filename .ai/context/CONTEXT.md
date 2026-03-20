@@ -4,8 +4,8 @@ Active state and recent operational focus for the Eco-Trace monorepo.
 
 ## ## Session Phase
 
-**Current Phase:** Phase 3: Go Engine Core Initialized
-**Focus:** Core validation engine operational with deterministic ESG logic and TDD test suite.
+**Current Phase:** Phase 4: Edge Persistence & Audit Trail Active
+**Focus:** Core validation engine operational with deterministic ESG logic, live Ed25519 Cryptographic Gate (Wasm), and Trusted Actor Registry active on the React Admin UI. Engineered a Threaded High-Density Audit Trail grouping unique `event_id` flows natively backed by Cloudflare D1, equipped with Wasm Shadow Key Simulation for cryptographic impersonation testing.
 
 ## ## Active Blockers
 
