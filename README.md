@@ -55,17 +55,61 @@ Project governance resides in a decentralized intelligence layer that guides aut
 
 ---
 
-## 🛠️ Quick Start (Agentic Workflow)
+## 🛠️ Local Development Quick Start
 
-For developers and AI agents:
+Follow these instructions to configure the Edge environment, compile the WebAssembly engine, and initialize the Cloudflare D1 database.
 
-1.  Adopt the **Operational Persona** defined in [AGENTS.md](./.ai/rules/AGENTS.md).
-2.  Execute templates and skills directly from [LIBRARY.md](./.ai/prompts/LIBRARY.md) for standardized tasks.
+### 1. Prerequisites
+- **Node.js**: `v22.x` (LTS highly recommended)
+- **Go**: `v1.22+` (Required for Wasm cryptographic compilation)
+- **Package Manager**: `pnpm` (`npm install -g pnpm`)
 
-### Local Edge Development
-To test Next.js server actions against local Cloudflare D1 databases, use `pnpm run dev:edge` in the `apps/admin` workspace. 
+### 2. Installation
+Clone the repository and install all workspace dependencies:
+```bash
+git clone git@github.com:h-builds/eco-trace.git
+cd eco-trace
+pnpm install
+```
+
+### 3. Engine Compilation (WebAssembly)
+The Go Cryptographic Gate must be compiled to WebAssembly and injected into the Admin application's public directory.
+```bash
+cd packages/engine
+./build.sh
+cd ../..
+```
+
+### 4. Database Setup (Cloudflare D1)
+Initialize the local SQLite Edge database, apply the schema, and seed it with cryptographically valid test pairs seamlessly linked to the Wasm engine:
+```bash
+cd apps/admin
+# 1. Apply Schema
+npx wrangler d1 execute eco-trace-events --local --file=./schema.sql
+# 2. Generate Deterministic Key Pairs and Mock Data
+npx tsx lib/seed.ts
+# 3. Seed Database
+npx wrangler d1 execute eco-trace-events --local --file=./seed.sql
+```
+
+### 5. Running the Edge Server
+Boot the Next.js server equipped with the Wrangler proxy to simulate Edge compatibility locally:
+```bash
+# Still in apps/admin
+pnpm run dev:edge
+```
+Access the High-Density Event Log at `http://localhost:3001/dashboard/events`.
+
 > [!NOTE]
-> The `pages_build_output_dir` parameter in `apps/admin/wrangler.toml` must remain commented out (`# pages_build_output_dir`) during local edge development to prevent Wrangler proxy command collisions.
+> Ensure the `pages_build_output_dir` parameter remains commented out (`# pages_build_output_dir`) in `apps/admin/wrangler.toml` during local development to prevent Wrangler proxy network collisions.
+
+---
+
+## 🤖 AI Agentic Workflow
+
+If operating as an autonomous entity:
+1. Adopt the **Operational Persona** defined in [AGENTS.md](./.ai/rules/AGENTS.md).
+2. Execute templates and capabilities continuously via [LIBRARY.md](./.ai/prompts/LIBRARY.md).
 
 ---
 
