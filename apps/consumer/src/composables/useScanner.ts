@@ -1,91 +1,56 @@
 import { ref, onUnmounted, shallowRef } from 'vue';
+import QrScanner from 'qr-scanner';
 
 export type ScannerState = 'idle' | 'requesting' | 'granted' | 'denied' | 'unavailable';
-
-declare global {
-  interface Window {
-    BarcodeDetector: {
-      new (options?: { formats: string[] }): {
-        detect(video: HTMLVideoElement): Promise<Array<{ rawValue: string }>>;
-      };
-    };
-  }
-}
 
 export function useScanner(onScan: (value: string) => void) {
   const state = ref<ScannerState>('idle');
   const error = ref<string | null>(null);
-  const stream = shallowRef<MediaStream | null>(null);
   const videoRef = shallowRef<HTMLVideoElement | null>(null);
-  let animationFrameId: number | null = null;
+  let qrScanner: QrScanner | null = null;
 
   const start = async () => {
     if (typeof window === 'undefined') return;
-    if (!('mediaDevices' in navigator) || !navigator.mediaDevices.getUserMedia) {
-      state.value = 'unavailable';
-      error.value = 'Camera API not supported.';
-      return;
-    }
 
-    if (!('BarcodeDetector' in window)) {
-      state.value = 'unavailable';
-      error.value = 'Native BarcodeDetector API not supported in this browser.';
-      return;
-    }
+    if (!videoRef.value) return;
 
     try {
       state.value = 'requesting';
-      const s = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-      stream.value = s;
-      if (videoRef.value) {
-        videoRef.value.srcObject = s;
-        videoRef.value.setAttribute('playsinline', 'true');
-        await videoRef.value.play();
+      
+      const hasCamera = await QrScanner.hasCamera();
+      if (!hasCamera) {
+        state.value = 'unavailable';
+        error.value = 'Camera API not supported or no cameras found.';
+        return;
       }
+
+      qrScanner = new QrScanner(
+          videoRef.value,
+          (result: { data: string }) => {
+              stop();
+              onScan(result.data);
+          },
+          { returnDetailedScanResult: true }
+      );
+
+      await qrScanner.start();
       state.value = 'granted';
-      startScanning();
     } catch (err: unknown) {
       state.value = 'denied';
       error.value = err instanceof Error ? err.message : 'Camera permission denied.';
+      if (qrScanner) {
+        qrScanner.destroy();
+        qrScanner = null;
+      }
     }
   };
 
   const stop = () => {
-    if (animationFrameId !== null) {
-      cancelAnimationFrame(animationFrameId);
-      animationFrameId = null;
-    }
-    if (stream.value) {
-      stream.value.getTracks().forEach((track: MediaStreamTrack) => track.stop());
-      stream.value = null;
+    if (qrScanner) {
+      qrScanner.destroy();
+      qrScanner = null;
     }
     state.value = 'idle';
-  };
-
-  const startScanning = () => {
-    if (typeof window === 'undefined') return;
-    const scanner = new window.BarcodeDetector({ formats: ['qr_code'] });
-    
-    const scanFrame = async () => {
-      if (!videoRef.value || videoRef.value.readyState !== videoRef.value.HAVE_ENOUGH_DATA) {
-        animationFrameId = requestAnimationFrame(scanFrame);
-        return;
-      }
-      try {
-        const barcodes = await scanner.detect(videoRef.value);
-        if (barcodes && barcodes.length > 0) {
-          const rawValue = barcodes[0].rawValue;
-          stop();
-          onScan(rawValue);
-          return;
-        }
-      } catch (err: unknown) {
-        void err;
-      }
-      animationFrameId = requestAnimationFrame(scanFrame);
-    };
-    
-    scanFrame();
   };
 
   onUnmounted(() => {
