@@ -76,7 +76,6 @@ describe('SWR Cache & Deduplication', () => {
       return new Promise((resolve) => setTimeout(() => resolve('data'), 100));
     };
 
-    // Fire 3 concurrent requests for the same key
     const p1 = swrFetch('key1', fetcher);
     const p2 = swrFetch('key1', fetcher);
     const p3 = swrFetch('key1', fetcher);

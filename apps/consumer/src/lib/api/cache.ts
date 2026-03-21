@@ -8,9 +8,7 @@ const cacheStore = new Map<string, CacheEntry<unknown>>();
 const inFlightRequests = new Map<string, Promise<unknown>>();
 
 export interface FetchOptions {
-  /** Force network refresh by bypassing the cache completely */
   forceRefresh?: boolean;
-  /** Max age in milliseconds before the cache is considered stale */
   maxAgeMs?: number;
 }
 
