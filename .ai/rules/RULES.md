@@ -55,6 +55,12 @@ To maximize model focus and minimize token waste, rules are segmented for granul
 - **Enforcement**: Any PR or code block that recreates existing components or tokens locally in `apps/` is a violation of the Golden Standard.
 - **Requirement Verification**: The agent MUST verify the contents of `packages/ui/` before proposing any new UI logic.
 
+## 8. Mobile-First Viewport Constraint
+
+- **No `max-width`**: The use of `max-width` on any layout container is strictly **PROHIBITED**. Eco-Trace is a mobile-first, Edge-first application (QR scan → verification). Layouts MUST scale fluidly from the smallest viewport up.
+- **Breakpoints**: Use `min-width` media queries exclusively (e.g., `sm:`, `md:`, `lg:` in Tailwind). Never use `max-width` breakpoints as overrides.
+- **Full-Bleed by Default**: All page-level containers use `width: 100%`. Horizontal padding is the only mechanism for inset spacing.
+
 ---
 
 _Goal: Maximize architectural sustainability, eliminate AI slop, and ensure high-density context usage._
