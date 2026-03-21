@@ -95,11 +95,14 @@ Immutable visual constants for the Eco-Trace ecosystem (Admin & Consumer).
 - **Functional Pending:** `#F57C00` (Warning/In-Progress)
 - **Functional Neutral:** `#607D8B` (Secondary text/borders)
 
-### Spacing, Typography & Radii
+### Spacing, Typography, Radii & Shadows
 - **Spacing:** Base-4 spacing scale via `spacing.scale` (4px, 8px, 12px, 16px, 24px, 32px, 48px, 64px).
 - **Fonts:** `Inter, system-ui, sans-serif` for zero-latency loading.
 - **Font Sizes:** Typography sizing dictionary (`xs: 10px`, `sm: 12px`, `md: 14px`, `lg: 16px`, `xl: 24px`).
 - **Border Radii:** Semantic shape configurations (`sm: 4px`, `md: 8px`, `lg: 12px`, `pill: 24px`).
+- **Shadows:**
+  - `subtle`: `0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)` — default card elevation.
+  - `elevation-1`: `0 2px 4px rgba(0,0,0,0.05)` — subtle lifted surface.
 
 ---
 *Goal: Create a single, immutable source of truth for both data integrity and visual identity.*
