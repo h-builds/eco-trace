@@ -24,7 +24,7 @@ describe('API Client', () => {
 
   beforeEach(() => {
     globalFetchMock = vi.fn();
-    globalThis.fetch = globalFetchMock as any;
+    globalThis.fetch = globalFetchMock as unknown as typeof fetch;
   });
 
   afterEach(() => {
@@ -120,7 +120,7 @@ describe('useEventHistory Composable', () => {
   beforeEach(() => {
     clearCache();
     globalFetchMock = vi.fn();
-    globalThis.fetch = globalFetchMock as any;
+    globalThis.fetch = globalFetchMock as unknown as typeof fetch;
   });
 
   afterEach(() => {

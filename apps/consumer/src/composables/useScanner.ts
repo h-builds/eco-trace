@@ -1,6 +1,21 @@
 import { ref, onUnmounted, shallowRef } from 'vue';
 import QrScanner from 'qr-scanner';
 
+// Intercept canvas strictly to silence Chrome's willReadFrequently warning 
+// thrown natively by the inner logic of qr-scanner instance worker initialization.
+const originalGetContext = HTMLCanvasElement.prototype.getContext;
+// @ts-expect-error - Overriding heavily overloaded native prototype signature
+HTMLCanvasElement.prototype.getContext = function(
+  this: HTMLCanvasElement,
+  contextId: string,
+  options?: Record<string, unknown>
+) {
+  if (contextId === '2d') {
+    options = { ...(options || {}), willReadFrequently: true };
+  }
+  return originalGetContext.call(this, contextId, options);
+};
+
 export type ScannerState = 'idle' | 'requesting' | 'granted' | 'denied' | 'unavailable';
 
 export function useScanner(onScan: (value: string) => void) {

@@ -15,7 +15,7 @@ const { state, error, videoRef, start } = useScanner((val) => {
     <h1 class="text-xl font-bold text-brand-integrity-blue mb-4 text-center">Zero-Knowledge Scanner</h1>
     
     <div class="w-full flex-1 min-h-[50vh] bg-surface-card/10 rounded-lg overflow-hidden relative border border-surface-border/20 shadow-elevation-1 flex items-center justify-center">
-      <video v-show="state === 'granted'" ref="videoRef" class="w-full h-full object-cover" playsinline muted></video>
+      <video ref="videoRef" class="w-full h-full object-cover" playsinline muted></video>
       
       <div v-if="state === 'idle'" class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10 bg-brand-deep-charcoal">
         <svg class="w-12 h-12 text-brand-integrity-blue mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
