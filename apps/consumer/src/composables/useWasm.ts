@@ -12,7 +12,7 @@ export interface WasmFootprintResult {
 }
 
 export interface WasmIntegrityResult {
-  status: "VALID" | "INVALID" | "UNAUTHORIZED" | "PENDING";
+  status: "VALID" | "WARNING" | "INVALID" | "UNAUTHORIZED" | "PENDING";
   error: string | null;
   signature?: string;
   publicKey?: string;
