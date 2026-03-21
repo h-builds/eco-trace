@@ -46,6 +46,7 @@ Eco-Trace is a high-performance, Edge-native supply chain traceability platform 
 - **(2026-03-19)** D1 Cryptographic Seeding: Built dynamic Javascript-to-Go registry mapper (`seed.ts`) synthesizing real Ed25519 node pairs into local D1 `seed.sql` generation for perfect `main.wasm` integration payload testing. Replaced all zero-slop violations globally.
 - **(2026-03-19)** Threaded Audit Trail & Identity Logic Refinement: Designed a complex relational `event_id` DB schema segregating `SupplyChainEvent` primary identities from their chronological test rows. Transformed `apps/admin/app/dashboard/events/page.tsx` into a High-Density threaded UI grouped using `<details>` markup, and implemented Wasm shadow key verification logic (`generateUntrustedSignature`) enabling mathematically correct signature mock tests to enforce expected Identity `UNAUTHORIZED` alerts.
 - **(2026-03-19)** Token Environment Hardening: Upgraded `@eco-trace/ui` into a strictly-typed Next.js workspace package exposing `index.ts`. Purged all arbitrary inline styling pixels ("14px", "8px") and verbose algorithm descriptions from `page.tsx` to attain uncompromising 100% compliance with `.ai/rules/RULES.md` UI Dependency and Zero-Slop Commenting protocols.
+- **(2026-03-20)** Consumer Vapor Foundation: Scaffolded Phase 5 (Sections 1 & 2) in apps/consumer with Vue 3.5 Vapor mode and Tailwind v4. Implemented read-only client-side Wasm loader (engine.ts) exposing VerifySignature & CalculateCarbonFootprint via useWasm() composable.
 
 ## Working Context
 

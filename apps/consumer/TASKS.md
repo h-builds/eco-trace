@@ -4,21 +4,21 @@ Implementation plan for the public-facing product transparency scanner of the Ec
 
 ## 1. Foundation & Tooling
 
-- [ ] Scaffold Vue 3.5 app with Vite and enforce **Vapor Mode** compiler settings. `[TODO]`
-- [ ] Configure `tsconfig.json` with strict mode and path aliases (`@/`). `[TODO]`
-- [ ] Integrate Tailwind CSS v4 consuming **@eco-trace/ui** design tokens from `tokens.json`. `[TODO]`
-- [ ] Set up ESLint + Prettier with project-wide governance rules from [RULES.md](../../.ai/rules/RULES.md). `[TODO]`
-- [ ] Configure Vite build pipeline: code splitting, asset compression, Wasm loader plugin. `[TODO]`
-- [ ] Validate dev server boots with `pnpm dev --filter consumer` and produces zero warnings. `[TODO]`
+- [x] Scaffold Vue 3.5 app with Vite and enforce **Vapor Mode** compiler settings. `[TODO]`
+- [x] Configure `tsconfig.json` with strict mode and path aliases (`@/`). `[TODO]`
+- [x] Integrate Tailwind CSS v4 consuming **@eco-trace/ui** design tokens from `tokens.json`. `[TODO]`
+- [x] Set up ESLint + Prettier with project-wide governance rules from [RULES.md](../../.ai/rules/RULES.md). `[TODO]`
+- [x] Configure Vite build pipeline: code splitting, asset compression, Wasm loader plugin. `[TODO]`
+- [x] Validate dev server boots with `pnpm dev --filter consumer` and produces zero warnings. `[TODO]`
 
 ## 2. Wasm Cryptographic Bridge (Client-Side)
 
-- [ ] Inject `engine.wasm` binary via Vite Wasm plugin with streaming instantiation. `[TODO]`
-- [ ] Expose `VerifySignature(payload, signature, publicKey)` binding to Vue composables. `[TODO]` **(Ref: G02)**
-- [ ] Expose `CalculateCarbonFootprint(events)` binding to Vue composables. `[TODO]` **(Ref: G03)**
-- [ ] Implement `useWasm()` composable with reactive readiness signal and error boundary. `[TODO]`
-- [ ] Enforce **read-only boundary**: consumer app MUST NOT call `SignEvent` or mutate engine state. `[TODO]` **(Ref: G01)**
-- [ ] Add integration test validating Wasm bridge initialization < 50ms. `[TODO]` **(Ref: G08)**
+- [x] Inject `engine.wasm` binary via Vite Wasm plugin with streaming instantiation. `[TODO]`
+- [x] Expose `VerifySignature(payload, signature, publicKey)` binding to Vue composables. `[TODO]` **(Ref: G02)**
+- [x] Expose `CalculateCarbonFootprint(events)` binding to Vue composables. `[TODO]` **(Ref: G03)**
+- [x] Implement `useWasm()` composable with reactive readiness signal and error boundary. `[TODO]`
+- [x] Enforce **read-only boundary**: consumer app MUST NOT call `SignEvent` or mutate engine state. `[TODO]` **(Ref: G01)**
+- [x] Add integration test validating Wasm bridge initialization < 50ms. `[TODO]` **(Ref: G08)**
 
 ## 3. Data Hydration & Edge API
 
