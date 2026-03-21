@@ -22,11 +22,11 @@ Implementation plan for the public-facing product transparency scanner of the Ec
 
 ## 3. Data Hydration & Edge API
 
-- [ ] Implement `GET /api/events` client using `fetch` with typed response contracts from [DATA_DICTIONARY.md](../../.ai/knowledge/DATA_DICTIONARY.md). `[TODO]` **(Ref: G05)**
-- [ ] Add SWR (Stale-While-Revalidate) caching strategy for event history data. `[TODO]`
-- [ ] Implement optimistic UI hydration: render skeleton → stream verified data. `[TODO]`
-- [ ] Handle Cloudflare D1 edge latency with request deduplication and cache headers. `[TODO]`
-- [ ] Add error states for network failures and empty result sets. `[TODO]`
+- [x] Implement `GET /api/events` client using `fetch` with typed response contracts from [DATA_DICTIONARY.md](../../.ai/knowledge/DATA_DICTIONARY.md). `[DONE]` **(Ref: G05)**
+- [x] Add SWR (Stale-While-Revalidate) caching strategy for event history data. `[DONE]`
+- [x] Implement optimistic UI hydration: render skeleton → stream verified data. `[DONE]`
+- [x] Handle Cloudflare D1 edge latency with request deduplication and cache headers. `[DONE]`
+- [x] Add error states for network failures and empty result sets. `[DONE]`
 
 ## 4. UI/UX: The "Zero-Knowledge" Scanner
 
