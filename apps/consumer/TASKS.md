@@ -46,7 +46,19 @@ Implementation plan for the public-facing product transparency scanner of the Ec
 - [ ] Validate Lighthouse performance score ≥ 95 on mobile profile. `[TODO]`
 - [ ] Execute `pnpm test --filter consumer && pnpm test:accessibility` with zero failures. `[TODO]`
 
-## 6. Future Scope / Backlog
+## 6. Portfolio Branding & Architectural Showcase
+
+- [ ] **Technical Landing Page (Root `/`)**: Implement a "Case Study First" view using the @eco-trace/ui workbench aesthetic. `[TODO]`
+- [ ] **Global Navigation & Ecosystem Bridge**:
+  - [ ] Implement a minimal Navbar with a link to "Auditor Dashboard (React 19)" featuring an "external link" icon.
+  - [ ] Navigation must prioritize mobile-first access for scanning functionality. `[TODO]`
+- [ ] **Focused Hero Section**:
+  - [ ] Single Primary CTA: "Launch QR Scanner" (Internal route to `/scanner`). `[TODO]`
+- [ ] **"Vapor Mode vs. VDOM" Performance Breakdown**: Interactive section explaining the choice of Vue 3.5 Vapor for sub-100ms mobile verification. `[TODO]`
+- [ ] **Collaborative Architecture Narrative**: Integration of the shared technical copy explaining the React/Vue/Go synergy. `[TODO]`
+- [ ] **Mission Footer**: Global footer with the "Business-First" mantra and technical stack metadata. `[TODO]`
+
+## 7. Future Scope / Backlog
 
 - **PWA / Offline Mode**: Service Worker registration with offline-first asset caching for field use in low-connectivity supply chain environments.
 - **i18n (Internationalization)**: Multi-language support for global supply chain actors — dynamic locale loading via Vite plugin, RTL layout support.
