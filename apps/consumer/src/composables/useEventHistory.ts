@@ -33,8 +33,8 @@ export function useEventHistory() {
       } else {
         status.value = 'success';
       }
-    } catch (err: any) {
-      error.value = err.message || "Failed to fetch event history";
+    } catch (err: unknown) {
+      error.value = err instanceof Error ? err.message : "Failed to fetch event history";
       status.value = 'error';
       events.value = [];
     }

@@ -10,18 +10,22 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "vue": "^3.5.30",
-    "@eco-trace/ui": "workspace:*"
+    "@eco-trace/ui": "workspace:*",
+    "qr-scanner": "^1.4.2",
+    "vue": "^3.5.30"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "@tailwindcss/vite": "^4.2.2",
+    "@vitejs/plugin-basic-ssl": "^1.2.0",
     "@vitejs/plugin-vue": "^6.0.5",
+    "eslint": "^9.0.0",
+    "prettier": "latest",
+    "puppeteer": "^24.40.0",
+    "tailwindcss": "^4.2.2",
     "typescript": "latest",
     "vite": "^8.0.0",
     "vitest": "^2.0.0",
-    "tailwindcss": "^4.2.2",
-    "@tailwindcss/vite": "^4.2.2",
-    "vue-tsc": "^2.0.0",
-    "eslint": "^9.0.0",
-    "prettier": "latest"
+    "vue-tsc": "^2.0.0"
   }
 }

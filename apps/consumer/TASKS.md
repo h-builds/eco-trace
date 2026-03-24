@@ -30,13 +30,13 @@ Implementation plan for the public-facing product transparency scanner of the Ec
 
 ## 4. UI/UX: The "Zero-Knowledge" Scanner
 
-- [ ] Implement HTML5 native QR Scanner using `getUserMedia` API with camera permission flow. `[TODO]`
-- [ ] Build **Product Transparency View** with the following sub-components:
-  - [ ] **Authenticity Badge**: Real-time `VerifySignature` result rendered as a trust indicator. `[TODO]` **(Ref: G02)**
-  - [ ] **Formula Rendering**: Display $$CF_{total} = \sum (E_i \times EF_i)$$ with live-calculated values. `[TODO]` **(Ref: G03)**
-  - [ ] **Audit Trail Timeline**: Chronological `SupplyChainEvent` history with actor and integrity status. `[TODO]` **(Ref: G07)**
-- [ ] Consume **@eco-trace/ui** tokens for all colors, spacing, typography, and elevation — zero ad-hoc styles. `[TODO]`
-- [ ] Implement mobile-first responsive layout with Vapor Mode signals-based reactivity. `[TODO]`
+- [x] Implement HTML5 native QR Scanner using `getUserMedia` API with camera permission flow. `[DONE]`
+- [x] Build **Product Transparency View** with the following sub-components:
+- [x] **Authenticity Badge**: Real-time `VerifySignature` result rendered as a trust indicator. `[DONE]` **(Ref: G02)**
+- [x] **Formula Rendering**: Display $$CF_{total} = \sum (E_i \times EF_i)$$ with live-calculated values. `[DONE]` **(Ref: G03)**
+- [x] **Audit Trail Timeline**: Chronological `SupplyChainEvent` history with actor and integrity status. `[DONE]` **(Ref: G07)**
+- [x] Consume **@eco-trace/ui** tokens for all colors, spacing, typography, and elevation — zero ad-hoc styles. `[DONE]`
+- [x] Implement mobile-first responsive layout with Vapor Mode signals-based reactivity. `[DONE]`
 
 ## 5. Performance & Compliance Gate
 
