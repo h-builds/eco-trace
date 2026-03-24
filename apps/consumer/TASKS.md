@@ -48,15 +48,15 @@ Implementation plan for the public-facing product transparency scanner of the Ec
 
 ## 6. Portfolio Branding & Architectural Showcase
 
-- [ ] **Technical Landing Page (Root `/`)**: Implement a "Case Study First" view using the @eco-trace/ui workbench aesthetic. `[TODO]`
-- [ ] **Global Navigation & Ecosystem Bridge**:
-  - [ ] Implement a minimal Navbar with a link to "Auditor Dashboard (React 19)" featuring an "external link" icon.
-  - [ ] Navigation must prioritize mobile-first access for scanning functionality. `[TODO]`
-- [ ] **Focused Hero Section**:
-  - [ ] Single Primary CTA: "Launch QR Scanner" (Internal route to `/scanner`). `[TODO]`
-- [ ] **"Vapor Mode vs. VDOM" Performance Breakdown**: Interactive section explaining the choice of Vue 3.5 Vapor for sub-100ms mobile verification. `[TODO]`
-- [ ] **Collaborative Architecture Narrative**: Integration of the shared technical copy explaining the React/Vue/Go synergy. `[TODO]`
-- [ ] **Mission Footer**: Global footer with the "Business-First" mantra and technical stack metadata. `[TODO]`
+- [x] **Technical Landing Page (Root `/`)**: Implement a "Case Study First" view using the @eco-trace/ui workbench aesthetic. `[DONE]`
+- [x] **Global Navigation & Ecosystem Bridge**:
+- [x] Implement a minimal Navbar with a link to "Auditor Dashboard (React 19)" featuring an "external link" icon.
+- [x] Navigation must prioritize mobile-first access for scanning functionality. `[DONE]`
+- [x] **Focused Hero Section**:
+- [x] Single Primary CTA: "Launch QR Scanner" (Internal route to `/scanner`). `[DONE]`
+- [x] **"Vapor Mode vs. VDOM" Performance Breakdown**: Interactive section explaining the choice of Vue 3.5 Vapor for sub-100ms mobile verification. `[DONE]`
+- [x] **Collaborative Architecture Narrative**: Integration of the shared technical copy explaining the React/Vue/Go synergy. `[DONE]`
+- [x] **Mission Footer**: Global footer with the "Business-First" mantra and technical stack metadata. `[DONE]`
 
 ## 7. Future Scope / Backlog
 
