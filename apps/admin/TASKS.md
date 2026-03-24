@@ -48,6 +48,18 @@ Implementation plan for the remaining Phase 6/7 deliverables of the Eco-Trace au
 - **Real-Time Collaboration**: WebSocket-driven live audit sessions allowing multiple auditors to review and annotate the same event trail simultaneously.
 - **Scheduled Compliance Reports**: Cron-triggered automated report generation and email delivery for periodic regulatory compliance submissions.
 
+## 6. Portfolio Branding & Auditor Case Study
+
+- [ ] **Technical Showcase Landing (Root `/`)**: Implement a "System Architecture First" view using @eco-trace/ui workbench aesthetic. `[TODO]`
+- [ ] **Global Navigation & Ecosystem Bridge**:
+  - [ ] Implement a minimal Navbar with a link to "Consumer QR App (Vue Vapor)" featuring an "external link" icon.
+  - [ ] Primary Nav Action: "Documentation" or "Architecture Deep-Dive" anchor link. `[TODO]`
+- [ ] **Focused Hero Section**:
+  - [ ] Single Primary CTA: "Enter Auditor Workstation" (Internal route to `/dashboard`). `[TODO]`
+- [ ] **"React 19 & Edge Integrity" Deep Dive**: Section explaining the use of Server Components and Streaming for high-density ESG data. `[TODO]`
+- [ ] **Collaborative Architecture Narrative**: Integration of the shared technical copy explaining the React/Vue/Go synergy. `[TODO]`
+- [ ] **Governance Footer**: Global footer with the unified business mantra and stack metadata. `[TODO]`
+
 ---
 
 _Goal: Mature the Admin Dashboard into a full-featured auditor workstation with RBAC, macro analytics, entity management, and compliance-grade export capabilities._
