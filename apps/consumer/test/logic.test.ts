@@ -6,10 +6,9 @@ declare global {
   var verifyIntegrity: (event: Record<string, unknown>, signature: string, publicKey: string) => { status: "VALID" | "INVALID" | "UNAUTHORIZED" | "PENDING"; error: string | null };
 }
 
-// Mock the global wasm bindings
 globalThis.calculateFootprint = vi.fn().mockImplementation((entries: ESGEntry[]) => {
   if (entries.some(e => e.energy_kwh < 0 || e.emission_factor < 0)) {
-    return { result: 0, error: 'Validation Error' }; // G04
+    return { result: 0, error: 'Validation Error' };
   }
   const result = entries.reduce((acc, curr) => acc + (curr.energy_kwh * curr.emission_factor), 0);
   return { result, error: null };
@@ -17,10 +16,10 @@ globalThis.calculateFootprint = vi.fn().mockImplementation((entries: ESGEntry[])
 
 globalThis.verifyIntegrity = vi.fn().mockImplementation((event: Record<string, unknown>, sig: string, pub: string) => {
   if (event.actor_id === 'unauthorized') {
-    return { status: 'UNAUTHORIZED', error: 'Actor not trusted' }; // G07
+    return { status: 'UNAUTHORIZED', error: 'Actor not trusted' };
   }
   if (sig !== 'valid_sig') {
-    return { status: 'INVALID', error: 'Signature mismatch' }; // G02
+    return { status: 'INVALID', error: 'Signature mismatch' };
   }
   return { status: 'VALID', error: null };
 });
@@ -32,7 +31,7 @@ describe('Section 4 Integrations (G02, G03, G07)', () => {
       { energy_kwh: 10, emission_factor: 0.5 },
       { energy_kwh: 20, emission_factor: 0.1 }
     ]);
-    expect(res.result).toBe(7); // (10*0.5) + (20*0.1) = 5 + 2 = 7
+    expect(res.result).toBe(7);
   });
 
   it('G07: Flags UNAUTHORIZED actor', () => {

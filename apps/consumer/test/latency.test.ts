@@ -75,7 +75,6 @@ describe('G08: Validation Latency SLA', () => {
     const endTime = performance.now();
     const duration = endTime - startTime;
     
-    console.log(`[G08 Metrics] End-to-end QR validation executed in ${duration.toFixed(2)}ms`); // eslint-disable-line no-console
     expect(duration).toBeLessThan(100);
   });
 });
