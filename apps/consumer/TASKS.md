@@ -40,11 +40,11 @@ Implementation plan for the public-facing product transparency scanner of the Ec
 
 ## 5. Performance & Compliance Gate
 
-- [ ] Achieve < 100ms QR-scan-to-verification latency (end-to-end audit). `[TODO]` **(Ref: G08)**
-- [ ] Run Vapor Mode DOM re-render checks: confirm zero unnecessary re-renders on data updates. `[TODO]`
-- [ ] Pass **WCAG 2.1 AA** accessibility audit on all scanner and transparency views. `[TODO]`
-- [ ] Validate Lighthouse performance score ≥ 95 on mobile profile. `[TODO]`
-- [ ] Execute `pnpm test --filter consumer && pnpm test:accessibility` with zero failures. `[TODO]`
+- [x] Achieve < 100ms QR-scan-to-verification latency (end-to-end audit). `[DONE]` **(Ref: G08)**
+- [x] Run Vapor Mode DOM re-render checks: confirm zero unnecessary re-renders on data updates. `[DONE]`
+- [x] Pass **WCAG 2.1 AA** accessibility audit on all scanner and transparency views. `[DONE]`
+- [x] Validate Lighthouse performance score ≥ 95 on mobile profile. `[DONE]`
+- [x] Execute `pnpm test --filter consumer && pnpm test:accessibility` with zero failures. `[DONE]`
 
 ## 6. Portfolio Branding & Architectural Showcase
 

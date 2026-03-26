@@ -27,15 +27,18 @@ export function useWasm() {
   const error = ref<string | null>(null);
 
   onMounted(() => {
-    getWasmInit()
-      .then(() => {
-        isReady.value = true;
-        isLoading.value = false;
-      })
-      .catch((err: Error) => {
-        error.value = err.message;
-        isLoading.value = false;
-      });
+    // Defer Wasm instantiation slightly to unblock the main thread for LCP (Largest Contentful Paint)
+    setTimeout(() => {
+      getWasmInit()
+        .then(() => {
+          isReady.value = true;
+          isLoading.value = false;
+        })
+        .catch((err: Error) => {
+          error.value = err.message;
+          isLoading.value = false;
+        });
+    }, 100);
   });
 
   const calculateFootprint = (entries: ESGEntry[]): WasmFootprintResult => {
