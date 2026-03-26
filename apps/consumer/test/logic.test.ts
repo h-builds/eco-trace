@@ -3,7 +3,7 @@ import { useWasm, type ESGEntry } from '../src/composables/useWasm';
 
 declare global {
   var calculateFootprint: (entries: ESGEntry[]) => { result: number; error: string | null };
-  var verifyIntegrity: (event: Record<string, unknown>, signature: string, publicKey: string) => { status: "VALID" | "INVALID" | "UNAUTHORIZED" | "PENDING"; error: string | null };
+  var verifyIntegrity: (event: Record<string, unknown>, signature: string, publicKey: string) => { status: "VALID" | "WARNING" | "INVALID" | "UNAUTHORIZED" | "PENDING"; error: string | null };
 }
 
 globalThis.calculateFootprint = vi.fn().mockImplementation((entries: ESGEntry[]) => {
