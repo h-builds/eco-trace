@@ -34,7 +34,7 @@ const handleReset = () => {
 </script>
 
 <template>
-  <div class="font-sans antialiased min-h-screen bg-brand-deep-charcoal">
+  <div class="font-sans antialiased min-h-screen bg-surface-canvas">
     <NavBar @navigate="navigate" />
 
     <div v-if="error" class="fixed bottom-4 left-4 right-4 z-50 text-functional-alert bg-surface-card p-4 border border-functional-alert rounded-md shadow-elevation-1">
