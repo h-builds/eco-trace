@@ -7,13 +7,7 @@ const AUDITOR_DASHBOARD_URL = '#';
 </script>
 
 <template>
-  <!--
-    TopNavBar — matches reference: .ai/docs/code.html line 95–109
-    Three-column layout: [Wordmark] [Nav Link] [Icon Action]
-    All styling uses --bp-* design tokens (no old token names).
-  -->
   <nav class="nav-bar">
-    <!-- Left: Brand wordmark -->
     <button
       @click="$emit('navigate', 'landing')"
       class="nav-wordmark"
@@ -22,7 +16,6 @@ const AUDITOR_DASHBOARD_URL = '#';
       ECO-TRACE
     </button>
 
-    <!-- Center: Primary navigation link -->
     <div class="nav-center">
       <a
         :href="AUDITOR_DASHBOARD_URL"
@@ -34,7 +27,6 @@ const AUDITOR_DASHBOARD_URL = '#';
       </a>
     </div>
 
-    <!-- Right: Icon action button -->
     <div class="nav-actions">
       <a
         :href="AUDITOR_DASHBOARD_URL"
@@ -43,7 +35,6 @@ const AUDITOR_DASHBOARD_URL = '#';
         class="nav-icon-btn"
         aria-label="Open Auditor Dashboard in new tab"
       >
-        <!-- Material Symbol equivalent using Unicode / inline SVG fallback -->
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -60,7 +51,6 @@ const AUDITOR_DASHBOARD_URL = '#';
 </template>
 
 <style scoped>
-/* ─── Nav container ────────────────────────────────────────────────── */
 .nav-bar {
   position: fixed;
   top: 0;
@@ -75,19 +65,18 @@ const AUDITOR_DASHBOARD_URL = '#';
   width: 100%;
   padding: var(--spacing-bp-2) var(--spacing-bp-4);
 
-  background-color: var(--color-bp-surface-glass);       /* white/80 equivalent */
+  background-color: var(--color-bp-surface-glass);
   backdrop-filter: blur(var(--blur-bp-nav));
   -webkit-backdrop-filter: blur(var(--blur-bp-nav));
 
-  border-bottom: 1px solid rgba(196, 198, 201, 0.30);    /* outline-variant/30 */
+  border-bottom: 1px solid rgba(196, 198, 201, 0.30);
 }
 
-/* ─── Brand wordmark ───────────────────────────────────────────────── */
 .nav-wordmark {
-  font-family: var(--font-bp-display);           /* Space Grotesk */
-  font-size: 1.25rem;                            /* text-xl */
+  font-family: var(--font-bp-display);
+  font-size: 1.25rem;
   font-weight: var(--font-weight-bp-bold);
-  letter-spacing: var(--tracking-bp-tight);      /* tracking-tighter */
+  letter-spacing: var(--tracking-bp-tight);
   text-transform: uppercase;
   color: var(--color-bp-primary);
 
@@ -103,30 +92,27 @@ const AUDITOR_DASHBOARD_URL = '#';
   opacity: 0.80;
 }
 
-/* ─── Center nav area ──────────────────────────────────────────────── */
 .nav-center {
-  display: none;                                 /* hidden on mobile */
+  display: none;
 }
 
 @media (min-width: 768px) {
   .nav-center {
     display: flex;
     align-items: center;
-    gap: 2rem;                                   /* gap-8 */
+    gap: 2rem;
   }
 }
 
-/* ─── Primary nav link (active / underline style) ─────────────────── */
 .nav-link-primary {
-  font-family: var(--font-bp-display);           /* Space Grotesk */
-  font-size: var(--font-size-bp-sm);             /* text-sm */
+  font-family: var(--font-bp-display);
+  font-size: var(--font-size-bp-sm);
   font-weight: var(--font-weight-bp-bold);
-  letter-spacing: var(--tracking-bp-tight);      /* tracking-tighter */
+  letter-spacing: var(--tracking-bp-tight);
   text-transform: uppercase;
   color: var(--color-bp-primary);
   text-decoration: none;
 
-  /* Active underline treatment — mirrors border-b-2 border-primary pb-1 */
   border-bottom: 2px solid var(--color-bp-primary);
   padding-bottom: 0.25rem;
 
@@ -137,21 +123,19 @@ const AUDITOR_DASHBOARD_URL = '#';
   opacity: 0.80;
 }
 
-/* ─── Right-side action area ───────────────────────────────────────── */
 .nav-actions {
   display: flex;
   align-items: center;
   gap: var(--spacing-bp-4);
 }
 
-/* ─── Icon action button ───────────────────────────────────────────── */
 .nav-icon-btn {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: var(--spacing-bp-2);                  /* p-2 */
-  color: rgba(68, 71, 74, 0.60);                 /* on-surface-variant/60 */
+  padding: var(--spacing-bp-2);
+  color: rgba(68, 71, 74, 0.60);
 
   background: none;
   border: none;
@@ -164,10 +148,10 @@ const AUDITOR_DASHBOARD_URL = '#';
 }
 
 .nav-icon-btn:hover {
-  background-color: var(--color-bp-surface-container-high); /* hover:bg-surface-container-high */
+  background-color: var(--color-bp-surface-container-high);
 }
 
 .nav-icon-btn:active {
-  transform: scale(0.95);                        /* active:scale-95 */
+  transform: scale(0.95);
 }
 </style>
