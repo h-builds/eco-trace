@@ -10,36 +10,34 @@ defineEmits<{
     <!-- ═══════════════════════════════════════════════════════
          SECTION 1 — HERO
          Surface: surface-canvas. Asymmetric 8/4 grid.
+         Matches code.html reference layout exactly.
     ════════════════════════════════════════════════════════════ -->
-    <section class="w-full px-4 pt-28 pb-20 md:px-8 md:pt-36 md:pb-28">
-      <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-        <!-- Left: Value prop + CTAs -->
+    <section class="w-full px-4 pt-28 pb-16 md:px-8 md:pt-36" style="border-bottom: 1px solid rgba(196,198,201,0.3);">
+      <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pb-16">
+        <!-- Left: Value prop + CTAs — lg:col-span-8 -->
         <div class="lg:col-span-8 space-y-8">
-          <!-- Status chip — tonal, no border -->
-          <div class="inline-flex items-center gap-3 bg-surface-border/30 px-3 py-1.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-verification-green animate-pulse"></span>
-            <span class="font-mono text-[10px] uppercase tracking-widest text-functional-neutral font-bold">
-              Edge Node · 12ms Latency
+
+          <!-- Status chip — green tertiary-container tonal fill, square dot -->
+          <div class="inline-flex items-center gap-3 px-3 py-1" style="background-color: #9bef9a;">
+            <span class="w-2 h-2 bg-[--color-bp-success]" style="box-shadow: 0 0 8px rgba(40,122,51,0.5);"></span>
+            <span class="font-mono text-[10px] uppercase tracking-widest font-bold" style="color: #002105;">
+              Edge Node Latency: 12ms
             </span>
           </div>
 
           <!-- H1 — Space Grotesk, editorial weight -->
-          <div class="space-y-4">
-            <h1 class="font-['Space_Grotesk'] text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] uppercase italic">
-              Product claims,<br/>
-              <span class="text-brand-integrity-blue">verified.</span>
-            </h1>
-            <p class="text-functional-neutral text-base md:text-lg leading-relaxed max-w-xl font-medium">
-              Cryptographic proof for every supply chain event — from origin node to retail shelf. No declarations. No trust assumptions.
-            </p>
-          </div>
+          <h1 class="font-['Space_Grotesk'] text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] uppercase italic" style="color: var(--color-bp-on-surface);">
+            High-Performance <br/>
+            <span style="color: var(--color-bp-primary);">ESG Product</span> <br/>
+            Transparency.
+          </h1>
 
           <!-- CTAs -->
           <div class="flex flex-col sm:flex-row gap-4">
             <button
               id="cta-launch-scanner"
               @click="$emit('navigate', 'scanner')"
-              class="cta-primary w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest text-white flex items-center justify-center gap-3 hover:opacity-90 transition-opacity"
+              class="cta-primary w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest text-white flex items-center justify-center gap-3 hover:opacity-90 active:scale-95 transition-all"
             >
               <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 7V5a2 2 0 012-2h2"/><path d="M17 3h2a2 2 0 012 2v2"/>
@@ -48,21 +46,24 @@ defineEmits<{
               </svg>
               Launch QR Scanner
             </button>
-            <button class="w-full sm:w-auto px-8 py-4 border border-brand-integrity-blue/20 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest text-brand-integrity-blue hover:bg-brand-integrity-blue/5 transition-colors">
+            <button
+              class="w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest transition-colors"
+              style="border: 1px solid var(--color-bp-primary); color: var(--color-bp-primary); background: transparent;"
+              onmouseover="this.style.backgroundColor='rgba(0,72,141,0.08)'"
+              onmouseout="this.style.backgroundColor='transparent'"
+            >
               View Ledger
             </button>
           </div>
         </div>
 
-        <!-- Right: Accent metric panel — tonal lift -->
-        <div class="lg:col-span-4 bg-brand-deep-charcoal p-8 flex flex-col justify-between min-h-[200px] lg:min-h-[260px]">
-          <span class="font-mono text-[10px] text-white/40 uppercase tracking-widest">[EDGE_VERIFIED]</span>
-          <div class="space-y-2">
-            <div class="font-mono text-5xl md:text-6xl font-black text-white italic leading-none">&lt;100ms</div>
-            <p class="font-mono text-[11px] text-white/60 uppercase tracking-wide">
-              QR-to-verification latency<br/>via Cloudflare Edge
-            </p>
-          </div>
+        <!-- Right: Image panel — white, aspect-square, grayscale→color on hover -->
+        <div class="lg:col-span-4 aspect-square bg-white overflow-hidden group" style="border: 1px solid rgba(196,198,201,0.3);">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcjp2OswkdUAjvl_uLAILrUDQAWm-lmyvtFSbtEZd4vRubV1vBx8EVUllI72DH7rOOMaBLVltEMJOzUuTb_jQPJ4vKpLoh5qGn4FnaAgTBxF_za3Cyjc9-hWqh-PUmY9mt0oKlJ9HMkV1r2UUaFj05EYAevzFv4v1YOUg3eyLW5GPfc0dJ1FyZQQNIYcbCUFQ3c6nGnM55x6Q3mmPdgHbmuklQiDSfKUd0xZa_i9eaakvMbujDRVVLJz1v2ibNGsYn8-VJb0v8pF4"
+            alt="Technical Hardware — Close-up of high-end circuit board with glowing blue LED lights"
+            class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+          />
         </div>
       </div>
     </section>
