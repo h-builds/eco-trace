@@ -69,37 +69,181 @@ defineEmits<{
     </section>
 
     <!-- ═══════════════════════════════════════════════════════
-         SECTION 2 — THE TRUST GAP (Problem)
-         Surface: surface-container-low — tonal shift, no border
+         BENTO BOX GRID — Technical Showcase
+         Matches code.html lines 137–201 exactly.
+         Surface: surface-canvas. 6-col bento layout.
     ════════════════════════════════════════════════════════════ -->
-    <section class="w-full px-4 py-16 md:px-8 md:py-20 bg-surface-border/10">
-      <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <section class="w-full px-4 py-16 md:px-8 md:py-20">
+      <!-- Section header row -->
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="font-mono text-[10px] font-bold uppercase tracking-[0.2em]"
+            style="color: var(--color-bp-outline);">
+          Technical Specifications // v3.5
+        </h2>
+        <span class="font-mono text-[10px]" style="color: var(--color-bp-primary); opacity: 0.6;">
+          [SYS_AUTH_VERIFIED]
+        </span>
+      </div>
+
+      <!-- Bento grid — 6-col on lg, 4-col on md, 1-col on mobile -->
+      <div class="bento-grid">
+
+        <!-- Tile 1: Zero-Trust Scanner — lg:col-span-3 md:col-span-2 -->
+        <div class="bento-tile bento-tile--wide group"
+             style="background: var(--color-bp-surface-container-lowest); border: 1px solid rgba(196,198,201,0.2);">
+          <div class="bento-tile__header">
+            <!-- Shield / verified user icon (inline SVG, matches code.html verified_user material icon) -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                 class="w-8 h-8" style="color: var(--color-bp-primary);">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+            </svg>
+            <span class="bento-chip">01</span>
+          </div>
+          <div class="bento-tile__body">
+            <h3 class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight uppercase mb-2"
+                style="color: var(--color-bp-on-surface);">
+              Zero-Trust Scanner
+            </h3>
+            <p class="text-sm leading-relaxed" style="color: var(--color-bp-on-surface-variant);">
+              High-speed verification of product integrity at the Edge. Our proprietary scanning engine
+              ensures that every interaction is cryptographically signed before data retrieval.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tile 2: Eliminate ESG Fraud — lg:col-span-3 md:col-span-2 -->
+        <div class="bento-tile bento-tile--wide group"
+             style="background: var(--color-bp-surface-container-lowest); border: 1px solid rgba(196,198,201,0.2);">
+          <div class="bento-tile__header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                 class="w-8 h-8" style="color: var(--color-bp-primary);">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+            </svg>
+            <span class="bento-chip">02</span>
+          </div>
+          <div class="bento-tile__body">
+            <h3 class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight uppercase mb-2"
+                style="color: var(--color-bp-on-surface);">
+              Eliminate ESG Fraud
+            </h3>
+            <p class="text-sm leading-relaxed" style="color: var(--color-bp-on-surface-variant);">
+              Transitioning from vague corporate "promises" to immutable
+              <span style="color: var(--color-bp-primary);" class="italic font-bold">cryptographic proof</span>.
+              Every carbon credit is traceable to its origin node.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tile 3: Vue 3.5 Vapor + Go/Wasm — lg:col-span-4 md:col-span-4 (full row on md) -->
+        <div class="bento-tile bento-tile--feature"
+             style="background: var(--color-bp-surface-container-lowest); border: 1px solid rgba(196,198,201,0.3);">
+          <div class="bento-tile__feature-content">
+            <div class="space-y-4">
+              <div class="font-mono text-[10px] font-bold" style="color: var(--color-bp-success);">
+                [RUNTIME_OPTIMIZED]
+              </div>
+              <h3 class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight uppercase"
+                  style="color: var(--color-bp-on-surface);">
+                Vue 3.5 Vapor + Go/Wasm
+              </h3>
+              <p class="text-sm leading-relaxed" style="color: var(--color-bp-on-surface-variant);">
+                Zero-overhead rendering designed for mobile efficiency. Shared validation logic via WebAssembly
+                ensures consistency across platforms.
+              </p>
+              <div class="flex gap-2">
+                <span class="bento-metric-chip">MEM: 1.2MB</span>
+                <span class="bento-metric-chip">INIT: 45ms</span>
+              </div>
+            </div>
+            <div class="bento-tile__feature-img"
+                 style="background-color: var(--color-bp-surface-container);">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPuaoLg6LZuQpsdOX4jjmfmD6HFkxzYAMI8lo5-0aNrTVT4tdlwRHVyOYX1cFprb8BSzc_spa_X-JmA8iED0BjmyKlJObw5nurq0l73C6U3cVl7MCKO4K6sfG9rCBT3rqL8TvQwXH1P9LyUB1Y0mqBY0NhrV1Dx-62SsMBkYrIt9qaiPl42iz1EfOm58dQVeQ1xaX99pYzqwVDMSB962IuWPDUiG46EYJfupFbm9QLG7Gm0awnhxC-BBNK4cLl86XYLvKsK1pKqT8"
+                alt="Code on screen — macro photo of glowing lines of code on a dark screen"
+                class="bento-tile__feature-img-inner"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Tile 4: Sub-100ms / Edge Database — lg:col-span-2 md:col-span-2 -->
+        <div class="bento-tile bento-tile--accent"
+             style="background: var(--color-bp-primary);">
+          <div class="font-mono text-4xl font-black italic tracking-tighter leading-none"
+               style="color: var(--color-bp-on-primary);">
+            &lt;100ms
+          </div>
+          <div class="space-y-4">
+            <h3 class="font-['Space_Grotesk'] font-bold text-xl uppercase leading-tight"
+                style="color: var(--color-bp-on-primary);">
+              Edge Database (D1)
+            </h3>
+            <p class="text-xs font-medium" style="color: var(--color-bp-on-primary); opacity: 0.9;">
+              Real-time carbon footprint calculations delivered via Cloudflare's global edge network.
+            </p>
+            <div class="bento-progress-bar">
+              <div class="bento-progress-bar__fill"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 2 — THE TRUST GAP (Problem)
+         Surface: bp-surface-container-low — tonal shift (matches
+         code.html bento section aesthetic: light tonal layer,
+         white card panels with ghost borders, hover effects).
+    ════════════════════════════════════════════════════════════ -->
+    <section class="w-full px-4 py-16 md:px-8 md:py-20" style="background-color: var(--color-bp-surface-container-low);">
+      <!-- Section label — matches code.html "Technical Specifications // v3.5" label style -->
+      <div class="flex items-center justify-between mb-8">
+        <p class="font-mono text-[10px] uppercase tracking-widest font-bold" style="color: var(--color-bp-on-surface-variant);">
+          01 / The Trust Gap
+        </p>
+        <span class="font-mono text-[10px]" style="color: var(--color-bp-primary); opacity: 0.6;">[CLAIM_UNVERIFIED]</span>
+      </div>
+
+      <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Left: Problem statement — lg:col-span-7 -->
         <div class="lg:col-span-7 space-y-6">
-          <p class="font-mono text-[10px] uppercase tracking-widest text-functional-neutral font-bold">
-            01 / The Trust Gap
-          </p>
-          <h2 class="font-['Space_Grotesk'] text-3xl md:text-4xl font-bold tracking-tight uppercase">
+          <h2 class="font-['Space_Grotesk'] text-3xl md:text-4xl font-bold tracking-tight uppercase"
+              style="color: var(--color-bp-on-surface);">
             ESG claims are<br/>unverifiable by design.
           </h2>
-          <p class="text-functional-neutral text-sm md:text-base leading-relaxed max-w-lg">
+          <p class="text-sm md:text-base leading-relaxed max-w-lg"
+             style="color: var(--color-bp-on-surface-variant);">
             Corporate carbon reports have no cryptographic anchor. Certifications are issued centrally and cannot be queried at the point of sale. A consumer scanning a product barcode today retrieves marketing copy — not a verifiable record.
           </p>
         </div>
 
-        <!-- Contrast block: CLAIM vs PROOF -->
-        <div class="lg:col-span-5 grid grid-cols-2 gap-0">
-          <div class="bg-surface-card p-6 space-y-3 border-r border-surface-border/15">
-            <span class="font-mono text-[9px] text-functional-neutral uppercase tracking-widest font-bold">Before</span>
-            <div class="font-['Space_Grotesk'] text-2xl font-bold text-functional-neutral/40 uppercase tracking-tight">CLAIM</div>
-            <p class="font-mono text-[10px] text-functional-neutral leading-relaxed">
+        <!-- Right: CLAIM vs PROOF contrast block — lg:col-span-5
+             Matches code.html tile structure: white bg, ghost border, hover state -->
+        <div class="lg:col-span-5 grid grid-cols-2 gap-0 self-start" style="border: 1px solid rgba(196, 198, 201, 0.2);">
+          <!-- CLAIM panel — white card, matches code.html tile surface -->
+          <div class="p-6 space-y-3 flex flex-col justify-between hover:opacity-90 transition-opacity"
+               style="background-color: var(--color-bp-surface-container-lowest); border-right: 1px solid rgba(196, 198, 201, 0.2);">
+            <span class="font-mono text-[9px] uppercase tracking-widest font-bold"
+                  style="color: var(--color-bp-on-surface-variant);">Before</span>
+            <div class="font-['Space_Grotesk'] text-2xl font-bold uppercase tracking-tight"
+                 style="color: var(--color-bp-on-surface-variant); opacity: 0.35;">CLAIM</div>
+            <p class="font-mono text-[10px] leading-relaxed"
+               style="color: var(--color-bp-on-surface-variant);">
               "Our products achieve net-zero by 2030."<br/>
               — Corporate Annual Report, p.14
             </p>
           </div>
-          <div class="bg-brand-deep-charcoal p-6 space-y-3">
-            <span class="font-mono text-[9px] text-brand-verification-green uppercase tracking-widest font-bold">After</span>
-            <div class="font-['Space_Grotesk'] text-2xl font-bold text-brand-verification-green uppercase tracking-tight">PROOF</div>
-            <p class="font-mono text-[10px] text-white/60 leading-relaxed">
+          <!-- PROOF panel — on-surface dark fill, matches code.html primary tile with dark bg -->
+          <div class="p-6 space-y-3 flex flex-col justify-between"
+               style="background-color: var(--color-bp-on-surface);">
+            <span class="font-mono text-[9px] uppercase tracking-widest font-bold"
+                  style="color: var(--color-bp-success);">After</span>
+            <div class="font-['Space_Grotesk'] text-2xl font-bold uppercase tracking-tight"
+                 style="color: var(--color-bp-success);">PROOF</div>
+            <p class="font-mono text-[10px] leading-relaxed" style="color: rgba(255,255,255,0.6);">
               Ed25519 sig verified.<br/>
               CF_TOTAL: 4.2 kgCO₂e.<br/>
               D1 ledger: 7 events.
@@ -440,5 +584,135 @@ defineEmits<{
   display: flex;
   flex-direction: column;
   min-height: 200px;
+}
+
+/* ── Bento Box Grid ────────────────────────────────────────── */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: auto auto;
+  gap: 1rem;
+}
+
+/* Tile 1 & 2: half-width on lg (3 cols each), full-width on mobile */
+.bento-tile--wide {
+  grid-column: span 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  gap: 3rem;
+  transition: border-color 0.2s;
+}
+.bento-tile--wide:hover {
+  border-color: rgba(0, 95, 184, 0.4) !important;
+}
+
+/* Tile 3: 4-col on lg, full on md */
+.bento-tile--feature {
+  grid-column: span 6;
+  padding: 1.5rem;
+}
+
+/* Tile 4: 2-col on lg, 2-col on md */
+.bento-tile--accent {
+  grid-column: span 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  gap: 1.5rem;
+  min-height: 200px;
+}
+
+/* Medium screens: 4-col grid */
+@media (min-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .bento-tile--wide    { grid-column: span 2; }
+  .bento-tile--feature { grid-column: span 4; }
+  .bento-tile--accent  { grid-column: span 2; }
+}
+
+/* Large screens: 6-col grid */
+@media (min-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .bento-tile--wide    { grid-column: span 3; }
+  .bento-tile--feature { grid-column: span 4; }
+  .bento-tile--accent  { grid-column: span 2; }
+}
+
+/* Tile interior structure */
+.bento-tile__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Tile 3 two-column interior layout */
+.bento-tile__feature-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+  height: 100%;
+}
+@media (min-width: 640px) {
+  .bento-tile__feature-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.bento-tile__feature-img {
+  height: 100%;
+  min-height: 160px;
+  overflow: hidden;
+}
+.bento-tile__feature-img-inner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+  transition: opacity 1s ease;
+}
+.bento-tile__feature-img:hover .bento-tile__feature-img-inner {
+  opacity: 1;
+}
+
+/* Small numbered chip (top-right of tile) */
+.bento-chip {
+  font-family: var(--font-bp-mono, 'Geist Mono', monospace);
+  font-size: 10px;
+  background-color: var(--color-bp-surface-container);
+  color: var(--color-bp-on-surface-variant);
+  padding: 3px 8px;
+}
+
+/* Performance metric chips (MEM / INIT) */
+.bento-metric-chip {
+  display: inline-block;
+  font-family: var(--font-bp-mono, 'Geist Mono', monospace);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  background-color: var(--color-bp-primary-container);
+  color: var(--color-bp-on-primary-container);
+}
+
+/* Progress bar inside accent tile */
+.bento-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+.bento-progress-bar__fill {
+  width: 75%;
+  height: 100%;
+  background: rgba(255, 255, 255, 1);
 }
 </style>
