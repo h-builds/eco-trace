@@ -18,9 +18,12 @@ defineEmits<{
             </span>
           </div>
 
-          <h1 class="font-['Space_Grotesk'] text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] uppercase italic" style="color: var(--color-bp-on-surface);">
-            High-Performance <br/>
-            <span style="color: var(--color-bp-primary);">ESG Product</span> <br/>
+          <h1
+            class="font-['Space_Grotesk'] text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] uppercase italic"
+            style="color: var(--color-bp-on-surface);"
+          >
+            High-Performance <br />
+            <span style="color: var(--color-bp-primary);">ESG Product</span> <br />
             Transparency.
           </h1>
 
@@ -30,10 +33,20 @@ defineEmits<{
               @click="$emit('navigate', 'scanner')"
               class="cta-primary w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest text-white flex items-center justify-center gap-3 hover:opacity-90 active:scale-95 transition-all"
             >
-              <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 7V5a2 2 0 012-2h2"/><path d="M17 3h2a2 2 0 012 2v2"/>
-                <path d="M21 17v2a2 2 0 01-2 2h-2"/><path d="M7 21H5a2 2 0 01-2-2v-2"/>
-                <rect x="7" y="7" width="10" height="10"/>
+              <svg
+                class="w-5 h-5 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 7V5a2 2 0 012-2h2" />
+                <path d="M17 3h2a2 2 0 012 2v2" />
+                <path d="M21 17v2a2 2 0 01-2 2h-2" />
+                <path d="M7 21H5a2 2 0 01-2-2v-2" />
+                <rect x="7" y="7" width="10" height="10" />
               </svg>
               Launch QR Scanner
             </button>
@@ -60,8 +73,10 @@ defineEmits<{
 
     <section class="w-full px-4 py-16 md:px-8 md:py-20">
       <div class="flex items-center justify-between mb-4">
-        <h2 class="font-mono text-[10px] font-bold uppercase tracking-[0.2em]"
-            style="color: var(--color-bp-outline);">
+        <h2
+          class="font-mono text-[10px] font-bold uppercase tracking-[0.2em]"
+          style="color: var(--color-bp-outline);"
+        >
           Technical Specifications // v3.5
         </h2>
         <span class="font-mono text-[10px]" style="color: var(--color-bp-primary); opacity: 0.6;">
@@ -74,16 +89,27 @@ defineEmits<{
         <div class="bento-tile bento-tile--wide group"
              style="background: var(--color-bp-surface-container-lowest); border: 1px solid rgba(196,198,201,0.2);">
           <div class="bento-tile__header">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                 class="w-8 h-8" style="color: var(--color-bp-primary);">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              class="w-8 h-8"
+              style="color: var(--color-bp-primary);"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
+              />
             </svg>
             <span class="bento-chip">01</span>
           </div>
           <div class="bento-tile__body">
-            <h3 class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight uppercase mb-2"
-                style="color: var(--color-bp-on-surface);">
+            <h3
+              class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight uppercase mb-2"
+              style="color: var(--color-bp-on-surface);"
+            >
               Zero-Trust Scanner
             </h3>
             <p class="text-sm leading-relaxed" style="color: var(--color-bp-on-surface-variant);">
@@ -96,16 +122,27 @@ defineEmits<{
         <div class="bento-tile bento-tile--wide group"
              style="background: var(--color-bp-surface-container-lowest); border: 1px solid rgba(196,198,201,0.2);">
           <div class="bento-tile__header">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                 class="w-8 h-8" style="color: var(--color-bp-primary);">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              class="w-8 h-8"
+              style="color: var(--color-bp-primary);"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+              />
             </svg>
             <span class="bento-chip">02</span>
           </div>
           <div class="bento-tile__body">
-            <h3 class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight uppercase mb-2"
-                style="color: var(--color-bp-on-surface);">
+            <h3
+              class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight uppercase mb-2"
+              style="color: var(--color-bp-on-surface);"
+            >
               Eliminate ESG Fraud
             </h3>
             <p class="text-sm leading-relaxed" style="color: var(--color-bp-on-surface-variant);">
@@ -123,8 +160,10 @@ defineEmits<{
               <div class="font-mono text-[10px] font-bold" style="color: var(--color-bp-success);">
                 [RUNTIME_OPTIMIZED]
               </div>
-              <h3 class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight uppercase"
-                  style="color: var(--color-bp-on-surface);">
+              <h3
+                class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight uppercase"
+                style="color: var(--color-bp-on-surface);"
+              >
                 Vue 3.5 Vapor + Go/Wasm
               </h3>
               <p class="text-sm leading-relaxed" style="color: var(--color-bp-on-surface-variant);">
@@ -154,8 +193,10 @@ defineEmits<{
             &lt;100ms
           </div>
           <div class="space-y-4">
-            <h3 class="font-['Space_Grotesk'] font-bold text-xl uppercase leading-tight"
-                style="color: var(--color-bp-on-primary);">
+            <h3
+              class="font-['Space_Grotesk'] font-bold text-xl uppercase leading-tight"
+              style="color: var(--color-bp-on-primary);"
+            >
               Edge Database (D1)
             </h3>
             <p class="text-xs font-medium" style="color: var(--color-bp-on-primary); opacity: 0.9;">
@@ -170,15 +211,19 @@ defineEmits<{
       </div>
     </section>
 
-    <section class="collab-bridge py-16 md:py-20">
+    <section class="w-full px-4 py-16 md:px-8 md:py-20 collab-bridge">
       <div class="max-w-3xl space-y-6 mr-16 md:mr-20">
-        <h2 class="font-mono text-xs font-bold tracking-[0.3em] uppercase"
-            style="color: var(--color-bp-primary);">
+        <h2
+          class="font-mono text-xs font-bold tracking-[0.3em] uppercase"
+          style="color: var(--color-bp-primary);"
+        >
           Framework Interoperability
         </h2>
 
-        <p class="font-['Space_Grotesk'] text-2xl md:text-3xl font-light leading-snug"
-           style="color: var(--color-bp-on-surface);">
+        <p
+          class="font-['Space_Grotesk'] text-2xl md:text-3xl font-light leading-snug"
+          style="color: var(--color-bp-on-surface);"
+        >
           This ecosystem demonstrates a dual-engine strategy. While the
           <span class="font-bold" style="color: var(--color-bp-primary);">Admin Dashboard</span>
           leverages React 19 for complex auditing, this
@@ -188,8 +233,10 @@ defineEmits<{
 
         <div class="flex items-center gap-4 py-4">
           <div class="h-px flex-grow" style="background-color: rgba(196,198,201,0.3);"></div>
-          <span class="font-mono text-[10px] uppercase tracking-widest"
-                style="color: var(--color-bp-outline);">
+          <span
+            class="font-mono text-[10px] uppercase tracking-widest"
+            style="color: var(--color-bp-outline);"
+          >
             Unified Validation Core [Go/Wasm]
           </span>
           <div class="h-px flex-grow" style="background-color: rgba(196,198,201,0.3);"></div>
@@ -298,7 +345,6 @@ defineEmits<{
   background-color: var(--color-bp-surface-container-lowest) !important;
   border-left: 4px solid var(--color-bp-primary) !important;
   padding: 2rem !important;
-  margin: 0 32px;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,0.07), 0 1px 2px -1px rgba(0,0,0,0.07) !important;
 }
 @media (min-width: 768px) {
