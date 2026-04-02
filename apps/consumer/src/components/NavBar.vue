@@ -9,19 +9,19 @@ const AUDITOR_DASHBOARD_URL = '#';
 <template>
   <nav class="nav-bar">
     <button
-      @click="$emit('navigate', 'landing')"
       class="nav-wordmark"
       aria-label="Eco-Trace home"
+      @click="$emit('navigate', 'landing')"
     >
       ECO-TRACE
     </button>
 
     <div class="nav-center">
       <a
-        :href="AUDITOR_DASHBOARD_URL"
+        class="nav-link-primary"
         target="_blank"
         rel="noopener noreferrer"
-        class="nav-link-primary"
+        :href="AUDITOR_DASHBOARD_URL"
       >
         Enter Auditor Dashboard (React 19)
       </a>
@@ -29,11 +29,11 @@ const AUDITOR_DASHBOARD_URL = '#';
 
     <div class="nav-actions">
       <a
-        :href="AUDITOR_DASHBOARD_URL"
+        class="nav-icon-btn"
         target="_blank"
         rel="noopener noreferrer"
-        class="nav-icon-btn"
         aria-label="Open Auditor Dashboard in new tab"
+        :href="AUDITOR_DASHBOARD_URL"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +43,7 @@ const AUDITOR_DASHBOARD_URL = '#';
           fill="currentColor"
           aria-hidden="true"
         >
-          <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+          <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
         </svg>
       </a>
     </div>

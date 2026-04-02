@@ -6,14 +6,24 @@ defineEmits<{
 
 <template>
   <div class="w-full bg-surface-canvas text-brand-deep-charcoal">
-
-    <section class="w-full px-4 pt-28 pb-16 md:px-8 md:pt-36" style="border-bottom: 1px solid rgba(196,198,201,0.3);">
+    <section
+      class="w-full px-4 pt-28 pb-16 md:px-8 md:pt-36"
+      style="border-bottom: 1px solid rgba(196,198,201,0.3);"
+    >
       <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pb-16">
         <div class="lg:col-span-8 space-y-8">
-
-          <div class="inline-flex items-center gap-3 px-3 py-1" style="background-color: #9bef9a;">
-            <span class="w-2 h-2 bg-[--color-bp-success]" style="box-shadow: 0 0 8px rgba(40,122,51,0.5);"></span>
-            <span class="font-mono text-[10px] uppercase tracking-widest font-bold" style="color: #002105;">
+          <div
+            class="inline-flex items-center gap-3 px-3 py-1"
+            style="background-color: #9bef9a;"
+          >
+            <span
+              class="w-2 h-2 bg-[--color-bp-success]"
+              style="box-shadow: 0 0 8px rgba(40,122,51,0.5);"
+            />
+            <span
+              class="font-mono text-[10px] uppercase tracking-widest font-bold"
+              style="color: #002105;"
+            >
               Edge Node Latency: 12ms
             </span>
           </div>
@@ -30,14 +40,14 @@ defineEmits<{
           <div class="flex flex-col sm:flex-row gap-4">
             <button
               id="cta-launch-scanner"
-              @click="$emit('navigate', 'scanner')"
               class="cta-primary w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest text-white flex items-center justify-center gap-3 hover:opacity-90 active:scale-95 transition-all"
+              @click="$emit('navigate', 'scanner')"
             >
               <svg
                 class="w-5 h-5 shrink-0"
-                viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
+                viewBox="0 0 24 24"
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -46,10 +56,16 @@ defineEmits<{
                 <path d="M17 3h2a2 2 0 012 2v2" />
                 <path d="M21 17v2a2 2 0 01-2 2h-2" />
                 <path d="M7 21H5a2 2 0 01-2-2v-2" />
-                <rect x="7" y="7" width="10" height="10" />
+                <rect
+                  x="7"
+                  y="7"
+                  width="10"
+                  height="10"
+                />
               </svg>
               Launch QR Scanner
             </button>
+
             <button
               class="w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest transition-colors"
               style="border: 1px solid var(--color-bp-primary); color: var(--color-bp-primary); background: transparent;"
@@ -61,7 +77,10 @@ defineEmits<{
           </div>
         </div>
 
-        <div class="lg:col-span-4 aspect-square bg-white overflow-hidden group" style="border: 1px solid rgba(196,198,201,0.3);">
+        <div
+          class="lg:col-span-4 aspect-square bg-white overflow-hidden group"
+          style="border: 1px solid rgba(196,198,201,0.3);"
+        >
           <img
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcjp2OswkdUAjvl_uLAILrUDQAWm-lmyvtFSbtEZd4vRubV1vBx8EVUllI72DH7rOOMaBLVltEMJOzUuTb_jQPJ4vKpLoh5qGn4FnaAgTBxF_za3Cyjc9-hWqh-PUmY9mt0oKlJ9HMkV1r2UUaFj05EYAevzFv4v1YOUg3eyLW5GPfc0dJ1FyZQQNIYcbCUFQ3c6nGnM55x6Q3mmPdgHbmuklQiDSfKUd0xZa_i9eaakvMbujDRVVLJz1v2ibNGsYn8-VJb0v8pF4"
             alt="Technical Hardware — Close-up of high-end circuit board with glowing blue LED lights"
@@ -79,22 +98,26 @@ defineEmits<{
         >
           Technical Specifications // v3.5
         </h2>
-        <span class="font-mono text-[10px]" style="color: var(--color-bp-primary); opacity: 0.6;">
+        <span
+          class="font-mono text-[10px]"
+          style="color: var(--color-bp-primary); opacity: 0.6;"
+        >
           [SYS_AUTH_VERIFIED]
         </span>
       </div>
 
       <div class="bento-grid">
-
-        <div class="bento-tile bento-tile--wide group"
-             style="background: var(--color-bp-surface-container-lowest); border: 1px solid rgba(196,198,201,0.2);">
+        <div
+          class="bento-tile bento-tile--wide group"
+          style="background: var(--color-bp-surface-container-lowest); border: 1px solid rgba(196,198,201,0.2);"
+        >
           <div class="bento-tile__header">
             <svg
-              viewBox="0 0 24 24"
+              class="w-8 h-8"
               fill="none"
               stroke="currentColor"
+              viewBox="0 0 24 24"
               stroke-width="1.5"
-              class="w-8 h-8"
               style="color: var(--color-bp-primary);"
             >
               <path
@@ -112,22 +135,27 @@ defineEmits<{
             >
               Zero-Trust Scanner
             </h3>
-            <p class="text-sm leading-relaxed" style="color: var(--color-bp-on-surface-variant);">
+            <p
+              class="text-sm leading-relaxed"
+              style="color: var(--color-bp-on-surface-variant);"
+            >
               High-speed verification of product integrity at the Edge. Our proprietary scanning engine
               ensures that every interaction is cryptographically signed before data retrieval.
             </p>
           </div>
         </div>
 
-        <div class="bento-tile bento-tile--wide group"
-             style="background: var(--color-bp-surface-container-lowest); border: 1px solid rgba(196,198,201,0.2);">
+        <div
+          class="bento-tile bento-tile--wide group"
+          style="background: var(--color-bp-surface-container-lowest); border: 1px solid rgba(196,198,201,0.2);"
+        >
           <div class="bento-tile__header">
             <svg
-              viewBox="0 0 24 24"
+              class="w-8 h-8"
               fill="none"
               stroke="currentColor"
+              viewBox="0 0 24 24"
               stroke-width="1.5"
-              class="w-8 h-8"
               style="color: var(--color-bp-primary);"
             >
               <path
@@ -145,19 +173,30 @@ defineEmits<{
             >
               Eliminate ESG Fraud
             </h3>
-            <p class="text-sm leading-relaxed" style="color: var(--color-bp-on-surface-variant);">
+            <p
+              class="text-sm leading-relaxed"
+              style="color: var(--color-bp-on-surface-variant);"
+            >
               Transitioning from vague corporate "promises" to immutable
-              <span style="color: var(--color-bp-primary);" class="italic font-bold">cryptographic proof</span>.
+              <span
+                class="italic font-bold"
+                style="color: var(--color-bp-primary);"
+              >cryptographic proof</span>.
               Every carbon credit is traceable to its origin node.
             </p>
           </div>
         </div>
 
-        <div class="bento-tile bento-tile--feature"
-             style="background: var(--color-bp-surface-container-lowest); border: 1px solid rgba(196,198,201,0.3);">
+        <div
+          class="bento-tile bento-tile--feature"
+          style="background: var(--color-bp-surface-container-lowest); border: 1px solid rgba(196,198,201,0.3);"
+        >
           <div class="bento-tile__feature-content">
             <div class="space-y-4">
-              <div class="font-mono text-[10px] font-bold" style="color: var(--color-bp-success);">
+              <div
+                class="font-mono text-[10px] font-bold"
+                style="color: var(--color-bp-success);"
+              >
                 [RUNTIME_OPTIMIZED]
               </div>
               <h3
@@ -166,7 +205,10 @@ defineEmits<{
               >
                 Vue 3.5 Vapor + Go/Wasm
               </h3>
-              <p class="text-sm leading-relaxed" style="color: var(--color-bp-on-surface-variant);">
+              <p
+                class="text-sm leading-relaxed"
+                style="color: var(--color-bp-on-surface-variant);"
+              >
                 Zero-overhead rendering designed for mobile efficiency. Shared validation logic via WebAssembly
                 ensures consistency across platforms.
               </p>
@@ -175,8 +217,10 @@ defineEmits<{
                 <span class="bento-metric-chip">INIT: 45ms</span>
               </div>
             </div>
-            <div class="bento-tile__feature-img"
-                 style="background-color: var(--color-bp-surface-container);">
+            <div
+              class="bento-tile__feature-img"
+              style="background-color: var(--color-bp-surface-container);"
+            >
               <img
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPuaoLg6LZuQpsdOX4jjmfmD6HFkxzYAMI8lo5-0aNrTVT4tdlwRHVyOYX1cFprb8BSzc_spa_X-JmA8iED0BjmyKlJObw5nurq0l73C6U3cVl7MCKO4K6sfG9rCBT3rqL8TvQwXH1P9LyUB1Y0mqBY0NhrV1Dx-62SsMBkYrIt9qaiPl42iz1EfOm58dQVeQ1xaX99pYzqwVDMSB962IuWPDUiG46EYJfupFbm9QLG7Gm0awnhxC-BBNK4cLl86XYLvKsK1pKqT8"
                 alt="Code on screen — macro photo of glowing lines of code on a dark screen"
@@ -186,10 +230,14 @@ defineEmits<{
           </div>
         </div>
 
-        <div class="bento-tile bento-tile--accent"
-             style="background: var(--color-bp-primary);">
-          <div class="font-mono text-4xl font-black italic tracking-tighter leading-none"
-               style="color: var(--color-bp-on-primary);">
+        <div
+          class="bento-tile bento-tile--accent"
+          style="background: var(--color-bp-primary);"
+        >
+          <div
+            class="font-mono text-4xl font-black italic tracking-tighter leading-none"
+            style="color: var(--color-bp-on-primary);"
+          >
             &lt;100ms
           </div>
           <div class="space-y-4">
@@ -199,15 +247,17 @@ defineEmits<{
             >
               Edge Database (D1)
             </h3>
-            <p class="text-xs font-medium" style="color: var(--color-bp-on-primary); opacity: 0.9;">
+            <p
+              class="text-xs font-medium"
+              style="color: var(--color-bp-on-primary); opacity: 0.9;"
+            >
               Real-time carbon footprint calculations delivered via Cloudflare's global edge network.
             </p>
             <div class="bento-progress-bar">
-              <div class="bento-progress-bar__fill"></div>
+              <div class="bento-progress-bar__fill" />
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -225,71 +275,108 @@ defineEmits<{
           style="color: var(--color-bp-on-surface);"
         >
           This ecosystem demonstrates a dual-engine strategy. While the
-          <span class="font-bold" style="color: var(--color-bp-primary);">Admin Dashboard</span>
+          <span
+            class="font-bold"
+            style="color: var(--color-bp-primary);"
+          >Admin Dashboard</span>
           leverages React 19 for complex auditing, this
-          <span class="font-bold" style="color: var(--color-bp-primary);">Consumer App</span>
+          <span
+            class="font-bold"
+            style="color: var(--color-bp-primary);"
+          >Consumer App</span>
           utilizes Vue 3.5 Vapor for extreme mobile performance.
         </p>
 
         <div class="flex items-center gap-4 py-4">
-          <div class="h-px flex-grow" style="background-color: rgba(196,198,201,0.3);"></div>
+          <div
+            class="h-px flex-grow"
+            style="background-color: rgba(196,198,201,0.3);"
+          />
           <span
             class="font-mono text-[10px] uppercase tracking-widest"
             style="color: var(--color-bp-outline);"
           >
             Unified Validation Core [Go/Wasm]
           </span>
-          <div class="h-px flex-grow" style="background-color: rgba(196,198,201,0.3);"></div>
+          <div
+            class="h-px flex-grow"
+            style="background-color: rgba(196,198,201,0.3);"
+          />
         </div>
       </div>
     </section>
 
-    <section class="w-full px-4 py-16 md:px-8 md:py-20" style="padding-top: 2rem;">
+    <section
+      class="w-full px-4 py-16 md:px-8 md:py-20"
+      style="padding-top: 2rem;"
+    >
       <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-8">
-
         <div class="space-y-4">
-          <div class="font-mono text-[10px] uppercase tracking-widest font-bold pb-2"
-               style="color: var(--color-bp-outline); border-bottom: 1px solid rgba(196,198,201,0.3);">
+          <div
+            class="font-mono text-[10px] uppercase tracking-widest font-bold pb-2"
+            style="color: var(--color-bp-outline); border-bottom: 1px solid rgba(196,198,201,0.3);"
+          >
             Active Nodes
           </div>
           <div class="space-y-2">
             <div class="flex justify-between font-mono text-sm">
               <span style="color: var(--color-bp-on-surface-variant);">us-east-1a</span>
-              <span class="font-bold" style="color: var(--color-bp-tertiary);">STABLE</span>
+              <span
+                class="font-bold"
+                style="color: var(--color-bp-tertiary);"
+              >STABLE</span>
             </div>
             <div class="flex justify-between font-mono text-sm">
               <span style="color: var(--color-bp-on-surface-variant);">eu-central-1</span>
-              <span class="font-bold" style="color: var(--color-bp-tertiary);">STABLE</span>
+              <span
+                class="font-bold"
+                style="color: var(--color-bp-tertiary);"
+              >STABLE</span>
             </div>
             <div class="flex justify-between font-mono text-sm">
               <span style="color: var(--color-bp-on-surface-variant);">ap-southeast-1</span>
-              <span class="font-bold" style="color: var(--color-bp-error);">LATENCY_HIGH</span>
+              <span
+                class="font-bold"
+                style="color: var(--color-bp-error);"
+              >LATENCY_HIGH</span>
             </div>
           </div>
         </div>
 
         <div class="space-y-4">
-          <div class="font-mono text-[10px] uppercase tracking-widest font-bold pb-2"
-               style="color: var(--color-bp-outline); border-bottom: 1px solid rgba(196,198,201,0.3);">
+          <div
+            class="font-mono text-[10px] uppercase tracking-widest font-bold pb-2"
+            style="color: var(--color-bp-outline); border-bottom: 1px solid rgba(196,198,201,0.3);"
+          >
             Global Ledger
           </div>
           <div class="flex items-baseline gap-2">
-            <span class="font-['Space_Grotesk'] text-3xl font-bold" style="color: var(--color-bp-primary);">1.42B</span>
-            <span class="font-mono text-xs" style="color: var(--color-bp-outline);">TXN_COUNT</span>
+            <span
+              class="font-['Space_Grotesk'] text-3xl font-bold"
+              style="color: var(--color-bp-primary);"
+            >1.42B</span>
+            <span
+              class="font-mono text-xs"
+              style="color: var(--color-bp-outline);"
+            >TXN_COUNT</span>
           </div>
         </div>
 
         <div class="space-y-4">
-          <div class="font-mono text-[10px] uppercase tracking-widest font-bold pb-2"
-               style="color: var(--color-bp-outline); border-bottom: 1px solid rgba(196,198,201,0.3);">
+          <div
+            class="font-mono text-[10px] uppercase tracking-widest font-bold pb-2"
+            style="color: var(--color-bp-outline); border-bottom: 1px solid rgba(196,198,201,0.3);"
+          >
             Compliance Rating
           </div>
           <div class="flex items-center gap-4">
             <span class="trust-chip">AAA+</span>
-            <span class="text-xs font-medium" style="color: var(--color-bp-on-surface-variant);">ISO-27001 / ESG-V4</span>
+            <span
+              class="text-xs font-medium"
+              style="color: var(--color-bp-on-surface-variant);"
+            >ISO-27001 / ESG-V4</span>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -298,44 +385,58 @@ defineEmits<{
       style="background-color: var(--color-bp-surface-container-lowest); border-top: 1px solid rgba(196,198,201,0.3);"
     >
       <div class="space-y-4 max-w-lg">
-        <div class="font-['Space_Grotesk'] text-lg font-black uppercase tracking-tighter"
-             style="color: var(--color-bp-primary);">
+        <div
+          class="font-['Space_Grotesk'] text-lg font-black uppercase tracking-tighter"
+          style="color: var(--color-bp-primary);"
+        >
           INDUSTRIAL EDITORIAL
         </div>
-        <p class="font-['Geist_Mono'] text-[12px] leading-relaxed uppercase"
-           style="color: var(--color-bp-on-surface-variant);">
+        <p
+          class="font-['Geist_Mono'] text-[12px] leading-relaxed uppercase"
+          style="color: var(--color-bp-on-surface-variant);"
+        >
           "We know how to collaborate, we know how to scale, and we know that technology must adapt to the business, not the other way around."
         </p>
       </div>
 
       <div class="flex flex-col items-center md:items-end gap-6">
         <div class="flex gap-8">
-          <a href="#" class="font-['Geist_Mono'] text-[10px] uppercase tracking-[0.05em] font-bold transition-colors"
-             style="color: rgba(68, 71, 74, 0.6);"
-             onmouseover="this.style.color='var(--color-bp-primary)'"
-             onmouseout="this.style.color='rgba(68, 71, 74, 0.6)'">
+          <a
+            href="#"
+            class="font-['Geist_Mono'] text-[10px] uppercase tracking-[0.05em] font-bold transition-colors"
+            style="color: rgba(68, 71, 74, 0.6);"
+            onmouseover="this.style.color='var(--color-bp-primary)'"
+            onmouseout="this.style.color='rgba(68, 71, 74, 0.6)'"
+          >
             MISSION
           </a>
-          <a href="#" class="font-['Geist_Mono'] text-[10px] uppercase tracking-[0.05em] font-bold transition-colors"
-             style="color: rgba(68, 71, 74, 0.6);"
-             onmouseover="this.style.color='var(--color-bp-primary)'"
-             onmouseout="this.style.color='rgba(68, 71, 74, 0.6)'">
+          <a
+            href="#"
+            class="font-['Geist_Mono'] text-[10px] uppercase tracking-[0.05em] font-bold transition-colors"
+            style="color: rgba(68, 71, 74, 0.6);"
+            onmouseover="this.style.color='var(--color-bp-primary)'"
+            onmouseout="this.style.color='rgba(68, 71, 74, 0.6)'"
+          >
             SPECIFICATIONS
           </a>
-          <a href="#" class="font-['Geist_Mono'] text-[10px] uppercase tracking-[0.05em] font-bold transition-colors"
-             style="color: rgba(68, 71, 74, 0.6);"
-             onmouseover="this.style.color='var(--color-bp-primary)'"
-             onmouseout="this.style.color='rgba(68, 71, 74, 0.6)'">
+          <a
+            href="#"
+            class="font-['Geist_Mono'] text-[10px] uppercase tracking-[0.05em] font-bold transition-colors"
+            style="color: rgba(68, 71, 74, 0.6);"
+            onmouseover="this.style.color='var(--color-bp-primary)'"
+            onmouseout="this.style.color='rgba(68, 71, 74, 0.6)'"
+          >
             COMPLIANCE
           </a>
         </div>
-        <div class="font-['Geist_Mono'] text-[10px] uppercase tracking-[0.05em]"
-             style="color: rgba(196, 198, 201, 0.4);">
+        <div
+          class="font-['Geist_Mono'] text-[10px] uppercase tracking-[0.05em]"
+          style="color: rgba(196, 198, 201, 0.4);"
+        >
           © 2024 INDUSTRIAL EDITORIAL. ALL RIGHTS RESERVED.
         </div>
       </div>
     </footer>
-
   </div>
 </template>
 
