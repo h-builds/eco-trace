@@ -16,36 +16,35 @@ const AUDITOR_DASHBOARD_URL = '#';
       ECO-TRACE
     </button>
 
-    <div class="nav-center">
-      <a
-        class="nav-link-primary"
-        target="_blank"
-        rel="noopener noreferrer"
-        :href="AUDITOR_DASHBOARD_URL"
-      >
-        Enter Auditor Dashboard (React 19)
-      </a>
-    </div>
-
     <div class="nav-actions">
-      <a
-        class="nav-icon-btn"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Open Auditor Dashboard in new tab"
-        :href="AUDITOR_DASHBOARD_URL"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          aria-hidden="true"
+      <div class="nav-dashboard-group">
+        <a
+          class="nav-link-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          :href="AUDITOR_DASHBOARD_URL"
         >
-          <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
-        </svg>
-      </a>
+          Enter Auditor Dashboard (React 19)
+        </a>
+        <a
+          class="nav-icon-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Auditor Dashboard in new tab"
+          :href="AUDITOR_DASHBOARD_URL"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+          </svg>
+        </a>
+      </div>
     </div>
   </nav>
 </template>
@@ -92,15 +91,19 @@ const AUDITOR_DASHBOARD_URL = '#';
   opacity: 0.80;
 }
 
-.nav-center {
+.nav-dashboard-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-bp-2);
+}
+
+.nav-dashboard-group .nav-link-primary {
   display: none;
 }
 
 @media (min-width: 768px) {
-  .nav-center {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+  .nav-dashboard-group .nav-link-primary {
+    display: inline-block;
   }
 }
 
