@@ -57,13 +57,14 @@ const handleReset = () => {
         </svg>
         Engine Error
       </p>
-      <p class="text-sm mt-1 text-functional-neutral">{{ error }}</p>
+
+      <p class="text-sm mt-1 text-functional-neutral">
+        {{ error }}
+      </p>
     </div>
 
     <LandingPage v-if="currentView === 'landing'" @navigate="navigate" />
-
     <ScannerView v-else-if="currentView === 'scanner'" @scan="handleScan" />
-
     <TransparencyScreen
       v-else-if="currentView === 'transparency' && activeAssetId"
       :asset-id="activeAssetId"

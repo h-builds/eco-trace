@@ -261,8 +261,8 @@ defineEmits<{
       </div>
     </section>
 
-    <section class="w-full px-4 py-16 md:px-8 md:py-20 collab-bridge">
-      <div class="max-w-3xl space-y-6 mr-16 md:mr-20">
+    <section class="w-full px-4 py-16 md:px-8 md:py-20">
+      <div class="w-3/4 space-y-6 collab-bridge">
         <h2
           class="font-mono text-xs font-bold tracking-[0.3em] uppercase"
           style="color: var(--color-bp-primary);"
