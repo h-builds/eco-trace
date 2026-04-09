@@ -78,7 +78,7 @@ defineEmits<{
         </div>
 
         <div
-          class="lg:col-span-4 aspect-square bg-white overflow-hidden group"
+          class="hidden md:block lg:col-span-4 aspect-square bg-white overflow-hidden group"
           style="border: 1px solid var(--outline-bp-ghost);"
         >
           <img
@@ -218,7 +218,7 @@ defineEmits<{
               </div>
             </div>
             <div
-              class="bento-tile__feature-img"
+              class="hidden md:block bento-tile__feature-img"
               style="background-color: var(--color-bp-surface-container);"
             >
               <img
@@ -261,47 +261,49 @@ defineEmits<{
       </div>
     </section>
 
-    <section class="w-full px-4 py-16 md:px-8 md:py-20">
-      <div class="w-3/4 space-y-6 collab-bridge">
-        <h2
-          class="font-mono text-xs font-bold tracking-[0.3em] uppercase"
-          style="color: var(--color-bp-primary);"
-        >
-          Framework Interoperability
-        </h2>
-
-        <p
-          class="font-['Space_Grotesk'] text-2xl md:text-3xl font-light leading-snug"
-          style="color: var(--color-bp-on-surface);"
-        >
-          This ecosystem demonstrates a dual-engine strategy. While the
-          <span
-            class="font-bold"
+    <section class="w-full px-4 md:px-8 pb-16 md:pb-20">
+      <div class="w-full">
+        <div class="w-full md:w-3/4 mx-auto space-y-6 collab-bridge">
+          <h2
+            class="font-mono text-xs font-bold tracking-[0.3em] uppercase"
             style="color: var(--color-bp-primary);"
-          >Admin Dashboard</span>
-          leverages React 19 for complex auditing, this
-          <span
-            class="font-bold"
-            style="color: var(--color-bp-primary);"
-          >Consumer App</span>
-          utilizes Vue 3.5 Vapor for extreme mobile performance.
-        </p>
-
-        <div class="flex items-center gap-4 py-4">
-          <div
-            class="h-px flex-grow"
-            style="background-color: var(--outline-bp-ghost);"
-          />
-          <span
-            class="font-mono text-[10px] uppercase tracking-widest"
-            style="color: var(--color-bp-outline);"
           >
-            Unified Validation Core [Go/Wasm]
-          </span>
-          <div
-            class="h-px flex-grow"
-            style="background-color: var(--outline-bp-ghost);"
-          />
+            Framework Interoperability
+          </h2>
+
+          <p
+            class="font-['Space_Grotesk'] text-2xl md:text-3xl font-light leading-snug"
+            style="color: var(--color-bp-on-surface);"
+          >
+            This ecosystem demonstrates a dual-engine strategy. While the
+            <span
+              class="font-bold"
+              style="color: var(--color-bp-primary);"
+            >Admin Dashboard</span>
+            leverages React 19 for complex auditing, this
+            <span
+              class="font-bold"
+              style="color: var(--color-bp-primary);"
+            >Consumer App</span>
+            utilizes Vue 3.5 Vapor for extreme mobile performance.
+          </p>
+
+          <div class="flex items-center gap-4 py-4">
+            <div
+              class="h-px flex-grow"
+              style="background-color: var(--outline-bp-ghost);"
+            />
+            <span
+              class="font-mono text-[10px] uppercase tracking-widest"
+              style="color: var(--color-bp-outline);"
+            >
+              Unified Validation Core [Go/Wasm]
+            </span>
+            <div
+              class="h-px flex-grow"
+              style="background-color: var(--outline-bp-ghost);"
+            />
+          </div>
         </div>
       </div>
     </section>
@@ -445,12 +447,12 @@ defineEmits<{
   width: 100%;
   background-color: var(--color-bp-surface-container-lowest) !important;
   border-left: 4px solid var(--color-bp-primary) !important;
-  padding: 2rem !important;
+  padding: 2rem;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,0.07), 0 1px 2px -1px rgba(0,0,0,0.07) !important;
 }
 @media (min-width: 768px) {
   .collab-bridge {
-    padding: 3rem !important;
+    padding: 3rem;
   }
 }
 
