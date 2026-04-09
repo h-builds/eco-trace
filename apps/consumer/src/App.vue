@@ -63,8 +63,14 @@ const handleReset = () => {
       </p>
     </div>
 
-    <LandingPage v-if="currentView === 'landing'" @navigate="navigate" />
-    <ScannerView v-else-if="currentView === 'scanner'" @scan="handleScan" />
+    <LandingPage
+      v-if="currentView === 'landing'"
+      @navigate="navigate"
+    />
+    <ScannerView
+      v-else-if="currentView === 'scanner'"
+      @scan="handleScan"
+    />
     <TransparencyScreen
       v-else-if="currentView === 'transparency' && activeAssetId"
       :asset-id="activeAssetId"

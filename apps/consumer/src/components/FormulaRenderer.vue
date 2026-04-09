@@ -50,12 +50,16 @@ const calculationResult = computed(() => {
         <span
           v-if="!isReady"
           class="text-sm text-functional-neutral font-normal animate-pulse"
-        >Calculating...</span>
+        >
+          Calculating...
+        </span>
 
         <span
           v-else-if="calculationResult.error"
           class="text-sm"
-        >{{ calculationResult.error }}</span>
+        >
+          {{ calculationResult.error }}
+        </span>
 
         <span v-else>
           {{ calculationResult.result.toFixed(2) }}

@@ -181,7 +181,9 @@ defineEmits<{
               <span
                 class="italic font-bold"
                 style="color: var(--color-bp-primary);"
-              >cryptographic proof</span>.
+              >
+                cryptographic proof
+              </span>.
               Every carbon credit is traceable to its origin node.
             </p>
           </div>
@@ -262,8 +264,8 @@ defineEmits<{
     </section>
 
     <section class="w-full px-4 md:px-8 pb-16 md:pb-20">
-      <div class="w-full">
-        <div class="w-full md:w-3/4 mx-auto space-y-6 collab-bridge">
+      <div class="w-full collab-bridge">
+        <div class="w-full sm:w-3/4 space-y-6">
           <h2
             class="font-mono text-xs font-bold tracking-[0.3em] uppercase"
             style="color: var(--color-bp-primary);"
@@ -279,12 +281,16 @@ defineEmits<{
             <span
               class="font-bold"
               style="color: var(--color-bp-primary);"
-            >Admin Dashboard</span>
+            >
+              Admin Dashboard
+            </span>
             leverages React 19 for complex auditing, this
             <span
               class="font-bold"
               style="color: var(--color-bp-primary);"
-            >Consumer App</span>
+            >
+              Consumer App
+            </span>
             utilizes Vue 3.5 Vapor for extreme mobile performance.
           </p>
 
@@ -326,21 +332,27 @@ defineEmits<{
               <span
                 class="font-bold"
                 style="color: var(--color-bp-tertiary);"
-              >ACTIVE</span>
+              >
+                ACTIVE
+              </span>
             </div>
             <div class="flex justify-between font-mono text-sm">
               <span style="color: var(--color-bp-on-surface-variant);">LHR</span>
               <span
                 class="font-bold"
                 style="color: var(--color-bp-tertiary);"
-              >ACTIVE</span>
+              >
+                ACTIVE
+              </span>
             </div>
             <div class="flex justify-between font-mono text-sm">
               <span style="color: var(--color-bp-on-surface-variant);">SIN</span>
               <span
                 class="font-bold"
                 style="color: var(--color-bp-tertiary);"
-              >ACTIVE</span>
+              >
+                ACTIVE
+              </span>
             </div>
           </div>
         </div>
@@ -356,11 +368,15 @@ defineEmits<{
             <span
               class="font-['Space_Grotesk'] text-3xl font-bold"
               style="color: var(--color-bp-primary);"
-            >D1</span>
+            >
+              D1
+            </span>
             <span
               class="font-mono text-xs"
               style="color: var(--color-bp-outline);"
-            >EDGE_DB</span>
+            >
+              EDGE_DB
+            </span>
           </div>
         </div>
 
@@ -376,7 +392,9 @@ defineEmits<{
             <span
               class="text-xs font-medium"
               style="color: var(--color-bp-on-surface-variant);"
-            >ISO-14064 Ready</span>
+            >
+              ISO-14064 Ready
+            </span>
           </div>
         </div>
       </div>
@@ -444,7 +462,6 @@ defineEmits<{
 
 <style scoped>
 .collab-bridge {
-  width: 100%;
   background-color: var(--color-bp-surface-container-lowest) !important;
   border-left: 4px solid var(--color-bp-primary) !important;
   padding: 2rem;
