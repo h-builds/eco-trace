@@ -59,13 +59,14 @@
   --color-bp-on-surface-variant:        #44474a;  /* Secondary / metadata text  */
 
   /* ==============================================================
-     2. COLOR ROLES — PRIMARY (INTEGRITY BLUE)
-     Primary #00488d ensures ≥4.5:1 contrast on all surface tiers.
+     2. COLOR ROLES — PRIMARY (INTEGRITY GREEN)
+     Primary #8ED5B4 ensures ≥4.5:1 contrast on all surface tiers.
      Primary-container is the gradient end-stop (machined sheen).
      ============================================================== */
-  --color-bp-primary:                   #00488d;  /* Accessible interactive blue */
-  --color-bp-primary-container:         #005fb8;  /* Gradient end / hover accent */
-  --color-bp-on-primary:                #ffffff;  /* Text on primary fills       */
+  --color-bp-primary:                   #8ED5B4;  /* Accessible interactive green */
+  --color-bp-primary-container:         #D1EBDD;  /* Light green surface */
+  --color-bp-on-primary:                #002105;  /* High-contrast text on primary */
+  --color-bp-on-primary-container:      #002105;  /* Text on container fills */
 
   /* ==============================================================
      3. FUNCTIONAL / SEMANTIC COLORS
@@ -75,7 +76,13 @@
   --color-bp-error:                     #d32f2f;  /* Alert / destructive         */
   --color-bp-neutral:                   #607d8b;  /* Muted metadata              */
 
-  /* Outline variant — used exclusively as ghost border at 15% opacity */
+  /* Tertiary — Success variant for secondary status indicators */
+  --color-bp-tertiary:                  #287a33;
+  --color-bp-tertiary-container:        #9bef9a;
+  --color-bp-on-tertiary-container:     #002105;
+
+  /* Outline system */
+  --color-bp-outline:                   #c4c6c9;  /* Standard border             */
   --color-bp-outline-variant:           #c4c6c9;  /* Base; apply 0.15 alpha       */
 
   /* ==============================================================
@@ -175,14 +182,12 @@
   /* ==============================================================
      8. GRADIENTS — SIGNATURE FILLS
      "The Integrity Gradient" — machined sheen on primary actions.
-     Transitions primary (#00488d) → primary-container (#005fb8)
-     at 135° to simulate directional precision tooling light.
      ============================================================== */
   --gradient-bp-integrity:
-    linear-gradient(135deg, #00488d 0%, #005fb8 100%);
+    linear-gradient(135deg, #8ED5B4 0%, #7ABF9F 100%);
 
   --gradient-bp-integrity-hover:
-    linear-gradient(135deg, #003d7a 0%, #004fa3 100%);
+    linear-gradient(135deg, #7ABF9F 0%, #68A186 100%);
 
   /* Subtle surface sheen for section headers (barely perceptible) */
   --gradient-bp-surface-sheen:
@@ -195,7 +200,7 @@
      strictly required for accessibility (e.g. focus rings, WCAG).
      ============================================================== */
   --outline-bp-ghost:      rgba(196, 198, 201, 0.15);  /* 15% opacity  */
-  --outline-bp-focus:      rgba(0, 72, 141, 0.35);     /* Primary tint */
+  --outline-bp-focus:      rgba(142, 213, 180, 0.35);     /* Primary tint */
 
   /* ==============================================================
      10. BACKDROP BLUR — GLASS OVERLAY

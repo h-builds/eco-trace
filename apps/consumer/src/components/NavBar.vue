@@ -68,7 +68,7 @@ const AUDITOR_DASHBOARD_URL = '#';
   backdrop-filter: blur(var(--blur-bp-nav));
   -webkit-backdrop-filter: blur(var(--blur-bp-nav));
 
-  border-bottom: 1px solid rgba(196, 198, 201, 0.30);
+  border-bottom: 1px solid var(--outline-bp-ghost);
 }
 
 .nav-wordmark {
@@ -138,7 +138,8 @@ const AUDITOR_DASHBOARD_URL = '#';
   justify-content: center;
 
   padding: var(--spacing-bp-2);
-  color: rgba(68, 71, 74, 0.60);
+  color: var(--color-bp-on-surface-variant);
+  opacity: 0.60;
 
   background: none;
   border: none;

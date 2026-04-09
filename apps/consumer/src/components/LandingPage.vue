@@ -8,13 +8,13 @@ defineEmits<{
   <div class="w-full bg-surface-canvas text-brand-deep-charcoal">
     <section
       class="w-full px-4 pt-28 pb-16 md:px-8 md:pt-36"
-      style="border-bottom: 1px solid rgba(196,198,201,0.3);"
+      style="border-bottom: 1px solid var(--outline-bp-ghost);"
     >
       <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pb-16">
         <div class="lg:col-span-8 space-y-8">
           <div
             class="inline-flex items-center gap-3 px-3 py-1"
-            style="background-color: #9bef9a;"
+            style="background-color: var(--color-bp-tertiary-container);"
           >
             <span
               class="w-2 h-2 bg-[--color-bp-success]"
@@ -22,9 +22,9 @@ defineEmits<{
             />
             <span
               class="font-mono text-[10px] uppercase tracking-widest font-bold"
-              style="color: #002105;"
+              style="color: var(--color-bp-on-tertiary-container);"
             >
-              Edge Node Latency: 12ms
+              Edge Node: Connected
             </span>
           </div>
 
@@ -69,7 +69,7 @@ defineEmits<{
             <button
               class="w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest transition-colors"
               style="border: 1px solid var(--color-bp-primary); color: var(--color-bp-primary); background: transparent;"
-              onmouseover="this.style.backgroundColor='rgba(0,72,141,0.08)'"
+              onmouseover="this.style.backgroundColor='rgba(142,213,180,0.1)'"
               onmouseout="this.style.backgroundColor='transparent'"
             >
               View Ledger
@@ -79,11 +79,11 @@ defineEmits<{
 
         <div
           class="lg:col-span-4 aspect-square bg-white overflow-hidden group"
-          style="border: 1px solid rgba(196,198,201,0.3);"
+          style="border: 1px solid var(--outline-bp-ghost);"
         >
           <img
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcjp2OswkdUAjvl_uLAILrUDQAWm-lmyvtFSbtEZd4vRubV1vBx8EVUllI72DH7rOOMaBLVltEMJOzUuTb_jQPJ4vKpLoh5qGn4FnaAgTBxF_za3Cyjc9-hWqh-PUmY9mt0oKlJ9HMkV1r2UUaFj05EYAevzFv4v1YOUg3eyLW5GPfc0dJ1FyZQQNIYcbCUFQ3c6nGnM55x6Q3mmPdgHbmuklQiDSfKUd0xZa_i9eaakvMbujDRVVLJz1v2ibNGsYn8-VJb0v8pF4"
-            alt="Technical Hardware — Close-up of high-end circuit board with glowing blue LED lights"
+            alt="Technical Hardware — Close-up of high-end circuit board with glowing green LED lights"
             class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
           />
         </div>
@@ -109,7 +109,7 @@ defineEmits<{
       <div class="bento-grid">
         <div
           class="bento-tile bento-tile--wide group"
-          style="background: var(--color-bp-surface-container-lowest); border: 1px solid rgba(196,198,201,0.2);"
+          style="background: var(--color-bp-surface-container-lowest); border: 1px solid var(--outline-bp-ghost);"
         >
           <div class="bento-tile__header">
             <svg
@@ -139,7 +139,7 @@ defineEmits<{
               class="text-sm leading-relaxed"
               style="color: var(--color-bp-on-surface-variant);"
             >
-              High-speed verification of product integrity at the Edge. Our proprietary scanning engine
+              High-speed verification of product integrity at the Edge. Our edge-native scanning engine
               ensures that every interaction is cryptographically signed before data retrieval.
             </p>
           </div>
@@ -147,7 +147,7 @@ defineEmits<{
 
         <div
           class="bento-tile bento-tile--wide group"
-          style="background: var(--color-bp-surface-container-lowest); border: 1px solid rgba(196,198,201,0.2);"
+          style="background: var(--color-bp-surface-container-lowest); border: 1px solid var(--outline-bp-ghost);"
         >
           <div class="bento-tile__header">
             <svg
@@ -189,7 +189,7 @@ defineEmits<{
 
         <div
           class="bento-tile bento-tile--feature"
-          style="background: var(--color-bp-surface-container-lowest); border: 1px solid rgba(196,198,201,0.3);"
+          style="background: var(--color-bp-surface-container-lowest); border: 1px solid var(--outline-bp-ghost);"
         >
           <div class="bento-tile__feature-content">
             <div class="space-y-4">
@@ -213,8 +213,8 @@ defineEmits<{
                 ensures consistency across platforms.
               </p>
               <div class="flex gap-2">
-                <span class="bento-metric-chip">MEM: 1.2MB</span>
-                <span class="bento-metric-chip">INIT: 45ms</span>
+                <span class="bento-metric-chip">WASM: 2.6MB</span>
+                <span class="bento-metric-chip">INIT: &lt;50ms</span>
               </div>
             </div>
             <div
@@ -290,7 +290,7 @@ defineEmits<{
         <div class="flex items-center gap-4 py-4">
           <div
             class="h-px flex-grow"
-            style="background-color: rgba(196,198,201,0.3);"
+            style="background-color: var(--outline-bp-ghost);"
           />
           <span
             class="font-mono text-[10px] uppercase tracking-widest"
@@ -300,7 +300,7 @@ defineEmits<{
           </span>
           <div
             class="h-px flex-grow"
-            style="background-color: rgba(196,198,201,0.3);"
+            style="background-color: var(--outline-bp-ghost);"
           />
         </div>
       </div>
@@ -314,31 +314,31 @@ defineEmits<{
         <div class="space-y-4">
           <div
             class="font-mono text-[10px] uppercase tracking-widest font-bold pb-2"
-            style="color: var(--color-bp-outline); border-bottom: 1px solid rgba(196,198,201,0.3);"
+            style="color: var(--color-bp-outline); border-bottom: 1px solid var(--outline-bp-ghost);"
           >
             Active Nodes
           </div>
           <div class="space-y-2">
             <div class="flex justify-between font-mono text-sm">
-              <span style="color: var(--color-bp-on-surface-variant);">us-east-1a</span>
+              <span style="color: var(--color-bp-on-surface-variant);">IAD</span>
               <span
                 class="font-bold"
                 style="color: var(--color-bp-tertiary);"
-              >STABLE</span>
+              >ACTIVE</span>
             </div>
             <div class="flex justify-between font-mono text-sm">
-              <span style="color: var(--color-bp-on-surface-variant);">eu-central-1</span>
+              <span style="color: var(--color-bp-on-surface-variant);">LHR</span>
               <span
                 class="font-bold"
                 style="color: var(--color-bp-tertiary);"
-              >STABLE</span>
+              >ACTIVE</span>
             </div>
             <div class="flex justify-between font-mono text-sm">
-              <span style="color: var(--color-bp-on-surface-variant);">ap-southeast-1</span>
+              <span style="color: var(--color-bp-on-surface-variant);">SIN</span>
               <span
                 class="font-bold"
-                style="color: var(--color-bp-error);"
-              >LATENCY_HIGH</span>
+                style="color: var(--color-bp-tertiary);"
+              >ACTIVE</span>
             </div>
           </div>
         </div>
@@ -346,7 +346,7 @@ defineEmits<{
         <div class="space-y-4">
           <div
             class="font-mono text-[10px] uppercase tracking-widest font-bold pb-2"
-            style="color: var(--color-bp-outline); border-bottom: 1px solid rgba(196,198,201,0.3);"
+            style="color: var(--color-bp-outline); border-bottom: 1px solid var(--outline-bp-ghost);"
           >
             Global Ledger
           </div>
@@ -354,27 +354,27 @@ defineEmits<{
             <span
               class="font-['Space_Grotesk'] text-3xl font-bold"
               style="color: var(--color-bp-primary);"
-            >1.42B</span>
+            >D1</span>
             <span
               class="font-mono text-xs"
               style="color: var(--color-bp-outline);"
-            >TXN_COUNT</span>
+            >EDGE_DB</span>
           </div>
         </div>
 
         <div class="space-y-4">
           <div
             class="font-mono text-[10px] uppercase tracking-widest font-bold pb-2"
-            style="color: var(--color-bp-outline); border-bottom: 1px solid rgba(196,198,201,0.3);"
+            style="color: var(--color-bp-outline); border-bottom: 1px solid var(--outline-bp-ghost);"
           >
             Compliance Rating
           </div>
           <div class="flex items-center gap-4">
-            <span class="trust-chip">AAA+</span>
+            <span class="trust-chip">VERIFIED</span>
             <span
               class="text-xs font-medium"
               style="color: var(--color-bp-on-surface-variant);"
-            >ISO-27001 / ESG-V4</span>
+            >ISO-14064 Ready</span>
           </div>
         </div>
       </div>
@@ -382,7 +382,7 @@ defineEmits<{
 
     <footer
       class="w-full px-8 py-12 flex flex-col md:flex-row justify-between items-center gap-8 mt-16"
-      style="background-color: var(--color-bp-surface-container-lowest); border-top: 1px solid rgba(196,198,201,0.3);"
+      style="background-color: var(--color-bp-surface-container-lowest); border-top: 1px solid var(--outline-bp-ghost);"
     >
       <div class="space-y-4 max-w-lg">
         <div
@@ -455,7 +455,7 @@ defineEmits<{
 }
 
 .cta-primary {
-  background: linear-gradient(135deg, #005fb8 0%, #00468b 100%);
+  background: var(--gradient-bp-integrity);
   position: relative;
 }
 .cta-primary::after {
@@ -469,8 +469,8 @@ defineEmits<{
 
 .trust-chip {
   display: inline-block;
-  background-color: var(--color-bp-tertiary-container, #9bef9a);
-  color: var(--color-bp-on-tertiary-container, #002105);
+  background-color: var(--color-bp-tertiary-container);
+  color: var(--color-bp-on-tertiary-container);
   font-family: 'Geist Mono', monospace;
   font-size: 12px;
   font-weight: 700;
@@ -495,7 +495,7 @@ defineEmits<{
   transition: border-color 0.2s;
 }
 .bento-tile--wide:hover {
-  border-color: rgba(0, 95, 184, 0.4) !important;
+  border-color: rgba(142, 213, 180, 0.4) !important;
 }
 
 .bento-tile--feature {

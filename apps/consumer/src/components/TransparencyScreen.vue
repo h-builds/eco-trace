@@ -26,7 +26,7 @@ onMounted(() => {
     <header class="bg-brand-deep-charcoal text-white p-4 sticky top-0 z-20 shadow-elevation-1 flex items-center justify-between">
       <h1 class="text-lg font-bold flex items-center gap-2">
         <svg
-          class="w-5 h-5 text-brand-integrity-blue"
+          class="w-5 h-5 text-brand-integrity-green"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -56,7 +56,7 @@ onMounted(() => {
         class="flex flex-col items-center justify-center py-16 gap-4"
       >
         <svg
-          class="w-8 h-8 animate-spin text-brand-integrity-blue"
+          class="w-8 h-8 animate-spin text-brand-integrity-green"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -126,7 +126,7 @@ onMounted(() => {
         <div class="bg-surface-card p-4 rounded-md shadow-subtle border border-surface-border">
           <div class="bg-surface-canvas px-3 py-2 rounded text-center border border-surface-border/50">
             <p class="text-xs text-functional-neutral font-bold uppercase tracking-wider mb-1">Verified Asset ID</p>
-            <p class="font-mono text-sm break-all font-medium text-brand-integrity-blue">{{ assetId }}</p>
+            <p class="font-mono text-sm break-all font-medium text-brand-integrity-green">{{ assetId }}</p>
           </div>
         </div>
 

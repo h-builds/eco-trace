@@ -58,7 +58,7 @@ Implementation plan for the public-facing product transparency scanner of the Ec
 - [x] **How It Works (03 / Verification Flow)**: 4-step SCAN→VERIFY→FETCH→TRUST linear track with tonal panel steps. `[DONE]`
 - [x] **Architecture Section (04 / Dual-Engine)**: Narrative (7 cols) + Command Strip (5 cols) with MEM/INIT/DOM_WRITES/ENGINE/CRYPTO/PERSISTENCE/ADMIN_STACK mono rows. `[DONE]`
 - [x] **Trust Signals (05 / Platform Status)**: Active node feed, 1.42B TXN count, AAA+ / ISO-27001 / ISO-14064 compliance rating. `[DONE]`
-- [x] **Final CTA Block**: Full-bleed `brand-integrity-blue` — *"Scan. Verify. Trust."* Outlined white button. `[DONE]`
+- [x] **Final CTA Block**: Full-bleed `brand-integrity-green` — *"Scan. Verify. Trust."* Outlined white button. `[DONE]`
 - [x] **Philosophy Footer**: Light surface. Mission mantra in Geist Mono uppercase. Stack metadata. `[DONE]`
 
 

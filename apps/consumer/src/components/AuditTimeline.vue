@@ -34,7 +34,7 @@ const getIntegrity = (event: SupplyChainEvent): WasmIntegrityResult['status'] =>
         :key="event.id"
         class="relative"
       >
-        <span class="absolute -left-[23px] top-1 w-3 h-3 rounded-full bg-brand-integrity-blue ring-4 ring-surface-canvas" />
+        <span class="absolute -left-[23px] top-1 w-3 h-3 rounded-full bg-brand-integrity-green ring-4 ring-surface-canvas" />
 
         <div class="bg-surface-card p-3 rounded-md shadow-subtle border border-surface-border flex flex-col gap-2 relative overflow-hidden">
           <div

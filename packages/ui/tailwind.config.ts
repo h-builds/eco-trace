@@ -8,7 +8,7 @@ const config: Config = {
       colors: {
         brand: {
           'deep-charcoal': tokens.tokens.colors.brand['deep-charcoal'].value,
-          'integrity-blue': tokens.tokens.colors.brand['integrity-blue'].value,
+          'integrity-green': tokens.tokens.colors.brand['integrity-green'].value,
           'verification-green': tokens.tokens.colors.brand['verification-green'].value,
         },
         functional: {

@@ -24,7 +24,7 @@ Treat the UI as a series of physical layers.
 - **Level 3 (High-Detail Modals):** `surface_bright` (#f9f9fc) with Backdrop Blur.
 
 ### Signature Textures & Glass
-- **The Integrity Gradient:** For primary actions, transition from `primary` (#00488d) to `primary_container` (#005fb8) at a 135-degree angle. This adds a subtle "machined" sheen to buttons.
+- **The Integrity Gradient:** For primary actions, transition from `#8ED5B4` to `#7ABF9F` at a 135-degree angle. This adds a subtle "machined" sheen to buttons.
 - **The Glass Overlay:** For command-center overlays, use `surface_container_lowest` at 85% opacity with a `20px` backdrop-blur. This keeps the industrial context visible beneath the active task.
 
 ---
@@ -55,7 +55,7 @@ Traditional shadows are too "soft" for an industrial workbench. We use light to 
 ## 5. Components
 
 ### Buttons & Inputs
-*   **Primary Action:** `0px` radius. Gradient fill (Integrity Blue). Typography: `label-md` (Space Grotesk), all-caps.
+*   **Primary Action:** `0px` radius. Gradient fill (Integrity Green). Typography: `label-md` (Space Grotesk), all-caps.
 *   **Secondary/Tertiary:** No fill. Use `surface_container_high` for hover states. 
 *   **Input Fields:** Use `surface_container_lowest` fill. The "active" state is indicated by a 2px bottom-bar of `primary_action`, rather than a full-box outline.
 
@@ -84,4 +84,4 @@ A high-density vertical or horizontal bar containing Geist Mono metrics and micr
 *   **Don't use dividers:** If you feel the need for a line, try a 12px gap or a tonal background shift first. If a line is mandatory, it must be a "Ghost Border" (15% opacity).
 
 ### Accessibility Note:
-Ensure the `primary` blue (#00488d) is used for all meaningful interactive states to maintain a 4.5:1 contrast ratio against the `surface` and `surface_container` tiers. Readability of Geist Mono at small sizes should be monitored; use `letter-spacing: -0.02em` for better legibility in high-density data views.
+Ensure the `primary` green (#8ED5B4) is used for all meaningful interactive states to maintain a 4.5:1 contrast ratio against the `surface` and `surface_container` tiers.

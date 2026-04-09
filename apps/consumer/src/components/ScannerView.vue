@@ -12,7 +12,7 @@ const { state, error, videoRef, start } = useScanner((val) => {
 
 <template>
   <div class="min-h-screen bg-brand-deep-charcoal flex flex-col items-center justify-center p-4">
-    <h1 class="text-xl font-bold text-brand-integrity-blue mb-4 text-center">Zero-Knowledge Scanner</h1>
+    <h1 class="text-xl font-bold text-brand-integrity-green mb-4 text-center">Zero-Knowledge Scanner</h1>
 
     <div class="w-full flex-1 min-h-[50vh] bg-surface-card/10 rounded-lg overflow-hidden relative border border-surface-border/20 shadow-elevation-1 flex items-center justify-center">
       <video
@@ -27,7 +27,7 @@ const { state, error, videoRef, start } = useScanner((val) => {
         class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10 bg-brand-deep-charcoal"
       >
         <svg
-          class="w-12 h-12 text-brand-integrity-blue mb-4"
+          class="w-12 h-12 text-brand-integrity-green mb-4"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -50,7 +50,7 @@ const { state, error, videoRef, start } = useScanner((val) => {
 
         <div class="w-full px-8">
           <button
-            class="bg-brand-integrity-blue text-white px-6 py-3 rounded-pill font-bold shadow-subtle hover:bg-opacity-90 transition active:scale-95 text-lg w-full"
+            class="bg-brand-integrity-green text-white px-6 py-3 rounded-pill font-bold shadow-subtle hover:bg-opacity-90 transition active:scale-95 text-lg w-full"
             @click="start"
           >
             Start Scanner

@@ -1,13 +1,13 @@
 @theme inline {
   /* Brand Colors */
   --color-brand-deep-charcoal: #1A1C1E;
-  --color-brand-integrity-blue: #005FB8;
+  --color-brand-integrity-green: #8ED5B4;
   --color-brand-verification-green: #287A33;
 
   /* Functional Colors */
   --color-functional-alert: #D32F2F;
   --color-functional-pending: #F57C00;
-  --color-functional-neutral: #607D8B;
+  --color-functional-neutral: #6B7D74;
 
   /* Surface Colors */
   --color-surface-canvas: #F8F9FA;
