@@ -63,9 +63,9 @@
      Primary #8ED5B4 ensures ≥4.5:1 contrast on all surface tiers.
      Primary-container is the gradient end-stop (machined sheen).
      ============================================================== */
-  --color-bp-primary:                   #8ED5B4;  /* Accessible interactive green */
+  --color-bp-primary:                   #1B633F;  /* Accessible interactive green */
   --color-bp-primary-container:         #D1EBDD;  /* Light green surface */
-  --color-bp-on-primary:                #002105;  /* High-contrast text on primary */
+  --color-bp-on-primary:                #ffffff;  /* High-contrast text on primary */
   --color-bp-on-primary-container:      #002105;  /* Text on container fills */
 
   /* ==============================================================
@@ -80,6 +80,13 @@
   --color-bp-tertiary:                  #287a33;
   --color-bp-tertiary-container:        #9bef9a;
   --color-bp-on-tertiary-container:     #002105;
+  
+  --color-bp-error-container:           #ffdad6;
+  --color-bp-on-error-container:        #410002;
+  --color-bp-success-container:         #b8f0ca;
+  --color-bp-on-success-container:      #00210b;
+  --color-bp-surface-variant:           #e1e3de;
+  --color-bp-on-surface-variant:        #444743;
 
   /* Outline system */
   --color-bp-outline:                   #c4c6c9;  /* Standard border             */

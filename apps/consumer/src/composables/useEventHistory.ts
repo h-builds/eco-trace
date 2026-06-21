@@ -8,7 +8,7 @@ export function useEventHistory() {
   const events = shallowRef<SupplyChainEvent[]>([]); 
   const error = ref<string | null>(null);
 
-  const isLoading = computed(() => status.value === 'loading');
+  const isLoading = computed(() => status.value === 'loading' || status.value === 'idle');
   const isEmpty = computed(() => status.value === 'empty');
   const isError = computed(() => status.value === 'error');
   const isSuccess = computed(() => status.value === 'success');

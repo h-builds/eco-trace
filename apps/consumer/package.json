@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:lighthouse": "lhci autorun",
+    "test:accessibility": "vitest run test/a11y.test.ts",
+    "test:e2e": "vitest run test/e2e-latency.test.ts",
+    "test:stress": "vitest run test/stress-vapor.test.ts"
   },
   "dependencies": {
     "@eco-trace/ui": "workspace:*",
@@ -15,17 +19,22 @@
     "vue": "3.5.30"
   },
   "devDependencies": {
+    "@axe-core/puppeteer": "4.11.3",
     "@lhci/cli": "0.15.1",
     "@tailwindcss/vite": "4.2.2",
     "@vitejs/plugin-basic-ssl": "1.2.0",
     "@vitejs/plugin-vue": "6.0.5",
+    "@vue/test-utils": "2.4.11",
+    "axe-core": "4.12.1",
     "eslint": "9.39.4",
+    "happy-dom": "20.10.6",
     "prettier": "3.8.1",
     "puppeteer": "24.40.0",
     "tailwindcss": "4.2.2",
     "typescript": "5.9.3",
     "vite": "8.0.1",
     "vitest": "2.1.9",
-    "vue-tsc": "2.2.12"
+    "vue-tsc": "2.2.12",
+    "wait-on": "9.0.10"
   }
 }

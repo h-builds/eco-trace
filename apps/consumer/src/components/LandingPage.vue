@@ -1,7 +1,64 @@
 <script setup lang="ts">
+import { onMounted, computed, ref } from 'vue';
+import { useEventHistory } from '@/composables/useEventHistory';
+import { useWasm } from '@/composables/useWasm';
+
 defineEmits<{
   (e: 'navigate', view: 'scanner'): void;
 }>();
+
+const { events, isLoading, isError, fetchHistory } = useEventHistory();
+const { isReady: wasmReady } = useWasm();
+
+const wasmInitMs = ref<number | null>(null);
+const wasmLoadStart = performance.now();
+
+const currentYear = new Date().getFullYear();
+
+onMounted(async () => {
+  fetchHistory();
+  // Measure actual WASM init time
+  const checkReady = () => {
+    if (wasmReady.value) {
+      wasmInitMs.value = Math.round(performance.now() - wasmLoadStart);
+    } else {
+      setTimeout(checkReady, 5);
+    }
+  };
+  checkReady();
+});
+
+const activeNodes = computed(() => {
+  const uniqueNodes = new Set<string>();
+  for (const event of events.value) {
+    if (event.actor_id) {
+      uniqueNodes.add(event.actor_id);
+    }
+  }
+  return Array.from(uniqueNodes).slice(0, 3);
+});
+
+const globalLedgerTotal = computed(() => events.value.length);
+
+const isFullyCompliant = computed(() => {
+  if (events.value.length === 0) return false;
+  return events.value.every(e => e.integrity_status === 'VALID');
+});
+
+const complianceRatio = computed(() => {
+  if (events.value.length === 0) return 0;
+  const validCount = events.value.filter(e => e.integrity_status === 'VALID').length;
+  return Math.round((validCount / events.value.length) * 100);
+});
+
+const wasmInitLabel = computed(() => {
+  if (wasmInitMs.value === null) return 'INIT: …';
+  return `INIT: ${wasmInitMs.value}ms`;
+});
+
+// Hover state management for accessibility (keyboard + mouse)
+const viewLedgerHover = ref(false);
+const footerLinkHover = ref<string | null>(null);
 </script>
 
 <template>
@@ -40,7 +97,7 @@ defineEmits<{
           <div class="flex flex-col sm:flex-row gap-4">
             <button
               id="cta-launch-scanner"
-              class="cta-primary w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest text-white flex items-center justify-center gap-3 hover:opacity-90 active:scale-95 transition-all"
+              class="cta-primary w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest text-[color:var(--color-bp-on-primary-container)] flex items-center justify-center gap-3 hover:opacity-90 active:scale-95 transition-all"
               @click="$emit('navigate', 'scanner')"
             >
               <svg
@@ -68,9 +125,15 @@ defineEmits<{
 
             <button
               class="w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest transition-colors"
-              style="border: 1px solid var(--color-bp-primary); color: var(--color-bp-primary); background: transparent;"
-              onmouseover="this.style.backgroundColor='rgba(142,213,180,0.1)'"
-              onmouseout="this.style.backgroundColor='transparent'"
+              :style="{
+                border: '1px solid var(--color-bp-primary)',
+                color: 'var(--color-bp-primary)',
+                backgroundColor: viewLedgerHover ? 'rgba(142,213,180,0.1)' : 'transparent'
+              }"
+              @mouseover="viewLedgerHover = true"
+              @mouseleave="viewLedgerHover = false"
+              @focus="viewLedgerHover = true"
+              @blur="viewLedgerHover = false"
             >
               View Ledger
             </button>
@@ -94,13 +157,13 @@ defineEmits<{
       <div class="flex items-center justify-between mb-4">
         <h2
           class="font-mono text-[10px] font-bold uppercase tracking-[0.2em]"
-          style="color: var(--color-bp-outline);"
+          style="color: var(--color-bp-on-surface-variant);"
         >
           Technical Specifications // v3.5
         </h2>
         <span
           class="font-mono text-[10px]"
-          style="color: var(--color-bp-primary); opacity: 0.6;"
+          style="color: var(--color-bp-primary); opacity: 1;"
         >
           [SYS_AUTH_VERIFIED]
         </span>
@@ -216,7 +279,7 @@ defineEmits<{
               </p>
               <div class="flex gap-2">
                 <span class="bento-metric-chip">WASM: 2.6MB</span>
-                <span class="bento-metric-chip">INIT: &lt;50ms</span>
+                <span class="bento-metric-chip">{{ wasmInitLabel }}</span>
               </div>
             </div>
             <div
@@ -234,29 +297,40 @@ defineEmits<{
 
         <div
           class="bento-tile bento-tile--accent"
-          style="background: var(--color-bp-primary);"
+          style="background-color: var(--color-bp-primary-container);"
         >
           <div
             class="font-mono text-4xl font-black italic tracking-tighter leading-none"
-            style="color: var(--color-bp-on-primary);"
+            style="color: var(--color-bp-on-primary-container);"
           >
             &lt;100ms
           </div>
           <div class="space-y-4">
             <h3
               class="font-['Space_Grotesk'] font-bold text-xl uppercase leading-tight"
-              style="color: var(--color-bp-on-primary);"
+              style="color: var(--color-bp-on-primary-container);"
             >
               Edge Database (D1)
             </h3>
             <p
               class="text-xs font-medium"
-              style="color: var(--color-bp-on-primary); opacity: 0.9;"
+              style="color: var(--color-bp-on-primary-container); opacity: 0.9;"
             >
               Real-time carbon footprint calculations delivered via Cloudflare's global edge network.
             </p>
-            <div class="bento-progress-bar">
-              <div class="bento-progress-bar__fill" />
+            <div
+              class="bento-progress-bar"
+              style="background-color: var(--color-bp-surface-variant);"
+              role="progressbar"
+              :aria-valuenow="complianceRatio"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              :aria-label="`Compliance: ${complianceRatio}%`"
+            >
+              <div
+                class="bento-progress-bar__fill"
+                :style="{ backgroundColor: 'var(--color-bp-on-primary-container)', width: complianceRatio + '%' }"
+              />
             </div>
           </div>
         </div>
@@ -301,7 +375,7 @@ defineEmits<{
             />
             <span
               class="font-mono text-[10px] uppercase tracking-widest"
-              style="color: var(--color-bp-outline);"
+              style="color: var(--color-bp-on-surface-variant);"
             >
               Unified Validation Core [Go/Wasm]
             </span>
@@ -322,31 +396,21 @@ defineEmits<{
         <div class="space-y-4">
           <div
             class="font-mono text-[10px] uppercase tracking-widest font-bold pb-2"
-            style="color: var(--color-bp-outline); border-bottom: 1px solid var(--outline-bp-ghost);"
+            style="color: var(--color-bp-on-surface-variant); border-bottom: 1px solid var(--outline-bp-ghost);"
           >
             Active Nodes
           </div>
           <div class="space-y-2">
-            <div class="flex justify-between font-mono text-sm">
-              <span style="color: var(--color-bp-on-surface-variant);">IAD</span>
-              <span
-                class="font-bold"
-                style="color: var(--color-bp-tertiary);"
-              >
-                ACTIVE
-              </span>
+            <div v-if="isLoading" class="font-mono text-sm" style="color: var(--color-bp-on-surface-variant);">
+              LOADING...
             </div>
-            <div class="flex justify-between font-mono text-sm">
-              <span style="color: var(--color-bp-on-surface-variant);">LHR</span>
-              <span
-                class="font-bold"
-                style="color: var(--color-bp-tertiary);"
-              >
-                ACTIVE
-              </span>
-            </div>
-            <div class="flex justify-between font-mono text-sm">
-              <span style="color: var(--color-bp-on-surface-variant);">SIN</span>
+            <div
+              v-else
+              v-for="node in activeNodes"
+              :key="node"
+              class="flex justify-between font-mono text-sm"
+            >
+              <span style="color: var(--color-bp-on-surface-variant);">{{ node }}</span>
               <span
                 class="font-bold"
                 style="color: var(--color-bp-tertiary);"
@@ -360,7 +424,7 @@ defineEmits<{
         <div class="space-y-4">
           <div
             class="font-mono text-[10px] uppercase tracking-widest font-bold pb-2"
-            style="color: var(--color-bp-outline); border-bottom: 1px solid var(--outline-bp-ghost);"
+            style="color: var(--color-bp-on-surface-variant); border-bottom: 1px solid var(--outline-bp-ghost);"
           >
             Global Ledger
           </div>
@@ -369,13 +433,13 @@ defineEmits<{
               class="font-['Space_Grotesk'] text-3xl font-bold"
               style="color: var(--color-bp-primary);"
             >
-              D1
+              {{ isLoading ? '...' : globalLedgerTotal }}
             </span>
             <span
               class="font-mono text-xs"
-              style="color: var(--color-bp-outline);"
+              style="color: var(--color-bp-on-surface-variant);"
             >
-              EDGE_DB
+              EVENTS
             </span>
           </div>
         </div>
@@ -383,17 +447,22 @@ defineEmits<{
         <div class="space-y-4">
           <div
             class="font-mono text-[10px] uppercase tracking-widest font-bold pb-2"
-            style="color: var(--color-bp-outline); border-bottom: 1px solid var(--outline-bp-ghost);"
+            style="color: var(--color-bp-on-surface-variant); border-bottom: 1px solid var(--outline-bp-ghost);"
           >
             Compliance Rating
           </div>
           <div class="flex items-center gap-4">
-            <span class="trust-chip">VERIFIED</span>
+            <span
+              class="trust-chip"
+              :style="isError ? 'background-color: var(--color-bp-error-container); color: var(--color-bp-on-error-container)' : (isLoading ? 'background-color: var(--color-bp-surface-container-high); color: var(--color-bp-on-surface)' : (events.length === 0 ? 'background-color: var(--color-bp-surface-variant); color: var(--color-bp-on-surface-variant)' : (!isFullyCompliant ? 'background-color: var(--color-bp-error-container); color: var(--color-bp-on-error-container)' : 'background-color: var(--color-bp-success-container); color: var(--color-bp-on-success-container)')))"
+            >
+              {{ isError ? 'ERROR' : (isLoading ? 'LOADING...' : (events.length === 0 ? 'NO DATA' : (isFullyCompliant ? 'VERIFIED' : 'WARNING'))) }}
+            </span>
             <span
               class="text-xs font-medium"
               style="color: var(--color-bp-on-surface-variant);"
             >
-              ISO-14064 Ready
+              {{ isError ? 'Failed to load data' : (isLoading ? 'Fetching status...' : (events.length === 0 ? 'No events recorded' : (isFullyCompliant ? 'ISO-14064 Ready' : 'Audit Required'))) }}
             </span>
           </div>
         </div>
@@ -420,40 +489,43 @@ defineEmits<{
       </div>
 
       <div class="flex flex-col items-center md:items-end gap-6">
-        <div class="flex gap-8">
-          <a
-            href="#"
-            class="font-['Geist_Mono'] text-[10px] uppercase tracking-[0.05em] font-bold transition-colors"
-            style="color: rgba(68, 71, 74, 0.6);"
-            onmouseover="this.style.color='var(--color-bp-primary)'"
-            onmouseout="this.style.color='rgba(68, 71, 74, 0.6)'"
+        <nav class="flex gap-8" aria-label="Footer navigation">
+          <button
+            class="footer-link"
+            :style="{ color: footerLinkHover === 'mission' ? 'var(--color-bp-primary)' : 'rgba(68, 71, 74, 1)' }"
+            @mouseover="footerLinkHover = 'mission'"
+            @mouseleave="footerLinkHover = null"
+            @focus="footerLinkHover = 'mission'"
+            @blur="footerLinkHover = null"
           >
             MISSION
-          </a>
-          <a
-            href="#"
-            class="font-['Geist_Mono'] text-[10px] uppercase tracking-[0.05em] font-bold transition-colors"
-            style="color: rgba(68, 71, 74, 0.6);"
-            onmouseover="this.style.color='var(--color-bp-primary)'"
-            onmouseout="this.style.color='rgba(68, 71, 74, 0.6)'"
+          </button>
+          <button
+            class="footer-link"
+            :style="{ color: footerLinkHover === 'specs' ? 'var(--color-bp-primary)' : 'rgba(68, 71, 74, 1)' }"
+            @mouseover="footerLinkHover = 'specs'"
+            @mouseleave="footerLinkHover = null"
+            @focus="footerLinkHover = 'specs'"
+            @blur="footerLinkHover = null"
           >
             SPECIFICATIONS
-          </a>
-          <a
-            href="#"
-            class="font-['Geist_Mono'] text-[10px] uppercase tracking-[0.05em] font-bold transition-colors"
-            style="color: rgba(68, 71, 74, 0.6);"
-            onmouseover="this.style.color='var(--color-bp-primary)'"
-            onmouseout="this.style.color='rgba(68, 71, 74, 0.6)'"
+          </button>
+          <button
+            class="footer-link"
+            :style="{ color: footerLinkHover === 'compliance' ? 'var(--color-bp-primary)' : 'rgba(68, 71, 74, 1)' }"
+            @mouseover="footerLinkHover = 'compliance'"
+            @mouseleave="footerLinkHover = null"
+            @focus="footerLinkHover = 'compliance'"
+            @blur="footerLinkHover = null"
           >
             COMPLIANCE
-          </a>
-        </div>
+          </button>
+        </nav>
         <div
           class="font-['Geist_Mono'] text-[10px] uppercase tracking-[0.05em]"
-          style="color: rgba(196, 198, 201, 0.4);"
+          style="color: rgba(68, 71, 74, 1);"
         >
-          © 2024 INDUSTRIAL EDITORIAL. ALL RIGHTS RESERVED.
+          © {{ currentYear }} INDUSTRIAL EDITORIAL. ALL RIGHTS RESERVED.
         </div>
       </div>
     </footer>
@@ -611,8 +683,21 @@ defineEmits<{
   overflow: hidden;
 }
 .bento-progress-bar__fill {
-  width: 75%;
   height: 100%;
   background: rgba(255, 255, 255, 1);
+  transition: width 0.6s ease;
+}
+
+.footer-link {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  transition: color 0.2s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 </style>
