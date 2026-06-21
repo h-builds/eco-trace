@@ -3,7 +3,7 @@ defineEmits<{
   (e: 'navigate', view: 'landing'): void;
 }>();
 
-const AUDITOR_DASHBOARD_URL = '#';
+const AUDITOR_DASHBOARD_URL = import.meta.env.VITE_AUDITOR_DASHBOARD_URL || '#';
 </script>
 
 <template>
