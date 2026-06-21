@@ -27,13 +27,14 @@ export async function fetchEvents(assetId?: string): Promise<EventsApiResponse> 
   });
 
   if (!response.ok) {
-    let errorMessage = "Network response was not ok";
+    let errorMessage = `API request failed with status ${response.status}: ${response.statusText}`;
     try {
       const errorBody = await response.json();
       if (typeof errorBody === "object" && errorBody !== null && "error" in errorBody) {
         errorMessage = errorBody.error as string;
       }
-    } catch {
+    } catch (err) {
+      console.error("Failed to parse backend error response:", err);
     }
     throw new ApiError(errorMessage, response.status);
   }

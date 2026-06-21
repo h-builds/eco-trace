@@ -33,7 +33,8 @@ export function useWasm() {
         isLoading.value = false;
       })
       .catch((err: Error) => {
-        error.value = err.message;
+        console.error("WASM Engine initialization error:", err);
+        error.value = "Security engine failed to initialize. Some features may be disabled.";
         isLoading.value = false;
       });
   });

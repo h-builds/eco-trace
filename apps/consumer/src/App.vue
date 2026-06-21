@@ -21,7 +21,8 @@ const handleScan = (assetId: string) => {
   try {
     const url = new URL(assetId);
     activeAssetId.value = url.searchParams.get('asset_id') || assetId;
-  } catch {
+  } catch (err) {
+    console.debug('Scanned text is not a valid URL, using raw string:', err);
     activeAssetId.value = assetId;
   }
   currentView.value = 'transparency';

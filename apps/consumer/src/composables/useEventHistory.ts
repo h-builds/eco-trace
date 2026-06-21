@@ -34,7 +34,8 @@ export function useEventHistory() {
         status.value = 'success';
       }
     } catch (err: unknown) {
-      error.value = err instanceof Error ? err.message : "Failed to fetch event history";
+      console.error("Backend fetch failed for event history:", err);
+      error.value = err instanceof Error ? err.message : "Failed to load event timeline. Please try again.";
       status.value = 'error';
       events.value = [];
     }
