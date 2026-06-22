@@ -33,7 +33,7 @@ export async function fetchEvents(assetId?: string): Promise<EventsApiResponse> 
       if (typeof errorBody === "object" && errorBody !== null && "error" in errorBody) {
         errorMessage = errorBody.error as string;
       }
-    } catch (err) {
+    } catch (err: unknown) {
       console.error("Failed to parse backend error response:", err);
     }
     throw new ApiError(errorMessage, response.status);

@@ -21,15 +21,21 @@ const handleScan = (assetId: string) => {
   try {
     const url = new URL(assetId);
     activeAssetId.value = url.searchParams.get('asset_id') || assetId;
-  } catch (err) {
+  } catch (err: unknown) {
     console.debug('Scanned text is not a valid URL, using raw string:', err);
     activeAssetId.value = assetId;
   }
   currentView.value = 'transparency';
 };
 
+declare global {
+  interface Window {
+    __simulateScan?: (assetId: string) => void;
+  }
+}
+
 if (typeof window !== 'undefined') {
-  (window as any).__simulateScan = handleScan;
+  window.__simulateScan = handleScan;
 }
 
 const handleReset = () => {

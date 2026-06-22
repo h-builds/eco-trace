@@ -11,11 +11,10 @@ vi.spyOn(useWasmModule, 'useWasm').mockReturnValue({
   error: ref(null),
   calculateFootprint: vi.fn(),
   verifyIntegrity: vi.fn(),
-} as any)
+} as unknown as ReturnType<typeof useWasmModule.useWasm>)
 
 describe('LandingPage.vue', () => {
   it('shows WARNING for Compliance Rating while loading', async () => {
-    // Mock the composable to return isLoading=true and events=[]
     vi.spyOn(useEventHistoryModule, 'useEventHistory').mockReturnValue({
       events: ref([]),
       isLoading: ref(true),
@@ -25,18 +24,14 @@ describe('LandingPage.vue', () => {
       status: ref('loading'),
       error: ref(null),
       fetchHistory: vi.fn(),
-    } as any)
+    } as unknown as ReturnType<typeof useEventHistoryModule.useEventHistory>)
 
     const wrapper = mount(LandingPage)
     
-    // Check Compliance Rating text
     const text = wrapper.text()
     
-    // Test that the page renders neutral loading state while loading
     expect(text).toContain('Compliance Rating')
     expect(text).toContain('LOADING...')
     expect(text).toContain('Fetching status...')
-
-    console.log('BUG FIXED: Shows LOADING... when loading.')
   })
 })
