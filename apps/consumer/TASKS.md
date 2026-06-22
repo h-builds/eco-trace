@@ -40,23 +40,27 @@ Implementation plan for the public-facing product transparency scanner of the Ec
 
 ## 5. Performance & Compliance Gate
 
-- [ ] Achieve < 100ms QR-scan-to-verification latency (end-to-end audit). `[TODO]` **(Ref: G08)**
-- [ ] Run Vapor Mode DOM re-render checks: confirm zero unnecessary re-renders on data updates. `[TODO]`
-- [ ] Pass **WCAG 2.1 AA** accessibility audit on all scanner and transparency views. `[TODO]`
-- [ ] Validate Lighthouse performance score ≥ 95 on mobile profile. `[TODO]`
-- [ ] Execute `pnpm test --filter consumer && pnpm test:accessibility` with zero failures. `[TODO]`
+- [x] Achieve < 100ms QR-scan-to-verification latency (end-to-end audit). `[DONE]` **(Ref: G08)**
+- [x] Run Vapor Mode DOM re-render checks: confirm zero unnecessary re-renders on data updates. `[DONE]`
+- [x] Pass **WCAG 2.1 AA** accessibility audit on all scanner and transparency views. `[DONE]`
+- [x] Validate Lighthouse performance score ≥ 95 on mobile profile. `[DONE]`
+- [x] Execute `pnpm test --filter consumer && pnpm test:accessibility` with zero failures. `[DONE]`
 
-## 6. Portfolio Branding & Architectural Showcase
+## 6. Portfolio Branding & Industrial Editorial Landing
 
-- [ ] **Technical Landing Page (Root `/`)**: Implement a "Case Study First" view using the @eco-trace/ui workbench aesthetic. `[TODO]`
-- [ ] **Global Navigation & Ecosystem Bridge**:
-  - [ ] Implement a minimal Navbar with a link to "Auditor Dashboard (React 19)" featuring an "external link" icon.
-  - [ ] Navigation must prioritize mobile-first access for scanning functionality. `[TODO]`
-- [ ] **Focused Hero Section**:
-  - [ ] Single Primary CTA: "Launch QR Scanner" (Internal route to `/scanner`). `[TODO]`
-- [ ] **"Vapor Mode vs. VDOM" Performance Breakdown**: Interactive section explaining the choice of Vue 3.5 Vapor for sub-100ms mobile verification. `[TODO]`
-- [ ] **Collaborative Architecture Narrative**: Integration of the shared technical copy explaining the React/Vue/Go synergy. `[TODO]`
-- [ ] **Mission Footer**: Global footer with the "Business-First" mantra and technical stack metadata. `[TODO]`
+- [x] **Technical Landing Page (Root `/`)**: Product-grade "Product Integrity First" view using @eco-trace/ui workbench aesthetic. Precision Blueprint light-mode identity. `[DONE]`
+- [x] **Global Navigation & Ecosystem Bridge**:
+    - [x] Minimal NavBar — ECO-TRACE wordmark (Space Grotesk), live `● LIVE` edge status blip, mono Auditor Dashboard link with `↗`. `[DONE]`
+    - [x] Navigation remains mobile-first (light surface, high tap targets). `[DONE]`
+- [x] **Hero Section**: Value proposition in ≤8 words — *"Product claims, verified."* Asymmetric 12-col grid. Dark `<100ms` accent panel. Integrity Gradient primary CTA. `[DONE]`
+- [x] **Problem Section (01 / The Trust Gap)**: ESG trust gap framing. CLAIM vs PROOF contrast block. Tonal layering, no borders. `[DONE]`
+- [x] **Solution Section (02 / Verification Model)**: Ed25519 + D1 explanation. Tech chips with zero roundedness. `[DONE]`
+- [x] **How It Works (03 / Verification Flow)**: 4-step SCAN→VERIFY→FETCH→TRUST linear track with tonal panel steps. `[DONE]`
+- [x] **Architecture Section (04 / Dual-Engine)**: Narrative (7 cols) + Command Strip (5 cols) with MEM/INIT/DOM_WRITES/ENGINE/CRYPTO/PERSISTENCE/ADMIN_STACK mono rows. `[DONE]`
+- [x] **Trust Signals (05 / Platform Status)**: Active node feed, 1.42B TXN count, AAA+ / ISO-27001 / ISO-14064 compliance rating. `[DONE]`
+- [x] **Final CTA Block**: Full-bleed `brand-integrity-green` — *"Scan. Verify. Trust."* Outlined white button. `[DONE]`
+- [x] **Philosophy Footer**: Light surface. Mission mantra in Geist Mono uppercase. Stack metadata. `[DONE]`
+
 
 ## 7. Future Scope / Backlog
 

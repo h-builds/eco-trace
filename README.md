@@ -2,7 +2,7 @@
 
 > **High-Performance, Edge-Native Supply Chain Intelligence**
 
-![Phase: Beta](https://img.shields.io/badge/Phase-Beta--Edge_Persistence-blueviolet?style=for-the-badge) ![Stack: Hybrid Edge](https://img.shields.io/badge/Stack-React_19_+_Vue_3.5_Vapor_+_Go_Wasm-blue?style=for-the-badge) ![Compliance: WCAG 2.1 AA](https://img.shields.io/badge/Compliance-WCAG_2.1_AA-green?style=for-the-badge)
+![Phase: Beta](https://img.shields.io/badge/Phase-Beta--Edge_Persistence-green?style=for-the-badge) ![Stack: Hybrid Edge](https://img.shields.io/badge/Stack-React_19_+_Vue_3.5_Vapor_+_Go_Wasm-green?style=for-the-badge) ![Compliance: WCAG 2.1 AA](https://img.shields.io/badge/Compliance-WCAG_2.1_AA-green?style=for-the-badge)
 
 ---
 

@@ -8,7 +8,9 @@
       "numberOfRuns": 1,
       "settings": {
         "onlyCategories": ["performance", "accessibility", "best-practices", "seo"],
-        "chromeFlags": "--ignore-certificate-errors"
+        "chromeFlags": "--ignore-certificate-errors",
+        "formFactor": "mobile",
+        "screenEmulation": { "mobile": true }
       },
       "serverReadyPattern": "Local:"
     },

@@ -178,7 +178,7 @@ describe('useEventHistory Composable', () => {
 
     expect(isError.value).toBe(true);
     expect(status.value).toBe('error');
-    expect(error.value).toBe('Internal Server Error');
+    expect(error.value).toBe('An internal system error occurred. Our engineers have been notified.');
     expect(events.value).toEqual([]);
   });
 });

@@ -90,7 +90,7 @@ Immutable visual constants for the Eco-Trace ecosystem (Admin & Consumer).
 ### Colors
 - **Brand Deep Charcoal:** `#1A1C1E` (Primary background and text)
 - **Verification Green:** `#287A33` (Success/Trust indicator)
-- **Integrity Blue:** `#005FB8` (Primary action and trust color)
+- **Integrity Green:** `#8ED5B4` (Primary action and trust color)
 - **Functional Alert:** `#D32F2F` (System Error/Violation)
 - **Functional Pending:** `#F57C00` (Warning/In-Progress)
 - **Functional Neutral:** `#607D8B` (Secondary text/borders)

@@ -1,2 +1,60 @@
 @import "tailwindcss";
 @import "@eco-trace/ui/variables.css";
+@import "./tokens.css";
+
+/* ==================================================================
+   GLOBAL BASE — Precision Blueprint defaults
+   ================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  /* Enforce the Workbench rule: no rounded corners ever */
+  border-radius: 0 !important;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-bp-body);
+  font-size: var(--font-size-bp-md);
+  font-weight: var(--font-weight-bp-regular);
+  line-height: var(--leading-bp-normal);
+  color: var(--color-bp-on-surface);
+  background-color: var(--color-bp-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Editorial headings use Space Grotesk ("Industrial" voice) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-bp-display);
+  font-weight: var(--font-weight-bp-bold);
+  line-height: var(--leading-bp-tight);
+  letter-spacing: var(--tracking-bp-tight);
+  color: var(--color-bp-on-surface);
+}
+
+/* All numeric / technical data uses Geist Mono */
+code, kbd, samp, pre, time, data {
+  font-family: var(--font-bp-mono);
+  letter-spacing: var(--tracking-bp-tight);
+}
+
+/* No focus rings from browser defaults — use bp-outline tokens */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--outline-bp-focus);
+  outline-offset: 2px;
+}
+
+/* Smooth transitions on interactive elements */
+a, button {
+  transition: var(--transition-bp-colors);
+}

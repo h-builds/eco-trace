@@ -51,8 +51,9 @@ export function useScanner(onScan: (value: string) => void) {
       await qrScanner.start();
       state.value = 'granted';
     } catch (err: unknown) {
+      console.error("Scanner initialization failed:", err);
       state.value = 'denied';
-      error.value = err instanceof Error ? err.message : 'Camera permission denied.';
+      error.value = err instanceof Error ? err.message : 'Camera permission denied or camera unavailable. Please check settings.';
       if (qrScanner) {
         qrScanner.destroy();
         qrScanner = null;
