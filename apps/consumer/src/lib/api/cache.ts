@@ -38,7 +38,7 @@ export async function swrFetch<T>(
     cacheStore.set(key, { data, timestamp: Date.now(), maxAgeMs });
     inFlightRequests.delete(key);
     return data;
-  }).catch((err) => {
+  }).catch((err: unknown) => {
     inFlightRequests.delete(key);
     throw err;
   });
@@ -53,7 +53,7 @@ function revalidateInBackground<T>(key: string, fetcher: () => Promise<T>, maxAg
   const requestPromise = fetcher().then((data) => {
     cacheStore.set(key, { data, timestamp: Date.now(), maxAgeMs });
     inFlightRequests.delete(key);
-  }).catch((err) => {
+  }).catch((err: unknown) => {
     console.error(`SWR Background Revalidation failed for ${key}`, err);
     inFlightRequests.delete(key);
   });

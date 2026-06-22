@@ -1,6 +1,6 @@
 import { ref, computed, shallowRef } from 'vue';
 import { SupplyChainEvent, EventHistoryState } from '@/lib/api/types';
-import { fetchEvents, API_BASE_URL } from '@/lib/api/client';
+import { fetchEvents, API_BASE_URL, ApiError } from '@/lib/api/client';
 import { swrFetch } from '@/lib/api/cache';
 
 export function useEventHistory() {
@@ -35,7 +35,19 @@ export function useEventHistory() {
       }
     } catch (err: unknown) {
       console.error("Backend fetch failed for event history:", err);
-      error.value = err instanceof Error ? err.message : "Failed to load event timeline. Please try again.";
+      if (err instanceof ApiError) {
+        if (err.status === 404) {
+          error.value = "Asset not found in the global ledger.";
+        } else if (err.status >= 500) {
+          error.value = "An internal system error occurred. Our engineers have been notified.";
+        } else if (err.status === 0) {
+          error.value = err.message || "Failed to load event timeline. Please check your connection.";
+        } else {
+          error.value = err.message || "An unexpected error occurred.";
+        }
+      } else {
+        error.value = "Failed to load event timeline due to an unexpected error.";
+      }
       status.value = 'error';
       events.value = [];
     }
