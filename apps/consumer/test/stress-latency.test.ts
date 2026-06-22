@@ -36,10 +36,8 @@ describe('Stress Latency Tests', () => {
   });
 
   it('should maintain <100ms latency and correct DOM mutations under rapid execution', async () => {
-    // Run multiple iterations
     for (let i = 0; i < 5; i++) {
         await page.goto('https://localhost:4173/');
-        // Need to wait for app to mount
         await page.waitForFunction(() => (window as any).__simulateScan !== undefined);
 
         const result = await page.evaluate(async () => {
@@ -64,7 +62,6 @@ describe('Stress Latency Tests', () => {
           });
         });
         
-        console.log(`Iteration ${i}: ${result.time.toFixed(2)}ms, mutations: ${result.mutations}, success: ${result.textExists}`);
         expect(result.textExists).toBe(true);
         expect(result.time).toBeLessThan(100);
         expect(result.mutations).toBeLessThan(100);

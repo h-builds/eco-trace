@@ -36,7 +36,6 @@ describe('Vapor Mode Stress Test', () => {
   });
 
   it('Should handle 10,000 timeline events gracefully under 500ms', async () => {
-    // Inject Mock fetch for 10,000 events
     await page.evaluate(() => {
       window.fetch = async (url) => {
         if (url.toString().includes('events')) {
@@ -59,7 +58,6 @@ describe('Vapor Mode Stress Test', () => {
       };
     });
 
-    // Inject MutationObserver to track actual DOM node mutations
     await page.evaluate(() => {
       window.__mutationCount = 0;
       const observer = new MutationObserver((mutations) => {
@@ -78,7 +76,6 @@ describe('Vapor Mode Stress Test', () => {
 
     const startTime = Date.now();
     
-    // Simulate QR scan
     await page.evaluate(() => {
       if ((window as any).__simulateScan) {
         (window as any).__simulateScan('https://example.com?asset_id=123');
@@ -87,16 +84,12 @@ describe('Vapor Mode Stress Test', () => {
       }
     });
 
-    // Wait for the timeline container
     await page.waitForSelector('.border-l-2', { timeout: 5000 });
     
     const endTime = Date.now();
     const renderTime = endTime - startTime;
 
     const mutationCount = await page.evaluate(() => window.__mutationCount);
-
-    console.log(`Render time for 10,000 events: ${renderTime}ms`);
-    console.log(`Mutation count for 10,000 events: ${mutationCount}`);
 
     // Standard VDOM would typically struggle or trigger mass reflows.
     // Vapor should handle this with minimal node overhead directly rendering.

@@ -36,7 +36,6 @@ describe('E2E Latency Tests', () => {
   });
 
   it('QR scan should render under 100ms with minimal DOM node updates', async () => {
-    // Inject MutationObserver to track actual DOM node mutations
     await page.evaluate(() => {
       window.__mutationCount = 0;
       const observer = new MutationObserver((mutations) => {
@@ -55,7 +54,6 @@ describe('E2E Latency Tests', () => {
 
     const startTime = Date.now();
     
-    // Simulate QR scan
     await page.evaluate(() => {
       if ((window as any).__simulateScan) {
         (window as any).__simulateScan('https://example.com?asset_id=123');
@@ -64,16 +62,12 @@ describe('E2E Latency Tests', () => {
       }
     });
 
-    // Wait for the transparency screen to render
     await page.waitForSelector('text/Traceability Report', { timeout: 2000 });
     
     const endTime = Date.now();
     const renderTime = endTime - startTime;
 
     const mutationCount = await page.evaluate(() => window.__mutationCount);
-
-    console.log(`Render time: ${renderTime}ms`);
-    console.log(`Mutation count: ${mutationCount}`);
 
     expect(renderTime).toBeLessThan(100);
     expect(mutationCount).toBeLessThan(100);

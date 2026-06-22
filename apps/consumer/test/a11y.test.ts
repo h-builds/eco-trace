@@ -38,9 +38,6 @@ describe('Accessibility Tests', () => {
 
   it('Landing page should have zero accessibility violations', async () => {
     const results = await new AxePuppeteer(page).analyze();
-    if (results.violations.length > 0) {
-      console.log(JSON.stringify(results.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.html) })), null, 2));
-    }
-    expect(results.violations).toHaveLength(0);
+    expect(results.violations).toEqual([]);
   });
 });
