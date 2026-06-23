@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full px-4 md:px-8 pb-16 md:pb-20">
+  <section class="w-full">
     <div class="w-full collab-bridge">
       <div class="w-full sm:w-3/4 space-y-6">
         <h2

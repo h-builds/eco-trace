@@ -4,8 +4,8 @@
 │   │   ├── CONTEXT.md
 │   │   └── SPEC.md
 │   ├── docs
-│   │   ├── DESIGN.md
-│   │   └── code.html
+│   │   ├── code.html
+│   │   └── DESIGN.md
 │   ├── knowledge
 │   │   ├── ARCHITECTURE.md
 │   │   ├── DATA_DICTIONARY.md
@@ -14,21 +14,14 @@
 │   │   └── LIBRARY.md
 │   └── rules
 │       ├── AGENTS.md
+│       ├── COMMIT_GUIDE.md
 │       └── RULES.md
+├── anatomy.md
 ├── .antigravity
 │   └── rules
-├── .gitignore
-├── .turbo
-│   └── cache
-├── .vscode
-│   └── settings.json
-├── CLAUDE.md
-├── README.md
-├── anatomy.md
 ├── apps
 │   ├── admin
 │   │   ├── AGENTS.md
-│   │   ├── TASKS.md
 │   │   ├── app
 │   │   │   ├── api
 │   │   │   │   └── events
@@ -48,8 +41,8 @@
 │   │   │   └── page.tsx
 │   │   ├── apps
 │   │   │   └── consumer
-│   │   │       ├── package-lock.json
-│   │   │       └── package.json
+│   │   │       ├── package.json
+│   │   │       └── package-lock.json
 │   │   ├── components
 │   │   │   └── AuditTester.tsx
 │   │   ├── hooks
@@ -59,27 +52,27 @@
 │   │   │   ├── wasm.d.ts
 │   │   │   └── wasmLoader.ts
 │   │   ├── middleware.ts
-│   │   ├── next-env.d.ts
 │   │   ├── next.config.mjs
-│   │   ├── package-lock.json
+│   │   ├── next-env.d.ts
 │   │   ├── package.json
+│   │   ├── package-lock.json
 │   │   ├── public
 │   │   │   ├── engine.wasm
 │   │   │   └── wasm_exec.js
 │   │   ├── schema.sql
 │   │   ├── seed.sql
+│   │   ├── TASKS.md
 │   │   ├── tsconfig.json
-│   │   ├── tsconfig.tsbuildinfo
 │   │   └── wrangler.toml
 │   └── consumer
+│       ├── AGENTS.md
 │       ├── .env.example
 │       ├── .eslintrc.cjs
-│       ├── .lighthouserc.json
-│       ├── AGENTS.md
-│       ├── TASKS.md
 │       ├── index.html
+│       ├── .lighthouserc.json
 │       ├── package.json
 │       ├── public
+│       │   ├── engine.wasm
 │       │   ├── robots.txt
 │       │   └── wasm_exec.js
 │       ├── src
@@ -88,17 +81,17 @@
 │       │   │   ├── AuditTimeline.vue
 │       │   │   ├── AuthenticityBadge.vue
 │       │   │   ├── FormulaRenderer.vue
+│       │   │   ├── landing
+│       │   │   │   ├── ActiveNodeStats.vue
+│       │   │   │   ├── BentoDashboard.vue
+│       │   │   │   ├── ConsumerFooter.vue
+│       │   │   │   ├── HeroSection.vue
+│       │   │   │   └── InteropCallout.vue
 │       │   │   ├── LandingPage.spec.ts
 │       │   │   ├── LandingPage.vue
 │       │   │   ├── NavBar.vue
 │       │   │   ├── ScannerView.vue
-│       │   │   ├── TransparencyScreen.vue
-│       │   │   └── landing
-│       │   │       ├── ActiveNodeStats.vue
-│       │   │       ├── BentoDashboard.vue
-│       │   │       ├── ConsumerFooter.vue
-│       │   │       ├── HeroSection.vue
-│       │   │       └── InteropCallout.vue
+│       │   │   └── TransparencyScreen.vue
 │       │   ├── composables
 │       │   │   ├── useEventHistory.ts
 │       │   │   ├── useScanner.ts
@@ -114,6 +107,7 @@
 │       │   ├── style.css
 │       │   ├── tokens.css
 │       │   └── vite-env.d.ts
+│       ├── TASKS.md
 │       ├── test
 │       │   ├── a11y.test.ts
 │       │   ├── api.test.ts
@@ -128,16 +122,16 @@
 │       ├── tsconfig.node.json
 │       ├── vite.config.ts
 │       └── vitest.config.ts
-├── package-lock.json
+├── CLAUDE.md
+├── .gitignore
 ├── package.json
+├── package-lock.json
 ├── packages
 │   ├── engine
-│   │   ├── TASKS.md
 │   │   ├── build.sh
 │   │   ├── cmd
 │   │   │   └── test_verify
 │   │   │       └── main.go
-│   │   ├── engine.wasm
 │   │   ├── go.mod
 │   │   ├── internal
 │   │   │   ├── crypto
@@ -149,7 +143,8 @@
 │   │   │   │   └── calculator_test.go
 │   │   │   └── types
 │   │   │       └── types.go
-│   │   └── main.go
+│   │   ├── main.go
+│   │   └── TASKS.md
 │   └── ui
 │       ├── index.ts
 │       ├── package.json
@@ -162,6 +157,8 @@
 ├── pnpm-lock.yaml
 ├── pnpm-workspace.yaml
 ├── public
-│   ├── engine.wasm
 │   └── wasm_exec.js
+├── README.md
 └── turbo.json
+
+44 directories, 118 files

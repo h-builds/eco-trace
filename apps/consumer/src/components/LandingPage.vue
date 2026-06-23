@@ -63,21 +63,23 @@ const hasEvents = computed(() => events.value.length > 0);
 
 <template>
   <div class="w-full bg-surface-canvas text-brand-deep-charcoal">
-    <HeroSection @navigate="$emit('navigate', $event)" />
-    <BentoDashboard
-      :wasm-init-label="wasmInitLabel"
-      :compliance-ratio="complianceRatio"
-    />
-    <InteropCallout />
-    <ActiveNodeStats
-      :active-nodes="activeNodes"
-      :global-ledger-total="globalLedgerTotal"
-      :is-loading="isLoading"
-      :is-error="isError"
-      :is-fully-compliant="isFullyCompliant"
-      :compliance-ratio="complianceRatio"
-      :has-events="hasEvents"
-    />
+    <div class="space-y-16">
+      <HeroSection @navigate="$emit('navigate', $event)" />
+      <BentoDashboard
+        :wasm-init-label="wasmInitLabel"
+        :compliance-ratio="complianceRatio"
+      />
+      <InteropCallout />
+      <ActiveNodeStats
+        :active-nodes="activeNodes"
+        :global-ledger-total="globalLedgerTotal"
+        :is-loading="isLoading"
+        :is-error="isError"
+        :is-fully-compliant="isFullyCompliant"
+        :compliance-ratio="complianceRatio"
+        :has-events="hasEvents"
+      />
+    </div>
     <ConsumerFooter />
   </div>
 </template>

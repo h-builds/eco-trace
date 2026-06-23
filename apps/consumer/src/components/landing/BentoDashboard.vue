@@ -6,7 +6,7 @@ defineProps<{
 </script>
 
 <template>
-  <section class="w-full px-4 py-16 md:px-8 md:py-20">
+  <section class="w-full">
     <div class="flex items-center justify-between mb-4">
       <h2
         class="font-mono text-[10px] font-bold uppercase tracking-[0.2em]"

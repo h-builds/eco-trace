@@ -12,8 +12,7 @@ defineProps<{
 
 <template>
   <section
-    class="w-full px-4 py-16 md:px-8 md:py-20"
-    style="padding-top: 2rem;"
+    class="w-full pt-8"
   >
     <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-8">
       <div class="space-y-4">

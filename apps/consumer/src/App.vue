@@ -74,7 +74,7 @@ const handleReset = () => {
       </p>
     </div>
 
-    <main>
+    <main class="max-w-7xl mx-auto px-4 md:px-8 pt-20 pb-16">
       <LandingPage
         v-if="currentView === 'landing'"
         @navigate="navigate"
