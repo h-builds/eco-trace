@@ -8,9 +8,17 @@
 │   │   │   │   └── events
 │   │   │   │       └── route.ts
 │   │   │   ├── dashboard
-│   │   │   │   └── events
-│   │   │   │       └── page.tsx
+│   │   │   │   ├── events
+│   │   │   │   │   └── page.tsx
+│   │   │   │   └── layout.tsx
 │   │   │   ├── layout.tsx
+│   │   │   ├── lib
+│   │   │   │   ├── auth-actions.ts
+│   │   │   │   ├── logger.ts
+│   │   │   │   └── session.ts
+│   │   │   ├── login
+│   │   │   │   ├── LoginForm.tsx
+│   │   │   │   └── page.tsx
 │   │   │   └── page.tsx
 │   │   ├── apps
 │   │   │   └── consumer
@@ -35,6 +43,7 @@
 │   │   ├── seed.sql
 │   │   ├── TASKS.md
 │   │   ├── tsconfig.json
+│   │   ├── tsconfig.tsbuildinfo
 │   │   └── wrangler.toml
 │   └── consumer
 │       ├── AGENTS.md
@@ -45,6 +54,7 @@
 │       │   ├── robots.txt
 │       │   └── wasm_exec.js
 │       ├── src
+│       │   ├── App.vue
 │       │   ├── App.vue
 │       │   ├── components
 │       │   │   ├── AuditTimeline.vue
@@ -60,7 +70,13 @@
 │       │   │   ├── LandingPage.vue
 │       │   │   ├── NavBar.vue
 │       │   │   ├── ScannerView.vue
-│       │   │   └── TransparencyScreen.vue
+│       │   │   ├── TransparencyScreen.vue
+│       │   │   └── landing
+│       │   │       ├── ActiveNodeStats.vue
+│       │   │       ├── BentoDashboard.vue
+│       │   │       ├── ConsumerFooter.vue
+│       │   │       ├── HeroSection.vue
+│       │   │       └── InteropCallout.vue
 │       │   ├── composables
 │       │   │   ├── useEventHistory.ts
 │       │   │   ├── useScanner.ts
@@ -75,15 +91,20 @@
 │       │   ├── main.ts
 │       │   ├── style.css
 │       │   ├── tokens.css
+│       │   ├── tokens.css
 │       │   └── vite-env.d.ts
 │       ├── TASKS.md
 │       ├── test
 │       │   ├── a11y.test.ts
+│       │   ├── a11y.test.ts
 │       │   ├── api.test.ts
+│       │   ├── e2e-latency.test.ts
 │       │   ├── e2e-latency.test.ts
 │       │   ├── latency.test.ts
 │       │   ├── logic.test.ts
 │       │   ├── reactivity.test.ts
+│       │   ├── stress-latency.test.ts
+│       │   ├── stress-vapor.test.ts
 │       │   ├── stress-latency.test.ts
 │       │   ├── stress-vapor.test.ts
 │       │   └── wasm.test.ts
@@ -116,12 +137,15 @@
 │   └── ui
 │       ├── index.ts
 │       ├── package.json
+│       ├── index.ts
+│       ├── package.json
 │       ├── scripts
 │       │   └── contrast-validator.ts
 │       ├── tailwind.config.ts
 │       ├── tokens.json
 │       ├── tsconfig.json
 │       └── variables.css
+├── pnpm-lock.yaml
 ├── pnpm-lock.yaml
 ├── pnpm-workspace.yaml
 ├── public

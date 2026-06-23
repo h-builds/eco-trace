@@ -6,12 +6,13 @@ Implementation plan for the remaining Phase 6/7 deliverables of the Eco-Trace au
 
 ## 1. Authentication & Access Control (RBAC)
 
-- [ ] Implement secure auditor login flow with Edge-compatible session tokens (Cloudflare Workers KV). `[TODO]`
-- [ ] Add session management middleware in Next.js App Router with automatic expiration and refresh. `[TODO]`
-- [ ] Define RBAC roles: `ADMIN`, `AUDITOR`, `VIEWER` with granular permission matrix. `[TODO]` **(Ref: G07)**
-- [ ] Protect all `/dashboard/*` routes with role-gated middleware — reject unauthorized access at the Edge. `[TODO]`
-- [ ] Implement secure logout with session invalidation and cache purge. `[TODO]`
-- [ ] Add audit log entry for every authentication event (login, logout, permission escalation). `[TODO]` **(Ref: G10)**
+- [x] Implement secure auditor login flow with Edge-compatible session tokens (Cloudflare Workers KV). `[DONE]`
+- [x] Add session management middleware in Next.js App Router with automatic expiration and refresh. `[DONE]`
+- [x] Define RBAC roles: `ADMIN`, `AUDITOR`, `VIEWER` with granular permission matrix. `[DONE]` **(Ref: G07)**
+- [x] Protect all `/dashboard/*` routes with role-gated middleware — reject unauthorized access at the Edge. `[DONE]`
+- [x] Implement secure logout with session invalidation and cache purge. `[DONE]`
+- [x] Add audit log entry for every authentication event (login, logout, permission escalation). `[DONE]` **(Ref: G10)**
+
 
 ## 2. Macro Analytics & Data Aggregation
 

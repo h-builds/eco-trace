@@ -19,3 +19,22 @@ CREATE TABLE IF NOT EXISTS events (
 -- Index exactly the fields required for the formula: CF_total = sum(E_i * EF_i)
 -- Allows high-speed auditing by isolating these fields in an index.
 CREATE INDEX idx_events_audit_factors ON events(energy_kwh, emission_factor);
+
+-- Schema for RBAC Users
+DROP TABLE IF EXISTS users;
+CREATE TABLE IF NOT EXISTS users (
+    id TEXT PRIMARY KEY, -- UUID
+    username TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    role TEXT NOT NULL CHECK (role IN ('ADMIN', 'AUDITOR', 'VIEWER'))
+);
+
+-- Schema for Auth Audit Logs (G10)
+DROP TABLE IF EXISTS audit_logs;
+CREATE TABLE IF NOT EXISTS audit_logs (
+    id TEXT PRIMARY KEY, -- UUID
+    actor_id TEXT NOT NULL,
+    action TEXT NOT NULL CHECK (action IN ('LOGIN', 'LOGOUT', 'ESCALATE')),
+    timestamp DATETIME NOT NULL,
+    details TEXT NOT NULL
+);

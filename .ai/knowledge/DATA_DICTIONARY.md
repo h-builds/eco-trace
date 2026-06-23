@@ -65,6 +65,47 @@ Schemas for representing the integrity and confidence of ESG events.
 - **Description:** Qualitative measure of data reliability and metadata completeness.
 ```
 
+## Auth Schema: `User` & `AuditLog`
+```yaml
+entity: User
+fields:
+  id:
+    type: UUID
+    constraints: [PRIMARY_KEY, REQUIRED]
+    description: User ID.
+  username:
+    type: String
+    constraints: [UNIQUE, REQUIRED]
+  password_hash:
+    type: String
+    constraints: [REQUIRED]
+  role:
+    type: Enum
+    options: [ADMIN, AUDITOR, VIEWER]
+    constraints: [REQUIRED]
+
+entity: AuditLog
+fields:
+  id:
+    type: UUID
+    constraints: [PRIMARY_KEY, REQUIRED]
+  actor_id:
+    type: String
+    constraints: [REQUIRED]
+    description: References the User ID or public key who triggered the event.
+  action:
+    type: Enum
+    options: [LOGIN, LOGOUT, ESCALATE]
+    constraints: [REQUIRED]
+  timestamp:
+    type: ISO8601
+    constraints: [REQUIRED]
+  details:
+    type: String
+    constraints: [REQUIRED]
+    description: Human-readable context about the authentication event.
+```
+
 ## Deterministic Logic: Carbon Footprint
 The total carbon footprint for an event is calculated using the following formula:
 
