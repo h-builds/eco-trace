@@ -61,6 +61,12 @@ To maximize model focus and minimize token waste, rules are segmented for granul
 - **Breakpoints**: Use `min-width` media queries exclusively (e.g., `sm:`, `md:`, `lg:` in Tailwind). Never use `max-width` breakpoints as overrides.
 - **Full-Bleed by Default**: All page-level containers use `width: 100%`. Horizontal padding is the only mechanism for inset spacing.
 
+## 9. Anatomy & Architecture Documentation
+
+- **Structural Syncing**: The `anatomy.md` file must be kept updated whenever significant structural changes (new routes, components, or modules) are introduced to the repository.
+- **Generation Command**: To guarantee a standardized, high-density map that omits static or compiled assets (saving AI context tokens), developers and agents MUST update the anatomy file using the following command from the project root:
+  `tree -a -I '.git|node_modules|.next|.wrangler|.vercel|dist|public|.turbo' > anatomy.md`
+
 ---
 
 _Goal: Maximize architectural sustainability, eliminate AI slop, and ensure high-density context usage._

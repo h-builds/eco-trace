@@ -16,12 +16,12 @@ Implementation plan for the remaining Phase 6/7 deliverables of the Eco-Trace au
 
 ## 2. Macro Analytics & Data Aggregation
 
-- [ ] Build `/dashboard/overview` page as a React Server Component with streaming data layout. `[TODO]`
-- [ ] Implement Server Action to aggregate total $$CF_{total}$$ metrics across all registered assets from D1. `[TODO]` **(Ref: G03)**
-- [ ] Use React 19 `use` hook for progressive data streaming with Suspense boundaries. `[TODO]`
-- [ ] Render key metric cards: Total Carbon Footprint, Active Assets, Verified Events, Integrity Violations. `[TODO]`
-- [ ] Implement time-range filters (7d, 30d, 90d, YTD) with Server Action-driven re-aggregation. `[TODO]`
-- [ ] Consume **@eco-trace/ui** tokens for all dashboard visualizations — zero ad-hoc styles. `[TODO]`
+- [x] Build `/dashboard/overview` page as a React Server Component with streaming data layout. `[DONE]`
+- [x] Implement Server Action to aggregate total $$CF_{total}$$ metrics across all registered assets from D1. `[DONE]` **(Ref: G03)**
+- [x] Use React 19 `use` hook for progressive data streaming with Suspense boundaries. `[DONE]`
+- [x] Render key metric cards: Total Carbon Footprint, Active Assets, Verified Events, Integrity Violations. `[DONE]`
+- [x] Implement time-range filters (7d, 30d, 90d, YTD) with Server Action-driven re-aggregation. `[DONE]`
+- [x] Consume **@eco-trace/ui** tokens for all dashboard visualizations — zero ad-hoc styles. `[DONE]`
 
 ## 3. Entity & Actor Management
 

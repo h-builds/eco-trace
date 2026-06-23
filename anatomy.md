@@ -4,8 +4,8 @@
 │   │   ├── CONTEXT.md
 │   │   └── SPEC.md
 │   ├── docs
-│   │   ├── code.html
-│   │   └── DESIGN.md
+│   │   ├── DESIGN.md
+│   │   └── code.html
 │   ├── knowledge
 │   │   ├── ARCHITECTURE.md
 │   │   ├── DATA_DICTIONARY.md
@@ -16,12 +16,18 @@
 │       ├── AGENTS.md
 │       ├── COMMIT_GUIDE.md
 │       └── RULES.md
-├── anatomy.md
 ├── .antigravity
 │   └── rules
+├── .gitignore
+├── .vscode
+│   └── settings.json
+├── CLAUDE.md
+├── README.md
+├── anatomy.md
 ├── apps
 │   ├── admin
 │   │   ├── AGENTS.md
+│   │   ├── TASKS.md
 │   │   ├── app
 │   │   │   ├── api
 │   │   │   │   └── events
@@ -29,7 +35,12 @@
 │   │   │   ├── dashboard
 │   │   │   │   ├── events
 │   │   │   │   │   └── page.tsx
-│   │   │   │   └── layout.tsx
+│   │   │   │   ├── layout.tsx
+│   │   │   │   └── overview
+│   │   │   │       ├── OverviewClient.tsx
+│   │   │   │       ├── actions.ts
+│   │   │   │       ├── error.tsx
+│   │   │   │       └── page.tsx
 │   │   │   ├── layout.tsx
 │   │   │   ├── lib
 │   │   │   │   ├── auth-actions.ts
@@ -41,10 +52,14 @@
 │   │   │   └── page.tsx
 │   │   ├── apps
 │   │   │   └── consumer
-│   │   │       ├── package.json
-│   │   │       └── package-lock.json
+│   │   │       ├── package-lock.json
+│   │   │       └── package.json
 │   │   ├── components
-│   │   │   └── AuditTester.tsx
+│   │   │   ├── AuditTester.tsx
+│   │   │   └── analytics
+│   │   │       ├── MetricCard.tsx
+│   │   │       ├── MetricsGrid.tsx
+│   │   │       └── TimeRangeFilter.tsx
 │   │   ├── hooks
 │   │   │   └── useWasm.ts
 │   │   ├── lib
@@ -52,46 +67,40 @@
 │   │   │   ├── wasm.d.ts
 │   │   │   └── wasmLoader.ts
 │   │   ├── middleware.ts
-│   │   ├── next.config.mjs
 │   │   ├── next-env.d.ts
-│   │   ├── package.json
+│   │   ├── next.config.mjs
 │   │   ├── package-lock.json
-│   │   ├── public
-│   │   │   ├── engine.wasm
-│   │   │   └── wasm_exec.js
+│   │   ├── package.json
 │   │   ├── schema.sql
 │   │   ├── seed.sql
-│   │   ├── TASKS.md
 │   │   ├── tsconfig.json
+│   │   ├── tsconfig.tsbuildinfo
 │   │   └── wrangler.toml
 │   └── consumer
-│       ├── AGENTS.md
 │       ├── .env.example
 │       ├── .eslintrc.cjs
-│       ├── index.html
 │       ├── .lighthouserc.json
+│       ├── AGENTS.md
+│       ├── TASKS.md
+│       ├── index.html
 │       ├── package.json
-│       ├── public
-│       │   ├── engine.wasm
-│       │   ├── robots.txt
-│       │   └── wasm_exec.js
 │       ├── src
 │       │   ├── App.vue
 │       │   ├── components
 │       │   │   ├── AuditTimeline.vue
 │       │   │   ├── AuthenticityBadge.vue
 │       │   │   ├── FormulaRenderer.vue
-│       │   │   ├── landing
-│       │   │   │   ├── ActiveNodeStats.vue
-│       │   │   │   ├── BentoDashboard.vue
-│       │   │   │   ├── ConsumerFooter.vue
-│       │   │   │   ├── HeroSection.vue
-│       │   │   │   └── InteropCallout.vue
 │       │   │   ├── LandingPage.spec.ts
 │       │   │   ├── LandingPage.vue
 │       │   │   ├── NavBar.vue
 │       │   │   ├── ScannerView.vue
-│       │   │   └── TransparencyScreen.vue
+│       │   │   ├── TransparencyScreen.vue
+│       │   │   └── landing
+│       │   │       ├── ActiveNodeStats.vue
+│       │   │       ├── BentoDashboard.vue
+│       │   │       ├── ConsumerFooter.vue
+│       │   │       ├── HeroSection.vue
+│       │   │       └── InteropCallout.vue
 │       │   ├── composables
 │       │   │   ├── useEventHistory.ts
 │       │   │   ├── useScanner.ts
@@ -107,7 +116,6 @@
 │       │   ├── style.css
 │       │   ├── tokens.css
 │       │   └── vite-env.d.ts
-│       ├── TASKS.md
 │       ├── test
 │       │   ├── a11y.test.ts
 │       │   ├── api.test.ts
@@ -122,16 +130,16 @@
 │       ├── tsconfig.node.json
 │       ├── vite.config.ts
 │       └── vitest.config.ts
-├── CLAUDE.md
-├── .gitignore
-├── package.json
 ├── package-lock.json
+├── package.json
 ├── packages
 │   ├── engine
+│   │   ├── TASKS.md
 │   │   ├── build.sh
 │   │   ├── cmd
 │   │   │   └── test_verify
 │   │   │       └── main.go
+│   │   ├── engine.wasm
 │   │   ├── go.mod
 │   │   ├── internal
 │   │   │   ├── crypto
@@ -143,8 +151,7 @@
 │   │   │   │   └── calculator_test.go
 │   │   │   └── types
 │   │   │       └── types.go
-│   │   ├── main.go
-│   │   └── TASKS.md
+│   │   └── main.go
 │   └── ui
 │       ├── index.ts
 │       ├── package.json
@@ -156,9 +163,6 @@
 │       └── variables.css
 ├── pnpm-lock.yaml
 ├── pnpm-workspace.yaml
-├── public
-│   └── wasm_exec.js
-├── README.md
 └── turbo.json
 
-44 directories, 118 files
+43 directories, 122 files
