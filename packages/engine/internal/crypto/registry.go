@@ -17,8 +17,8 @@ func InitializeRegistry() {
 	registryMutex.Lock()
 	defer registryMutex.Unlock()
 
-	pubA, _ := hex.DecodeString("de75874742689ddf867ee932b2e19814d3ae6c62ca0e650e54d604c46b1b3cb4")
-	pubB, _ := hex.DecodeString("b4ba45c65b368d6ed4b1112f66e39b99a5ebfd79d1108b09dd161982603cf69d")
+	pubA, _ := hex.DecodeString("858eccd1690a64cd7c9c2ed8d2612a786dac3fca2eeea90f2a097cc213be48c0")
+	pubB, _ := hex.DecodeString("de485d357f87e6591b8a00bd09dad90995573c2e6ffc8c2a9bbefa642c1715ae")
 
 	TrustedActors["Supplier A"] = pubA
 	TrustedActors["Factory B"] = pubB
