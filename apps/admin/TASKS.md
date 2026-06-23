@@ -34,12 +34,12 @@ Implementation plan for the remaining Phase 6/7 deliverables of the Eco-Trace au
 
 ## 4. Compliance Reporting & Export
 
-- [ ] Implement PDF export of the Threaded Audit Log with cryptographic verification metadata. `[TODO]` **(Ref: G02)**
-- [ ] Implement CSV export of event history with all [DATA_DICTIONARY.md](../../.ai/knowledge/DATA_DICTIONARY.md) fields preserved. `[TODO]` **(Ref: G05)**
-- [ ] Embed integrity hash and signature status per-event in exported reports. `[TODO]` **(Ref: G01, G02)**
-- [ ] Add date-range and actor-based filtering for scoped compliance extracts. `[TODO]`
-- [ ] Ensure all exported data is immutable — no client-side transformation of verified values. `[TODO]` **(Ref: G03)**
-- [ ] Execute `pnpm test --filter admin && pnpm test:accessibility` with zero failures post-export feature. `[TODO]`
+- [x] Implement PDF export of the Threaded Audit Log with cryptographic verification metadata. `[DONE]` **(Ref: G02)**
+- [x] Implement CSV export of event history with all [DATA_DICTIONARY.md](../../.ai/knowledge/DATA_DICTIONARY.md) fields preserved. `[DONE]` **(Ref: G05)**
+- [x] Embed integrity hash and signature status per-event in exported reports. `[DONE]` **(Ref: G01, G02)**
+- [x] Add date-range and actor-based filtering for scoped compliance extracts. `[DONE]`
+- [x] Ensure all exported data is immutable — no client-side transformation of verified values. `[DONE]` **(Ref: G03)**
+- [x] Execute `pnpm test --filter admin && pnpm test:accessibility` with zero failures post-export feature. `[DONE]`
 
 ## 5. Future Scope / Backlog
 
