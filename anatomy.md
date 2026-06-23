@@ -53,6 +53,7 @@
 │   │   │   │       ├── actions.ts
 │   │   │   │       ├── error.tsx
 │   │   │   │       └── page.tsx
+│   │   │   ├── globals.css
 │   │   │   ├── layout.tsx
 │   │   │   ├── lib
 │   │   │   │   ├── auth-actions.ts
@@ -85,6 +86,7 @@
 │   │   ├── next.config.mjs
 │   │   ├── package-lock.json
 │   │   ├── package.json
+│   │   ├── postcss.config.mjs
 │   │   ├── schema.sql
 │   │   ├── seed.sql
 │   │   ├── tsconfig.json
@@ -181,4 +183,4 @@
 ├── pnpm-workspace.yaml
 └── turbo.json
 
-49 directories, 132 files
+49 directories, 134 files

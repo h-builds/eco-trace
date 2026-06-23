@@ -121,7 +121,7 @@ pnpm install
 ```
 
 ### 3. Engine Compilation (WebAssembly)
-The Go Cryptographic Gate must be compiled to WebAssembly and injected into the Admin application's public directory.
+The Go Cryptographic Gate must be compiled to WebAssembly and injected into the public directories of both the Admin and Consumer applications.
 ```bash
 cd packages/engine
 ./build.sh
@@ -146,7 +146,10 @@ Boot the Next.js server equipped with the Wrangler proxy to simulate Edge compat
 # Still in apps/admin
 pnpm run dev:edge
 ```
-Access the High-Density Event Log at http://localhost:3001/dashboard/events.
+Access the High-Density Event Log via the Cloudflare edge proxy at http://localhost:8788/dashboard/events.
+
+> [!NOTE]
+> Next.js production builds use the webpack bundler backend (`next build --webpack`) rather than Turbopack to prevent dynamic module import compatibility issues with client-side PDF generation dependencies.
 
 > [!NOTE]
 > Ensure the `pages_build_output_dir` parameter remains commented out (`# pages_build_output_dir`) in `apps/admin/wrangler.toml` during local development to prevent Wrangler proxy network collisions.
