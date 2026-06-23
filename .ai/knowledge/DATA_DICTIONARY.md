@@ -100,10 +100,47 @@ fields:
   timestamp:
     type: ISO8601
     constraints: [REQUIRED]
-  details:
+    description: Human-readable context about the authentication event.
+
+entity: TrustedActor
+fields:
+  id:
+    type: UUID
+    constraints: [PRIMARY_KEY, REQUIRED]
+  name:
     type: String
     constraints: [REQUIRED]
-    description: Human-readable context about the authentication event.
+    description: Human-readable name of the supplier or logistics partner.
+  public_key:
+    type: String
+    constraints: [UNIQUE, REQUIRED]
+    description: Ed25519 public key in hex format used to verify the actor's signatures.
+  status:
+    type: Enum
+    options: [ACTIVE, REVOKED]
+    constraints: [REQUIRED]
+  created_at:
+    type: ISO8601
+    constraints: [REQUIRED]
+
+entity: Asset
+fields:
+  id:
+    type: String
+    constraints: [PRIMARY_KEY, REQUIRED]
+    description: Unique asset identifier (e.g., ASSET-XXX).
+  name:
+    type: String
+    constraints: [REQUIRED]
+  description:
+    type: String
+  owner_id:
+    type: UUID
+    constraints: [FOREIGN_KEY, REQUIRED]
+    description: References the TrustedActor ID who registered the asset.
+  created_at:
+    type: ISO8601
+    constraints: [REQUIRED]
 ```
 
 ## Deterministic Logic: Carbon Footprint

@@ -33,6 +33,11 @@
 │   │   │   │   └── events
 │   │   │   │       └── route.ts
 │   │   │   ├── dashboard
+│   │   │   │   ├── entities
+│   │   │   │   │   ├── ActorForm.tsx
+│   │   │   │   │   ├── AssetForm.tsx
+│   │   │   │   │   ├── actions.ts
+│   │   │   │   │   └── page.tsx
 │   │   │   │   ├── events
 │   │   │   │   │   └── page.tsx
 │   │   │   │   ├── layout.tsx
@@ -165,4 +170,4 @@
 ├── pnpm-workspace.yaml
 └── turbo.json
 
-43 directories, 122 files
+44 directories, 126 files

@@ -25,12 +25,12 @@ Implementation plan for the remaining Phase 6/7 deliverables of the Eco-Trace au
 
 ## 3. Entity & Actor Management
 
-- [ ] Create **Add Trusted Actor** form (Server Action) to onboard Suppliers and Logistics partners. `[TODO]` **(Ref: G07)**
-- [ ] Create **Register Asset** form (Server Action) to insert new trackable assets into D1. `[TODO]` **(Ref: G05)**
-- [ ] Validate all form inputs against [DATA_DICTIONARY.md](../../.ai/knowledge/DATA_DICTIONARY.md) schema constraints server-side. `[TODO]` **(Ref: G04, G05)**
-- [ ] Implement Ed25519 public key association during actor onboarding for signature verification. `[TODO]` **(Ref: G01)**
-- [ ] Add confirmation + audit trail entry for every entity mutation. `[TODO]` **(Ref: G10)**
-- [ ] Build actor/asset list views with search, pagination, and status indicators as RSC. `[TODO]`
+- [x] Create **Add Trusted Actor** form (Server Action) to onboard Suppliers and Logistics partners. `[DONE]` **(Ref: G07)**
+- [x] Create **Register Asset** form (Server Action) to insert new trackable assets into D1. `[DONE]` **(Ref: G05)**
+- [x] Validate all form inputs against [DATA_DICTIONARY.md](../../.ai/knowledge/DATA_DICTIONARY.md) schema constraints server-side. `[DONE]` **(Ref: G04, G05)**
+- [x] Implement Ed25519 public key association during actor onboarding for signature verification. `[DONE]` **(Ref: G01)**
+- [x] Add confirmation + audit trail entry for every entity mutation. `[DONE]` **(Ref: G10)**
+- [x] Build actor/asset list views with search, pagination, and status indicators as RSC. `[DONE]`
 
 ## 4. Compliance Reporting & Export
 
