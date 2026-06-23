@@ -10,3 +10,8 @@ database_id = "a68339af-3c78-46c3-987b-4f8792a5159b" # Replace in production
 
 # preview_database_id allows local development to use a distinct testing DB or local file
 preview_database_id = "preview-0000-0000-0000-00000000"
+
+[[kv_namespaces]]
+binding = "SESSION_KV"
+id = "mock-session-kv-id"
+preview_id = "preview-mock-session-kv"
