@@ -10,10 +10,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@eco-trace/ui": "workspace:*",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
     "next": "^16.1.7",
     "react": "^19.0.0-rc.1",
-    "react-dom": "^19.0.0-rc.1",
-    "@eco-trace/ui": "workspace:*"
+    "react-dom": "^19.0.0-rc.1"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.16",
