@@ -1,5 +1,24 @@
 .
+├── .ai
+│   ├── context
+│   │   ├── CONTEXT.md
+│   │   └── SPEC.md
+│   ├── docs
+│   │   ├── code.html
+│   │   └── DESIGN.md
+│   ├── knowledge
+│   │   ├── ARCHITECTURE.md
+│   │   ├── DATA_DICTIONARY.md
+│   │   └── EVALS.md
+│   ├── prompts
+│   │   └── LIBRARY.md
+│   └── rules
+│       ├── AGENTS.md
+│       ├── COMMIT_GUIDE.md
+│       └── RULES.md
 ├── anatomy.md
+├── .antigravity
+│   └── rules
 ├── apps
 │   ├── admin
 │   │   ├── AGENTS.md
@@ -32,6 +51,7 @@
 │   │   │   ├── seed.ts
 │   │   │   ├── wasm.d.ts
 │   │   │   └── wasmLoader.ts
+│   │   ├── middleware.ts
 │   │   ├── next.config.mjs
 │   │   ├── next-env.d.ts
 │   │   ├── package.json
@@ -43,18 +63,19 @@
 │   │   ├── seed.sql
 │   │   ├── TASKS.md
 │   │   ├── tsconfig.json
-│   │   ├── tsconfig.tsbuildinfo
 │   │   └── wrangler.toml
 │   └── consumer
 │       ├── AGENTS.md
+│       ├── .env.example
+│       ├── .eslintrc.cjs
 │       ├── index.html
+│       ├── .lighthouserc.json
 │       ├── package.json
 │       ├── public
 │       │   ├── engine.wasm
 │       │   ├── robots.txt
 │       │   └── wasm_exec.js
 │       ├── src
-│       │   ├── App.vue
 │       │   ├── App.vue
 │       │   ├── components
 │       │   │   ├── AuditTimeline.vue
@@ -70,13 +91,7 @@
 │       │   │   ├── LandingPage.vue
 │       │   │   ├── NavBar.vue
 │       │   │   ├── ScannerView.vue
-│       │   │   ├── TransparencyScreen.vue
-│       │   │   └── landing
-│       │   │       ├── ActiveNodeStats.vue
-│       │   │       ├── BentoDashboard.vue
-│       │   │       ├── ConsumerFooter.vue
-│       │   │       ├── HeroSection.vue
-│       │   │       └── InteropCallout.vue
+│       │   │   └── TransparencyScreen.vue
 │       │   ├── composables
 │       │   │   ├── useEventHistory.ts
 │       │   │   ├── useScanner.ts
@@ -91,20 +106,15 @@
 │       │   ├── main.ts
 │       │   ├── style.css
 │       │   ├── tokens.css
-│       │   ├── tokens.css
 │       │   └── vite-env.d.ts
 │       ├── TASKS.md
 │       ├── test
 │       │   ├── a11y.test.ts
-│       │   ├── a11y.test.ts
 │       │   ├── api.test.ts
-│       │   ├── e2e-latency.test.ts
 │       │   ├── e2e-latency.test.ts
 │       │   ├── latency.test.ts
 │       │   ├── logic.test.ts
 │       │   ├── reactivity.test.ts
-│       │   ├── stress-latency.test.ts
-│       │   ├── stress-vapor.test.ts
 │       │   ├── stress-latency.test.ts
 │       │   ├── stress-vapor.test.ts
 │       │   └── wasm.test.ts
@@ -113,6 +123,7 @@
 │       ├── vite.config.ts
 │       └── vitest.config.ts
 ├── CLAUDE.md
+├── .gitignore
 ├── package.json
 ├── package-lock.json
 ├── packages
@@ -137,8 +148,6 @@
 │   └── ui
 │       ├── index.ts
 │       ├── package.json
-│       ├── index.ts
-│       ├── package.json
 │       ├── scripts
 │       │   └── contrast-validator.ts
 │       ├── tailwind.config.ts
@@ -146,11 +155,10 @@
 │       ├── tsconfig.json
 │       └── variables.css
 ├── pnpm-lock.yaml
-├── pnpm-lock.yaml
 ├── pnpm-workspace.yaml
 ├── public
 │   └── wasm_exec.js
 ├── README.md
 └── turbo.json
 
-35 directories, 95 files
+44 directories, 118 files
