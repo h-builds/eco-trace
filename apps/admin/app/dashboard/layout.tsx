@@ -21,6 +21,10 @@ export default async function DashboardLayout({
           <span className="text-xs bg-brand-integrity-green text-brand-deep-charcoal px-2 py-1 rounded-pill font-medium">
             {session.role}
           </span>
+          <nav className="ml-8 flex gap-4">
+            <a href="/dashboard/overview" className="text-sm font-medium hover:text-brand-integrity-green transition-colors">Overview</a>
+            <a href="/dashboard/entities" className="text-sm font-medium hover:text-brand-integrity-green transition-colors">Entities</a>
+          </nav>
         </div>
         <div className="flex items-center gap-4">
           <span className="text-sm text-functional-neutral">
