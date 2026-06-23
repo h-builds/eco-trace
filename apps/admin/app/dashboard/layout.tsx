@@ -24,6 +24,8 @@ export default async function DashboardLayout({
           <nav className="ml-8 flex gap-4">
             <a href="/dashboard/overview" className="text-sm font-medium hover:text-brand-integrity-green transition-colors">Overview</a>
             <a href="/dashboard/entities" className="text-sm font-medium hover:text-brand-integrity-green transition-colors">Entities</a>
+            <a href="/dashboard/events" className="text-sm font-medium hover:text-brand-integrity-green transition-colors">Events</a>
+            <a href="/dashboard/compliance" className="text-sm font-medium hover:text-brand-integrity-green transition-colors">Compliance</a>
           </nav>
         </div>
         <div className="flex items-center gap-4">
