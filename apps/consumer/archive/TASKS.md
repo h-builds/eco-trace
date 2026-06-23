@@ -1,0 +1,82 @@
+---
+status: archived
+archived_at: 2026-06-22
+reason: "Phases 1-6 deliverables completed (along with subsequent phase alignment). Archiving to prepare for Phase 8 (Portfolio Demo Excellence)."
+---
+
+# Execution Roadmap: Vue 3.5 Vapor Consumer App (Archived)
+
+Implementation plan for the public-facing product transparency scanner of the Eco-Trace ecosystem.
+
+## 1. Foundation & Tooling
+
+- [x] Scaffold Vue 3.5 app with Vite and enforce **Vapor Mode** compiler settings. `[TODO]`
+- [x] Configure `tsconfig.json` with strict mode and path aliases (`@/`). `[TODO]`
+- [x] Integrate Tailwind CSS v4 consuming **@eco-trace/ui** design tokens from `tokens.json`. `[TODO]`
+- [x] Set up ESLint + Prettier with project-wide governance rules from [RULES.md](../../.ai/rules/RULES.md). `[TODO]`
+- [x] Configure Vite build pipeline: code splitting, asset compression, Wasm loader plugin. `[TODO]`
+- [x] Validate dev server boots with `pnpm dev --filter consumer` and produces zero warnings. `[TODO]`
+
+## 2. Wasm Cryptographic Bridge (Client-Side)
+
+- [x] Inject `engine.wasm` binary via Vite Wasm plugin with streaming instantiation. `[TODO]`
+- [x] Expose `VerifySignature(payload, signature, publicKey)` binding to Vue composables. `[TODO]` **(Ref: G02)**
+- [x] Expose `CalculateCarbonFootprint(events)` binding to Vue composables. `[TODO]` **(Ref: G03)**
+- [x] Implement `useWasm()` composable with reactive readiness signal and error boundary. `[TODO]`
+- [x] Enforce **read-only boundary**: consumer app MUST NOT call `SignEvent` or mutate engine state. `[TODO]` **(Ref: G01)**
+- [x] Add integration test validating Wasm bridge initialization < 50ms. `[TODO]` **(Ref: G08)**
+
+## 3. Data Hydration & Edge API
+
+- [x] Implement `GET /api/events` client using `fetch` with typed response contracts from [DATA_DICTIONARY.md](../../.ai/knowledge/DATA_DICTIONARY.md). `[DONE]` **(Ref: G05)**
+- [x] Add SWR (Stale-While-Revalidate) caching strategy for event history data. `[DONE]`
+- [x] Implement optimistic UI hydration: render skeleton → stream verified data. `[DONE]`
+- [x] Handle Cloudflare D1 edge latency with request deduplication and cache headers. `[DONE]`
+- [x] Add error states for network failures and empty result sets. `[DONE]`
+
+## 4. UI/UX: The "Zero-Knowledge" Scanner
+
+- [x] Implement HTML5 native QR Scanner using `getUserMedia` API with camera permission flow. `[DONE]`
+- [x] Build **Product Transparency View** with the following sub-components:
+- [x] **Authenticity Badge**: Real-time `VerifySignature` result rendered as a trust indicator. `[DONE]` **(Ref: G02)**
+- [x] **Formula Rendering**: Display $$CF_{total} = \sum (E_i \times EF_i)$$ with live-calculated values. `[DONE]` **(Ref: G03)**
+- [x] **Audit Trail Timeline**: Chronological `SupplyChainEvent` history with actor and integrity status. `[DONE]` **(Ref: G07)**
+- [x] Consume **@eco-trace/ui** tokens for all colors, spacing, typography, and elevation — zero ad-hoc styles. `[DONE]`
+- [x] Implement mobile-first responsive layout with Vapor Mode signals-based reactivity. `[DONE]`
+
+## 5. Performance & Compliance Gate
+
+- [x] Achieve < 100ms QR-scan-to-verification latency (end-to-end audit). `[DONE]` **(Ref: G08)**
+- [x] Run Vapor Mode DOM re-render checks: confirm zero unnecessary re-renders on data updates. `[DONE]`
+- [x] Pass **WCAG 2.1 AA** accessibility audit on all scanner and transparency views. `[DONE]`
+- [x] Validate Lighthouse performance score ≥ 95 on mobile profile. `[DONE]`
+- [x] Execute `pnpm test --filter consumer && pnpm test:accessibility` with zero failures. `[DONE]`
+
+## 6. Portfolio Branding & Industrial Editorial Landing
+
+- [x] **Technical Landing Page (Root `/`)**: Product-grade "Product Integrity First" view using @eco-trace/ui workbench aesthetic. Precision Blueprint light-mode identity. `[DONE]`
+- [x] **Global Navigation & Ecosystem Bridge**:
+    - [x] Minimal NavBar — ECO-TRACE wordmark (Space Grotesk), live `● LIVE` edge status blip, mono Auditor Dashboard link with `↗`. `[DONE]`
+    - [x] Navigation remains mobile-first (light surface, high tap targets). `[DONE]`
+- [x] **Hero Section**: Value proposition in ≤8 words — *"Product claims, verified."* Asymmetric 12-col grid. Dark `<100ms` accent panel. Integrity Gradient primary CTA. `[DONE]`
+- [x] **Problem Section (01 / The Trust Gap)**: ESG trust gap framing. CLAIM vs PROOF contrast block. Tonal layering, no borders. `[DONE]`
+- [x] **Solution Section (02 / Verification Model)**: Ed25519 + D1 explanation. Tech chips with zero roundedness. `[DONE]`
+- [x] **How It Works (03 / Verification Flow)**: 4-step SCAN→VERIFY→FETCH→TRUST linear track with tonal panel steps. `[DONE]`
+- [x] **Architecture Section (04 / Dual-Engine)**: Narrative (7 cols) + Command Strip (5 cols) with MEM/INIT/DOM_WRITES/ENGINE/CRYPTO/PERSISTENCE/ADMIN_STACK mono rows. `[DONE]`
+- [x] **Trust Signals (05 / Platform Status)**: Active node feed, 1.42B TXN count, AAA+ / ISO-27001 / ISO-14064 compliance rating. `[DONE]`
+- [x] **Final CTA Block**: Full-bleed `brand-integrity-green` — *"Scan. Verify. Trust."* Outlined white button. `[DONE]`
+- [x] **Philosophy Footer**: Light surface. Mission mantra in Geist Mono uppercase. Stack metadata. `[DONE]`
+
+
+## 7. Future Scope / Backlog
+
+- **PWA / Offline Mode**: Service Worker registration with offline-first asset caching for field use in low-connectivity supply chain environments.
+- **i18n (Internationalization)**: Multi-language support for global supply chain actors — dynamic locale loading via Vite plugin, RTL layout support.
+- **Edge Case Handling**: Graceful UX for invalid/malformed QR codes, camera permission denials, Wasm load failures, and expired or revoked signatures.
+- **Edge Analytics Telemetry**: Anonymous scan-event telemetry piped to Cloudflare Analytics Engine for ecosystem health monitoring and adoption metrics.
+- **Supply Chain Map Visualization**: Interactive geographic map rendering supplier-to-consumer journeys using verified event coordinates.
+- **Comparative Footprint View**: Allow consumers to compare carbon footprints across similar products within the same category.
+
+---
+
+_Goal: Deliver a mobile-first, cryptographically-verified product transparency scanner with zero-trust architecture and sub-100ms verification latency._

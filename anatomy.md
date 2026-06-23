@@ -22,6 +22,7 @@
 ├── .vscode
 │   └── settings.json
 ├── CLAUDE.md
+├── PLAN.md
 ├── README.md
 ├── anatomy.md
 ├── apps
@@ -65,6 +66,8 @@
 │   │   │   └── consumer
 │   │   │       ├── package-lock.json
 │   │   │       └── package.json
+│   │   ├── archive
+│   │   │   └── TASKS.md
 │   │   ├── components
 │   │   │   ├── AuditTester.tsx
 │   │   │   └── analytics
@@ -93,6 +96,8 @@
 │       ├── .lighthouserc.json
 │       ├── AGENTS.md
 │       ├── TASKS.md
+│       ├── archive
+│       │   └── TASKS.md
 │       ├── index.html
 │       ├── package.json
 │       ├── src
@@ -176,4 +181,4 @@
 ├── pnpm-workspace.yaml
 └── turbo.json
 
-47 directories, 129 files
+49 directories, 132 files
