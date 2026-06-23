@@ -34,7 +34,27 @@ DROP TABLE IF EXISTS audit_logs;
 CREATE TABLE IF NOT EXISTS audit_logs (
     id TEXT PRIMARY KEY, -- UUID
     actor_id TEXT NOT NULL,
-    action TEXT NOT NULL CHECK (action IN ('LOGIN', 'LOGOUT', 'ESCALATE')),
+    action TEXT NOT NULL CHECK (action IN ('LOGIN', 'LOGOUT', 'ESCALATE', 'CREATE_ACTOR', 'REGISTER_ASSET')),
     timestamp DATETIME NOT NULL,
     details TEXT NOT NULL
 );
+
+-- Schema for Trusted Actors (G07 Registry)
+DROP TABLE IF EXISTS trusted_actors;
+CREATE TABLE IF NOT EXISTS trusted_actors (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    public_key TEXT NOT NULL UNIQUE,
+    status TEXT NOT NULL CHECK (status IN ('ACTIVE', 'REVOKED')),
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS assets;
+CREATE TABLE IF NOT EXISTS assets (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    description TEXT,
+    owner_id TEXT NOT NULL REFERENCES trusted_actors(id),
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
