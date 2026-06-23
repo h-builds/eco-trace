@@ -10,7 +10,7 @@ const viewLedgerHover = ref(false);
 
 <template>
   <section
-    class="w-full px-4 pt-28 pb-16 md:px-8 md:pt-36"
+    class="w-full"
     style="border-bottom: 1px solid var(--outline-bp-ghost);"
   >
     <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pb-16">
