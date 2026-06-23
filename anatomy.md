@@ -1,6 +1,8 @@
 .
+├── anatomy.md
 ├── apps
 │   ├── admin
+│   │   ├── AGENTS.md
 │   │   ├── app
 │   │   │   ├── api
 │   │   │   │   └── events
@@ -12,8 +14,8 @@
 │   │   │   └── page.tsx
 │   │   ├── apps
 │   │   │   └── consumer
-│   │   │       ├── package-lock.json
-│   │   │       └── package.json
+│   │   │       ├── package.json
+│   │   │       └── package-lock.json
 │   │   ├── components
 │   │   │   └── AuditTester.tsx
 │   │   ├── hooks
@@ -22,22 +24,41 @@
 │   │   │   ├── seed.ts
 │   │   │   ├── wasm.d.ts
 │   │   │   └── wasmLoader.ts
-│   │   ├── AGENTS.md
-│   │   ├── TASKS.md
-│   │   ├── next-env.d.ts
 │   │   ├── next.config.mjs
-│   │   ├── package-lock.json
+│   │   ├── next-env.d.ts
 │   │   ├── package.json
+│   │   ├── package-lock.json
+│   │   ├── public
+│   │   │   ├── engine.wasm
+│   │   │   └── wasm_exec.js
 │   │   ├── schema.sql
 │   │   ├── seed.sql
+│   │   ├── TASKS.md
 │   │   ├── tsconfig.json
 │   │   └── wrangler.toml
 │   └── consumer
+│       ├── AGENTS.md
+│       ├── index.html
+│       ├── package.json
+│       ├── public
+│       │   ├── engine.wasm
+│       │   ├── robots.txt
+│       │   └── wasm_exec.js
 │       ├── src
+│       │   ├── App.vue
 │       │   ├── components
 │       │   │   ├── AuditTimeline.vue
 │       │   │   ├── AuthenticityBadge.vue
 │       │   │   ├── FormulaRenderer.vue
+│       │   │   ├── landing
+│       │   │   │   ├── ActiveNodeStats.vue
+│       │   │   │   ├── BentoDashboard.vue
+│       │   │   │   ├── ConsumerFooter.vue
+│       │   │   │   ├── HeroSection.vue
+│       │   │   │   └── InteropCallout.vue
+│       │   │   ├── LandingPage.spec.ts
+│       │   │   ├── LandingPage.vue
+│       │   │   ├── NavBar.vue
 │       │   │   ├── ScannerView.vue
 │       │   │   └── TransparencyScreen.vue
 │       │   ├── composables
@@ -51,28 +72,35 @@
 │       │   │   │   └── types.ts
 │       │   │   └── wasm
 │       │   │       └── engine.ts
-│       │   ├── App.vue
 │       │   ├── main.ts
 │       │   ├── style.css
+│       │   ├── tokens.css
 │       │   └── vite-env.d.ts
+│       ├── TASKS.md
 │       ├── test
+│       │   ├── a11y.test.ts
 │       │   ├── api.test.ts
+│       │   ├── e2e-latency.test.ts
 │       │   ├── latency.test.ts
 │       │   ├── logic.test.ts
 │       │   ├── reactivity.test.ts
+│       │   ├── stress-latency.test.ts
+│       │   ├── stress-vapor.test.ts
 │       │   └── wasm.test.ts
-│       ├── AGENTS.md
-│       ├── TASKS.md
-│       ├── index.html
-│       ├── package.json
 │       ├── tsconfig.json
 │       ├── tsconfig.node.json
-│       └── vite.config.ts
+│       ├── vite.config.ts
+│       └── vitest.config.ts
+├── CLAUDE.md
+├── package.json
+├── package-lock.json
 ├── packages
 │   ├── engine
+│   │   ├── build.sh
 │   │   ├── cmd
 │   │   │   └── test_verify
 │   │   │       └── main.go
+│   │   ├── go.mod
 │   │   ├── internal
 │   │   │   ├── crypto
 │   │   │   │   ├── crypto.go
@@ -83,25 +111,22 @@
 │   │   │   │   └── calculator_test.go
 │   │   │   └── types
 │   │   │       └── types.go
-│   │   ├── TASKS.md
-│   │   ├── build.sh
-│   │   ├── engine.wasm
-│   │   ├── go.mod
-│   │   └── main.go
+│   │   ├── main.go
+│   │   └── TASKS.md
 │   └── ui
-│       ├── scripts
-│       │   └── contrast-validator.ts
 │       ├── index.ts
 │       ├── package.json
+│       ├── scripts
+│       │   └── contrast-validator.ts
 │       ├── tailwind.config.ts
 │       ├── tokens.json
 │       ├── tsconfig.json
 │       └── variables.css
-├── README.md
-├── anatomy.md
-├── package-lock.json
-├── package.json
+├── pnpm-lock.yaml
 ├── pnpm-workspace.yaml
+├── public
+│   └── wasm_exec.js
+├── README.md
 └── turbo.json
 
-30 directories, 74 files
+35 directories, 95 files
