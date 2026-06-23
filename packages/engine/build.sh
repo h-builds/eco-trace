@@ -2,15 +2,16 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-OUT_DIR="${SCRIPT_DIR}/../../apps/admin/public"
+OUT_ADMIN="${SCRIPT_DIR}/../../apps/admin/public"
+OUT_CONSUMER="${SCRIPT_DIR}/../../apps/consumer/public"
 
-mkdir -p "${OUT_DIR}"
+mkdir -p "${OUT_ADMIN}"
+mkdir -p "${OUT_CONSUMER}"
 
 echo "Compiling engine.wasm..."
-GOOS=js GOARCH=wasm go build -o "${OUT_DIR}/engine.wasm" "${SCRIPT_DIR}/main.go"
+GOOS=js GOARCH=wasm go build -o "${OUT_ADMIN}/engine.wasm" "${SCRIPT_DIR}/main.go"
+cp "${OUT_ADMIN}/engine.wasm" "${OUT_CONSUMER}/engine.wasm"
 
-echo "Copying wasm_exec.js..."
-cp "$(go env GOROOT)/lib/wasm/wasm_exec.js" "${OUT_DIR}/wasm_exec.js"
-
-echo "Build complete: ${OUT_DIR}/engine.wasm"
-ls -lh "${OUT_DIR}/engine.wasm"
+echo "Build complete."
+ls -lh "${OUT_ADMIN}/engine.wasm"
+ls -lh "${OUT_CONSUMER}/engine.wasm"
