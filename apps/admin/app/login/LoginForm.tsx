@@ -4,7 +4,7 @@ import { useActionState, useState } from "react";
 import { loginAction } from "../lib/auth-actions";
 
 export default function LoginForm() {
-  const [state, formAction, isPending] = useActionState(loginAction, null);
+  const [state, formAction, isPending] = useActionState(loginAction, undefined);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 

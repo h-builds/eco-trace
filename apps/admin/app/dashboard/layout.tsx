@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import { logoutAction } from "../lib/auth-actions";
 import { getSession } from "../lib/session";
 import { redirect } from "next/navigation";

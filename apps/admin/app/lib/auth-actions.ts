@@ -30,7 +30,7 @@ interface UserRow {
   password_hash: string;
 }
 
-export async function loginAction(state: AuthState | null, formData: FormData): Promise<AuthState> {
+export async function loginAction(state: AuthState | undefined, formData: FormData): Promise<AuthState> {
   const usernameEntry = formData.get("username");
   const passwordEntry = formData.get("password");
 

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:edge": "wrangler pages dev --proxy 3001 -- pnpm dev -p 3001",
+    "dev:edge": "wrangler pages dev --proxy 3001 -- pnpm dev -p 3001 -H localhost",
     "build": "next build --webpack",
     "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1"
