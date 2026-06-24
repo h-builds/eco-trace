@@ -473,26 +473,26 @@ Document how to run, test, and evaluate the Consumer app as part of the Phase 8 
 
 ### Tasks
 
-- [ ] Update `apps/consumer/README.md` or create it if missing.
-- [ ] Document:
-  - [ ] App purpose.
-  - [ ] Demo product path.
-  - [ ] QR scanner path.
-  - [ ] Required environment variables.
-  - [ ] How to link to Admin.
-  - [ ] How to run locally.
-  - [ ] How to test.
-  - [ ] What is seeded/demo data.
-- [ ] Add a short `Recruiter evaluation path` section.
-- [ ] Add `Troubleshooting camera access` section.
-- [ ] Add note that Consumer is read-only and cannot mutate event state.
-- [ ] Cross-link to root `PLAN.md` and future `docs/demo/demo-scenario.md`.
+- [x] Update `apps/consumer/README.md` or create it if missing.
+- [x] Document:
+  - [x] App purpose.
+  - [x] Demo product path.
+  - [x] QR scanner path.
+  - [x] Required environment variables.
+  - [x] How to link to Admin.
+  - [x] How to run locally.
+  - [x] How to test.
+  - [x] What is seeded/demo data.
+- [x] Add a short `Recruiter evaluation path` section.
+- [x] Add `Troubleshooting camera access` section.
+- [x] Add note that Consumer is read-only and cannot mutate event state.
+- [x] Cross-link to root `PLAN.md` and future `docs/demo/demo-scenario.md`.
 
 ### Exit Criteria
 
-- [ ] A reviewer can run or evaluate the Consumer app without private explanation.
-- [ ] Camera fallback is documented.
-- [ ] Consumer's role in the two-app ecosystem is clear.
+- [x] A reviewer can run or evaluate the Consumer app without private explanation.
+- [x] Camera fallback is documented.
+- [x] Consumer's role in the two-app ecosystem is clear.
 
 ---
 
@@ -505,21 +505,21 @@ Before publishing the demo, verify the Consumer app works as a standalone public
 
 ### Tasks
 
-- [ ] Validate landing page loads.
-- [ ] Validate `Use Demo Product` works.
-- [ ] Validate QR scanner initializes when camera is allowed.
-- [ ] Validate camera denied state works.
-- [ ] Validate static QR maps to the demo product.
-- [ ] Validate transparency screen loads canonical product data.
-- [ ] Validate authenticity badge states.
-- [ ] Validate carbon formula and final value display.
-- [ ] Validate audit timeline order and labels.
-- [ ] Validate `Open Auditor Workstation` links.
-- [ ] Validate environment-variable fallbacks.
-- [ ] Validate mobile layout.
-- [ ] Validate accessibility.
-- [ ] Validate production build.
-- [ ] Capture current screenshots only after all copy and data are truthful.
+- [x] Validate landing page loads.
+- [x] Validate `Use Demo Product` works.
+- [x] Validate QR scanner initializes when camera is allowed.
+- [x] Validate camera denied state works.
+- [x] Validate static QR maps to the demo product.
+- [x] Validate transparency screen loads canonical product data.
+- [x] Validate authenticity badge states.
+- [x] Validate carbon formula and final value display.
+- [x] Validate audit timeline order and labels.
+- [x] Validate `Open Auditor Workstation` links.
+- [x] Validate environment-variable fallbacks.
+- [x] Validate mobile layout.
+- [x] Validate accessibility.
+- [x] Validate production build.
+- [x] Capture current screenshots only after all copy and data are truthful.
 
 ### Required Commands
 
@@ -539,11 +539,11 @@ pnpm lint --filter consumer
 
 ### Exit Criteria
 
-- [ ] Public Consumer demo has no dead ends.
-- [ ] Camera access is optional.
-- [ ] Consumer and Admin scenario data align.
-- [ ] No unsupported claims remain.
-- [ ] The Consumer app is ready for LinkedIn, portfolio, and recruiter review.
+- [x] Public Consumer demo has no dead ends.
+- [x] Camera access is optional.
+- [x] Consumer and Admin scenario data align.
+- [x] No unsupported claims remain.
+- [x] The Consumer app is ready for LinkedIn, portfolio, and recruiter review.
 
 ---
 
@@ -578,8 +578,8 @@ The Consumer Phase 8 work is complete when:
 - [x] Consumer links back to Admin Workstation.
 - [x] Accessibility and mobile QA pass.
 - [x] Performance/Vapor story is preserved.
-- [ ] Documentation explains how to evaluate the Consumer app.
-- [ ] No unsupported production, certification, AI, or customer claims remain.
+- [x] Documentation explains how to evaluate the Consumer app.
+- [x] No unsupported production, certification, AI, or customer claims remain.
 
 ---
 
