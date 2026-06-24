@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { useEventHistory } from '@/composables/useEventHistory';
+import { UI_CONSTANTS } from '@/lib/demo/demoScenario';
 import FormulaRenderer from './FormulaRenderer.vue';
 import AuditTimeline from './AuditTimeline.vue';
 
@@ -124,8 +125,11 @@ onMounted(() => {
         class="flex flex-col gap-6"
       >
         <div class="bg-surface-card p-4 rounded-md shadow-subtle border border-surface-border">
-          <div class="bg-surface-canvas px-3 py-2 rounded text-center border border-surface-border/50">
-            <p class="text-xs text-functional-neutral font-bold uppercase tracking-wider mb-1">Verified Asset ID</p>
+          <div class="bg-surface-canvas px-3 py-2 rounded text-center border border-surface-border/50 relative">
+            <div class="flex items-center justify-center gap-2 mb-1">
+              <p class="text-xs text-functional-neutral font-bold uppercase tracking-wider">Verified Asset ID</p>
+              <span class="bp-chip text-[10px]">{{ UI_CONSTANTS.DEMO_DATA_ONLY }}</span>
+            </div>
             <p class="font-mono text-sm break-all font-medium text-brand-integrity-green">{{ assetId }}</p>
           </div>
         </div>

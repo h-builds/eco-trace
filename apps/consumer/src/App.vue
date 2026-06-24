@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { useWasm } from '@/composables/useWasm';
 import NavBar from './components/NavBar.vue';
+import DemoModeBanner from './components/DemoModeBanner.vue';
 import LandingPage from './components/LandingPage.vue';
 import ScannerView from './components/ScannerView.vue';
 import TransparencyScreen from './components/TransparencyScreen.vue';
@@ -75,6 +76,7 @@ const handleReset = () => {
     </div>
 
     <main class="max-w-7xl mx-auto px-4 md:px-8 pt-20 pb-16">
+      <DemoModeBanner class="mb-8 rounded-sm shadow-subtle" />
       <LandingPage
         v-if="currentView === 'landing'"
         @navigate="navigate"

@@ -68,26 +68,26 @@ Create a clear demo context so recruiters understand they are evaluating a portf
 
 ### Tasks
 
-- [ ] Add a persistent `DemoModeBanner` component visible on landing, scanner, and transparency views.
-- [ ] Banner copy must clearly state: `Portfolio demo — seeded product verification scenario`.
-- [ ] Add a shared `demoScenario.ts` module under `apps/consumer/src/lib/demo/`.
-- [ ] Define canonical scenario metadata:
-  - [ ] Scenario name: `Verified Product Journey`.
-  - [ ] Asset ID: `ASSET-COFFEE-2026-001`.
-  - [ ] Product name: `Andes Trace Coffee Lot 001`.
-  - [ ] Supplier: `Andes Organic Cooperative`.
-  - [ ] Processor: `Veridian Processing Node`.
-  - [ ] Logistics partner: `NorthStar Logistics`.
-  - [ ] Consumer-facing claim: `Product claims, verified.`
-- [ ] Expose scenario copy constants for Landing, Scanner, Transparency, and empty/error states.
-- [ ] Add a small `Demo data only` label wherever seeded product or actor information is shown.
-- [ ] Ensure no copy implies real customers, real certifications, real transaction volume, or production deployment.
+- [x] Add a persistent `DemoModeBanner` component visible on landing, scanner, and transparency views.
+- [x] Banner copy must clearly state: `Portfolio demo — seeded product verification scenario`.
+- [x] Add a shared `demoScenario.ts` module under `apps/consumer/src/lib/demo/`.
+- [x] Define canonical scenario metadata:
+  - [x] Scenario name: `Verified Product Journey`.
+  - [x] Asset ID: `ASSET-COFFEE-2026-001`.
+  - [x] Product name: `Andes Trace Coffee Lot 001`.
+  - [x] Supplier: `Andes Organic Cooperative`.
+  - [x] Processor: `Veridian Processing Node`.
+  - [x] Logistics partner: `NorthStar Logistics`.
+  - [x] Consumer-facing claim: `Product claims, verified.`
+- [x] Expose scenario copy constants for Landing, Scanner, Transparency, and empty/error states.
+- [x] Add a small `Demo data only` label wherever seeded product or actor information is shown.
+- [x] Ensure no copy implies real customers, real certifications, real transaction volume, or production deployment.
 
 ### Exit Criteria
 
-- [ ] Every Consumer view clearly communicates that the product data is seeded demo data.
-- [ ] Demo copy is centralized and reusable.
-- [ ] Recruiters understand the product scenario without reading the README.
+- [x] Every Consumer view clearly communicates that the product data is seeded demo data.
+- [x] Demo copy is centralized and reusable.
+- [x] Recruiters understand the product scenario without reading the README.
 
 ---
 

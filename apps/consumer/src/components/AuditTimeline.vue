@@ -2,6 +2,7 @@
 import type { SupplyChainEvent } from '@/lib/api/types';
 import AuthenticityBadge from './AuthenticityBadge.vue';
 import { useWasm, type WasmIntegrityResult } from '@/composables/useWasm';
+import { UI_CONSTANTS } from '@/lib/demo/demoScenario';
 
 const props = defineProps<{
   events: SupplyChainEvent[]
@@ -53,7 +54,7 @@ const getIntegrity = (event: SupplyChainEvent): WasmIntegrityResult['status'] =>
 
           <div class="text-xs text-functional-neutral grid grid-cols-2 gap-2 mt-1">
             <div class="flex flex-col">
-              <span class="font-medium text-brand-deep-charcoal">Actor:</span>
+              <span class="font-medium text-brand-deep-charcoal">Actor: <span class="text-[10px] text-functional-neutral font-normal">({{ UI_CONSTANTS.DEMO_DATA_ONLY }})</span></span>
               <span
                 class="font-mono break-all line-clamp-1"
                 :title="event.actor_id"

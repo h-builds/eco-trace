@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import type { SupplyChainEvent } from '@/lib/api/types';
 import { useWasm } from '@/composables/useWasm';
+import { UI_CONSTANTS } from '@/lib/demo/demoScenario';
 
 const props = defineProps<{
   events: SupplyChainEvent[]
@@ -25,7 +26,10 @@ const calculationResult = computed(() => {
 
 <template>
   <div class="bg-surface-card p-4 rounded-md shadow-subtle border border-surface-border">
-    <h3 class="text-md font-medium text-brand-deep-charcoal mb-2">Carbon Footprint</h3>
+    <div class="flex items-center justify-between mb-2">
+      <h3 class="text-md font-medium text-brand-deep-charcoal">Carbon Footprint</h3>
+      <span class="bp-chip text-[10px]">{{ UI_CONSTANTS.DEMO_DATA_ONLY }}</span>
+    </div>
 
     <div class="font-mono text-xs text-functional-neutral mb-3 bg-surface-canvas p-3 border border-surface-border rounded-sm overflow-x-auto whitespace-nowrap">
       <span class="block mb-1 font-bold">CF_{total} = Σ(E_i × EF_i)</span>
