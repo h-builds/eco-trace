@@ -1,4 +1,6 @@
 .
+├── .agents
+│   └── AGENTS.md
 ├── .ai
 │   ├── context
 │   │   ├── CONTEXT.md
@@ -29,6 +31,7 @@
 ├── apps
 │   ├── admin
 │   │   ├── AGENTS.md
+│   │   ├── README.md
 │   │   ├── TASKS.md
 │   │   ├── app
 │   │   │   ├── api
@@ -72,6 +75,7 @@
 │   │   │   └── TASKS.md
 │   │   ├── components
 │   │   │   ├── AuditTester.tsx
+│   │   │   ├── DemoModeBanner.tsx
 │   │   │   └── analytics
 │   │   │       ├── MetricCard.tsx
 │   │   │       ├── MetricsGrid.tsx
@@ -79,6 +83,7 @@
 │   │   ├── hooks
 │   │   │   └── useWasm.ts
 │   │   ├── lib
+│   │   │   ├── demoScenario.ts
 │   │   │   ├── seed.ts
 │   │   │   ├── wasm.d.ts
 │   │   │   └── wasmLoader.ts
@@ -187,4 +192,4 @@
 ├── pnpm-workspace.yaml
 └── turbo.json
 
-51 directories, 136 files
+52 directories, 140 files
