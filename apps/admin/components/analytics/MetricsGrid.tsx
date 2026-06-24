@@ -17,21 +17,25 @@ export function MetricsGrid({ metricsPromise }: MetricsGridProps) {
         title="Total Carbon Footprint" 
         value={`${metrics.totalCarbonFootprint.toLocaleString(undefined, { maximumFractionDigits: 2 })} kgCO2e`} 
         variant="default"
+        description="Aggregate emissions from verified events."
       />
       <MetricCard 
         title="Active Assets" 
         value={metrics.activeAssets.toLocaleString()} 
         variant="default"
+        description="Total products tracked in the system."
       />
       <MetricCard 
         title="Verified Events" 
         value={metrics.verifiedEvents.toLocaleString()} 
         variant="success"
+        description="Valid supply-chain movements recorded."
       />
       <MetricCard 
         title="Integrity Violations" 
         value={metrics.integrityViolations.toLocaleString()} 
         variant={metrics.integrityViolations > 0 ? "alert" : "success"}
+        description="Tamper attempts or unauthorized events."
       />
     </div>
   );
