@@ -229,32 +229,32 @@ Make `/dashboard/entities` clearly demonstrate enterprise governance of actors a
 
 ### Tasks
 
-- [ ] Rename page heading to `Trusted Actors & Assets`.
-- [ ] Add a short explainer:
-  - [ ] `Only trusted actors can contribute verifiable events to the product journey.`
-- [ ] Add scenario filter or featured scenario section for `ASSET-COFFEE-2026-001`.
-- [ ] Improve actor cards/table rows with:
-  - [ ] Actor name.
-  - [ ] Actor role/type.
-  - [ ] Public key preview.
-  - [ ] Status badge: `ACTIVE` / `REVOKED`.
-  - [ ] Related asset count if available.
-- [ ] Improve asset rows with:
-  - [ ] Asset ID.
-  - [ ] Product name.
-  - [ ] Owner actor.
-  - [ ] Created timestamp.
-  - [ ] Link to related events.
-- [ ] Keep Add Trusted Actor and Register Asset forms available.
-- [ ] Add demo-safe form copy explaining changes affect the demo database only.
-- [ ] Validate forms still follow `DATA_DICTIONARY.md` constraints.
-- [ ] Add accessible empty states if no actors/assets are present.
+- [x] Rename page heading to `Trusted Actors & Assets`.
+- [x] Add a short explainer:
+  - [x] `Only trusted actors can contribute verifiable events to the product journey.`
+- [x] Add scenario filter or featured scenario section for `ASSET-COFFEE-2026-001`.
+- [x] Improve actor cards/table rows with:
+  - [x] Actor name.
+  - [x] Actor role/type.
+  - [x] Public key preview.
+  - [x] Status badge: `ACTIVE` / `REVOKED`.
+  - [x] Related asset count if available.
+- [x] Improve asset rows with:
+  - [x] Asset ID.
+  - [x] Product name.
+  - [x] Owner actor.
+  - [x] Created timestamp.
+  - [x] Link to related events.
+- [x] Keep Add Trusted Actor and Register Asset forms available.
+- [x] Add demo-safe form copy explaining changes affect the demo database only.
+- [x] Validate forms still follow `DATA_DICTIONARY.md` constraints.
+- [x] Add accessible empty states if no actors/assets are present.
 
 ### Exit Criteria
 
-- [ ] The page communicates trust governance clearly.
-- [ ] A reviewer can identify who is allowed to write trusted events.
-- [ ] Forms remain functional and validated.
+- [x] The page communicates trust governance clearly.
+- [x] A reviewer can identify who is allowed to write trusted events.
+- [x] Forms remain functional and validated.
 
 ---
 
