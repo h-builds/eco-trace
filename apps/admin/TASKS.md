@@ -158,32 +158,32 @@ Upgrade `/dashboard/overview` into the main recruiter-facing Admin landing page.
 
 ### Tasks
 
-- [ ] Add a top hero section:
-  - [ ] Title: `Auditor Workstation`.
-  - [ ] Subtitle: `Govern trusted supply-chain claims, verify event integrity, and export audit-ready evidence.`
-- [ ] Add a `Verified Product Journey` scenario card.
-- [ ] Keep existing metric cards:
-  - [ ] Total Carbon Footprint.
-  - [ ] Active Assets.
-  - [ ] Verified Events.
-  - [ ] Integrity Violations.
-- [ ] Add short plain-English descriptions under each metric.
-- [ ] Add quick links to:
-  - [ ] Trusted Actors & Assets.
-  - [ ] Integrity Events.
-  - [ ] Compliance Export.
-  - [ ] Consumer Verification App.
-- [ ] Add a `Why this matters in 2026` callout:
-  - [ ] Focus on enterprise verification, governance, trust boundaries, and auditability.
-  - [ ] Do not frame the project as wrapper SaaS.
-- [ ] Ensure existing Server Components and Server Actions remain intact.
-- [ ] Preserve progressive loading with Suspense where already implemented.
+- [x] Add a top hero section:
+  - [x] Title: `Auditor Workstation`.
+  - [x] Subtitle: `Govern trusted supply-chain claims, verify event integrity, and export audit-ready evidence.`
+- [x] Add a `Verified Product Journey` scenario card.
+- [x] Keep existing metric cards:
+  - [x] Total Carbon Footprint.
+  - [x] Active Assets.
+  - [x] Verified Events.
+  - [x] Integrity Violations.
+- [x] Add short plain-English descriptions under each metric.
+- [x] Add quick links to:
+  - [x] Trusted Actors & Assets.
+  - [x] Integrity Events.
+  - [x] Compliance Export.
+  - [x] Consumer Verification App.
+- [x] Add a `Why this matters in 2026` callout:
+  - [x] Focus on enterprise verification, governance, trust boundaries, and auditability.
+  - [x] Do not frame the project as wrapper SaaS.
+- [x] Ensure existing Server Components and Server Actions remain intact.
+- [x] Preserve progressive loading with Suspense where already implemented.
 
 ### Exit Criteria
 
-- [ ] The overview page explains the value of the Admin app in under 30 seconds.
-- [ ] Existing analytics still work.
-- [ ] The page feels like a workstation entry point, not a marketing landing page.
+- [x] The overview page explains the value of the Admin app in under 30 seconds.
+- [x] Existing analytics still work.
+- [x] The page feels like a workstation entry point, not a marketing landing page.
 
 ---
 
