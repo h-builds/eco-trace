@@ -4,6 +4,17 @@ import AssetForm from "./AssetForm";
 import { DemoScenario } from "../../../lib/demoScenario";
 export const runtime = "edge";
 
+// Demo Fixture: Infers role based on seeded name for the portfolio demo.
+// Do not use in production without a proper 'role' column in D1.
+function getActorRole(name: string): string {
+  const lower = name.toLowerCase();
+  if (lower.includes('origin') || lower.includes('cooperative') || lower.includes('farm')) return 'Origin Supplier';
+  if (lower.includes('process') || lower.includes('veridian')) return 'Processor';
+  if (lower.includes('logistic') || lower.includes('transport') || lower.includes('northstar')) return 'Logistics Partner';
+  if (lower.includes('audit')) return 'External Auditor';
+  return 'Supply Chain Actor';
+}
+
 interface D1Database {
   prepare(query: string): D1PreparedStatement;
 }
@@ -30,6 +41,7 @@ interface Actor {
   public_key: string;
   status: string;
   created_at: string;
+  asset_count?: number;
 }
 
 interface Asset {
@@ -58,12 +70,12 @@ export default async function EntitiesPage(
   let assets: Asset[] = [];
 
   try {
-    let actorQueryStr = "SELECT * FROM trusted_actors";
+    let actorQueryStr = "SELECT t.*, (SELECT COUNT(a.id) FROM assets a WHERE a.owner_id = t.id) as asset_count FROM trusted_actors t";
     let assetQueryStr = "SELECT a.*, t.name as owner_name FROM assets a JOIN trusted_actors t ON a.owner_id = t.id";
     const bindParams: string[] = [];
     
     if (q) {
-      actorQueryStr += " WHERE name LIKE ?";
+      actorQueryStr += " WHERE t.name LIKE ?";
       assetQueryStr += " WHERE a.name LIKE ? OR t.name LIKE ?";
       bindParams.push(`%${q}%`);
     }
@@ -84,8 +96,23 @@ export default async function EntitiesPage(
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-light text-white mb-2">Entity & Actor Management</h1>
-        <p className="text-[#607D8B]">Manage trusted supply chain participants and trackable assets.</p>
+        <h1 className="text-3xl font-light text-white mb-2">Trusted Actors & Assets</h1>
+        <p className="text-[#607D8B]">Only trusted actors can contribute verifiable events to the product journey.</p>
+      </div>
+
+      <div className="bg-[#1A1C1E] border border-[#607D8B]/30 rounded-lg p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+          <h2 className="text-white font-medium mb-1">Featured Demo Scenario</h2>
+          <p className="text-sm text-[#607D8B]">
+            {DemoScenario.name} — <span className="text-[#8ED5B4]">{DemoScenario.assetId}</span>
+          </p>
+        </div>
+        <a 
+          href={`/dashboard/entities?q=${DemoScenario.assetId}`}
+          className="bg-[#607D8B]/20 text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-[#607D8B]/40 transition-colors"
+        >
+          Filter by Scenario
+        </a>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -132,18 +159,21 @@ export default async function EntitiesPage(
                 <thead className="text-xs uppercase bg-[#1A1C1E] border-b border-[#607D8B]/30 text-white">
                   <tr>
                     <th className="px-4 py-3 font-medium">Name</th>
+                    <th className="px-4 py-3 font-medium">Role</th>
                     <th className="px-4 py-3 font-medium">Status</th>
                     <th className="px-4 py-3 font-medium">Public Key (Truncated)</th>
+                    <th className="px-4 py-3 font-medium text-right">Assets</th>
                   </tr>
                 </thead>
                 <tbody>
                   {actors.length === 0 ? (
                     <tr>
-                      <td colSpan={3} className="px-4 py-4 text-center">No actors registered.</td>
+                      <td colSpan={5} className="px-4 py-4 text-center">No actors registered.</td>
                     </tr>
                   ) : actors.map((actor) => (
                     <tr key={actor.id} className="border-b border-[#607D8B]/10 hover:bg-white/5 transition-colors">
                       <td className="px-4 py-3 font-medium text-white">{actor.name}</td>
+                      <td className="px-4 py-3 text-xs">{getActorRole(actor.name)}</td>
                       <td className="px-4 py-3">
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${actor.status === 'ACTIVE' ? 'bg-[#287A33]/20 text-[#8ED5B4]' : 'bg-[#D32F2F]/20 text-[#D32F2F]'}`}>
                           {actor.status}
@@ -152,6 +182,7 @@ export default async function EntitiesPage(
                       <td className="px-4 py-3 font-mono text-xs" title={actor.public_key}>
                         {actor.public_key.substring(0, 12)}...{actor.public_key.substring(actor.public_key.length - 8)}
                       </td>
+                      <td className="px-4 py-3 text-right">{actor.asset_count || 0}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -180,18 +211,28 @@ export default async function EntitiesPage(
                     <th className="px-4 py-3 font-medium">ID</th>
                     <th className="px-4 py-3 font-medium">Name</th>
                     <th className="px-4 py-3 font-medium">Owner</th>
+                    <th className="px-4 py-3 font-medium">Created</th>
+                    <th className="px-4 py-3 font-medium text-right">Events</th>
                   </tr>
                 </thead>
                 <tbody>
                   {assets.length === 0 ? (
                     <tr>
-                      <td colSpan={3} className="px-4 py-4 text-center">No assets registered.</td>
+                      <td colSpan={5} className="px-4 py-4 text-center">No assets registered.</td>
                     </tr>
                   ) : assets.map((asset) => (
                     <tr key={asset.id} className="border-b border-[#607D8B]/10 hover:bg-white/5 transition-colors">
                       <td className="px-4 py-3 font-mono text-xs">{asset.id}</td>
                       <td className="px-4 py-3 font-medium text-white">{asset.name}</td>
                       <td className="px-4 py-3">{asset.owner_name}</td>
+                      <td className="px-4 py-3 text-xs">
+                        {new Date(asset.created_at).toLocaleDateString()}
+                      </td>
+                      <td className="px-4 py-3 text-right">
+                        <a href={`/dashboard/events?q=${asset.id}`} className="text-[#8ED5B4] hover:underline text-xs">
+                          View Events &rarr;
+                        </a>
+                      </td>
                     </tr>
                   ))}
                 </tbody>

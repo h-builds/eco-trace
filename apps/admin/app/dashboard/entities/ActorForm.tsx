@@ -21,7 +21,10 @@ export default function ActorForm() {
 
   return (
     <div className="bg-[#1A1C1E] p-6 rounded-lg shadow-elevation-1 border border-[#607D8B]/20">
-      <h3 className="text-xl font-medium text-white mb-4">Add Trusted Actor</h3>
+      <h3 className="text-xl font-medium text-white mb-2">Add Trusted Actor</h3>
+      <p className="text-xs text-[#607D8B] mb-4">
+        Changes affect the demo database only. New actors will be available for test event registration.
+      </p>
       {state?.message && (
         <div className={`p-3 mb-4 rounded text-sm ${state.success ? 'bg-[#287A33]/20 text-[#8ED5B4]' : 'bg-[#D32F2F]/20 text-[#D32F2F]'}`}>
           {state.message}
