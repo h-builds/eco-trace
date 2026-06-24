@@ -308,28 +308,28 @@ Make `/dashboard/compliance` feel like the final evidence step in the Admin demo
 
 ### Tasks
 
-- [ ] Rename page heading to `Compliance Export`.
-- [ ] Add a short explainer:
-  - [ ] `Generate audit evidence from verified event history without mutating trusted values.`
-- [ ] Preselect or highlight the canonical asset scenario where possible.
-- [ ] Keep date-range and actor filters available.
-- [ ] Add a `Recommended demo export` callout.
-- [ ] Ensure PDF export includes:
-  - [ ] Scenario name.
-  - [ ] Asset ID.
-  - [ ] Event statuses.
-  - [ ] Actor identity metadata.
-  - [ ] Integrity verification metadata.
-  - [ ] Demo-data disclaimer.
-- [ ] Ensure CSV export preserves raw event fields.
-- [ ] Add success and failure states for export actions.
-- [ ] Add a post-export CTA to open the Consumer Verification App.
+- [x] Rename page heading to `Compliance Export`.
+- [x] Add a short explainer:
+  - [x] `Generate audit evidence from verified event history without mutating trusted values.`
+- [x] Preselect or highlight the canonical asset scenario where possible.
+- [x] Keep date-range and actor filters available.
+- [x] Add a `Recommended demo export` callout.
+- [x] Ensure PDF export includes:
+  - [x] Scenario name.
+  - [x] Asset ID.
+  - [x] Event statuses.
+  - [x] Actor identity metadata.
+  - [x] Integrity verification metadata.
+  - [x] Demo-data disclaimer.
+- [x] Ensure CSV export preserves raw event fields.
+- [x] Add success and failure states for export actions.
+- [x] Add a post-export CTA to open the Consumer Verification App.
 
 ### Exit Criteria
 
-- [ ] Compliance export completes the recruiter journey.
-- [ ] Exported files are clearly labeled as demo evidence.
-- [ ] Raw verified values are not transformed incorrectly.
+- [x] Compliance export completes the recruiter journey.
+- [x] Exported files are clearly labeled as demo evidence.
+- [x] Raw verified values are not transformed incorrectly.
 
 ---
 

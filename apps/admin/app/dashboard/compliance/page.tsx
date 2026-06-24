@@ -17,20 +17,29 @@ export default function CompliancePage() {
   const borderColor = colors.surface.border.value;
   const textPrimary = colors.brand["deep-charcoal"].value;
   const textSecondary = colors.functional.neutral.value;
+  const infoBg = "rgba(40, 122, 51, 0.1)";
+  const infoBorder = "rgba(40, 122, 51, 0.2)";
+  const infoText = colors.brand["verification-green"].value;
 
   const fontSizes = typography.sizes;
   const fontFamily = typography["font-family"].value;
 
+  const applyDemoPreset = () => {
+    setStartDate("2026-01-01");
+    setEndDate("2026-12-31");
+    setActorId("");
+  };
+
   return (
     <div style={{ backgroundColor: bgCanvas, minHeight: "100vh", padding: spacing.scale.value[5] + "px", fontFamily, color: textPrimary }}>
       <h1 style={{ fontSize: fontSizes.xl.value, fontWeight: typography.weights.bold.value, marginBottom: spacing.scale.value[2] + "px", display: "flex", alignItems: "center", gap: "8px" }}>
-        Compliance Reporting
+        Compliance Export
         <span style={{ fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.05em", backgroundColor: "rgba(245, 158, 11, 0.1)", color: "#f59e0b", border: "1px solid rgba(245, 158, 11, 0.2)", padding: "2px 8px", borderRadius: "4px" }}>
           {DemoScenario.demoDataLabel}
         </span>
       </h1>
       <p style={{ color: textSecondary, marginBottom: spacing.scale.value[5] + "px" }}>
-        Generate immutable cryptographic audit reports for external regulators.
+        Generate audit evidence from verified event history without mutating trusted values.
       </p>
 
       <div style={{
@@ -41,9 +50,29 @@ export default function CompliancePage() {
         boxShadow: shadows.subtle.value,
         maxWidth: "600px"
       }}>
-        <h2 style={{ fontSize: fontSizes.lg.value, fontWeight: typography.weights.bold.value, marginBottom: spacing.scale.value[3] + "px" }}>
-          Report Filters
-        </h2>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: spacing.scale.value[2] + "px" }}>
+          <h2 style={{ fontSize: fontSizes.lg.value, fontWeight: typography.weights.bold.value }}>
+            Report Filters
+          </h2>
+          <button 
+            onClick={applyDemoPreset}
+            style={{
+              padding: "4px 8px",
+              backgroundColor: infoBg,
+              color: infoText,
+              border: `1px solid ${infoBorder}`,
+              borderRadius: radii.sm.value,
+              fontSize: fontSizes.sm.value,
+              cursor: "pointer",
+              fontWeight: typography.weights.medium.value
+            }}
+          >
+            Recommended demo export
+          </button>
+        </div>
+        <p style={{ fontSize: fontSizes.sm.value, color: textSecondary, marginBottom: spacing.scale.value[4] + "px" }}>
+          The demo scenario preselects the canonical product journey.
+        </p>
 
         <div style={{ display: "flex", flexDirection: "column", gap: spacing.scale.value[3] + "px" }}>
           <div>

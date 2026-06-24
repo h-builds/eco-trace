@@ -30,6 +30,7 @@ interface ExportEvent {
 export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProps) {
   const [isExporting, setIsExporting] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
   const { colors, typography, radii, spacing } = tokens.tokens;
   const btnColor = colors.brand["verification-green"].value;
@@ -43,18 +44,47 @@ export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProp
     return params.toString();
   };
 
-  const handleExportCSV = () => {
-    window.location.href = `/api/compliance/export?${buildQueryString("csv")}`;
+  const handleExportCSV = async () => {
+    try {
+      setIsExporting(true);
+      setErrorMsg(null);
+      setSuccessMsg(null);
+      
+      const res = await fetch(`/api/compliance/export?${buildQueryString("csv")}`);
+      if (!res.ok) throw new Error("Failed to generate CSV data.");
+      
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "compliance_export.csv";
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      
+      setIsExporting(false);
+      setSuccessMsg("CSV exported successfully.");
+      setTimeout(() => setSuccessMsg(null), 5000);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setErrorMsg(err.message);
+      } else {
+        setErrorMsg("Failed to generate CSV.");
+      }
+      setIsExporting(false);
+    }
   };
 
   const handleExportPDF = async () => {
     try {
       setIsExporting(true);
       setErrorMsg(null);
+      setSuccessMsg(null);
 
       const res = await fetch(`/api/compliance/export?${buildQueryString("json")}`);
       if (!res.ok) throw new Error("Failed to fetch compliance data for PDF.");
-      const data = await res.json();
+      const data: ExportEvent[] = await res.json();
 
       if (!data || data.length === 0) {
         setErrorMsg("No records found for the selected criteria.");
@@ -65,12 +95,19 @@ export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProp
       const doc = new jsPDF("landscape");
 
       doc.setFontSize(18);
-      doc.text("Eco-Trace: Compliance Report & Audit Trail", 14, 22);
+      doc.setTextColor(0);
+      doc.text("Compliance Export", 14, 22);
 
       doc.setFontSize(11);
       doc.setTextColor(100);
       doc.text(`Generated on: ${new Date().toLocaleString()}`, 14, 30);
       
+      doc.setFontSize(10);
+      doc.setTextColor(50);
+      doc.text(`Scenario: ${DemoScenario.name}`, 14, 38);
+      doc.text(`Asset ID: ${DemoScenario.assetId}`, 14, 44);
+      doc.text(`Notice: ${DemoScenario.demoDataLabel}`, 14, 50);
+
       let filterText = "Filters Applied: ";
       const filters = [];
       if (startDate) filters.push(`From: ${new Date(startDate).toLocaleDateString()}`);
@@ -78,7 +115,7 @@ export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProp
       if (actorId) filters.push(`Actor: ${actorId}`);
       if (filters.length === 0) filters.push("None (All Data)");
       filterText += filters.join(" | ");
-      doc.text(filterText, 14, 36);
+      doc.text(filterText, 14, 56);
 
       const tableColumn = ["Event ID", "Timestamp", "Actor ID", "Action", "Energy (kWh)", "Emission (kgCO2e/kWh)", "Integrity Status", "Signature (Trunc)"];
       const tableRows = data.map((row: ExportEvent) => [
@@ -93,7 +130,7 @@ export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProp
       ]);
 
       autoTable(doc, {
-        startY: 42,
+        startY: 62,
         head: [tableColumn],
         body: tableRows,
         styles: { fontSize: 8, cellPadding: 2 },
@@ -114,8 +151,14 @@ export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProp
 
       doc.save("compliance_audit_trail.pdf");
       setIsExporting(false);
-    } catch (err: any) {
-      setErrorMsg(err.message || "Failed to generate local PDF from API data.");
+      setSuccessMsg("PDF exported successfully.");
+      setTimeout(() => setSuccessMsg(null), 5000);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setErrorMsg(err.message);
+      } else {
+        setErrorMsg("Failed to generate local PDF from API data.");
+      }
       setIsExporting(false);
     }
   };
@@ -135,10 +178,10 @@ export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProp
     <div>
       <div style={{ display: "flex", gap: "12px", marginTop: "16px" }}>
         <button onClick={handleExportCSV} style={buttonStyle} disabled={isExporting}>
-          Export as CSV
+          {isExporting ? "Exporting..." : "Export as CSV"}
         </button>
         <button onClick={handleExportPDF} style={buttonStyle} disabled={isExporting}>
-          {isExporting ? "Generating PDF..." : "Export as PDF"}
+          {isExporting ? "Exporting..." : "Export as PDF"}
         </button>
         <a
           href={getConsumerProductUrl(DemoScenario.assetId)}
@@ -155,8 +198,13 @@ export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProp
         </a>
       </div>
       {errorMsg && (
-        <div style={{ marginTop: "12px", color: colors.functional.alert.value }}>
+        <div style={{ marginTop: "12px", color: colors.functional.alert.value, fontSize: typography.sizes.sm.value }}>
           {errorMsg}
+        </div>
+      )}
+      {successMsg && (
+        <div style={{ marginTop: "12px", color: colors.brand["verification-green"].value, fontSize: typography.sizes.sm.value }}>
+          {successMsg}
         </div>
       )}
     </div>
