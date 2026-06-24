@@ -6,7 +6,7 @@ import { getAggregatedMetrics, type TimeRange, type AggregatedMetrics } from "./
 import { TimeRangeFilter } from "../../../components/analytics/TimeRangeFilter";
 import { MetricsGrid } from "../../../components/analytics/MetricsGrid";
 import { DemoScenario } from "../../../lib/demoScenario";
-
+import { getConsumerProductUrl } from "../../../lib/consumer";
 export function OverviewClient({ initialPromise }: { initialPromise: Promise<AggregatedMetrics> }) {
   const [range, setRange] = useState<TimeRange>("30d");
   const [metricsPromise, setMetricsPromise] = useState<Promise<AggregatedMetrics>>(initialPromise);
@@ -19,8 +19,7 @@ export function OverviewClient({ initialPromise }: { initialPromise: Promise<Agg
     });
   };
 
-  const consumerUrl = process.env.NEXT_PUBLIC_CONSUMER_URL || "#";
-  const consumerHref = consumerUrl !== "#" ? `${consumerUrl}?asset=${DemoScenario.assetId}` : "#";
+  const consumerHref = getConsumerProductUrl(DemoScenario.assetId);
 
   return (
     <div className="flex flex-col gap-8 w-full pb-10">

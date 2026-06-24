@@ -4,7 +4,7 @@ import React, { useEffect, useState, useTransition } from "react";
 import { tokens } from "@eco-trace/ui";
 import { useWasm } from "../../../hooks/useWasm";
 import { DemoScenario } from "../../../lib/demoScenario";
-
+import { getConsumerProductUrl } from "../../../lib/consumer";
 export interface SupplyChainEvent {
   id: string;
   actor: string;
@@ -244,16 +244,35 @@ export default function EventLogPage() {
             {DemoScenario.demoDataLabel}
           </span>
         </h1>
-        <div style={{
-          padding: `${spacing.scale.value[1]}px ${spacing.scale.value[3]}px`,
-          backgroundColor: nonValidUniqueIds > 0 ? invalidColor : bgCanvas,
-          color: nonValidUniqueIds > 0 ? "#FFFFFF" : textPrimary,
-          border: `1px solid ${nonValidUniqueIds > 0 ? invalidColor : borderColor}`,
-          borderRadius: radii.md.value,
-          fontWeight: typography.weights.bold.value,
-          fontSize: fontSizes.md.value,
-        }} aria-live="polite">
-          Security Counter: {nonValidUniqueIds} Compromised Flow{nonValidUniqueIds !== 1 ? "s" : ""}
+        <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+          <a
+            href={getConsumerProductUrl(DemoScenario.assetId)}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              padding: `${spacing.scale.value[1]}px ${spacing.scale.value[3]}px`,
+              backgroundColor: validColor,
+              color: "#FFFFFF",
+              borderRadius: radii.md.value,
+              textDecoration: "none",
+              fontWeight: typography.weights.bold.value,
+              fontSize: fontSizes.md.value,
+              display: "inline-block",
+            }}
+          >
+            Open this product in Consumer App ↗
+          </a>
+          <div style={{
+            padding: `${spacing.scale.value[1]}px ${spacing.scale.value[3]}px`,
+            backgroundColor: nonValidUniqueIds > 0 ? invalidColor : bgCanvas,
+            color: nonValidUniqueIds > 0 ? "#FFFFFF" : textPrimary,
+            border: `1px solid ${nonValidUniqueIds > 0 ? invalidColor : borderColor}`,
+            borderRadius: radii.md.value,
+            fontWeight: typography.weights.bold.value,
+            fontSize: fontSizes.md.value,
+          }} aria-live="polite">
+            Security Counter: {nonValidUniqueIds} Compromised Flow{nonValidUniqueIds !== 1 ? "s" : ""}
+          </div>
         </div>
       </div>
 

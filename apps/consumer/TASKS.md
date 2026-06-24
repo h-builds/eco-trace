@@ -376,6 +376,7 @@ Ensure the Consumer app consumes the same canonical scenario used by the Admin a
 - [ ] Review `src/lib/api/types.ts` against the shared data dictionary.
 - [ ] Review `src/lib/api/client.ts` for asset-specific lookup support.
 - [ ] Add or confirm support for fetching events by `asset_id`.
+- [ ] Ensure Consumer app router accepts the querystring contract `?asset=${assetId}` sent by the Admin Workstation.
 - [ ] Ensure `ASSET-COFFEE-2026-001` maps to the seeded Admin scenario.
 - [ ] Ensure Consumer does not mutate or sign events.
 - [ ] Ensure Consumer only verifies, calculates, and displays read-only data.

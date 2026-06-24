@@ -378,26 +378,26 @@ Define the Admin-side contract for opening the matching Consumer product view.
 
 ### Tasks
 
-- [ ] Add environment variable support:
-  - [ ] `NEXT_PUBLIC_CONSUMER_URL`.
-- [ ] Create helper function:
-  - [ ] `getConsumerProductUrl(assetId: string)`.
-- [ ] Use canonical format:
-  - [ ] `${NEXT_PUBLIC_CONSUMER_URL}?asset=${assetId}`.
-- [ ] Add fallback state when Consumer URL is not configured.
-- [ ] Use this helper in:
-  - [ ] Overview page.
-  - [ ] Events page.
-  - [ ] Compliance page.
-  - [ ] Root technical showcase.
-- [ ] Do not implement Consumer routing in Admin tasks.
-- [ ] Document this contract for the future Consumer TASKS.md.
+- [x] Add environment variable support:
+  - [x] `NEXT_PUBLIC_CONSUMER_URL`.
+- [x] Create helper function:
+  - [x] `getConsumerProductUrl(assetId: string)`.
+- [x] Use canonical format:
+  - [x] `${NEXT_PUBLIC_CONSUMER_URL}?asset=${assetId}`.
+- [x] Add fallback state when Consumer URL is not configured.
+- [x] Use this helper in:
+  - [x] Overview page.
+  - [x] Events page.
+  - [x] Compliance page.
+  - [x] Root technical showcase.
+- [x] Do not implement Consumer routing in Admin tasks.
+- [x] Document this contract for the future Consumer TASKS.md.
 
 ### Exit Criteria
 
-- [ ] Admin consistently links to the same Consumer demo asset.
-- [ ] Missing Consumer deployment does not break the Admin UI.
-- [ ] Consumer work can be planned separately.
+- [x] Admin consistently links to the same Consumer demo asset.
+- [x] Missing Consumer deployment does not break the Admin UI.
+- [x] Consumer work can be planned separately.
 
 ---
 

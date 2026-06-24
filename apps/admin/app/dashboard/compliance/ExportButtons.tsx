@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { tokens } from "@eco-trace/ui";
+import { DemoScenario } from "../../../lib/demoScenario";
+import { getConsumerProductUrl } from "../../../lib/consumer";
 
 interface ExportButtonsProps {
   startDate: string;
@@ -138,6 +140,19 @@ export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProp
         <button onClick={handleExportPDF} style={buttonStyle} disabled={isExporting}>
           {isExporting ? "Generating PDF..." : "Export as PDF"}
         </button>
+        <a
+          href={getConsumerProductUrl(DemoScenario.assetId)}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            ...buttonStyle,
+            backgroundColor: colors.brand["deep-charcoal"].value,
+            textDecoration: "none",
+            display: "inline-block",
+          }}
+        >
+          Open in Consumer App ↗
+        </a>
       </div>
       {errorMsg && (
         <div style={{ marginTop: "12px", color: colors.functional.alert.value }}>

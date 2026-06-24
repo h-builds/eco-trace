@@ -30,6 +30,7 @@
 ├── anatomy.md
 ├── apps
 │   ├── admin
+│   │   ├── .env.example
 │   │   ├── AGENTS.md
 │   │   ├── README.md
 │   │   ├── TASKS.md
@@ -83,6 +84,7 @@
 │   │   ├── hooks
 │   │   │   └── useWasm.ts
 │   │   ├── lib
+│   │   │   ├── consumer.ts
 │   │   │   ├── demoScenario.ts
 │   │   │   ├── seed.ts
 │   │   │   ├── wasm.d.ts
@@ -192,4 +194,4 @@
 ├── pnpm-workspace.yaml
 └── turbo.json
 
-52 directories, 140 files
+52 directories, 142 files
