@@ -400,30 +400,30 @@ Preserve the Consumer app's credibility as a mobile-first public verification su
 
 ### Tasks
 
-- [ ] Run accessibility audit for:
-  - [ ] Landing page.
-  - [ ] Scanner view.
-  - [ ] Camera denied state.
-  - [ ] Demo product path.
-  - [ ] Transparency screen.
-- [ ] Ensure all CTAs have accessible names.
-- [ ] Ensure all trust badges have non-color-only indicators.
-- [ ] Ensure QR image has descriptive alt text.
-- [ ] Ensure keyboard navigation works across demo-critical paths.
-- [ ] Ensure touch targets are large enough for mobile.
-- [ ] Ensure reduced-motion preferences are respected if animations exist.
-- [ ] Validate mobile layout at common widths:
-  - [ ] 320px.
-  - [ ] 375px.
-  - [ ] 430px.
-  - [ ] 768px.
-- [ ] Validate desktop layout for recruiter review.
+- [x] Run accessibility audit for:
+  - [x] Landing page.
+  - [x] Scanner view.
+  - [x] Camera denied state.
+  - [x] Demo product path.
+  - [x] Transparency screen.
+- [x] Ensure all CTAs have accessible names.
+- [x] Ensure all trust badges have non-color-only indicators.
+- [x] Ensure QR image has descriptive alt text.
+- [x] Ensure keyboard navigation works across demo-critical paths.
+- [x] Ensure touch targets are large enough for mobile.
+- [x] Ensure reduced-motion preferences are respected if animations exist.
+- [x] Validate mobile layout at common widths:
+  - [x] 320px.
+  - [x] 375px.
+  - [x] 430px.
+  - [x] 768px.
+- [x] Validate desktop layout for recruiter review.
 
 ### Exit Criteria
 
-- [ ] Recruiter-critical paths pass WCAG 2.1 AA expectations.
-- [ ] Mobile and desktop demo paths are both usable.
-- [ ] Trust states are accessible without relying only on color.
+- [x] Recruiter-critical paths pass WCAG 2.1 AA expectations.
+- [x] Mobile and desktop demo paths are both usable.
+- [x] Trust states are accessible without relying only on color.
 
 ---
 
@@ -436,14 +436,14 @@ Maintain the existing performance story while adding demo polish.
 
 ### Tasks
 
-- [ ] Ensure no new heavy dependency is added for simple demo interactions.
-- [ ] Confirm scanner fallback and demo product path do not increase startup cost significantly.
-- [ ] Confirm Wasm loading remains lazy or appropriately scoped.
-- [ ] Confirm no unnecessary re-renders are introduced in transparency view updates.
-- [ ] Confirm landing page remains lightweight.
-- [ ] Run existing latency and Vapor-related tests.
-- [ ] Run Lighthouse mobile validation after UI changes.
-- [ ] Document any performance exception if unavoidable.
+- [x] Ensure no new heavy dependency is added for simple demo interactions.
+- [x] Confirm scanner fallback and demo product path do not increase startup cost significantly.
+- [x] Confirm Wasm loading remains lazy or appropriately scoped.
+- [x] Confirm no unnecessary re-renders are introduced in transparency view updates.
+- [x] Confirm landing page remains lightweight.
+- [x] Run existing latency and Vapor-related tests.
+- [x] Run Lighthouse mobile validation after UI changes.
+- [x] Document any performance exception if unavoidable.
 
 ### Required Commands
 
@@ -457,10 +457,10 @@ If project scripts differ, use the closest existing workspace-specific equivalen
 
 ### Exit Criteria
 
-- [ ] Consumer demo remains fast enough for public review.
-- [ ] No-camera path feels instant.
-- [ ] QR verification flow remains performant.
-- [ ] Added demo polish does not undermine the Vapor/performance narrative.
+- [x] Consumer demo remains fast enough for public review.
+- [x] No-camera path feels instant.
+- [x] QR verification flow remains performant.
+- [x] Added demo polish does not undermine the Vapor/performance narrative.
 
 ---
 
@@ -566,18 +566,18 @@ pnpm lint --filter consumer
 
 The Consumer Phase 8 work is complete when:
 
-- [ ] `apps/consumer/TASKS.md` is aligned with root `PLAN.md`.
-- [ ] Consumer demo has a no-camera path.
-- [ ] Static QR demo asset is available.
-- [ ] Scanner errors gracefully route to the demo product.
-- [ ] Transparency screen shows the canonical product journey.
-- [ ] Authenticity badge explains trust states clearly.
-- [ ] Carbon formula is accurate and understandable.
-- [ ] Audit timeline matches Admin seeded scenario.
+- [x] `apps/consumer/TASKS.md` is aligned with root `PLAN.md`.
+- [x] Consumer demo has a no-camera path.
+- [x] Static QR demo asset is available.
+- [x] Scanner errors gracefully route to the demo product.
+- [x] Transparency screen shows the canonical product journey.
+- [x] Authenticity badge explains trust states clearly.
+- [x] Carbon formula is accurate and understandable.
+- [x] Audit timeline matches Admin seeded scenario.
 - [x] Landing page explains the recruiter path.
-- [ ] Consumer links back to Admin Workstation.
-- [ ] Accessibility and mobile QA pass.
-- [ ] Performance/Vapor story is preserved.
+- [x] Consumer links back to Admin Workstation.
+- [x] Accessibility and mobile QA pass.
+- [x] Performance/Vapor story is preserved.
 - [ ] Documentation explains how to evaluate the Consumer app.
 - [ ] No unsupported production, certification, AI, or customer claims remain.
 
