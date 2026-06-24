@@ -1,7 +1,7 @@
 import { getRequestContext } from "@cloudflare/next-on-pages";
 import ActorForm from "./ActorForm";
 import AssetForm from "./AssetForm";
-
+import { DemoScenario } from "../../../lib/demoScenario";
 export const runtime = "edge";
 
 interface D1Database {
@@ -115,7 +115,12 @@ export default async function EntitiesPage(
 
           <div className="bg-[#1A1C1E] p-6 rounded-lg shadow-elevation-1 border border-[#607D8B]/20">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-medium text-white">Trusted Actors</h3>
+              <h3 className="text-xl font-medium text-white flex items-center gap-2">
+                Trusted Actors
+                <span className="text-[10px] uppercase tracking-wider bg-amber-500/10 text-amber-500 border border-amber-500/20 px-2 py-0.5 rounded">
+                  {DemoScenario.demoDataLabel}
+                </span>
+              </h3>
               <div className="flex gap-2">
                 <a href={`?actorPage=${Math.max(1, actorPage - 1)}${q ? `&q=${q}` : ''}${assetPage > 1 ? `&assetPage=${assetPage}` : ''}`} className="text-xs px-2 py-1 bg-[#607D8B]/20 rounded text-white hover:bg-[#607D8B]/40">Prev</a>
                 <span className="text-xs text-[#607D8B] py-1">Page {actorPage}</span>
@@ -156,7 +161,12 @@ export default async function EntitiesPage(
 
           <div className="bg-[#1A1C1E] p-6 rounded-lg shadow-elevation-1 border border-[#607D8B]/20">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-medium text-white">Registered Assets</h3>
+              <h3 className="text-xl font-medium text-white flex items-center gap-2">
+                Registered Assets
+                <span className="text-[10px] uppercase tracking-wider bg-amber-500/10 text-amber-500 border border-amber-500/20 px-2 py-0.5 rounded">
+                  {DemoScenario.demoDataLabel}
+                </span>
+              </h3>
               <div className="flex gap-2">
                 <a href={`?assetPage=${Math.max(1, assetPage - 1)}${q ? `&q=${q}` : ''}${actorPage > 1 ? `&actorPage=${actorPage}` : ''}`} className="text-xs px-2 py-1 bg-[#607D8B]/20 rounded text-white hover:bg-[#607D8B]/40">Prev</a>
                 <span className="text-xs text-[#607D8B] py-1">Page {assetPage}</span>

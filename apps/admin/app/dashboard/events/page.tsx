@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useTransition } from "react";
 import { tokens } from "@eco-trace/ui";
 import { useWasm } from "../../../hooks/useWasm";
+import { DemoScenario } from "../../../lib/demoScenario";
 
 export interface SupplyChainEvent {
   id: string;
@@ -237,7 +238,12 @@ export default function EventLogPage() {
   return (
     <div style={{ backgroundColor: bgCanvas, minHeight: "100vh", padding: spacing.scale.value[5] + "px", fontFamily, color: textPrimary }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: spacing.scale.value[4] + "px" }}>
-        <h1 style={{ fontSize: fontSizes.xl.value, fontWeight: typography.weights.bold.value }}>High-Density Event Log</h1>
+        <h1 style={{ fontSize: fontSizes.xl.value, fontWeight: typography.weights.bold.value, display: "flex", alignItems: "center", gap: "8px" }}>
+          High-Density Event Log
+          <span style={{ fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.05em", backgroundColor: "rgba(245, 158, 11, 0.1)", color: "#f59e0b", border: "1px solid rgba(245, 158, 11, 0.2)", padding: "2px 8px", borderRadius: "4px" }}>
+            {DemoScenario.demoDataLabel}
+          </span>
+        </h1>
         <div style={{
           padding: `${spacing.scale.value[1]}px ${spacing.scale.value[3]}px`,
           backgroundColor: nonValidUniqueIds > 0 ? invalidColor : bgCanvas,

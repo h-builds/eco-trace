@@ -3,11 +3,12 @@
 import React, { useState } from "react";
 import { tokens } from "@eco-trace/ui";
 import { ExportButtons } from "./ExportButtons";
+import { DemoScenario } from "../../../lib/demoScenario";
 
 export default function CompliancePage() {
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [actorId, setActorId] = useState("");
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
+  const [actorId, setActorId] = useState<string>("");
 
   const { colors, typography, spacing, radii, shadows } = tokens.tokens;
   
@@ -22,8 +23,11 @@ export default function CompliancePage() {
 
   return (
     <div style={{ backgroundColor: bgCanvas, minHeight: "100vh", padding: spacing.scale.value[5] + "px", fontFamily, color: textPrimary }}>
-      <h1 style={{ fontSize: fontSizes.xl.value, fontWeight: typography.weights.bold.value, marginBottom: spacing.scale.value[2] + "px" }}>
+      <h1 style={{ fontSize: fontSizes.xl.value, fontWeight: typography.weights.bold.value, marginBottom: spacing.scale.value[2] + "px", display: "flex", alignItems: "center", gap: "8px" }}>
         Compliance Reporting
+        <span style={{ fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.05em", backgroundColor: "rgba(245, 158, 11, 0.1)", color: "#f59e0b", border: "1px solid rgba(245, 158, 11, 0.2)", padding: "2px 8px", borderRadius: "4px" }}>
+          {DemoScenario.demoDataLabel}
+        </span>
       </h1>
       <p style={{ color: textSecondary, marginBottom: spacing.scale.value[5] + "px" }}>
         Generate immutable cryptographic audit reports for external regulators.

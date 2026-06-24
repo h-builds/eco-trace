@@ -2,6 +2,8 @@ import { logoutAction } from "../lib/auth-actions";
 import { getSession } from "../lib/session";
 import { redirect } from "next/navigation";
 
+import { DemoModeBanner } from "../../components/DemoModeBanner";
+
 export default async function DashboardLayout({
   children,
 }: {
@@ -14,7 +16,8 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-surface-canvas text-brand-deep-charcoal w-full">
+    <div className="min-h-screen bg-surface-canvas text-brand-deep-charcoal w-full flex flex-col">
+      <DemoModeBanner />
       <header className="flex items-center justify-between p-4 bg-surface-card border-b border-surface-border shadow-subtle w-full">
         <div className="flex items-center gap-4">
           <h2 className="text-lg font-bold">Eco-Trace Admin</h2>
