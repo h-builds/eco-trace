@@ -96,26 +96,35 @@
 │   │   ├── package-lock.json
 │   │   ├── package.json
 │   │   ├── postcss.config.mjs
+│   │   ├── public
+│   │   │   ├── engine.wasm
+│   │   │   └── wasm_exec.js
 │   │   ├── schema.sql
 │   │   ├── seed.sql
 │   │   ├── tsconfig.json
-│   │   ├── tsconfig.tsbuildinfo
 │   │   └── wrangler.toml
 │   └── consumer
 │       ├── .env.example
 │       ├── .eslintrc.cjs
 │       ├── .lighthouserc.json
 │       ├── AGENTS.md
+│       ├── README.md
 │       ├── TASKS.md
 │       ├── archive
 │       │   └── TASKS.md
 │       ├── index.html
 │       ├── package.json
+│       ├── public
+│       │   ├── engine.wasm
+│       │   ├── qr-demo.png
+│       │   ├── robots.txt
+│       │   └── wasm_exec.js
 │       ├── src
 │       │   ├── App.vue
 │       │   ├── components
 │       │   │   ├── AuditTimeline.vue
 │       │   │   ├── AuthenticityBadge.vue
+│       │   │   ├── DemoModeBanner.vue
 │       │   │   ├── FormulaRenderer.vue
 │       │   │   ├── LandingPage.spec.ts
 │       │   │   ├── LandingPage.vue
@@ -126,6 +135,8 @@
 │       │   │       ├── ActiveNodeStats.vue
 │       │   │       ├── BentoDashboard.vue
 │       │   │       ├── ConsumerFooter.vue
+│       │   │       ├── DemoGuideSection.vue
+│       │   │       ├── HeroSection.spec.ts
 │       │   │       ├── HeroSection.vue
 │       │   │       └── InteropCallout.vue
 │       │   ├── composables
@@ -137,6 +148,9 @@
 │       │   │   │   ├── cache.ts
 │       │   │   │   ├── client.ts
 │       │   │   │   └── types.ts
+│       │   │   ├── demo
+│       │   │   │   └── demoScenario.ts
+│       │   │   ├── env.ts
 │       │   │   └── wasm
 │       │   │       └── engine.ts
 │       │   ├── main.ts
@@ -169,7 +183,6 @@
 │   │   ├── cmd
 │   │   │   └── test_verify
 │   │   │       └── main.go
-│   │   ├── engine.wasm
 │   │   ├── go.mod
 │   │   ├── internal
 │   │   │   ├── crypto
@@ -193,6 +206,8 @@
 │       └── variables.css
 ├── pnpm-lock.yaml
 ├── pnpm-workspace.yaml
+├── public
+│   └── wasm_exec.js
 └── turbo.json
 
-52 directories, 143 files
+57 directories, 154 files
