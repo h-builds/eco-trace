@@ -181,29 +181,29 @@ Ensure the Product Transparency View clearly maps to the same product and events
 
 ### Tasks
 
-- [ ] Update `TransparencyScreen.vue` to lead with the canonical product identity.
-- [ ] Display:
-  - [ ] Product name: `Andes Trace Coffee Lot 001`.
-  - [ ] Asset ID: `ASSET-COFFEE-2026-001`.
-  - [ ] Verification status.
-  - [ ] Last verified timestamp.
-  - [ ] Short trust summary.
-- [ ] Add a `Verified Product Journey` section summarizing the supply-chain path.
-- [ ] Ensure event timeline steps align with Admin seeded events:
-  - [ ] Origin.
-  - [ ] Transform.
-  - [ ] Transport.
-  - [ ] Audit.
-- [ ] Show invalid or unauthorized events only if they are meant to educate the user; otherwise summarize them as auditor-only findings.
-- [ ] Add plain-language copy explaining what was verified.
-- [ ] Add CTA: `Open Auditor Workstation` using `VITE_ADMIN_URL`.
-- [ ] Add fallback copy if `VITE_ADMIN_URL` is missing.
+- [x] Update `TransparencyScreen.vue` to lead with the canonical product identity.
+- [x] Display:
+  - [x] Product name: `Andes Trace Coffee Lot 001`.
+  - [x] Asset ID: `ASSET-COFFEE-2026-001`.
+  - [x] Verification status.
+  - [x] Last verified timestamp.
+  - [x] Short trust summary.
+- [x] Add a `Verified Product Journey` section summarizing the supply-chain path.
+- [x] Ensure event timeline steps align with Admin seeded events:
+  - [x] Origin.
+  - [x] Transform.
+  - [x] Transport.
+  - [x] Audit.
+- [x] Show invalid or unauthorized events only if they are meant to educate the user; otherwise summarize them as auditor-only findings.
+- [x] Add plain-language copy explaining what was verified.
+- [x] Add CTA: `Open Auditor Workstation` using `VITE_ADMIN_URL`.
+- [x] Add fallback copy if `VITE_ADMIN_URL` is missing.
 
 ### Exit Criteria
 
-- [ ] Consumer view and Admin scenario tell the same story.
-- [ ] Product verification is understandable without ESG domain knowledge.
-- [ ] The Consumer app feels like the public trust surface of the Admin system.
+- [x] Consumer view and Admin scenario tell the same story.
+- [x] Product verification is understandable without ESG domain knowledge.
+- [x] The Consumer app feels like the public trust surface of the Admin system.
 
 ---
 
@@ -216,27 +216,27 @@ Make the authenticity result immediate, credible, and easy to understand.
 
 ### Tasks
 
-- [ ] Review `AuthenticityBadge.vue` for all supported integrity states.
-- [ ] Ensure states map consistently to the data dictionary:
-  - [ ] `VALID`.
-  - [ ] `WARNING`.
-  - [ ] `INVALID`.
-  - [ ] `UNAUTHORIZED`.
-- [ ] Add short plain-English explanations:
-  - [ ] `VALID`: `The product history matches trusted actor signatures.`
-  - [ ] `WARNING`: `The product data is readable, but one validation check needs review.`
-  - [ ] `INVALID`: `The payload appears modified or failed integrity checks.`
-  - [ ] `UNAUTHORIZED`: `The signature may be valid, but the actor is not trusted.`
-- [ ] Ensure badge colors use `@eco-trace/ui` tokens only.
-- [ ] Ensure contrast meets WCAG 2.1 AA.
-- [ ] Add a compact mobile layout.
-- [ ] Add tests for badge state rendering.
+- [x] Review `AuthenticityBadge.vue` for all supported integrity states.
+- [x] Ensure states map consistently to the data dictionary:
+  - [x] `VALID`.
+  - [x] `WARNING`.
+  - [x] `INVALID`.
+  - [x] `UNAUTHORIZED`.
+- [x] Add short plain-English explanations:
+  - [x] `VALID`: `The product history matches trusted actor signatures.`
+  - [x] `WARNING`: `The product data is readable, but one validation check needs review.`
+  - [x] `INVALID`: `The payload appears modified or failed integrity checks.`
+  - [x] `UNAUTHORIZED`: `The signature may be valid, but the actor is not trusted.`
+- [x] Ensure badge colors use `@eco-trace/ui` tokens only.
+- [x] Ensure contrast meets WCAG 2.1 AA.
+- [x] Add a compact mobile layout.
+- [x] Add tests for badge state rendering.
 
 ### Exit Criteria
 
-- [ ] Trust status is understandable in less than five seconds.
-- [ ] Integrity language is accurate and not overclaimed.
-- [ ] Badge visual states remain token-compliant and accessible.
+- [x] Trust status is understandable in less than five seconds.
+- [x] Integrity language is accurate and not overclaimed.
+- [x] Badge visual states remain token-compliant and accessible.
 
 ---
 
@@ -249,23 +249,23 @@ Explain the deterministic carbon-footprint calculation without overwhelming the 
 
 ### Tasks
 
-- [ ] Review `FormulaRenderer.vue` for clarity and responsiveness.
-- [ ] Display the formula:
-  - [ ] `CF_total = Σ(E_i × EF_i)`.
-- [ ] Add plain-English helper text:
-  - [ ] `Each supply-chain step contributes energy usage multiplied by its emissions factor.`
-- [ ] Show the final calculated value for the canonical product.
-- [ ] Show individual event contributions only if the UI remains clear.
-- [ ] Add a note that the calculation is deterministic and shared with the Admin verification model.
-- [ ] Avoid claiming regulatory compliance unless clearly marked as demo/future-ready.
-- [ ] Ensure mathematical values come from the existing verified event data, not hardcoded UI strings.
-- [ ] Add tests for formula rendering and value display.
+- [x] Review `FormulaRenderer.vue` for clarity and responsiveness.
+- [x] Display the formula:
+  - [x] `CF_total = Σ(E_i × EF_i)`.
+- [x] Add plain-English helper text:
+  - [x] `Each supply-chain step contributes energy usage multiplied by its emissions factor.`
+- [x] Show the final calculated value for the canonical product.
+- [x] Show individual event contributions only if the UI remains clear.
+- [x] Add a note that the calculation is deterministic and shared with the Admin verification model.
+- [x] Avoid claiming regulatory compliance unless clearly marked as demo/future-ready.
+- [x] Ensure mathematical values come from the existing verified event data, not hardcoded UI strings.
+- [x] Add tests for formula rendering and value display.
 
 ### Exit Criteria
 
-- [ ] The formula supports the technical story without confusing non-technical reviewers.
-- [ ] Values remain connected to the verification data path.
-- [ ] No unsupported compliance claim is introduced.
+- [x] The formula supports the technical story without confusing non-technical reviewers.
+- [x] Values remain connected to the verification data path.
+- [x] No unsupported compliance claim is introduced.
 
 ---
 
@@ -278,25 +278,25 @@ Make the audit timeline feel like a consumer-friendly version of the Admin event
 
 ### Tasks
 
-- [ ] Review `AuditTimeline.vue` event ordering and labels.
-- [ ] Ensure timeline events are chronological.
-- [ ] Use human-readable event labels:
-  - [ ] `Origin registered`.
-  - [ ] `Processing verified`.
-  - [ ] `Transport verified`.
-  - [ ] `Auditor reviewed`.
-- [ ] Show actor names from the canonical scenario.
-- [ ] Show integrity status per event with accessible labels.
-- [ ] Add compact mobile timeline behavior.
-- [ ] Add an `Auditor-only findings` summary if invalid/unauthorized events are included in consumer data.
-- [ ] Ensure timeline does not expose confusing raw cryptographic data by default.
-- [ ] Add optional `Technical details` disclosure for reviewers who want to inspect IDs, public keys, or signatures.
+- [x] Review `AuditTimeline.vue` event ordering and labels.
+- [x] Ensure timeline events are chronological.
+- [x] Use human-readable event labels:
+  - [x] `Origin registered`.
+  - [x] `Processing verified`.
+  - [x] `Transport verified`.
+  - [x] `Auditor reviewed`.
+- [x] Show actor names from the canonical scenario.
+- [x] Show integrity status per event with accessible labels.
+- [x] Add compact mobile timeline behavior.
+- [x] Add an `Auditor-only findings` summary if invalid/unauthorized events are included in consumer data.
+- [x] Ensure timeline does not expose confusing raw cryptographic data by default.
+- [x] Add optional `Technical details` disclosure for reviewers who want to inspect IDs, public keys, or signatures.
 
 ### Exit Criteria
 
-- [ ] The timeline is readable on mobile.
-- [ ] The journey maps to Admin seeded data.
-- [ ] Technical depth is available without overwhelming the default view.
+- [x] The timeline is readable on mobile.
+- [x] The journey maps to Admin seeded data.
+- [x] Technical depth is available without overwhelming the default view.
 
 ---
 

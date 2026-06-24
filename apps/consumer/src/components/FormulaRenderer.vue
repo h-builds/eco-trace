@@ -31,6 +31,12 @@ const calculationResult = computed(() => {
       <span class="bp-chip text-[10px]">{{ UI_CONSTANTS.DEMO_DATA_ONLY }}</span>
     </div>
 
+    <p class="text-xs text-functional-neutral mb-3 leading-relaxed">
+      Each supply-chain step contributes energy usage multiplied by its emissions factor.
+      <br>
+      <span class="text-[10px] italic">Deterministic calculation shared with the Admin verification model.</span>
+    </p>
+
     <div class="font-mono text-xs text-functional-neutral mb-3 bg-surface-canvas p-3 border border-surface-border rounded-sm overflow-x-auto whitespace-nowrap">
       <span class="block mb-1 font-bold">CF_{total} = Σ(E_i × EF_i)</span>
 

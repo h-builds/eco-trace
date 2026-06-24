@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 import { useEventHistory } from '@/composables/useEventHistory';
-import { UI_CONSTANTS } from '@/lib/demo/demoScenario';
+import { SCENARIO_METADATA, UI_CONSTANTS } from '@/lib/demo/demoScenario';
 import { getAdminUrl } from '@/lib/env';
 import FormulaRenderer from './FormulaRenderer.vue';
 import AuditTimeline from './AuditTimeline.vue';
+import AuthenticityBadge from './AuthenticityBadge.vue';
+import { useWasm, type WasmIntegrityResult } from '@/composables/useWasm';
 
 const ADMIN_URL = getAdminUrl();
 
@@ -17,6 +19,27 @@ const emit = defineEmits<{
 }>();
 
 const { events, isLoading, isError, error, fetchHistory } = useEventHistory();
+const { isReady, verifyIntegrity } = useWasm();
+
+const latestTimestamp = computed(() => {
+  if (!events.value.length) return null;
+  const sorted = [...events.value].sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+  return new Date(sorted[0].timestamp).toLocaleString();
+});
+
+const overallStatus = computed<WasmIntegrityResult['status']>(() => {
+  if (!events.value.length || !isReady.value) return 'PENDING';
+  let hasWarning = false;
+  for (const event of events.value) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { signature, public_key, integrity_status, ...payload } = event as any;
+    const res = verifyIntegrity(payload, event.signature, event.public_key);
+    if (res.status === 'INVALID') return 'INVALID';
+    if (res.status === 'VALID' && event.integrity_status === 'UNAUTHORIZED') return 'UNAUTHORIZED';
+    if (res.status === 'WARNING') hasWarning = true;
+  }
+  return hasWarning ? 'WARNING' : 'VALID';
+});
 
 onMounted(() => {
   if (props.assetId) {
@@ -127,13 +150,26 @@ onMounted(() => {
         v-else
         class="flex flex-col gap-6"
       >
-        <div class="bg-surface-card p-4 rounded-md shadow-subtle border border-surface-border">
-          <div class="bg-surface-canvas px-3 py-2 rounded text-center border border-surface-border/50 relative">
-            <div class="flex items-center justify-center gap-2 mb-1">
-              <p class="text-xs text-functional-neutral font-bold uppercase tracking-wider">Verified Asset ID</p>
+        <div class="bg-surface-card p-4 rounded-md shadow-subtle border border-surface-border flex flex-col gap-4">
+          <div class="text-center">
+            <h2 class="text-xl font-bold text-brand-deep-charcoal">{{ SCENARIO_METADATA.productName }}</h2>
+            <div class="flex items-center justify-center gap-2 mt-1">
+              <span class="font-mono text-xs text-functional-neutral">{{ SCENARIO_METADATA.assetId }}</span>
               <span class="bp-chip text-[10px]">{{ UI_CONSTANTS.DEMO_DATA_ONLY }}</span>
             </div>
-            <p class="font-mono text-sm break-all font-medium text-brand-integrity-green">{{ assetId }}</p>
+          </div>
+
+          <div class="bg-surface-canvas p-3 rounded text-center border border-surface-border/50 flex flex-col items-center gap-2">
+            <p class="text-xs text-functional-neutral font-bold uppercase tracking-wider">Overall Trust Status</p>
+            <AuthenticityBadge :status="overallStatus" :showExplanation="true" class="items-center text-center" />
+            <p v-if="latestTimestamp" class="text-xs text-functional-neutral mt-1">
+              Last verified: {{ latestTimestamp }}
+            </p>
+          </div>
+
+          <div class="text-sm text-brand-deep-charcoal text-center px-2 mt-2">
+            <strong>Verified Product Journey</strong><br>
+            <span class="text-functional-neutral">A cryptographically verified record of the supply-chain path, from origin to audit.</span>
           </div>
         </div>
 
