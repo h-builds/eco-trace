@@ -65,26 +65,26 @@ Create a clear demo context so recruiters immediately understand they are evalua
 
 ### Tasks
 
-- [ ] Add a global `DemoModeBanner` component visible across `/dashboard/*`.
-- [ ] Banner copy must clearly state: `Portfolio demo — seeded supply-chain verification scenario`.
-- [ ] Add a shared `demoScenario.ts` module under `apps/admin/app/lib/` or `apps/admin/lib/`.
-- [ ] Define canonical scenario metadata:
-  - [ ] Scenario name: `Verified Product Journey`.
-  - [ ] Asset ID: `ASSET-COFFEE-2026-001`.
-  - [ ] Product name: `Andes Trace Coffee Lot 001`.
-  - [ ] Trusted supplier: `Andes Organic Cooperative`.
-  - [ ] Processing actor: `Veridian Processing Node`.
-  - [ ] Logistics actor: `NorthStar Logistics`.
-  - [ ] Auditor label: `Eco Trace Demo Auditor`.
-- [ ] Expose scenario copy constants for reuse across Overview, Entities, Events, and Compliance pages.
-- [ ] Add a small `Demo data only` label wherever seeded actors, assets, or reports are shown.
-- [ ] Ensure no copy implies real customers, real certification, or production deployment.
+- [x] Add a global `DemoModeBanner` component visible across `/dashboard/*`.
+- [x] Banner copy must clearly state: `Portfolio demo — seeded supply-chain verification scenario`.
+- [x] Add a shared `demoScenario.ts` module under `apps/admin/app/lib/` or `apps/admin/lib/`.
+- [x] Define canonical scenario metadata:
+  - [x] Scenario name: `Verified Product Journey`.
+  - [x] Asset ID: `ASSET-COFFEE-2026-001`.
+  - [x] Product name: `Andes Trace Coffee Lot 001`.
+  - [x] Trusted supplier: `Andes Organic Cooperative`.
+  - [x] Processing actor: `Veridian Processing Node`.
+  - [x] Logistics actor: `NorthStar Logistics`.
+  - [x] Auditor label: `Eco Trace Demo Auditor`.
+- [x] Expose scenario copy constants for reuse across Overview, Entities, Events, and Compliance pages.
+- [x] Add a small `Demo data only` label wherever seeded actors, assets, or reports are shown.
+- [x] Ensure no copy implies real customers, real certification, or production deployment.
 
 ### Exit Criteria
 
-- [ ] Every Admin dashboard section clearly communicates that the data is seeded demo data.
-- [ ] Demo copy is centralized and reusable.
-- [ ] Recruiters understand the scenario without reading the README.
+- [x] Every Admin dashboard section clearly communicates that the data is seeded demo data.
+- [x] Demo copy is centralized and reusable.
+- [x] Recruiters understand the scenario without reading the README.
 
 ---
 
