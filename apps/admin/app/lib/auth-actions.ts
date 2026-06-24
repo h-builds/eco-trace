@@ -5,8 +5,14 @@ import { createSession, deleteSession, getSession, type Role } from "./session";
 import { Logger } from "./logger";
 import { redirect } from "next/navigation";
 
+interface D1PreparedStatement {
+  bind(...values: unknown[]): D1PreparedStatement;
+  all<T = unknown>(): Promise<{ results: T[] }>;
+  run(): Promise<void>;
+}
+
 interface D1Database {
-  prepare(query: string): any;
+  prepare(query: string): D1PreparedStatement;
 }
 
 interface Env {
@@ -25,8 +31,15 @@ interface UserRow {
 }
 
 export async function loginAction(state: AuthState | null, formData: FormData): Promise<AuthState> {
-  const username = formData.get("username") as string;
-  const password = formData.get("password") as string;
+  const usernameEntry = formData.get("username");
+  const passwordEntry = formData.get("password");
+
+  if (typeof usernameEntry !== "string" || typeof passwordEntry !== "string") {
+    return { error: "Invalid input format." };
+  }
+
+  const username = usernameEntry.trim();
+  const password = passwordEntry;
 
   if (!username || !password) {
     return { error: "Username and password are required." };
@@ -40,13 +53,19 @@ export async function loginAction(state: AuthState | null, formData: FormData): 
   try {
     const { results } = await db.prepare(
       "SELECT id, username, role, password_hash FROM users WHERE username = ?"
-    ).bind(username).all();
+    ).bind(username).all<UserRow>();
 
     if (!results || results.length === 0) {
       return { error: "Invalid credentials." };
     }
 
-    const user = results[0] as unknown as UserRow;
+    const rawUser = results[0];
+    const user: UserRow = {
+      id: String(rawUser.id),
+      username: String(rawUser.username),
+      role: rawUser.role as Role,
+      password_hash: String(rawUser.password_hash)
+    };
     
     // In a real app, use bcrypt/argon2 to verify hash.
     // For this local/Edge demo based on seed.sql, we match plaintext.
@@ -67,11 +86,11 @@ export async function loginAction(state: AuthState | null, formData: FormData): 
     ).run();
 
   } catch (err) {
-    Logger.error("Database operation failed during login", err);
+    Logger.error("Authentication operation failed during login", err);
     return { error: "Authentication service unavailable. Please try again." };
   }
 
-  redirect("/dashboard");
+  redirect("/dashboard/overview");
 }
 
 export async function logoutAction() {
@@ -96,6 +115,11 @@ export async function logoutAction() {
     }
   }
 
-  await deleteSession();
+  try {
+    await deleteSession();
+  } catch (err) {
+    Logger.error("Failed to delete session during logout", err);
+  }
+
   redirect("/login");
 }

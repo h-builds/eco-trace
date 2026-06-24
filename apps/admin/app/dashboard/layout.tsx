@@ -46,6 +46,19 @@ export default async function DashboardLayout({
         </div>
       </header>
       <main className="p-6 w-full">
+        <div className="mb-6 p-4 bg-surface-card border border-brand-integrity-green/30 rounded-md shadow-subtle flex items-start gap-3">
+          <div className="text-brand-integrity-green mt-0.5">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <div>
+            <h3 className="text-sm font-bold text-brand-deep-charcoal">Role-Based Access Control Active</h3>
+            <p className="text-xs text-functional-neutral mt-1">
+              You are logged in as an <strong>{session.role}</strong>. This restricts which events you can verify and which entities you can manage. In a production environment, your actions are cryptographically signed by your Ed25519 key.
+            </p>
+          </div>
+        </div>
         {children}
       </main>
     </div>
