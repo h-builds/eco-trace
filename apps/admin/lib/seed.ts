@@ -9,21 +9,34 @@ const __dirname = path.dirname(__filename);
 function getRawPublicKey(keyPair: crypto.KeyPairKeyObjectResult): string {
   return keyPair.publicKey.export({ type: 'spki', format: 'der' }).subarray(12).toString('hex');
 }
-const keyA = crypto.generateKeyPairSync('ed25519');
-const pubA = getRawPublicKey(keyA);
 
-const keyB = crypto.generateKeyPairSync('ed25519');
-const pubB = getRawPublicKey(keyB);
-const keyD = crypto.generateKeyPairSync('ed25519');
+const keyAndes = crypto.generateKeyPairSync('ed25519');
+const pubAndes = getRawPublicKey(keyAndes);
 
-console.log(`[+] Generated Ed25519 Pair - Supplier A \t(${pubA.slice(0, 16)}...)`);
-console.log(`[+] Generated Ed25519 Pair - Factory B \t(${pubB.slice(0, 16)}...)`);
+const keyVeridian = crypto.generateKeyPairSync('ed25519');
+const pubVeridian = getRawPublicKey(keyVeridian);
+
+const keyNorthStar = crypto.generateKeyPairSync('ed25519');
+const pubNorthStar = getRawPublicKey(keyNorthStar);
+
+const keyAuditor = crypto.generateKeyPairSync('ed25519');
+const pubAuditor = getRawPublicKey(keyAuditor);
+
+const keyRogue = crypto.generateKeyPairSync('ed25519');
+const pubRogue = getRawPublicKey(keyRogue);
+
+console.log(`[+] Generated Ed25519 Pair - Andes Organic \t(${pubAndes.slice(0, 16)}...)`);
+console.log(`[+] Generated Ed25519 Pair - Veridian Node \t(${pubVeridian.slice(0, 16)}...)`);
+console.log(`[+] Generated Ed25519 Pair - NorthStar Log \t(${pubNorthStar.slice(0, 16)}...)`);
+console.log(`[+] Generated Ed25519 Pair - Demo Auditor \t(${pubAuditor.slice(0, 16)}...)`);
 
 const registryPath = path.resolve(__dirname, '../../../packages/engine/internal/crypto/registry.go');
 let registryGo = fs.readFileSync(registryPath, 'utf-8');
 
-registryGo = registryGo.replace(/pubA, _ := hex\.DecodeString\("[a-f0-9]+"\)/, `pubA, _ := hex.DecodeString("${pubA}")`);
-registryGo = registryGo.replace(/pubB, _ := hex\.DecodeString\("[a-f0-9]+"\)/, `pubB, _ := hex.DecodeString("${pubB}")`);
+registryGo = registryGo.replace(/pubAndes := mustDecodeHex\("[a-f0-9]+"\)/, `pubAndes := mustDecodeHex("${pubAndes}")`);
+registryGo = registryGo.replace(/pubVeridian := mustDecodeHex\("[a-f0-9]+"\)/, `pubVeridian := mustDecodeHex("${pubVeridian}")`);
+registryGo = registryGo.replace(/pubNorthStar := mustDecodeHex\("[a-f0-9]+"\)/, `pubNorthStar := mustDecodeHex("${pubNorthStar}")`);
+registryGo = registryGo.replace(/pubAuditor := mustDecodeHex\("[a-f0-9]+"\)/, `pubAuditor := mustDecodeHex("${pubAuditor}")`);
 
 fs.writeFileSync(registryPath, registryGo);
 console.log(`[+] Updated Go Registry: ${registryPath}`);
@@ -45,22 +58,53 @@ function signPayload(eventId: string, assetId: string, actorId: string, timestam
   return crypto.sign(null, data, privateKey).toString('hex');
 }
 
-const mockEvents = [
-  { uuid: crypto.randomUUID(), actor_id: "Supplier A", key: keyA.privateKey, pub: pubA, ev_id: "EVT-001", act: "ORIGIN", e: 100.5, f: 0.8 },
-  { uuid: crypto.randomUUID(), actor_id: "Supplier A", key: keyA.privateKey, pub: pubA, ev_id: "EVT-002", act: "TRANSFORM", e: 200.0, f: 0.9 },
-  { uuid: crypto.randomUUID(), actor_id: "Factory B", key: keyB.privateKey, pub: pubB, ev_id: "EVT-003", act: "TRANSFORM", e: 500.2, f: 0.5 },
-  { uuid: crypto.randomUUID(), actor_id: "Factory B", key: keyB.privateKey, pub: pubB, ev_id: "EVT-004", act: "AUDIT", e: 150.0, f: 0.5 },
-  { uuid: crypto.randomUUID(), actor_id: "Logistics D", key: keyD.privateKey, pub: getRawPublicKey(keyD), ev_id: "EVT-005", act: "TRANSPORT", e: 50.0, f: 1.2, override: "UNAUTHORIZED" },
+const ASSET_ID = "ASSET-COFFEE-2026-001";
+
+// Timestamps must follow a strict chronological sequence to satisfy the Engine's lineage validation
+const t1 = new Date("2026-06-01T08:00:00Z").toISOString();
+const t2 = new Date("2026-06-03T14:30:00Z").toISOString();
+const t3 = new Date("2026-06-05T09:15:00Z").toISOString();
+const t4 = new Date("2026-06-07T11:00:00Z").toISOString();
+const t5 = new Date("2026-06-08T16:45:00Z").toISOString();
+const t6 = new Date("2026-06-10T10:00:00Z").toISOString();
+
+interface SeedEvent {
+  uuid: string;
+  actor_id: string;
+  key: crypto.KeyObject;
+  pub: string;
+  ev_id: string;
+  act: string;
+  ts: string;
+  e: number;
+  f: number;
+  tamper?: boolean;
+  override?: string;
+}
+
+const mockEvents: SeedEvent[] = [
+  { uuid: crypto.randomUUID(), actor_id: "Andes Organic Cooperative", key: keyAndes.privateKey, pub: pubAndes, ev_id: "EVT-COFFEE-001", act: "ORIGIN", ts: t1, e: 120.0, f: 0.2 },
+  { uuid: crypto.randomUUID(), actor_id: "Veridian Processing Node", key: keyVeridian.privateKey, pub: pubVeridian, ev_id: "EVT-COFFEE-002", act: "TRANSFORM", ts: t2, e: 450.5, f: 0.8 },
+  { uuid: crypto.randomUUID(), actor_id: "NorthStar Logistics", key: keyNorthStar.privateKey, pub: pubNorthStar, ev_id: "EVT-COFFEE-003", act: "TRANSPORT", ts: t3, e: 310.0, f: 1.1 },
+  // Tamper simulation to trigger the INVALID IntegrityStatus constraint in the Go/Wasm verification flow
+  { uuid: crypto.randomUUID(), actor_id: "Veridian Processing Node", key: keyVeridian.privateKey, pub: pubVeridian, ev_id: "EVT-COFFEE-004", act: "TRANSFORM", ts: t4, e: 200.0, f: 0.5, tamper: true },
+  // Simulate an UNAUTHORIZED actor error (G07 Check Failure) by using a key not present in the TrustedActor registry
+  { uuid: crypto.randomUUID(), actor_id: "Unknown Logistics", key: keyRogue.privateKey, pub: pubRogue, ev_id: "EVT-COFFEE-005", act: "TRANSPORT", ts: t5, e: 150.0, f: 1.5, override: "UNAUTHORIZED" },
+  { uuid: crypto.randomUUID(), actor_id: "Eco Trace Demo Auditor", key: keyAuditor.privateKey, pub: pubAuditor, ev_id: "EVT-COFFEE-006", act: "AUDIT", ts: t6, e: 0.0, f: 0.0 }
 ];
 
 let sql = "DELETE FROM events;\n";
 
 for (const e of mockEvents) {
-  const ts = new Date().toISOString();
-  const signature = signPayload(e.ev_id, "ASSET-999", e.actor_id, ts, e.act, e.e, e.f, e.key);
-  const status = e.override || "VALID";
+  let signature = signPayload(e.ev_id, ASSET_ID, e.actor_id, e.ts, e.act, e.e, e.f, e.key);
   
-  sql += `INSERT INTO events (id, event_id, asset_id, actor_id, timestamp, action_type, energy_kwh, emission_factor, signature, public_key, integrity_status) VALUES ('${e.uuid}', '${e.ev_id}', 'ASSET-999', '${e.actor_id}', '${ts}', '${e.act}', ${e.e}, ${e.f}, '${signature}', '${e.pub}', '${status}');\n`;
+  let status = e.override || "VALID";
+  if (e.tamper) {
+    signature = signature.substring(0, 4) === 'ffff' ? 'aaaa' + signature.substring(4) : 'ffff' + signature.substring(4);
+    status = "INVALID";
+  }
+  
+  sql += `INSERT INTO events (id, event_id, asset_id, actor_id, timestamp, action_type, energy_kwh, emission_factor, signature, public_key, integrity_status) VALUES ('${e.uuid}', '${e.ev_id}', '${ASSET_ID}', '${e.actor_id}', '${e.ts}', '${e.act}', ${e.e}, ${e.f}, '${signature}', '${e.pub}', '${status}');\n`;
 }
 
 const sqlTarget = path.resolve(__dirname, '../seed.sql');

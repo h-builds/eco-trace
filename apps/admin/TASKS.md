@@ -196,27 +196,27 @@ Ensure the Admin dashboard always has meaningful data for the canonical demo sce
 
 ### Tasks
 
-- [ ] Review `apps/admin/lib/seed.ts` and `apps/admin/seed.sql`.
-- [ ] Add or update deterministic seeded records for the canonical scenario.
-- [ ] Ensure seeded data includes:
-  - [ ] One primary asset: `ASSET-COFFEE-2026-001`.
-  - [ ] At least three trusted actors.
-  - [ ] At least one valid origin event.
-  - [ ] At least one valid transform event.
-  - [ ] At least one valid transport event.
-  - [ ] At least one valid audit event.
-  - [ ] At least one `INVALID` tamper event.
-  - [ ] At least one `UNAUTHORIZED` actor event.
-- [ ] Ensure event timestamps create a readable product journey.
-- [ ] Ensure seeded values produce meaningful carbon-footprint totals.
-- [ ] Ensure seeded public keys and signatures remain compatible with the Go/Wasm verification flow.
-- [ ] Add a reset instruction to `apps/admin/README.md` or local admin docs.
+- [x] Review `apps/admin/lib/seed.ts` and `apps/admin/seed.sql`.
+- [x] Add or update deterministic seeded records for the canonical scenario.
+- [x] Ensure seeded data includes:
+  - [x] One primary asset: `ASSET-COFFEE-2026-001`.
+  - [x] At least three trusted actors.
+  - [x] At least one valid origin event.
+  - [x] At least one valid transform event.
+  - [x] At least one valid transport event.
+  - [x] At least one valid audit event.
+  - [x] At least one `INVALID` tamper event.
+  - [x] At least one `UNAUTHORIZED` actor event.
+- [x] Ensure event timestamps create a readable product journey.
+- [x] Ensure seeded values produce meaningful carbon-footprint totals.
+- [x] Ensure seeded public keys and signatures remain compatible with the Go/Wasm verification flow.
+- [x] Add a reset instruction to `apps/admin/README.md` or local admin docs.
 
 ### Exit Criteria
 
-- [ ] Running the seed process restores the full demo scenario.
-- [ ] Overview, Entities, Events, and Compliance all show coherent data.
-- [ ] The seeded scenario matches the Consumer app contract.
+- [x] Running the seed process restores the full demo scenario.
+- [x] Overview, Entities, Events, and Compliance all show coherent data.
+- [x] The seeded scenario matches the Consumer app contract.
 
 ---
 
