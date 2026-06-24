@@ -344,23 +344,23 @@ The Consumer app must feel connected to the React Admin Workstation as part of o
 
 ### Tasks
 
-- [ ] Add `VITE_ADMIN_URL` to `.env.example`.
-- [ ] Add `VITE_CASE_STUDY_URL` to `.env.example` if needed.
-- [ ] Add a shared environment helper for external demo URLs.
-- [ ] Add `Open Auditor Workstation` CTA in:
-  - [ ] Landing page.
-  - [ ] Scanner view.
-  - [ ] Transparency screen.
-  - [ ] Footer.
-- [ ] Ensure missing environment variables produce safe fallback text instead of broken links.
-- [ ] Add `Back to Consumer Demo` copy guidelines for Admin handoff, if referenced.
-- [ ] Ensure external links have accessible labels and safe target attributes.
+- [x] Add `VITE_ADMIN_URL` to `.env.example`.
+- [x] Add `VITE_CASE_STUDY_URL` to `.env.example` if needed.
+- [x] Add a shared environment helper for external demo URLs.
+- [x] Add `Open Auditor Workstation` CTA in:
+  - [x] Landing page.
+  - [x] Scanner view.
+  - [x] Transparency screen.
+  - [x] Footer.
+- [x] Ensure missing environment variables produce safe fallback text instead of broken links.
+- [x] Add `Back to Consumer Demo` copy guidelines for Admin handoff, if referenced.
+- [x] Ensure external links have accessible labels and safe target attributes.
 
 ### Exit Criteria
 
-- [ ] Consumer and Admin feel like two surfaces of the same system.
-- [ ] Environment-specific URLs are configurable without code changes.
-- [ ] Missing URLs do not break the public demo.
+- [x] Consumer and Admin feel like two surfaces of the same system.
+- [x] Environment-specific URLs are configurable without code changes.
+- [x] Missing URLs do not break the public demo.
 
 ---
 
@@ -373,21 +373,21 @@ Ensure the Consumer app consumes the same canonical scenario used by the Admin a
 
 ### Tasks
 
-- [ ] Review `src/lib/api/types.ts` against the shared data dictionary.
-- [ ] Review `src/lib/api/client.ts` for asset-specific lookup support.
-- [ ] Add or confirm support for fetching events by `asset_id`.
-- [ ] Ensure Consumer app router accepts the querystring contract `?asset=${assetId}` sent by the Admin Workstation.
-- [ ] Ensure `ASSET-COFFEE-2026-001` maps to the seeded Admin scenario.
-- [ ] Ensure Consumer does not mutate or sign events.
-- [ ] Ensure Consumer only verifies, calculates, and displays read-only data.
-- [ ] Add fallback demo data only if clearly labeled and isolated from production-like API paths.
-- [ ] Add tests confirming Consumer event types match the expected scenario shape.
+- [x] Review `src/lib/api/types.ts` against the shared data dictionary.
+- [x] Review `src/lib/api/client.ts` for asset-specific lookup support.
+- [x] Add or confirm support for fetching events by `asset_id`.
+- [x] Ensure Consumer app router accepts the querystring contract `?asset=${assetId}` sent by the Admin Workstation.
+- [x] Ensure `ASSET-COFFEE-2026-001` maps to the seeded Admin scenario.
+- [x] Ensure Consumer does not mutate or sign events.
+- [x] Ensure Consumer only verifies, calculates, and displays read-only data.
+- [x] Add fallback demo data only if clearly labeled and isolated from production-like API paths.
+- [x] Add tests confirming Consumer event types match the expected scenario shape.
 
 ### Exit Criteria
 
-- [ ] Consumer product data matches Admin seed data.
-- [ ] Consumer remains read-only.
-- [ ] Type contracts stay aligned with the shared traceability schema.
+- [x] Consumer product data matches Admin seed data.
+- [x] Consumer remains read-only.
+- [x] Type contracts stay aligned with the shared traceability schema.
 
 ---
 

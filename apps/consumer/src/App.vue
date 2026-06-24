@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useWasm } from '@/composables/useWasm';
 import { SCENARIO_METADATA } from '@/lib/demo/demoScenario';
 import NavBar from './components/NavBar.vue';
@@ -39,6 +39,16 @@ declare global {
 if (typeof window !== 'undefined') {
   window.__simulateScan = handleScan;
 }
+
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    const params = new URLSearchParams(window.location.search);
+    const assetParam = params.get('asset');
+    if (assetParam) {
+      handleScan(assetParam);
+    }
+  }
+});
 
 const handleReset = () => {
   activeAssetId.value = null;

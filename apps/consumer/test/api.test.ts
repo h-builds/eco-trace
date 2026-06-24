@@ -2,8 +2,9 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { fetchEvents, ApiError, API_BASE_URL } from '../src/lib/api/client';
 import { swrFetch, clearCache } from '../src/lib/api/cache';
 import { useEventHistory } from '../src/composables/useEventHistory';
+import type { SupplyChainEvent } from '../src/lib/api/types';
 
-const mockEvents = [
+const mockEvents: SupplyChainEvent[] = [
   {
     id: "1",
     event_id: "e1",

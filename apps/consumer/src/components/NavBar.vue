@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { getAdminUrl } from '@/lib/env';
+
 defineEmits<{
   (e: 'navigate', view: 'landing'): void;
 }>();
 
-const AUDITOR_DASHBOARD_URL = import.meta.env.VITE_AUDITOR_DASHBOARD_URL || '#';
+const ADMIN_URL = getAdminUrl();
 </script>
 
 <template>
@@ -22,16 +24,16 @@ const AUDITOR_DASHBOARD_URL = import.meta.env.VITE_AUDITOR_DASHBOARD_URL || '#';
           class="nav-link-primary"
           target="_blank"
           rel="noopener noreferrer"
-          :href="AUDITOR_DASHBOARD_URL"
+          :href="ADMIN_URL"
         >
-          Enter Auditor Dashboard (React 19)
+          Open Auditor Workstation
         </a>
         <a
           class="nav-icon-btn"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Open Auditor Dashboard in new tab"
-          :href="AUDITOR_DASHBOARD_URL"
+          aria-label="Open Auditor Workstation in new tab"
+          :href="ADMIN_URL"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

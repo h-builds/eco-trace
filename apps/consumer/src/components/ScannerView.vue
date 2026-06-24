@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useScanner } from '@/composables/useScanner';
 import { SCENARIO_METADATA, UI_CONSTANTS } from '@/lib/demo/demoScenario';
+import { getAdminUrl } from '@/lib/env';
 
 const emit = defineEmits<{
   (e: 'scan', value: string): void;
@@ -9,6 +10,8 @@ const emit = defineEmits<{
 const { state, error, videoRef, start } = useScanner((val) => {
   emit('scan', val);
 });
+
+const ADMIN_URL = getAdminUrl();
 </script>
 
 <template>
@@ -76,7 +79,15 @@ const { state, error, videoRef, start } = useScanner((val) => {
               alt="Demo QR Code for ASSET-COFFEE-2026-001"
               class="w-32 h-32 bg-white p-2 rounded shadow-md"
             />
-            <p class="text-white/40 text-[10px] mt-2">Scan this code from another device or use the demo button.</p>
+            <p class="text-white/40 text-[10px] mt-2 mb-4">Scan this code from another device or use the demo button.</p>
+            <a
+              :href="ADMIN_URL"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-white/60 hover:text-white transition text-xs font-medium underline underline-offset-2"
+            >
+              Open Auditor Workstation
+            </a>
           </div>
         </div>
       </div>
@@ -146,6 +157,17 @@ const { state, error, videoRef, start } = useScanner((val) => {
           >
             {{ UI_CONSTANTS.SCANNER_FALLBACK }}
           </button>
+
+          <div class="pt-2 text-center">
+            <a
+              :href="ADMIN_URL"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-white/60 hover:text-white transition text-xs font-medium underline underline-offset-2"
+            >
+              Open Auditor Workstation
+            </a>
+          </div>
         </div>
       </div>
     </div>
