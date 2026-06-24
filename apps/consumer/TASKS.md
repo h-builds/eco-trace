@@ -100,21 +100,21 @@ The Consumer app must be testable from desktop, mobile, and restricted browser e
 
 ### Tasks
 
-- [ ] Add a primary `Use Demo Product` CTA to the landing page and scanner screen.
-- [ ] The CTA must load the canonical product scenario directly.
-- [ ] Add a `Try without camera` secondary action near the QR scanner.
-- [ ] Ensure the no-camera path uses the same data contract as the QR scan path.
-- [ ] Ensure the no-camera path routes to the same `TransparencyScreen` as a successful scan.
-- [ ] Add deterministic demo asset lookup using `ASSET-COFFEE-2026-001`.
-- [ ] Add an explicit note: `No camera required for demo review.`
-- [ ] Ensure the no-camera path works on desktop and mobile.
-- [ ] Add a test covering the no-camera demo product path.
+- [x] Add a primary `Use Demo Product` CTA to the landing page and scanner screen.
+- [x] The CTA must load the canonical product scenario directly.
+- [x] Add a `Try without camera` secondary action near the QR scanner.
+- [x] Ensure the no-camera path uses the same data contract as the QR scan path.
+- [x] Ensure the no-camera path routes to the same `TransparencyScreen` as a successful scan.
+- [x] Add deterministic demo asset lookup using `ASSET-COFFEE-2026-001`.
+- [x] Add explicit note: `No camera required for demo review.`
+- [x] Ensure the no-camera path works on desktop and mobile.
+- [x] Add a test covering the no-camera demo product path.
 
 ### Exit Criteria
 
-- [ ] A recruiter can evaluate the Consumer app without camera permission.
-- [ ] The demo product path does not bypass verification UI.
-- [ ] The QR and no-camera flows converge into one transparency experience.
+- [x] A recruiter can evaluate the Consumer app without camera permission.
+- [x] The demo product path does not bypass verification UI.
+- [x] The QR and no-camera flows converge into one transparency experience.
 
 ---
 
@@ -127,20 +127,20 @@ Provide a visible QR artifact for the canonical product scenario so the app can 
 
 ### Tasks
 
-- [ ] Generate or add a static QR image for `ASSET-COFFEE-2026-001`.
-- [ ] Store the QR asset under `apps/consumer/src/assets/` or `apps/consumer/public/`.
-- [ ] Add a `Demo QR` section to the scanner view.
-- [ ] Ensure the QR encodes a stable demo payload or route understood by the app.
-- [ ] Add copy explaining that the QR points to the seeded product journey.
-- [ ] Ensure the QR image is accessible with meaningful `alt` text.
-- [ ] Ensure the static QR does not require external services to work.
-- [ ] Add a small instruction: `Scan this code from another device or use the demo button.`
+- [x] Generate or add a static QR image for `ASSET-COFFEE-2026-001`.
+- [x] Store the QR asset under `apps/consumer/src/assets/` or `apps/consumer/public/`.
+- [x] Add a `Demo QR` section to the scanner view.
+- [x] Ensure the QR encodes a stable demo payload or route understood by the app.
+- [x] Add copy explaining that the QR points to the seeded product journey.
+- [x] Ensure the QR image is accessible with meaningful `alt` text.
+- [x] Ensure the static QR does not require external services to work.
+- [x] Add a small instruction: `Scan this code from another device or use the demo button.`
 
 ### Exit Criteria
 
-- [ ] The demo can be shown with either a real scan or the fallback button.
-- [ ] The QR asset maps to the canonical product scenario.
-- [ ] The QR section improves the demo without cluttering the mobile UI.
+- [x] The demo can be shown with either a real scan or the fallback button.
+- [x] The QR asset maps to the canonical product scenario.
+- [x] The QR section improves the demo without cluttering the mobile UI.
 
 ---
 
@@ -153,22 +153,22 @@ Make scanner behavior graceful across browser restrictions, denied permissions, 
 
 ### Tasks
 
-- [ ] Review `useScanner.ts` for permission, startup, stop, and cleanup behavior.
-- [ ] Add a clear camera permission denied state.
-- [ ] Add an unsupported camera/browser state.
-- [ ] Add a malformed QR code state.
-- [ ] Add an expired or unknown asset state if the payload cannot be resolved.
-- [ ] Add a retry action that restarts scanner initialization safely.
-- [ ] Add a fallback action to `Use Demo Product` in every scanner error state.
-- [ ] Ensure scanner resources are released when leaving the scanner view.
-- [ ] Ensure scanner initialization does not trigger repeated unnecessary renders.
-- [ ] Ensure all scanner states are keyboard-accessible and screen-reader friendly.
+- [x] Review `useScanner.ts` for permission, startup, stop, and cleanup behavior.
+- [x] Add a clear camera permission denied state.
+- [x] Add an unsupported camera/browser state.
+- [x] Add a malformed QR code state.
+- [x] Add an expired or unknown asset state if the payload cannot be resolved.
+- [x] Add a retry action that restarts scanner initialization safely.
+- [x] Add a fallback action to `Use Demo Product` in every scanner error state.
+- [x] Ensure scanner resources are released when leaving the scanner view.
+- [x] Ensure scanner initialization does not trigger repeated unnecessary renders.
+- [x] Ensure all scanner states are keyboard-accessible and screen-reader friendly.
 
 ### Exit Criteria
 
-- [ ] Camera failure never blocks demo evaluation.
-- [ ] Error messages are understandable to non-technical reviewers.
-- [ ] Scanner lifecycle remains stable and performant.
+- [x] Camera failure never blocks demo evaluation.
+- [x] Error messages are understandable to non-technical reviewers.
+- [x] Scanner lifecycle remains stable and performant.
 
 ---
 

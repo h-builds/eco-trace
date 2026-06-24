@@ -10,6 +10,7 @@ import ConsumerFooter from '@/components/landing/ConsumerFooter.vue';
 
 defineEmits<{
   (e: 'navigate', view: 'scanner'): void;
+  (e: 'demoProduct'): void;
 }>();
 
 const { events, isLoading, isError, fetchHistory } = useEventHistory();
@@ -64,7 +65,10 @@ const hasEvents = computed(() => events.value.length > 0);
 <template>
   <div class="w-full bg-surface-canvas text-brand-deep-charcoal">
     <div class="space-y-16">
-      <HeroSection @navigate="$emit('navigate', $event)" />
+      <HeroSection
+        @navigate="$emit('navigate', $event)"
+        @demo-product="$emit('demoProduct')"
+      />
       <BentoDashboard
         :wasm-init-label="wasmInitLabel"
         :compliance-ratio="complianceRatio"

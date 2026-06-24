@@ -3,6 +3,7 @@ import { ref } from 'vue';
 
 defineEmits<{
   (e: 'navigate', view: 'scanner'): void;
+  (e: 'demoProduct'): void;
 }>();
 
 const viewLedgerHover = ref(false);
@@ -42,8 +43,36 @@ const viewLedgerHover = ref(false);
 
         <div class="flex flex-col sm:flex-row gap-4">
           <button
-            id="cta-launch-scanner"
+            id="cta-use-demo-product"
             class="cta-primary w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest text-[color:var(--color-bp-on-primary-container)] flex items-center justify-center gap-3 hover:opacity-90 active:scale-95 transition-all"
+            @click="$emit('demoProduct')"
+          >
+            <svg
+              class="w-5 h-5 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Use Demo Product
+          </button>
+
+          <button
+            id="cta-launch-scanner"
+            class="w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest transition-colors flex items-center justify-center gap-3"
+            :style="{
+              border: '1px solid var(--color-bp-primary)',
+              color: 'var(--color-bp-primary)',
+              backgroundColor: viewLedgerHover ? 'rgba(142,213,180,0.1)' : 'transparent'
+            }"
+            @mouseover="viewLedgerHover = true"
+            @mouseleave="viewLedgerHover = false"
+            @focus="viewLedgerHover = true"
+            @blur="viewLedgerHover = false"
             @click="$emit('navigate', 'scanner')"
           >
             <svg
@@ -66,22 +95,7 @@ const viewLedgerHover = ref(false);
                 height="10"
               />
             </svg>
-            Launch QR Scanner
-          </button>
-
-          <button
-            class="w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest transition-colors"
-            :style="{
-              border: '1px solid var(--color-bp-primary)',
-              color: 'var(--color-bp-primary)',
-              backgroundColor: viewLedgerHover ? 'rgba(142,213,180,0.1)' : 'transparent'
-            }"
-            @mouseover="viewLedgerHover = true"
-            @mouseleave="viewLedgerHover = false"
-            @focus="viewLedgerHover = true"
-            @blur="viewLedgerHover = false"
-          >
-            View Ledger
+            Open QR Scanner
           </button>
         </div>
       </div>

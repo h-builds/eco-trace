@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useWasm } from '@/composables/useWasm';
+import { SCENARIO_METADATA } from '@/lib/demo/demoScenario';
 import NavBar from './components/NavBar.vue';
 import DemoModeBanner from './components/DemoModeBanner.vue';
 import LandingPage from './components/LandingPage.vue';
@@ -80,6 +81,7 @@ const handleReset = () => {
       <LandingPage
         v-if="currentView === 'landing'"
         @navigate="navigate"
+        @demo-product="handleScan(SCENARIO_METADATA.assetId)"
       />
       <ScannerView
         v-else-if="currentView === 'scanner'"
