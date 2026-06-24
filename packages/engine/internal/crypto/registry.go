@@ -25,10 +25,10 @@ func InitializeRegistry() {
 	registryMutex.Lock()
 	defer registryMutex.Unlock()
 
-	pubAndes := mustDecodeHex("1a5830a8fdbc051af2b6421cf56e02a0efc1e262917a49d803fc9ce0fd60b1fd")
-	pubVeridian := mustDecodeHex("58e612474b5bc04614fa2ea505e85c5809b4623b32e53297536393838acaf1df")
-	pubNorthStar := mustDecodeHex("7b27ec9f1b4165a8224f211518ab76c84af077dd99e456999042ab1913e12565")
-	pubAuditor := mustDecodeHex("ce5a2f4bd68a64e16979fcb363fef8065bc1bf6cd957abc0993d1f1e4848871b")
+	pubAndes := mustDecodeHex("6310116abaa654671e8c25c18f08233c3dd7441c06db5eb72d8a6b68aeed0779")
+	pubVeridian := mustDecodeHex("f42fac1003c9b31031fa180699c874f8a661a030a6946e24c78f04c410b8ebb4")
+	pubNorthStar := mustDecodeHex("9c1a617cc256521fe31e329d7431ca10edd9388470d6b019a068bee16c3c9d16")
+	pubAuditor := mustDecodeHex("d46aa9ed56224b7430233dfd4bf26d6cb909d5691026a2c3b7ed46d76b9620b7")
 
 	TrustedActors["Andes Organic Cooperative"] = pubAndes
 	TrustedActors["Veridian Processing Node"] = pubVeridian

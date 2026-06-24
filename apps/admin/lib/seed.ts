@@ -31,15 +31,27 @@ console.log(`[+] Generated Ed25519 Pair - NorthStar Log \t(${pubNorthStar.slice(
 console.log(`[+] Generated Ed25519 Pair - Demo Auditor \t(${pubAuditor.slice(0, 16)}...)`);
 
 const registryPath = path.resolve(__dirname, '../../../packages/engine/internal/crypto/registry.go');
-let registryGo = fs.readFileSync(registryPath, 'utf-8');
+let registryGo: string;
+
+try {
+  registryGo = fs.readFileSync(registryPath, 'utf-8');
+} catch (err) {
+  console.error(`[!] Failed to read Go registry at ${registryPath}. Are you running this from the correct directory?`, err);
+  process.exit(1);
+}
 
 registryGo = registryGo.replace(/pubAndes := mustDecodeHex\("[a-f0-9]+"\)/, `pubAndes := mustDecodeHex("${pubAndes}")`);
 registryGo = registryGo.replace(/pubVeridian := mustDecodeHex\("[a-f0-9]+"\)/, `pubVeridian := mustDecodeHex("${pubVeridian}")`);
 registryGo = registryGo.replace(/pubNorthStar := mustDecodeHex\("[a-f0-9]+"\)/, `pubNorthStar := mustDecodeHex("${pubNorthStar}")`);
 registryGo = registryGo.replace(/pubAuditor := mustDecodeHex\("[a-f0-9]+"\)/, `pubAuditor := mustDecodeHex("${pubAuditor}")`);
 
-fs.writeFileSync(registryPath, registryGo);
-console.log(`[+] Updated Go Registry: ${registryPath}`);
+try {
+  fs.writeFileSync(registryPath, registryGo);
+  console.log(`[+] Updated Go Registry: ${registryPath}`);
+} catch (err) {
+  console.error(`[!] Failed to write updated Go registry at ${registryPath}.`, err);
+  process.exit(1);
+}
 
 function signPayload(eventId: string, assetId: string, actorId: string, timestamp: string, actionType: string, energyKwh: number, emissionFactor: number, privateKey: crypto.KeyObject) {
   const payload = {
@@ -93,7 +105,18 @@ const mockEvents: SeedEvent[] = [
   { uuid: crypto.randomUUID(), actor_id: "Eco Trace Demo Auditor", key: keyAuditor.privateKey, pub: pubAuditor, ev_id: "EVT-COFFEE-006", act: "AUDIT", ts: t6, e: 0.0, f: 0.0 }
 ];
 
-let sql = "DELETE FROM events;\n";
+let sql = "DELETE FROM events;\nDELETE FROM users;\nDELETE FROM trusted_actors;\nDELETE FROM assets;\n";
+
+sql += `INSERT INTO users (id, username, password_hash, role) VALUES ('${crypto.randomUUID()}', 'admin', 'admin2026', 'ADMIN');\n`;
+sql += `INSERT INTO users (id, username, password_hash, role) VALUES ('${crypto.randomUUID()}', 'auditor', 'demo2026', 'AUDITOR');\n`;
+sql += `INSERT INTO users (id, username, password_hash, role) VALUES ('${crypto.randomUUID()}', 'viewer', 'viewer2026', 'VIEWER');\n`;
+
+sql += `INSERT INTO trusted_actors (id, name, public_key, status) VALUES ('actor-1', 'Andes Organic Cooperative', '${pubAndes}', 'ACTIVE');\n`;
+sql += `INSERT INTO trusted_actors (id, name, public_key, status) VALUES ('actor-2', 'Veridian Processing Node', '${pubVeridian}', 'ACTIVE');\n`;
+sql += `INSERT INTO trusted_actors (id, name, public_key, status) VALUES ('actor-3', 'NorthStar Logistics', '${pubNorthStar}', 'ACTIVE');\n`;
+sql += `INSERT INTO trusted_actors (id, name, public_key, status) VALUES ('actor-4', 'Eco Trace Demo Auditor', '${pubAuditor}', 'ACTIVE');\n`;
+
+sql += `INSERT INTO assets (id, name, description, owner_id) VALUES ('${ASSET_ID}', 'Andes Trace Coffee Lot 001', 'Verified Product Journey', 'actor-1');\n`;
 
 for (const e of mockEvents) {
   let signature = signPayload(e.ev_id, ASSET_ID, e.actor_id, e.ts, e.act, e.e, e.f, e.key);
@@ -108,5 +131,11 @@ for (const e of mockEvents) {
 }
 
 const sqlTarget = path.resolve(__dirname, '../seed.sql');
-fs.writeFileSync(sqlTarget, sql);
-console.log(`[+] Seed SQL generated identically at ${sqlTarget}`);
+
+try {
+  fs.writeFileSync(sqlTarget, sql);
+  console.log(`[+] Seed SQL generated identically at ${sqlTarget}`);
+} catch (err) {
+  console.error(`[!] Failed to write seed.sql at ${sqlTarget}.`, err);
+  process.exit(1);
+}
