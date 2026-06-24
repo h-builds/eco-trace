@@ -97,21 +97,21 @@ Make the login flow easy to test while preserving the existing RBAC architecture
 
 ### Tasks
 
-- [ ] Add visible demo credentials to `/login`.
-- [ ] Add a `Use Demo Auditor` button that fills credentials without auto-submitting.
-- [ ] Add a short login explainer:
-  - [ ] `This workstation uses role-based access control to simulate an enterprise auditor surface.`
-- [ ] Keep existing secure login and session validation intact.
-- [ ] Ensure failed login states remain meaningful and accessible.
-- [ ] Add a post-login redirect to `/dashboard/overview`.
-- [ ] Add a small RBAC explanation card after login or inside the dashboard shell.
-- [ ] Confirm logout still invalidates session and returns to `/login`.
+- [x] Add visible demo credentials to `/login`.
+- [x] Add a `Use Demo Auditor` button that fills credentials without auto-submitting.
+- [x] Add a short login explainer:
+  - [x] `This workstation uses role-based access control to simulate an enterprise auditor surface.`
+- [x] Keep existing secure login and session validation intact.
+- [x] Ensure failed login states remain meaningful and accessible.
+- [x] Add a post-login redirect to `/dashboard/overview`.
+- [x] Add a small RBAC explanation card after login or inside the dashboard shell.
+- [x] Confirm logout still invalidates session and returns to `/login`.
 
 ### Exit Criteria
 
-- [ ] A recruiter can log in without asking for credentials.
-- [ ] RBAC is visible as an architecture feature, not hidden implementation detail.
-- [ ] Authentication remains functional and does not become a fake bypass.
+- [x] A recruiter can log in without asking for credentials.
+- [x] RBAC is visible as an architecture feature, not hidden implementation detail.
+- [x] Authentication remains functional and does not become a fake bypass.
 
 ---
 
