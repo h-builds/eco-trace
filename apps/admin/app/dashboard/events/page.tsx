@@ -21,6 +21,18 @@ export interface SupplyChainEvent {
   action_type: string;
 }
 
+const getReadableActionLabel = (action: string, status: SupplyChainEvent["status"]) => {
+  if (status === "INVALID") return "Tamper attempt detected";
+  if (status === "UNAUTHORIZED") return "Unauthorized actor blocked";
+  switch(action) {
+    case "ORIGIN": return "Origin registered";
+    case "TRANSFORM": return "Processing completed";
+    case "TRANSPORT": return "Transport verified";
+    case "AUDIT": return "Audit reviewed";
+    default: return action;
+  }
+};
+
 export default function EventLogPage() {
   const [events, setEvents] = useState<SupplyChainEvent[]>([]);
   const [footprints, setFootprints] = useState<Record<string, number>>({});
@@ -237,13 +249,18 @@ export default function EventLogPage() {
 
   return (
     <div style={{ backgroundColor: bgCanvas, minHeight: "100vh", padding: spacing.scale.value[5] + "px", fontFamily, color: textPrimary }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: spacing.scale.value[4] + "px" }}>
-        <h1 style={{ fontSize: fontSizes.xl.value, fontWeight: typography.weights.bold.value, display: "flex", alignItems: "center", gap: "8px" }}>
-          High-Density Event Log
-          <span style={{ fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.05em", backgroundColor: "rgba(245, 158, 11, 0.1)", color: "#f59e0b", border: "1px solid rgba(245, 158, 11, 0.2)", padding: "2px 8px", borderRadius: "4px" }}>
-            {DemoScenario.demoDataLabel}
-          </span>
-        </h1>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: spacing.scale.value[4] + "px" }}>
+        <div>
+          <h1 style={{ fontSize: fontSizes.xl.value, fontWeight: typography.weights.bold.value, display: "flex", alignItems: "center", gap: "8px", marginBottom: spacing.scale.value[2] + "px" }}>
+            Integrity Events
+            <span style={{ fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.05em", backgroundColor: "rgba(245, 158, 11, 0.1)", color: "#f59e0b", border: "1px solid rgba(245, 158, 11, 0.2)", padding: "2px 8px", borderRadius: "4px" }}>
+              {DemoScenario.demoDataLabel}
+            </span>
+          </h1>
+          <p style={{ fontSize: fontSizes.md.value, color: neutralColor, maxWidth: "800px", lineHeight: "1.5" }}>
+            Every event is checked against payload integrity, actor trust, and deterministic ESG logic.
+          </p>
+        </div>
         <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
           <a
             href={getConsumerProductUrl(DemoScenario.assetId)}
@@ -272,6 +289,26 @@ export default function EventLogPage() {
             fontSize: fontSizes.md.value,
           }} aria-live="polite">
             Security Counter: {nonValidUniqueIds} Compromised Flow{nonValidUniqueIds !== 1 ? "s" : ""}
+          </div>
+        </div>
+      </div>
+
+      <div style={{ display: "flex", gap: spacing.scale.value[4] + "px", marginBottom: spacing.scale.value[4] + "px", alignItems: "stretch" }}>
+        <div style={{ backgroundColor: bgCard, border: `1px solid ${borderColor}`, padding: spacing.scale.value[4] + "px", borderRadius: radii.md.value, flex: 1 }}>
+          <h3 style={{ fontSize: fontSizes.md.value, fontWeight: typography.weights.bold.value, marginBottom: spacing.scale.value[2] + "px" }}>Ed25519 Integrity Verification</h3>
+          <p style={{ fontSize: fontSizes.sm.value, color: neutralColor, lineHeight: "1.5", maxWidth: "600px" }}>
+            Event payloads are cryptographically signed at origin. This workstation runs a local Go/Wasm engine to recalculate hashes, verify signatures, and check actors against the trusted registry in real-time. Any manipulation breaks the mathematical proof.
+          </p>
+        </div>
+
+        <div style={{ backgroundColor: bgCard, border: `1px solid ${borderColor}`, padding: spacing.scale.value[4] + "px", borderRadius: radii.md.value, display: "flex", flexDirection: "column", gap: spacing.scale.value[2] + "px", minWidth: "200px" }}>
+          <h3 style={{ fontSize: fontSizes.sm.value, fontWeight: typography.weights.bold.value, color: neutralColor, textTransform: "uppercase", letterSpacing: "0.05em" }}>Status Legend</h3>
+          <div style={{ display: "flex", gap: spacing.scale.value[2] + "px", flexWrap: "wrap" }}>
+            {(["VALID", "WARNING", "INVALID", "UNAUTHORIZED"] as const).map((status) => (
+              <span key={status} style={{ display: "inline-block", padding: `${spacing.scale.value[1]}px ${spacing.scale.value[2]}px`, borderRadius: radii.lg.value, backgroundColor: getStatusColor(status), color: "#FFFFFF", fontSize: fontSizes.xs.value, fontWeight: typography.weights.bold.value }}>
+                {status}
+              </span>
+            ))}
           </div>
         </div>
       </div>
@@ -318,10 +355,17 @@ export default function EventLogPage() {
         </div>
       )}
 
+      <div style={{ marginBottom: spacing.scale.value[3] + "px", padding: `${spacing.scale.value[2]}px ${spacing.scale.value[4]}px`, backgroundColor: "rgba(245, 158, 11, 0.05)", borderLeft: `4px solid ${validColor}`, borderRadius: radii.md.value }}>
+        <h2 style={{ fontSize: fontSizes.md.value, fontWeight: typography.weights.bold.value, display: "flex", alignItems: "center", gap: "8px" }}>
+          Canonical Product Journey: {DemoScenario.productName}
+        </h2>
+        <p style={{ fontSize: fontSizes.sm.value, color: neutralColor, marginTop: spacing.scale.value[1] + "px" }}>Chronological event trail bound to {DemoScenario.assetId}</p>
+      </div>
+
       <div style={{
         backgroundColor: bgCard,
         border: `1px solid ${borderColor}`,
-        borderRadius: spacing.scale.value[1] + "px",
+        borderRadius: radii.md.value,
         boxShadow: shadows.subtle.value,
         overflow: "hidden"
       }}>
@@ -352,7 +396,7 @@ export default function EventLogPage() {
                         <div style={{ fontSize: fontSizes.xs.value, color: neutralColor, marginTop: spacing.scale.value[0] + "px" }}>LOG ID: {primaryEvent.id.substring(0,8)}...</div>
                       </td>
                       <td style={{ padding: spacing.scale.value[3] + "px", fontSize: fontSizes.md.value, fontFamily: "monospace", textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap", maxWidth: "120px" }} title={primaryEvent.actor_id}>{primaryEvent.actor}</td>
-                      <td style={{ padding: spacing.scale.value[3] + "px", fontSize: fontSizes.md.value }}>{primaryEvent.action}</td>
+                      <td style={{ padding: spacing.scale.value[3] + "px", fontSize: fontSizes.md.value }}>{getReadableActionLabel(primaryEvent.action, currentStatus)}</td>
                       <td style={{ padding: spacing.scale.value[3] + "px", fontSize: fontSizes.md.value }}>{primaryEvent.energyKwh}</td>
                       <td style={{ padding: spacing.scale.value[3] + "px", fontSize: fontSizes.md.value }}>
                         <div>{footprints[primaryEvent.id] !== undefined ? footprints[primaryEvent.id].toFixed(2) : "Calculating..."}</div>
@@ -398,7 +442,7 @@ export default function EventLogPage() {
                                     <tr key={auditLog.id} style={{ borderBottom: `1px dotted ${borderColor}` }}>
                                       <td style={{ padding: spacing.scale.value[2] + "px", paddingLeft: spacing.scale.value[5] + "px", fontSize: fontSizes.sm.value, color: neutralColor }}>...{auditLog.id.substring(auditLog.id.length-8)}</td>
                                       <td style={{ padding: spacing.scale.value[2] + "px", fontSize: fontSizes.sm.value, fontFamily: "monospace" }}>{auditLog.actor}</td>
-                                      <td style={{ padding: spacing.scale.value[2] + "px", fontSize: fontSizes.sm.value, color: neutralColor }}>{auditLog.action}</td>
+                                      <td style={{ padding: spacing.scale.value[2] + "px", fontSize: fontSizes.sm.value, color: neutralColor }}>{getReadableActionLabel(auditLog.action, auditStatus)}</td>
                                       <td style={{ padding: spacing.scale.value[2] + "px", fontSize: fontSizes.sm.value, color: neutralColor }}>{auditLog.energyKwh}</td>
                                       <td style={{ padding: spacing.scale.value[2] + "px", fontSize: fontSizes.sm.value, color: neutralColor, fontStyle: "italic" }}>Persisted at: {new Date(auditLog.timestamp).toLocaleTimeString()}</td>
                                       <td style={{ padding: spacing.scale.value[2] + "px", fontSize: fontSizes.sm.value }}>

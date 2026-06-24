@@ -267,35 +267,35 @@ Turn `/dashboard/events` into the core technical proof of the demo.
 
 ### Tasks
 
-- [ ] Rename page heading to `Integrity Events`.
-- [ ] Add a short explainer:
-  - [ ] `Every event is checked against payload integrity, actor trust, and deterministic ESG logic.`
-- [ ] Add status legend for:
-  - [ ] `VALID`.
-  - [ ] `WARNING`.
-  - [ ] `INVALID`.
-  - [ ] `UNAUTHORIZED`.
-- [ ] Preserve threaded audit trail grouping by `event_id`.
-- [ ] Add visual grouping for the canonical product journey.
-- [ ] Add readable event labels:
-  - [ ] `Origin registered`.
-  - [ ] `Processing completed`.
-  - [ ] `Transport verified`.
-  - [ ] `Audit reviewed`.
-  - [ ] `Tamper attempt detected`.
-  - [ ] `Unauthorized actor blocked`.
-- [ ] Add a compact explanation of Ed25519 verification without overwhelming the reviewer.
-- [ ] Preserve existing Wasm-backed verification behavior.
-- [ ] Preserve tamper and impersonation testing flows if already implemented.
-- [ ] Add a CTA: `Open this product in Consumer App`.
-- [ ] Add querystring or asset ID handoff contract for Consumer:
-  - [ ] `?asset=ASSET-COFFEE-2026-001`.
+- [x] Rename page heading to `Integrity Events`.
+- [x] Add a short explainer:
+  - [x] `Every event is checked against payload integrity, actor trust, and deterministic ESG logic.`
+- [x] Add status legend for:
+  - [x] `VALID`.
+  - [x] `WARNING`.
+  - [x] `INVALID`.
+  - [x] `UNAUTHORIZED`.
+- [x] Preserve threaded audit trail grouping by `event_id`.
+- [x] Add visual grouping for the canonical product journey.
+- [x] Add readable event labels:
+  - [x] `Origin registered`.
+  - [x] `Processing completed`.
+  - [x] `Transport verified`.
+  - [x] `Audit reviewed`.
+  - [x] `Tamper attempt detected`.
+  - [x] `Unauthorized actor blocked`.
+- [x] Add a compact explanation of Ed25519 verification without overwhelming the reviewer.
+- [x] Preserve existing Wasm-backed verification behavior.
+- [x] Preserve tamper and impersonation testing flows if already implemented.
+- [x] Add a CTA: `Open this product in Consumer App`.
+- [x] Add querystring or asset ID handoff contract for Consumer:
+  - [x] `?asset=ASSET-COFFEE-2026-001`.
 
 ### Exit Criteria
 
-- [ ] The page proves the technical depth of Eco Trace.
-- [ ] A non-cryptography reviewer understands what failed and why.
-- [ ] The Admin-to-Consumer transition is obvious.
+- [x] The page proves the technical depth of Eco Trace.
+- [x] A non-cryptography reviewer understands what failed and why.
+- [x] The Admin-to-Consumer transition is obvious.
 
 ---
 
