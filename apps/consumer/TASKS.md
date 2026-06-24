@@ -309,29 +309,29 @@ Refine the Consumer landing page so it becomes a clear public demo entry instead
 
 ### Tasks
 
-- [ ] Update hero positioning to match Phase 8:
-  - [ ] Title: `Product claims, verified.`
-  - [ ] Subtitle: `A public verification surface for a two-app enterprise trust architecture.`
-- [ ] Add primary CTA: `Use Demo Product`.
-- [ ] Add secondary CTA: `Open QR Scanner`.
-- [ ] Add tertiary link: `Open Auditor Workstation` using `VITE_ADMIN_URL`.
-- [ ] Add a short `How to evaluate this demo` section:
-  - [ ] `1. Open the demo product.`
-  - [ ] `2. Review authenticity and carbon footprint.`
-  - [ ] `3. Compare the same product in the Admin Workstation.`
-- [ ] Add a visual explanation of the two-surface architecture:
-  - [ ] Consumer App: public verification.
-  - [ ] Admin App: auditor governance.
-  - [ ] Go/Wasm: shared trust engine.
-  - [ ] D1: edge persistence.
-- [ ] Remove or reword unsupported trust signals such as real transaction counts, real ISO certification, or unverifiable ratings.
-- [ ] Preserve the existing industrial editorial identity if it is token-compliant.
+- [x] Update hero positioning to match Phase 8:
+  - [x] Title: `Product claims, verified.`
+  - [x] Subtitle: `A public verification surface for a two-app enterprise trust architecture.`
+- [x] Add primary CTA: `Use Demo Product`.
+- [x] Add secondary CTA: `Open QR Scanner`.
+- [x] Add tertiary link: `Open Auditor Workstation` using `VITE_ADMIN_URL`.
+- [x] Add a short `How to evaluate this demo` section:
+  - [x] `1. Open the demo product.`
+  - [x] `2. Review authenticity and carbon footprint.`
+  - [x] `3. Compare the same product in the Admin Workstation.`
+- [x] Add a visual explanation of the two-surface architecture:
+  - [x] Consumer App: public verification.
+  - [x] Admin App: auditor governance.
+  - [x] Go/Wasm: shared trust engine.
+  - [x] D1: edge persistence.
+- [x] Remove or reword unsupported trust signals such as real transaction counts, real ISO certification, or unverifiable ratings.
+- [x] Preserve the existing industrial editorial identity if it is token-compliant.
 
 ### Exit Criteria
 
-- [ ] A recruiter understands within 30 seconds what the Consumer app does.
-- [ ] The landing page routes users to both demo paths.
-- [ ] No marketing claim exceeds what the repository demonstrates.
+- [x] A recruiter understands within 30 seconds what the Consumer app does.
+- [x] The landing page routes users to both demo paths.
+- [x] No marketing claim exceeds what the repository demonstrates.
 
 ---
 
@@ -574,7 +574,7 @@ The Consumer Phase 8 work is complete when:
 - [ ] Authenticity badge explains trust states clearly.
 - [ ] Carbon formula is accurate and understandable.
 - [ ] Audit timeline matches Admin seeded scenario.
-- [ ] Landing page explains the recruiter path.
+- [x] Landing page explains the recruiter path.
 - [ ] Consumer links back to Admin Workstation.
 - [ ] Accessibility and mobile QA pass.
 - [ ] Performance/Vapor story is preserved.

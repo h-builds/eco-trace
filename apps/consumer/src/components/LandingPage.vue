@@ -3,6 +3,7 @@ import { onMounted, computed, ref } from 'vue';
 import { useEventHistory } from '@/composables/useEventHistory';
 import { useWasm } from '@/composables/useWasm';
 import HeroSection from '@/components/landing/HeroSection.vue';
+import DemoGuideSection from '@/components/landing/DemoGuideSection.vue';
 import BentoDashboard from '@/components/landing/BentoDashboard.vue';
 import InteropCallout from '@/components/landing/InteropCallout.vue';
 import ActiveNodeStats from '@/components/landing/ActiveNodeStats.vue';
@@ -69,6 +70,7 @@ const hasEvents = computed(() => events.value.length > 0);
         @navigate="$emit('navigate', $event)"
         @demo-product="$emit('demoProduct')"
       />
+      <DemoGuideSection />
       <BentoDashboard
         :wasm-init-label="wasmInitLabel"
         :compliance-ratio="complianceRatio"

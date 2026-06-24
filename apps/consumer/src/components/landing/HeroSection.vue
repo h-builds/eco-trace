@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { getAdminUrl } from '@/lib/env';
 
 defineEmits<{
   (e: 'navigate', view: 'scanner'): void;
@@ -36,10 +37,16 @@ const viewLedgerHover = ref(false);
           class="font-['Space_Grotesk'] text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] uppercase italic"
           style="color: var(--color-bp-on-surface);"
         >
-          High-Performance <br />
-          <span style="color: var(--color-bp-primary);">ESG Product</span> <br />
-          Transparency.
+          Product claims, <br />
+          <span style="color: var(--color-bp-primary);">verified.</span>
         </h1>
+        
+        <p
+          class="font-mono text-sm leading-relaxed"
+          style="color: var(--color-bp-on-surface-variant); max-width: 480px;"
+        >
+          A public verification surface for a two-app enterprise trust architecture.
+        </p>
 
         <div class="flex flex-col sm:flex-row gap-4">
           <button
@@ -97,6 +104,31 @@ const viewLedgerHover = ref(false);
             </svg>
             Open QR Scanner
           </button>
+        </div>
+
+        <div class="pt-4">
+          <a
+            :href="getAdminUrl()"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest hover:underline transition-all"
+            style="color: var(--color-bp-primary);"
+          >
+            Open Auditor Workstation
+            <svg
+              class="w-3 h-3"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </a>
         </div>
       </div>
 
