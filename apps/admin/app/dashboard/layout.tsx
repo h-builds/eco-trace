@@ -3,6 +3,7 @@ import { getSession } from "../lib/session";
 import { redirect } from "next/navigation";
 
 import { DemoModeBanner } from "../../components/DemoModeBanner";
+import { DashboardNavigation, GuidedDemoStepper } from "../../components/DashboardNavigation";
 
 export default async function DashboardLayout({
   children,
@@ -24,12 +25,7 @@ export default async function DashboardLayout({
           <span className="text-xs bg-brand-integrity-green text-brand-deep-charcoal px-2 py-1 rounded-pill font-medium">
             {session.role}
           </span>
-          <nav className="ml-8 flex gap-4">
-            <a href="/dashboard/overview" className="text-sm font-medium hover:text-brand-integrity-green transition-colors">Overview</a>
-            <a href="/dashboard/entities" className="text-sm font-medium hover:text-brand-integrity-green transition-colors">Entities</a>
-            <a href="/dashboard/events" className="text-sm font-medium hover:text-brand-integrity-green transition-colors">Events</a>
-            <a href="/dashboard/compliance" className="text-sm font-medium hover:text-brand-integrity-green transition-colors">Compliance</a>
-          </nav>
+          <DashboardNavigation />
         </div>
         <div className="flex items-center gap-4">
           <span className="text-sm text-functional-neutral">
@@ -45,6 +41,7 @@ export default async function DashboardLayout({
           </form>
         </div>
       </header>
+      <GuidedDemoStepper />
       <main className="p-6 w-full">
         <div className="mb-6 p-4 bg-surface-card border border-brand-integrity-green/30 rounded-md shadow-subtle flex items-start gap-3">
           <div className="text-brand-integrity-green mt-0.5">
