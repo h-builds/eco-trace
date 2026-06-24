@@ -2,12 +2,12 @@
 
 Active state and recent operational focus for the Eco-Trace monorepo.
 
-## ## Session Phase
+## Session Phase
 
-**Current Phase:** Phase 4: Edge Persistence & Audit Trail Active
-**Focus:** Core validation engine operational with deterministic ESG logic, live Ed25519 Cryptographic Gate (Wasm), and Trusted Actor Registry active on the React Admin UI. Engineered a Threaded High-Density Audit Trail grouping unique `event_id` flows natively backed by Cloudflare D1, equipped with Wasm Shadow Key Simulation for cryptographic impersonation testing.
+**Current Phase:** Phase 8 — Portfolio Demo Excellence
+**Focus:** Transform the completed Eco Trace system into a recruiter-friendly, 2026-grade enterprise verification demo. All core functionality (Phases 1–7) is implemented and archived. Phase 8 is additive: demo polish, recruiter journey, truth alignment, cross-app contracts, and documentation.
 
-## ## Active Blockers
+## Active Blockers
 
 - **None:** All core documentation and directory structures are initialized.
 
@@ -54,6 +54,7 @@ Eco-Trace is a high-performance, Edge-native supply chain traceability platform 
 - **(2026-03-30)** Landing Page Industrial Editorial Refactor (Section 6 Evolution): Elevated `LandingPage.vue` and `NavBar.vue` into a product-grade Precision Blueprint experience. Narrative sections: Hero (*"Product claims, verified."*) → Problem (Trust Gap) → Solution (Verification Model) → Flow (Scan to Trust) → Architecture (Dual-Engine) → Trust Signals (Verified at Edge, ISO-14064 Ready, Ed25519/Wasm/D1 stack) → Final CTA → Footer.
 - **(2026-04-08)** Content Truth Validation: Corrected `LandingPage.vue` to reflect real-world implementation. Replaced placeholder metrics (1.42B TXN, AAA+) with verified system statuses and IATA-based edge node descriptors (IAD, LHR, SIN). Verified 100% alignment with Phase 4/5 technical reality.
 - **(2026-06-22)** Layout and Spacing Calibration: Refactored Consumer App layout architecture to accurately reflect the Precision Blueprint design example (`.ai/docs/code.html`). Centralized spacing and padding control to `<main>`, restoring structural alignment (`max-w-7xl`, `mx-auto`). Eliminated duplicate paddings inside `LandingPage.vue` subcomponents (`HeroSection`, `BentoDashboard`, `InteropCallout`, `ActiveNodeStats`, `ConsumerFooter`) to resolve excessive vertical space compounding while retaining the "Integrity Green" branding.
+- **(2026-06-23)** Phase 8 Activation: Archived Phases 1–7 TASKS.md files (`apps/admin/archive/TASKS.md`, `apps/consumer/archive/TASKS.md`). Created Phase 8 execution roadmaps (`apps/admin/TASKS.md`, `apps/consumer/TASKS.md`, root `TASKS.md`). Added execution order annotations (1–11) across PLAN.md and all TASKS files. Updated CONTEXT.md, README.md, and governance docs to reflect Phase 8 positioning. Created `docs/` directory placeholder for Phase 8.4 deliverables.
 
 - **(2026-06-22)** Authentication & Access Control (Phase 6/7 Task 1): Implemented secure Auditor login flow using Edge-compatible session tokens backed by Cloudflare Workers KV. Added `users` and `audit_logs` schema to D1. Enforced RBAC matrix with Next.js edge middleware.
 - **(2026-06-22)** Strict Governance Compliance: Adhered to Rule 28 (Meaningful Error Handling) by removing scattered `console.*` statements and abstracting logging logic into a centralized `logger.ts` utility for traceable backend failures without swallowing exceptions. Fully typed DB rows and actions to satisfy Rule 26.

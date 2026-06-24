@@ -6,9 +6,29 @@ Implementation plan for the **Eco Trace Admin App** under **Phase 8 — Portfoli
 > **Application scope:** `apps/admin` only  
 > **Primary goal:** turn the existing React 19 Admin Dashboard into a recruiter-friendly enterprise auditor workstation demo without rebuilding completed core functionality.
 
+## Execution Order Summary
+
+> Each section is annotated with its execution order `(N)`. Tasks at the same number can run in parallel. A task cannot start until all lower-numbered tasks are done.
+
+| Order | Section | Dependencies |
+|-------|---------|-------------|
+| (1) | §0 Baseline Lock | None — start here |
+| (2) | §1 Demo Mode Foundation | §0 complete |
+| (3) | §5 Canonical Seed Data | §1 complete |
+| (4) | §2 Recruiter-Friendly Login, §4 Overview Page | §5 complete (seed data) |
+| (5) | §10 Cross-App Contract with Consumer | §5 complete, coordinate with Consumer §10 |
+| (6) | §3 Demo Navigation, §6 Entities Polish, §7 Events Polish, §8 Compliance Polish | §10 complete (cross-app links) |
+| (7) | §9 Admin Root Technical Showcase | §3,§6,§7,§8 complete |
+| (8) | §11 Copy Audit, §12 UI Token & A11y, §13 Error Handling | §9 complete (all UI final) |
+| (9) | §14 Documentation | §11,§12,§13 complete |
+| (10) | §15 QA & Release Gate | §14 complete |
+
+> [!IMPORTANT]
+> **Admin §5 (Seed Data) blocks Consumer §5 and §11.** The Admin seed data defines the D1 records that Consumer reads. Finalize seed data before Consumer transparency work begins.
+
 ---
 
-## 0. Baseline Lock — Do Not Rebuild
+## 0. Baseline Lock — Do Not Rebuild — Execution Order (1)
 
 > **Status:** Governance prerequisite  
 > **Priority:** Critical
@@ -17,26 +37,26 @@ The Admin app already includes authentication, RBAC, analytics, entity managemen
 
 ### Tasks
 
-- [ ] Mark this file as the active `apps/admin/TASKS.md` for Phase 8.
-- [ ] Add a top-level note in `apps/admin/AGENTS.md` that Phase 8 is demo-polish and presentation-focused.
-- [ ] Preserve existing React 19 App Router structure.
-- [ ] Preserve existing Edge-compatible session architecture.
-- [ ] Preserve existing D1 schema unless a demo fixture requires additive seed data.
-- [ ] Preserve existing Wasm verification path.
-- [ ] Preserve existing RBAC roles: `ADMIN`, `AUDITOR`, `VIEWER`.
-- [ ] Preserve existing compliance export route and immutability behavior.
-- [ ] Do not replace the Admin app with another framework.
-- [ ] Do not introduce unverified AI claims into the Admin UI.
+- [x] Mark this file as the active `apps/admin/TASKS.md` for Phase 8.
+- [x] Add a top-level note in `apps/admin/AGENTS.md` that Phase 8 is demo-polish and presentation-focused.
+- [x] Preserve existing React 19 App Router structure.
+- [x] Preserve existing Edge-compatible session architecture.
+- [x] Preserve existing D1 schema unless a demo fixture requires additive seed data.
+- [x] Preserve existing Wasm verification path.
+- [x] Preserve existing RBAC roles: `ADMIN`, `AUDITOR`, `VIEWER`.
+- [x] Preserve existing compliance export route and immutability behavior.
+- [x] Do not replace the Admin app with another framework.
+- [x] Do not introduce unverified AI claims into the Admin UI.
 
 ### Exit Criteria
 
-- [ ] Agents understand that the Admin app is already functionally built.
-- [ ] New work is additive, recruiter-facing, and scenario-driven.
-- [ ] No completed Phase 6/7 feature is reimplemented from scratch.
+- [x] Agents understand that the Admin app is already functionally built.
+- [x] New work is additive, recruiter-facing, and scenario-driven.
+- [x] No completed Phase 6/7 feature is reimplemented from scratch.
 
 ---
 
-## 1. Demo Mode Foundation
+## 1. Demo Mode Foundation — Execution Order (2)
 
 > **Type:** Product / UX / State  
 > **Priority:** Critical
@@ -68,7 +88,7 @@ Create a clear demo context so recruiters immediately understand they are evalua
 
 ---
 
-## 2. Recruiter-Friendly Login Experience
+## 2. Recruiter-Friendly Login Experience — Execution Order (4)
 
 > **Type:** Auth UX / Demo Friction Removal  
 > **Priority:** Critical
@@ -95,7 +115,7 @@ Make the login flow easy to test while preserving the existing RBAC architecture
 
 ---
 
-## 3. Admin Demo Navigation & Guided Journey
+## 3. Admin Demo Navigation & Guided Journey — Execution Order (6)
 
 > **Type:** Navigation / UX Architecture  
 > **Priority:** Critical
@@ -129,7 +149,7 @@ The Admin app must guide the reviewer through the story: overview → entities �
 
 ---
 
-## 4. Overview Page — Executive Demo Surface
+## 4. Overview Page — Executive Demo Surface — Execution Order (4)
 
 > **Type:** React 19 / Product Storytelling  
 > **Priority:** Critical
@@ -167,7 +187,7 @@ Upgrade `/dashboard/overview` into the main recruiter-facing Admin landing page.
 
 ---
 
-## 5. Canonical Seed Data Alignment
+## 5. Canonical Seed Data Alignment — Execution Order (3)
 
 > **Type:** Data / D1 / Demo Reliability  
 > **Priority:** Critical
@@ -200,7 +220,7 @@ Ensure the Admin dashboard always has meaningful data for the canonical demo sce
 
 ---
 
-## 6. Trusted Actors & Assets Page Polish
+## 6. Trusted Actors & Assets Page Polish — Execution Order (6)
 
 > **Type:** React / UX / Enterprise Context  
 > **Priority:** High
@@ -238,7 +258,7 @@ Make `/dashboard/entities` clearly demonstrate enterprise governance of actors a
 
 ---
 
-## 7. Integrity Events Page Polish
+## 7. Integrity Events Page Polish — Execution Order (6)
 
 > **Type:** React / Wasm Storytelling / Audit UX  
 > **Priority:** Critical
@@ -279,7 +299,7 @@ Turn `/dashboard/events` into the core technical proof of the demo.
 
 ---
 
-## 8. Compliance Export Page Polish
+## 8. Compliance Export Page Polish — Execution Order (6)
 
 > **Type:** Compliance UX / Evidence Export  
 > **Priority:** Critical
@@ -313,7 +333,7 @@ Make `/dashboard/compliance` feel like the final evidence step in the Admin demo
 
 ---
 
-## 9. Admin Root Technical Showcase
+## 9. Admin Root Technical Showcase — Execution Order (7)
 
 > **Type:** Landing / Architecture / Recruiter Routing  
 > **Priority:** High
@@ -349,7 +369,7 @@ Use the Admin root route as a lightweight technical showcase and entry point int
 
 ---
 
-## 10. Cross-App Contract with Consumer
+## 10. Cross-App Contract with Consumer — Execution Order (5)
 
 > **Type:** Integration Contract / Navigation  
 > **Priority:** Critical
@@ -381,7 +401,7 @@ Define the Admin-side contract for opening the matching Consumer product view.
 
 ---
 
-## 11. Admin Copy & Claim Truth Audit
+## 11. Admin Copy & Claim Truth Audit — Execution Order (8)
 
 > **Type:** Content QA / Portfolio Credibility  
 > **Priority:** Critical
@@ -420,7 +440,7 @@ Ensure all Admin UI text is accurate, recruiter-friendly, and not over-claiming.
 
 ---
 
-## 12. UI Token & Accessibility Pass
+## 12. UI Token & Accessibility Pass — Execution Order (8)
 
 > **Type:** Design System / Accessibility  
 > **Priority:** Critical
@@ -451,7 +471,7 @@ Preserve the project’s strict UI governance while polishing the Admin demo.
 
 ---
 
-## 13. Admin Error Handling & Observability Pass
+## 13. Admin Error Handling & Observability Pass — Execution Order (8)
 
 > **Type:** Reliability / QA  
 > **Priority:** High
@@ -477,7 +497,7 @@ Make failures understandable during a live recruiter demo.
 
 ---
 
-## 14. Admin Documentation Touchpoints
+## 14. Admin Documentation Touchpoints — Execution Order (9)
 
 > **Type:** Local Docs / Developer Experience  
 > **Priority:** Medium
@@ -512,7 +532,7 @@ Add only the Admin-specific documentation needed to support the demo.
 
 ---
 
-## 15. Admin QA & Release Gate
+## 15. Admin QA & Release Gate — Execution Order (10)
 
 > **Type:** QA / Release  
 > **Priority:** Critical

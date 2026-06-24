@@ -24,6 +24,7 @@
 ├── CLAUDE.md
 ├── PLAN.md
 ├── README.md
+├── TASKS.md
 ├── anatomy.md
 ├── apps
 │   ├── admin
@@ -148,6 +149,9 @@
 │       ├── tsconfig.node.json
 │       ├── vite.config.ts
 │       └── vitest.config.ts
+├── docs
+│   └── demo
+│       └── truth-and-scope.md
 ├── package-lock.json
 ├── package.json
 ├── packages
@@ -183,4 +187,4 @@
 ├── pnpm-workspace.yaml
 └── turbo.json
 
-49 directories, 134 files
+51 directories, 136 files

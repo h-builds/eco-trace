@@ -2,6 +2,7 @@
 
 > **Inherits and enforces:** [.ai/rules/RULES.md](../../.ai/rules/RULES.md)
 > **Inherits:** [.ai/rules/AGENTS.md](../../.ai/rules/AGENTS.md) — all global governance and stack pinning constraints apply.
+> **Phase Notice:** The project is in Phase 8 — Portfolio Demo Excellence. All work is additive, demo-polish, recruiter-ready, and presentation-focused. The functional foundation from prior phases must be preserved and not rebuilt.
 
 ## 1. Mission
 

@@ -6,9 +6,28 @@ Implementation plan for the **Eco Trace Consumer App** under **Phase 8 — Portf
 > **Application scope:** `apps/consumer` only  
 > **Primary goal:** turn the existing Vue 3.5 Consumer App into a recruiter-friendly, no-friction public verification demo that connects clearly to the Admin Workstation scenario.
 
+## Execution Order Summary
+
+> Each section is annotated with its execution order `(N)`. Tasks at the same number can run in parallel. A task cannot start until all lower-numbered tasks are done.
+
+| Order | Section | Dependencies |
+|-------|---------|-------------|
+| (1) | §0 Baseline Lock | None — start here |
+| (2) | §1 Consumer Demo Mode Foundation | §0 complete |
+| (4) | §2 No-Camera Demo Path, §3 Static QR, §4 Scanner Hardening | §1 complete (demo constants) |
+| (5) | §10 Cross-App Bridge, §11 Data Contract Alignment | Admin §5 (seed data) complete |
+| (6) | §5 Transparency Screen, §6 Badge Polish, §7 Carbon Formula, §8 Timeline | §10,§11 complete (contracts + data) |
+| (7) | §9 Landing Page Recruiter Journey | §5,§6,§7,§8 complete |
+| (8) | §12 Accessibility & Mobile QA, §13 Performance Gate | §9 complete (all UI final) |
+| (9) | §14 Documentation | §12,§13 complete |
+| (10) | §15 Release Checklist | §14 complete |
+
+> [!WARNING]
+> **Consumer §5 and §11 are blocked by Admin §5 (Seed Data).** The Consumer app reads from the same D1 database that Admin seeds. Do not finalize transparency screen or data contract work until Admin seed data is stable.
+
 ---
 
-## 0. Baseline Lock — Do Not Rebuild
+## 0. Baseline Lock — Do Not Rebuild — Execution Order (1)
 
 > **Status:** Governance prerequisite  
 > **Priority:** Critical
@@ -19,28 +38,28 @@ Phase 8 must polish and narrate that foundation rather than replacing it.
 
 ### Tasks
 
-- [ ] Mark this file as the active `apps/consumer/TASKS.md` for Phase 8.
-- [ ] Add a top-level note in `apps/consumer/AGENTS.md` that Phase 8 is demo-polish and presentation-focused.
-- [ ] Preserve the existing Vue 3.5 + Vite architecture.
-- [ ] Preserve the existing Vapor-compatible reactive patterns.
-- [ ] Preserve the existing read-only Consumer boundary.
-- [ ] Preserve the existing Wasm bridge for verification and carbon-footprint calculation.
-- [ ] Preserve the existing typed API client and SWR-style hydration.
-- [ ] Preserve the existing scanner and transparency view components unless additive polish is needed.
-- [ ] Preserve `@eco-trace/ui` token usage; do not introduce ad-hoc visual constants.
-- [ ] Do not replace the Consumer app with React, Next.js, or another framework.
-- [ ] Do not add unsupported real-world certification, customer, or production claims.
-- [ ] Do not introduce AI claims unless functionality is implemented and validated.
+- [x] Mark this file as the active `apps/consumer/TASKS.md` for Phase 8.
+- [x] Add a top-level note in `apps/consumer/AGENTS.md` that Phase 8 is demo-polish and presentation-focused.
+- [x] Preserve the existing Vue 3.5 + Vite architecture.
+- [x] Preserve the existing Vapor-compatible reactive patterns.
+- [x] Preserve the existing read-only Consumer boundary.
+- [x] Preserve the existing Wasm bridge for verification and carbon-footprint calculation.
+- [x] Preserve the existing typed API client and SWR-style hydration.
+- [x] Preserve the existing scanner and transparency view components unless additive polish is needed.
+- [x] Preserve `@eco-trace/ui` token usage; do not introduce ad-hoc visual constants.
+- [x] Do not replace the Consumer app with React, Next.js, or another framework.
+- [x] Do not add unsupported real-world certification, customer, or production claims.
+- [x] Do not introduce AI claims unless functionality is implemented and validated.
 
 ### Exit Criteria
 
-- [ ] Agents understand that the Consumer app is already functionally built.
-- [ ] New work is additive, recruiter-facing, and scenario-driven.
-- [ ] No completed Consumer foundation feature is reimplemented from scratch.
+- [x] Agents understand that the Consumer app is already functionally built.
+- [x] New work is additive, recruiter-facing, and scenario-driven.
+- [x] No completed Consumer foundation feature is reimplemented from scratch.
 
 ---
 
-## 1. Consumer Demo Mode Foundation
+## 1. Consumer Demo Mode Foundation — Execution Order (2)
 
 > **Type:** Product / UX / State  
 > **Priority:** Critical
@@ -72,7 +91,7 @@ Create a clear demo context so recruiters understand they are evaluating a portf
 
 ---
 
-## 2. No-Camera Demo Product Path
+## 2. No-Camera Demo Product Path — Execution Order (4)
 
 > **Type:** UX / Demo Friction Removal  
 > **Priority:** Critical
@@ -99,7 +118,7 @@ The Consumer app must be testable from desktop, mobile, and restricted browser e
 
 ---
 
-## 3. Static QR Demo Asset
+## 3. Static QR Demo Asset — Execution Order (4)
 
 > **Type:** UX / QR Demo Support  
 > **Priority:** Critical
@@ -125,7 +144,7 @@ Provide a visible QR artifact for the canonical product scenario so the app can 
 
 ---
 
-## 4. Scanner Experience Hardening
+## 4. Scanner Experience Hardening — Execution Order (4)
 
 > **Type:** Vue / Browser Permissions / Error Handling  
 > **Priority:** Critical
@@ -153,7 +172,7 @@ Make scanner behavior graceful across browser restrictions, denied permissions, 
 
 ---
 
-## 5. Transparency Screen Scenario Alignment
+## 5. Transparency Screen Scenario Alignment — Execution Order (6)
 
 > **Type:** Vue / Product Storytelling  
 > **Priority:** Critical
@@ -188,7 +207,7 @@ Ensure the Product Transparency View clearly maps to the same product and events
 
 ---
 
-## 6. Authenticity Badge Polish
+## 6. Authenticity Badge Polish — Execution Order (6)
 
 > **Type:** Vue / Trust UX  
 > **Priority:** High
@@ -221,7 +240,7 @@ Make the authenticity result immediate, credible, and easy to understand.
 
 ---
 
-## 7. Carbon Formula & ESG Explanation Polish
+## 7. Carbon Formula & ESG Explanation Polish — Execution Order (6)
 
 > **Type:** Vue / Data Explanation  
 > **Priority:** High
@@ -250,7 +269,7 @@ Explain the deterministic carbon-footprint calculation without overwhelming the 
 
 ---
 
-## 8. Audit Timeline Consumer Polish
+## 8. Audit Timeline Consumer Polish — Execution Order (6)
 
 > **Type:** Vue / Timeline UX  
 > **Priority:** High
@@ -281,7 +300,7 @@ Make the audit timeline feel like a consumer-friendly version of the Admin event
 
 ---
 
-## 9. Landing Page Recruiter Journey
+## 9. Landing Page Recruiter Journey — Execution Order (7)
 
 > **Type:** Vue / Portfolio UX  
 > **Priority:** Critical
@@ -316,7 +335,7 @@ Refine the Consumer landing page so it becomes a clear public demo entry instead
 
 ---
 
-## 10. Cross-App Bridge to Admin
+## 10. Cross-App Bridge to Admin — Execution Order (5)
 
 > **Type:** Navigation / Environment Configuration  
 > **Priority:** Critical
@@ -345,7 +364,7 @@ The Consumer app must feel connected to the React Admin Workstation as part of o
 
 ---
 
-## 11. Data Contract Alignment with Admin
+## 11. Data Contract Alignment with Admin — Execution Order (5)
 
 > **Type:** API / Types / Demo Consistency  
 > **Priority:** Critical
@@ -371,7 +390,7 @@ Ensure the Consumer app consumes the same canonical scenario used by the Admin a
 
 ---
 
-## 12. Accessibility & Mobile QA
+## 12. Accessibility & Mobile QA — Execution Order (8)
 
 > **Type:** QA / WCAG / Mobile  
 > **Priority:** Critical
@@ -407,7 +426,7 @@ Preserve the Consumer app's credibility as a mobile-first public verification su
 
 ---
 
-## 13. Performance & Vapor Reactivity Gate
+## 13. Performance & Vapor Reactivity Gate — Execution Order (8)
 
 > **Type:** Performance / Vue Runtime  
 > **Priority:** High
@@ -444,7 +463,7 @@ If project scripts differ, use the closest existing workspace-specific equivalen
 
 ---
 
-## 14. Consumer Documentation Updates
+## 14. Consumer Documentation Updates — Execution Order (9)
 
 > **Type:** Documentation / Developer Experience  
 > **Priority:** High
@@ -476,7 +495,7 @@ Document how to run, test, and evaluate the Consumer app as part of the Phase 8 
 
 ---
 
-## 15. Consumer Release Checklist
+## 15. Consumer Release Checklist — Execution Order (10)
 
 > **Type:** Release / QA  
 > **Priority:** Critical

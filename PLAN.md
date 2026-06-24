@@ -3,6 +3,7 @@
 > **Status:** Active plan
 > **Project type:** Collaborative portfolio demo
 > **Primary goal:** Transform the completed Eco Trace system into a recruiter-friendly, 2026-grade enterprise verification demo without rebuilding the already implemented foundation.
+> **Baseline Notice:** Previous core phases (Phases 1–7) are fully implemented, frozen as baseline, and archived. They must not be rebuilt or modified.
 
 ---
 
@@ -260,7 +261,28 @@ Its job is to show:
 
 ## 7. Portfolio Upgrade Phases
 
-## Phase 8.0 — Scope Lock & Truth Alignment
+### 7.1 Execution Order Summary
+
+> Phases are annotated with execution order `(N)`. Lower numbers must complete before higher ones start. Admin and Consumer TASKS.md files use the same numbering.
+
+| Order | Phase | Admin TASKS | Consumer TASKS | Root TASKS |
+|-------|-------|-------------|----------------|------------|
+| (1) | 8.0 Scope Lock & Truth Alignment | §0 | §0 | §0 |
+| (2) | 8.1 + 8.2 + 8.3 Demo Scenario | §1 | §1 | — |
+| (3) | 8.2 Seed Data | §5 | — (blocked until done) | — |
+| (4) | 8.2 + 8.3 Core Pages | §2, §4 | §2, §3, §4 | — |
+| (5) | 8.1 Cross-App Contracts | §10 | §10, §11 | — |
+| (6) | 8.2 + 8.3 Deep Pages | §3, §6, §7, §8 | §5, §6, §7, §8 | — |
+| (7) | 8.1 + 8.2 + 8.3 Landing Pages | §9 | §9 | §1 Demo Hub |
+| (8) | 8.0 + 8.5 Copy & QA | §11, §12, §13 | §12, §13 | — |
+| (9) | 8.4 Documentation | §14 | §14 | §2–§7 |
+| (10) | 8.5 Release Gate | §15 | §15 | §8–§10 |
+| (11) | 8.6 Optional | — | — | §11 |
+
+> [!IMPORTANT]
+> **Critical path:** Admin §5 (Seed Data) at order (3) blocks Consumer §5 and §11. The Admin seed data defines the D1 records that the Consumer app reads.
+
+## Phase 8.0 — Scope Lock & Truth Alignment — Execution Order (1)
 
 **Type:** Governance / Documentation
 **Owner:** Project maintainers
@@ -272,22 +294,22 @@ Freeze the completed technical foundation and align all documentation with the r
 
 ### Tasks
 
-- [ ] Replace outdated phase references in `README.md`, `CONTEXT.md`, and dashboard/consumer roadmap docs.
-- [ ] Define current phase as `Phase 8 — Portfolio Demo Excellence`.
-- [ ] Add a clear note that previous core phases are baseline and must not be rebuilt.
-- [ ] Remove or reword any unsupported claims such as real certifications, real transaction counts, real customers, or real enterprise deployment.
-- [ ] Separate `Implemented`, `Demo Scenario`, and `Future Scope` sections across documentation.
-- [ ] Add a short `docs/demo/truth-and-scope.md` file explaining what is real, mocked, seeded, or future-facing.
+- [x] Replace outdated phase references in `README.md`, `CONTEXT.md`, and dashboard/consumer roadmap docs.
+- [x] Define current phase as `Phase 8 — Portfolio Demo Excellence`.
+- [x] Add a clear note that previous core phases are baseline and must not be rebuilt.
+- [x] Remove or reword any unsupported claims such as real certifications, real transaction counts, real customers, or real enterprise deployment.
+- [x] Separate `Implemented`, `Demo Scenario`, and `Future Scope` sections across documentation.
+- [x] Add a short `docs/demo/truth-and-scope.md` file explaining what is real, mocked, seeded, or future-facing.
 
 ### Exit Criteria
 
-- [ ] A technical reviewer can distinguish implemented features from demo data and future roadmap.
-- [ ] No README claim exceeds what the repository can demonstrate.
-- [ ] Agents understand that Phase 8 is additive and presentation-focused.
+- [x] A technical reviewer can distinguish implemented features from demo data and future roadmap.
+- [x] No README claim exceeds what the repository can demonstrate.
+- [x] Agents understand that Phase 8 is additive and presentation-focused.
 
 ---
 
-## Phase 8.1 — Unified Demo Entry & Recruiter Journey
+## Phase 8.1 — Unified Demo Entry & Recruiter Journey — Execution Order (2, 5, 7)
 
 **Type:** Product / UX / Demo Orchestration
 **Owner:** Product + Frontend
@@ -328,7 +350,7 @@ Create a recruiter-friendly entry point that explains the ecosystem and routes u
 
 ---
 
-## Phase 8.2 — Admin Workstation Demo Polish
+## Phase 8.2 — Admin Workstation Demo Polish — Execution Order (2–7)
 
 **Type:** React / UX / Demo Data
 **Owner:** Admin app
@@ -363,7 +385,7 @@ Turn the Admin app into a guided enterprise workstation demo that highlights gov
 
 ---
 
-## Phase 8.3 — Consumer Verification Demo Polish
+## Phase 8.3 — Consumer Verification Demo Polish — Execution Order (2–7)
 
 **Type:** Vue / UX / Mobile Demo
 **Owner:** Consumer app
@@ -392,7 +414,7 @@ Make the Consumer app easy to test even when a recruiter has no camera access or
 
 ---
 
-## Phase 8.4 — Architecture Case Study Layer
+## Phase 8.4 — Architecture Case Study Layer — Execution Order (9)
 
 **Type:** Technical Storytelling / Documentation / Portfolio
 **Owner:** Architecture + Product
@@ -429,7 +451,7 @@ Create a technical case-study layer that explains the engineering decisions behi
 
 ---
 
-## Phase 8.5 — Evidence, QA & Deployment Readiness
+## Phase 8.5 — Evidence, QA & Deployment Readiness — Execution Order (8, 10)
 
 **Type:** Quality / CI / Release
 **Owner:** QA + Maintainers
@@ -476,7 +498,7 @@ GOOS=js GOARCH=wasm go build -o main.wasm
 
 ---
 
-## Phase 8.6 — Optional Enterprise Integration Preview
+## Phase 8.6 — Optional Enterprise Integration Preview — Execution Order (11)
 
 **Type:** Architecture Extension / Future Scope
 **Owner:** Architecture
