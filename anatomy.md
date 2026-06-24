@@ -76,6 +76,7 @@
 │   │   │   └── TASKS.md
 │   │   ├── components
 │   │   │   ├── AuditTester.tsx
+│   │   │   ├── DashboardNavigation.tsx
 │   │   │   ├── DemoModeBanner.tsx
 │   │   │   └── analytics
 │   │   │       ├── MetricCard.tsx
@@ -194,4 +195,4 @@
 ├── pnpm-workspace.yaml
 └── turbo.json
 
-52 directories, 142 files
+52 directories, 143 files

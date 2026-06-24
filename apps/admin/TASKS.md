@@ -124,28 +124,28 @@ The Admin app must guide the reviewer through the story: overview â†’ entities â
 
 ### Tasks
 
-- [ ] Update dashboard navigation labels for recruiter clarity:
-  - [ ] `Overview`
-  - [ ] `Trusted Actors & Assets`
-  - [ ] `Integrity Events`
-  - [ ] `Compliance Export`
-- [ ] Add a persistent `Guided Demo` stepper in dashboard layout or overview.
-- [ ] Stepper must include:
-  - [ ] `1. Review system health`
-  - [ ] `2. Inspect trusted actors`
-  - [ ] `3. Verify event integrity`
-  - [ ] `4. Export evidence`
-  - [ ] `5. Open consumer view`
-- [ ] Add route-aware active states.
-- [ ] Add `Open Consumer Verification App` CTA using `NEXT_PUBLIC_CONSUMER_URL`.
-- [ ] Add fallback copy if `NEXT_PUBLIC_CONSUMER_URL` is missing.
-- [ ] Add `Architecture Case Study` link using `NEXT_PUBLIC_CASE_STUDY_URL` or local docs fallback.
+- [x] Update dashboard navigation labels for recruiter clarity:
+  - [x] `Overview`
+  - [x] `Trusted Actors & Assets`
+  - [x] `Integrity Events`
+  - [x] `Compliance Export`
+- [x] Add a persistent `Guided Demo` stepper in dashboard layout or overview.
+- [x] Stepper must include:
+  - [x] `1. Review system health`
+  - [x] `2. Inspect trusted actors`
+  - [x] `3. Verify event integrity`
+  - [x] `4. Export evidence`
+  - [x] `5. Open consumer view`
+- [x] Add route-aware active states.
+- [x] Add `Open Consumer Verification App` CTA using `NEXT_PUBLIC_CONSUMER_URL`.
+- [x] Add fallback copy if `NEXT_PUBLIC_CONSUMER_URL` is missing.
+- [x] Add `Architecture Case Study` link using `NEXT_PUBLIC_CASE_STUDY_URL` or local docs fallback.
 
 ### Exit Criteria
 
-- [ ] The reviewer always knows what to inspect next.
-- [ ] Admin and Consumer apps feel connected as one ecosystem.
-- [ ] Missing external URLs do not break the UI.
+- [x] The reviewer always knows what to inspect next.
+- [x] Admin and Consumer apps feel connected as one ecosystem.
+- [x] Missing external URLs do not break the UI.
 
 ---
 
