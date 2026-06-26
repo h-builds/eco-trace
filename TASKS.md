@@ -64,16 +64,16 @@ Create or identify a unified entry point that routes recruiters into both applic
 
 ### Tasks
 
-- [ ] Define the Demo Hub location (separate static page, root landing, or Consumer landing).
-- [ ] Add clear CTAs: `Open Auditor Workstation`, `Open Consumer Verification App`, `Read Architecture Case Study`.
-- [ ] Add visual system map: React Admin → Vue Consumer → Go/Wasm → D1.
-- [ ] Add 3-step recruiter flow: `1. Audit the claim`, `2. Verify the product`, `3. Inspect the architecture`.
-- [ ] Add `Demo Mode` label.
+- [x] Define the Demo Hub location (separate static page, root landing, or Consumer landing).
+- [x] Add clear CTAs: `Open Auditor Workstation`, `Open Consumer Verification App`, `Read Architecture Case Study`.
+- [x] Add visual system map: React Admin → Vue Consumer → Go/Wasm → D1.
+- [x] Add 3-step recruiter flow: `1. Audit the claim`, `2. Verify the product`, `3. Inspect the architecture`.
+- [x] Add `Demo Mode` label.
 
 ### Exit Criteria
 
-- [ ] A recruiter understands within 30 seconds why there are two apps.
-- [ ] Both apps are reachable from the entry point.
+- [x] A recruiter understands within 30 seconds why there are two apps.
+- [x] Both apps are reachable from the entry point.
 
 ---
 

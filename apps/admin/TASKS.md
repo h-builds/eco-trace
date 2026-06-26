@@ -342,30 +342,30 @@ Use the Admin root route as a lightweight technical showcase and entry point int
 
 ### Tasks
 
-- [ ] Update `apps/admin/app/page.tsx` or equivalent root route.
-- [ ] Add title:
-  - [ ] `Eco Trace Admin Workstation`.
-- [ ] Add subtitle:
-  - [ ] `React 19 auditor surface for governing cryptographically verified supply-chain claims.`
-- [ ] Add primary CTA:
-  - [ ] `Enter Auditor Workstation` → `/dashboard/overview` or `/login` depending on auth state.
-- [ ] Add secondary CTA:
-  - [ ] `Open Consumer Verification App`.
-- [ ] Add architecture strip:
-  - [ ] `React 19`.
-  - [ ] `Server Components`.
-  - [ ] `Cloudflare D1`.
-  - [ ] `Go/Wasm`.
-  - [ ] `Ed25519`.
-- [ ] Add brief explanation of why Admin and Consumer are separate apps.
-- [ ] Add demo mode disclaimer.
-- [ ] Use shared `@eco-trace/ui` tokens only.
+- [x] Update `apps/admin/app/page.tsx` or equivalent root route.
+- [x] Add title:
+  - [x] `Eco Trace Admin Workstation`.
+- [x] Add subtitle:
+  - [x] `React 19 auditor surface for governing cryptographically verified supply-chain claims.`
+- [x] Add primary CTA:
+  - [x] `Enter Auditor Workstation` → `/dashboard/overview` or `/login` depending on auth state.
+- [x] Add secondary CTA:
+  - [x] `Open Consumer Verification App`.
+- [x] Add architecture strip:
+  - [x] `React 19`.
+  - [x] `Server Components`.
+  - [x] `Cloudflare D1`.
+  - [x] `Go/Wasm`.
+  - [x] `Ed25519`.
+- [x] Add brief explanation of why Admin and Consumer are separate apps.
+- [x] Add demo mode disclaimer.
+- [x] Use shared `@eco-trace/ui` tokens only.
 
 ### Exit Criteria
 
-- [ ] Opening the Admin deployment root does not feel empty or confusing.
-- [ ] Recruiters know where to start.
-- [ ] The page complements, but does not duplicate, the Consumer landing.
+- [x] Opening the Admin deployment root does not feel empty or confusing.
+- [x] Recruiters know where to start.
+- [x] The page complements, but does not duplicate, the Consumer landing.
 
 ---
 
