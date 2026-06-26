@@ -99,7 +99,7 @@ const getEventLabel = (type: string) => ACTION_LABELS[type] || type;
 
           <details class="text-xs mt-2 group">
             <summary class="cursor-pointer text-brand-integrity-green font-medium select-none flex items-center gap-1 min-h-12 min-w-12">
-              <svg class="w-3 h-3 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              <svg class="w-3 h-3 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
               Technical details
             </summary>
             <div class="mt-2 bg-surface-canvas p-2 rounded border border-surface-border flex flex-col gap-2 font-mono text-[10px] text-functional-neutral break-all">

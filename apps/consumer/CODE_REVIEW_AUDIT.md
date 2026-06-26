@@ -4,7 +4,7 @@
 
 ## Summary
 
-The branch implements all required features correctly. After the first round of review, most violations have been resolved. **1 remaining issue** with **1 task** needs to be resolved before merge.
+The branch implements all required features correctly. All **15 tasks** across **6 violation groups** have been resolved. This PR is ready for merge.
 
 ---
 
@@ -65,13 +65,7 @@ The branch implements all required features correctly. After the first round of 
 - [x] In `ScannerView.vue`: add sufficient padding (`py-3 px-4`) to the "Open Auditor Workstation" `<a>` link so it meets the 48x48px tap target
 - [x] Add `aria-hidden="true"` to decorative SVG icons in `ScannerView.vue`, `HeroSection.vue`, `DemoModeBanner.vue`, `TransparencyScreen.vue`
 - [x] In `ScannerView.vue`: change `text-white/40` to `text-white/70` to meet WCAG 2.1 AA 4.5:1 contrast ratio
-- [ ] In `AuditTimeline.vue` (line 102): add `aria-hidden="true"` to the chevron SVG inside the `<summary>` element — this is the only remaining decorative SVG without the attribute
-  ```html
-  <!-- Current (missing aria-hidden) -->
-  <svg class="w-3 h-3 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-  <!-- Required -->
-  <svg class="w-3 h-3 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-  ```
+- [x] In `AuditTimeline.vue` (line 102): add `aria-hidden="true"` to the chevron SVG inside the `<summary>` element
 
 ---
 
