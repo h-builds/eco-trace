@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { useScanner } from '@/composables/useScanner';
+import { SCENARIO_METADATA, UI_CONSTANTS } from '@/lib/demo/demoScenario';
+import { getAdminUrl } from '@/lib/env';
 
 const emit = defineEmits<{
-  (e: 'scan', value: string): void;
+  (e: 'scan', assetId: string): void;
 }>();
 
-const { state, error, videoRef, start } = useScanner((val) => {
-  emit('scan', val);
+const { state, error, videoRef, start } = useScanner((scannedAssetId) => {
+  emit('scan', scannedAssetId);
 });
+
+const ADMIN_URL = getAdminUrl();
 </script>
 
 <template>
@@ -24,13 +28,14 @@ const { state, error, videoRef, start } = useScanner((val) => {
 
       <div
         v-if="state === 'idle'"
-        class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10 bg-brand-deep-charcoal"
+        class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10 bg-brand-deep-charcoal overflow-y-auto"
       >
         <svg
           class="w-12 h-12 text-brand-integrity-green mb-4"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
@@ -48,13 +53,46 @@ const { state, error, videoRef, start } = useScanner((val) => {
 
         <p class="text-white font-medium mb-6">Scan an Eco-Trace QR code to verify product authenticity.</p>
 
-        <div class="w-full px-8">
+        <div class="w-full px-8 space-y-6 max-w-sm">
           <button
             class="bg-brand-integrity-green text-white px-6 py-3 rounded-pill font-bold shadow-subtle hover:bg-opacity-90 transition active:scale-95 text-lg w-full"
             @click="start"
           >
             Start Scanner
           </button>
+
+          <div class="pt-4 border-t border-white/10 flex flex-col items-center">
+            <span class="text-white/60 text-xs block mb-1">
+              {{ UI_CONSTANTS.NO_CAMERA_REQUIRED }}
+            </span>
+            <button
+              class="text-brand-integrity-green hover:underline font-bold text-sm uppercase tracking-wider"
+              @click="emit('scan', SCENARIO_METADATA.assetId)"
+            >
+              {{ UI_CONSTANTS.SCANNER_FALLBACK }}
+            </button>
+          </div>
+
+          <div class="pt-4 border-t border-white/10 flex flex-col items-center">
+            <span class="text-white/80 text-xs font-bold uppercase tracking-wider mb-2">Demo QR Code</span>
+            <img
+              src="/qr-demo.png"
+              alt="Demo QR Code for ASSET-COFFEE-2026-001"
+              width="128"
+              height="128"
+              fetchpriority="high"
+              class="w-32 h-32 bg-white p-2 rounded shadow-md"
+            />
+            <p class="text-white/70 text-[10px] mt-2 mb-4">Scan this code from another device or use the demo button.</p>
+            <a
+              :href="ADMIN_URL"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-white/60 hover:text-white transition text-xs font-medium underline underline-offset-2 py-3 px-4 inline-block"
+            >
+              Open Auditor Workstation
+            </a>
+          </div>
         </div>
       </div>
 
@@ -67,6 +105,7 @@ const { state, error, videoRef, start } = useScanner((val) => {
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
@@ -90,13 +129,14 @@ const { state, error, videoRef, start } = useScanner((val) => {
 
       <div
         v-if="state === 'denied' || state === 'unavailable'"
-        class="absolute inset-0 flex flex-col items-center justify-center p-6 bg-brand-deep-charcoal z-10"
+        class="absolute inset-0 flex flex-col items-center justify-center p-6 bg-brand-deep-charcoal z-10 overflow-y-auto"
       >
         <svg
           class="w-12 h-12 text-functional-alert mb-4"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
@@ -107,14 +147,34 @@ const { state, error, videoRef, start } = useScanner((val) => {
         </svg>
 
         <p class="text-functional-alert font-bold text-center mb-2">Camera Unavailable</p>
-        <p class="text-white text-sm text-center mb-6">{{ error }}</p>
+        <p class="text-white text-sm text-center mb-6 max-w-xs">{{ error }}</p>
 
-        <button
-          class="border border-white text-white px-4 py-2 rounded-pill font-medium hover:bg-white/10 transition"
-          @click="start"
-        >
-          Try Again
-        </button>
+        <div class="flex flex-col gap-4 w-full max-w-xs">
+          <button
+            class="border border-white text-white px-4 py-2 rounded-pill font-medium hover:bg-white/10 transition"
+            @click="start"
+          >
+            Try Again
+          </button>
+
+          <button
+            class="bg-brand-integrity-green text-white px-4 py-3 rounded-pill font-bold hover:bg-opacity-90 transition shadow-subtle"
+            @click="emit('scan', SCENARIO_METADATA.assetId)"
+          >
+            {{ UI_CONSTANTS.SCANNER_FALLBACK }}
+          </button>
+
+          <div class="pt-2 text-center">
+            <a
+              :href="ADMIN_URL"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-white/60 hover:text-white transition text-xs font-medium underline underline-offset-2 py-3 px-4 inline-block"
+            >
+              Open Auditor Workstation
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

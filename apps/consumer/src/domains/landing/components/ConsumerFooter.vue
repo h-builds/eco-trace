@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { getAdminUrl } from '@/lib/env';
 
 const currentYear = new Date().getFullYear();
 
 const footerLinkHover = ref<string | null>(null);
+
+const ADMIN_URL = getAdminUrl();
 </script>
 
 <template>
@@ -58,6 +61,20 @@ const footerLinkHover = ref<string | null>(null);
         >
           COMPLIANCE
         </button>
+        <a
+          :href="ADMIN_URL"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-link"
+          style="text-decoration: none;"
+          :style="{ color: footerLinkHover === 'admin' ? 'var(--color-bp-primary)' : 'rgba(68, 71, 74, 1)' }"
+          @mouseover="footerLinkHover = 'admin'"
+          @mouseleave="footerLinkHover = null"
+          @focus="footerLinkHover = 'admin'"
+          @blur="footerLinkHover = null"
+        >
+          OPEN AUDITOR WORKSTATION
+        </a>
       </nav>
       <div
         class="font-['Geist_Mono'] text-[10px] uppercase tracking-[0.05em]"

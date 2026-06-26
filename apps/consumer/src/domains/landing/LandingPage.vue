@@ -2,14 +2,16 @@
 import { onMounted, computed, ref } from 'vue';
 import { useEventHistory } from '@/composables/useEventHistory';
 import { useWasm } from '@/composables/useWasm';
-import HeroSection from '@/components/landing/HeroSection.vue';
-import BentoDashboard from '@/components/landing/BentoDashboard.vue';
-import InteropCallout from '@/components/landing/InteropCallout.vue';
-import ActiveNodeStats from '@/components/landing/ActiveNodeStats.vue';
-import ConsumerFooter from '@/components/landing/ConsumerFooter.vue';
+import HeroSection from '@/domains/landing/components/HeroSection.vue';
+import DemoGuideSection from '@/domains/landing/components/DemoGuideSection.vue';
+import BentoDashboard from '@/domains/landing/components/BentoDashboard.vue';
+import InteropCallout from '@/domains/landing/components/InteropCallout.vue';
+import ActiveNodeStats from '@/domains/landing/components/ActiveNodeStats.vue';
+import ConsumerFooter from '@/domains/landing/components/ConsumerFooter.vue';
 
 defineEmits<{
   (e: 'navigate', view: 'scanner'): void;
+  (e: 'demoProduct'): void;
 }>();
 
 const { events, isLoading, isError, fetchHistory } = useEventHistory();
@@ -64,7 +66,11 @@ const hasEvents = computed(() => events.value.length > 0);
 <template>
   <div class="w-full bg-surface-canvas text-brand-deep-charcoal">
     <div class="space-y-16">
-      <HeroSection @navigate="$emit('navigate', $event)" />
+      <HeroSection
+        @navigate="$emit('navigate', $event)"
+        @demo-product="$emit('demoProduct')"
+      />
+      <DemoGuideSection />
       <BentoDashboard
         :wasm-init-label="wasmInitLabel"
         :compliance-ratio="complianceRatio"

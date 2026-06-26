@@ -1,8 +1,14 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 import { useEventHistory } from '@/composables/useEventHistory';
-import FormulaRenderer from './FormulaRenderer.vue';
-import AuditTimeline from './AuditTimeline.vue';
+import { SCENARIO_METADATA, UI_CONSTANTS } from '@/lib/demo/demoScenario';
+import { getAdminUrl } from '@/lib/env';
+import FormulaRenderer from './components/FormulaRenderer.vue';
+import AuditTimeline from './components/AuditTimeline.vue';
+import AuthenticityBadge from './components/AuthenticityBadge.vue';
+import { useVerificationStatus } from './composables/useVerificationStatus';
+
+const ADMIN_URL = getAdminUrl();
 
 const props = defineProps<{
   assetId: string;
@@ -13,6 +19,13 @@ const emit = defineEmits<{
 }>();
 
 const { events, isLoading, isError, error, fetchHistory } = useEventHistory();
+const { overallStatus } = useVerificationStatus(events);
+
+const latestTimestamp = computed(() => {
+  if (!events.value.length) return null;
+  const sorted = [...events.value].sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+  return new Date(sorted[0].timestamp).toLocaleString();
+});
 
 onMounted(() => {
   if (props.assetId) {
@@ -30,6 +43,7 @@ onMounted(() => {
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
@@ -60,6 +74,7 @@ onMounted(() => {
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
@@ -82,6 +97,7 @@ onMounted(() => {
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               stroke-linecap="round"
@@ -106,6 +122,7 @@ onMounted(() => {
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
@@ -123,15 +140,45 @@ onMounted(() => {
         v-else
         class="flex flex-col gap-6"
       >
-        <div class="bg-surface-card p-4 rounded-md shadow-subtle border border-surface-border">
-          <div class="bg-surface-canvas px-3 py-2 rounded text-center border border-surface-border/50">
-            <p class="text-xs text-functional-neutral font-bold uppercase tracking-wider mb-1">Verified Asset ID</p>
-            <p class="font-mono text-sm break-all font-medium text-brand-integrity-green">{{ assetId }}</p>
+        <div class="bg-surface-card p-4 rounded-md shadow-subtle border border-surface-border flex flex-col gap-4">
+          <div class="text-center">
+            <h2 class="text-xl font-bold text-brand-deep-charcoal">{{ SCENARIO_METADATA.productName }}</h2>
+            <div class="flex items-center justify-center gap-2 mt-1">
+              <span class="font-mono text-xs text-functional-neutral">{{ SCENARIO_METADATA.assetId }}</span>
+              <span class="bp-chip text-[10px]">{{ UI_CONSTANTS.DEMO_DATA_ONLY }}</span>
+            </div>
+          </div>
+
+          <div class="bg-surface-canvas p-3 rounded text-center border border-surface-border/50 flex flex-col items-center gap-2">
+            <p class="text-xs text-functional-neutral font-bold uppercase tracking-wider">Overall Trust Status</p>
+            <AuthenticityBadge :status="overallStatus" :showExplanation="true" class="items-center text-center" />
+            <p v-if="latestTimestamp" class="text-xs text-functional-neutral mt-1">
+              Last verified: {{ latestTimestamp }}
+            </p>
+          </div>
+
+          <div class="text-sm text-brand-deep-charcoal text-center px-2 mt-2">
+            <strong>Verified Product Journey</strong><br>
+            <span class="text-functional-neutral">A cryptographically verified record of the supply-chain path, from origin to audit.</span>
           </div>
         </div>
 
         <FormulaRenderer :events="events" />
         <AuditTimeline :events="events" />
+
+        <div class="pt-6 pb-2 flex justify-center">
+          <a
+            :href="ADMIN_URL"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-surface-card hover:bg-surface-container-high border border-surface-border transition px-6 py-3 rounded-pill text-brand-deep-charcoal font-bold shadow-subtle flex items-center gap-2 text-sm"
+          >
+            Open Auditor Workstation
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
       </div>
     </main>
   </div>

@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-const props = defineProps<{
-  status: "VALID" | "INVALID" | "UNAUTHORIZED" | "PENDING" | "WARNING"
-}>();
+const props = withDefaults(defineProps<{
+  status: "VALID" | "INVALID" | "UNAUTHORIZED" | "PENDING" | "WARNING",
+  showExplanation?: boolean
+}>(), {
+  showExplanation: false
+});
 
 const badgeStyle = computed(() => {
   switch (props.status) {
@@ -21,11 +24,12 @@ const badgeStyle = computed(() => {
 </script>
 
 <template>
-  <div
-    class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-pill border text-sm font-medium"
-    :class="badgeStyle"
-  >
-    <svg
+  <div class="flex flex-col items-start gap-1">
+    <div
+      class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-pill border text-sm font-medium"
+      :class="badgeStyle"
+    >
+      <svg
       v-if="status === 'VALID'"
       class="w-4 h-4"
       fill="none"
@@ -83,5 +87,16 @@ const badgeStyle = computed(() => {
     </svg>
 
     <span>{{ status }}</span>
+    </div>
+    
+    <p
+      v-if="showExplanation && status !== 'PENDING'"
+      class="text-xs text-functional-neutral max-w-sm leading-snug"
+    >
+      <template v-if="status === 'VALID'">The product history matches trusted actor signatures.</template>
+      <template v-else-if="status === 'WARNING'">The product data is readable, but one validation check needs review.</template>
+      <template v-else-if="status === 'INVALID'">The payload appears modified or failed integrity checks.</template>
+      <template v-else-if="status === 'UNAUTHORIZED'">The signature may be valid, but the actor is not trusted.</template>
+    </p>
   </div>
 </template>

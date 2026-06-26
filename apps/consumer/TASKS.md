@@ -68,26 +68,26 @@ Create a clear demo context so recruiters understand they are evaluating a portf
 
 ### Tasks
 
-- [ ] Add a persistent `DemoModeBanner` component visible on landing, scanner, and transparency views.
-- [ ] Banner copy must clearly state: `Portfolio demo — seeded product verification scenario`.
-- [ ] Add a shared `demoScenario.ts` module under `apps/consumer/src/lib/demo/`.
-- [ ] Define canonical scenario metadata:
-  - [ ] Scenario name: `Verified Product Journey`.
-  - [ ] Asset ID: `ASSET-COFFEE-2026-001`.
-  - [ ] Product name: `Andes Trace Coffee Lot 001`.
-  - [ ] Supplier: `Andes Organic Cooperative`.
-  - [ ] Processor: `Veridian Processing Node`.
-  - [ ] Logistics partner: `NorthStar Logistics`.
-  - [ ] Consumer-facing claim: `Product claims, verified.`
-- [ ] Expose scenario copy constants for Landing, Scanner, Transparency, and empty/error states.
-- [ ] Add a small `Demo data only` label wherever seeded product or actor information is shown.
-- [ ] Ensure no copy implies real customers, real certifications, real transaction volume, or production deployment.
+- [x] Add a persistent `DemoModeBanner` component visible on landing, scanner, and transparency views.
+- [x] Banner copy must clearly state: `Portfolio demo — seeded product verification scenario`.
+- [x] Add a shared `demoScenario.ts` module under `apps/consumer/src/lib/demo/`.
+- [x] Define canonical scenario metadata:
+  - [x] Scenario name: `Verified Product Journey`.
+  - [x] Asset ID: `ASSET-COFFEE-2026-001`.
+  - [x] Product name: `Andes Trace Coffee Lot 001`.
+  - [x] Supplier: `Andes Organic Cooperative`.
+  - [x] Processor: `Veridian Processing Node`.
+  - [x] Logistics partner: `NorthStar Logistics`.
+  - [x] Consumer-facing claim: `Product claims, verified.`
+- [x] Expose scenario copy constants for Landing, Scanner, Transparency, and empty/error states.
+- [x] Add a small `Demo data only` label wherever seeded product or actor information is shown.
+- [x] Ensure no copy implies real customers, real certifications, real transaction volume, or production deployment.
 
 ### Exit Criteria
 
-- [ ] Every Consumer view clearly communicates that the product data is seeded demo data.
-- [ ] Demo copy is centralized and reusable.
-- [ ] Recruiters understand the product scenario without reading the README.
+- [x] Every Consumer view clearly communicates that the product data is seeded demo data.
+- [x] Demo copy is centralized and reusable.
+- [x] Recruiters understand the product scenario without reading the README.
 
 ---
 
@@ -100,21 +100,21 @@ The Consumer app must be testable from desktop, mobile, and restricted browser e
 
 ### Tasks
 
-- [ ] Add a primary `Use Demo Product` CTA to the landing page and scanner screen.
-- [ ] The CTA must load the canonical product scenario directly.
-- [ ] Add a `Try without camera` secondary action near the QR scanner.
-- [ ] Ensure the no-camera path uses the same data contract as the QR scan path.
-- [ ] Ensure the no-camera path routes to the same `TransparencyScreen` as a successful scan.
-- [ ] Add deterministic demo asset lookup using `ASSET-COFFEE-2026-001`.
-- [ ] Add an explicit note: `No camera required for demo review.`
-- [ ] Ensure the no-camera path works on desktop and mobile.
-- [ ] Add a test covering the no-camera demo product path.
+- [x] Add a primary `Use Demo Product` CTA to the landing page and scanner screen.
+- [x] The CTA must load the canonical product scenario directly.
+- [x] Add a `Try without camera` secondary action near the QR scanner.
+- [x] Ensure the no-camera path uses the same data contract as the QR scan path.
+- [x] Ensure the no-camera path routes to the same `TransparencyScreen` as a successful scan.
+- [x] Add deterministic demo asset lookup using `ASSET-COFFEE-2026-001`.
+- [x] Add explicit note: `No camera required for demo review.`
+- [x] Ensure the no-camera path works on desktop and mobile.
+- [x] Add a test covering the no-camera demo product path.
 
 ### Exit Criteria
 
-- [ ] A recruiter can evaluate the Consumer app without camera permission.
-- [ ] The demo product path does not bypass verification UI.
-- [ ] The QR and no-camera flows converge into one transparency experience.
+- [x] A recruiter can evaluate the Consumer app without camera permission.
+- [x] The demo product path does not bypass verification UI.
+- [x] The QR and no-camera flows converge into one transparency experience.
 
 ---
 
@@ -127,20 +127,20 @@ Provide a visible QR artifact for the canonical product scenario so the app can 
 
 ### Tasks
 
-- [ ] Generate or add a static QR image for `ASSET-COFFEE-2026-001`.
-- [ ] Store the QR asset under `apps/consumer/src/assets/` or `apps/consumer/public/`.
-- [ ] Add a `Demo QR` section to the scanner view.
-- [ ] Ensure the QR encodes a stable demo payload or route understood by the app.
-- [ ] Add copy explaining that the QR points to the seeded product journey.
-- [ ] Ensure the QR image is accessible with meaningful `alt` text.
-- [ ] Ensure the static QR does not require external services to work.
-- [ ] Add a small instruction: `Scan this code from another device or use the demo button.`
+- [x] Generate or add a static QR image for `ASSET-COFFEE-2026-001`.
+- [x] Store the QR asset under `apps/consumer/src/assets/` or `apps/consumer/public/`.
+- [x] Add a `Demo QR` section to the scanner view.
+- [x] Ensure the QR encodes a stable demo payload or route understood by the app.
+- [x] Add copy explaining that the QR points to the seeded product journey.
+- [x] Ensure the QR image is accessible with meaningful `alt` text.
+- [x] Ensure the static QR does not require external services to work.
+- [x] Add a small instruction: `Scan this code from another device or use the demo button.`
 
 ### Exit Criteria
 
-- [ ] The demo can be shown with either a real scan or the fallback button.
-- [ ] The QR asset maps to the canonical product scenario.
-- [ ] The QR section improves the demo without cluttering the mobile UI.
+- [x] The demo can be shown with either a real scan or the fallback button.
+- [x] The QR asset maps to the canonical product scenario.
+- [x] The QR section improves the demo without cluttering the mobile UI.
 
 ---
 
@@ -153,22 +153,22 @@ Make scanner behavior graceful across browser restrictions, denied permissions, 
 
 ### Tasks
 
-- [ ] Review `useScanner.ts` for permission, startup, stop, and cleanup behavior.
-- [ ] Add a clear camera permission denied state.
-- [ ] Add an unsupported camera/browser state.
-- [ ] Add a malformed QR code state.
-- [ ] Add an expired or unknown asset state if the payload cannot be resolved.
-- [ ] Add a retry action that restarts scanner initialization safely.
-- [ ] Add a fallback action to `Use Demo Product` in every scanner error state.
-- [ ] Ensure scanner resources are released when leaving the scanner view.
-- [ ] Ensure scanner initialization does not trigger repeated unnecessary renders.
-- [ ] Ensure all scanner states are keyboard-accessible and screen-reader friendly.
+- [x] Review `useScanner.ts` for permission, startup, stop, and cleanup behavior.
+- [x] Add a clear camera permission denied state.
+- [x] Add an unsupported camera/browser state.
+- [x] Add a malformed QR code state.
+- [x] Add an expired or unknown asset state if the payload cannot be resolved.
+- [x] Add a retry action that restarts scanner initialization safely.
+- [x] Add a fallback action to `Use Demo Product` in every scanner error state.
+- [x] Ensure scanner resources are released when leaving the scanner view.
+- [x] Ensure scanner initialization does not trigger repeated unnecessary renders.
+- [x] Ensure all scanner states are keyboard-accessible and screen-reader friendly.
 
 ### Exit Criteria
 
-- [ ] Camera failure never blocks demo evaluation.
-- [ ] Error messages are understandable to non-technical reviewers.
-- [ ] Scanner lifecycle remains stable and performant.
+- [x] Camera failure never blocks demo evaluation.
+- [x] Error messages are understandable to non-technical reviewers.
+- [x] Scanner lifecycle remains stable and performant.
 
 ---
 
@@ -181,29 +181,29 @@ Ensure the Product Transparency View clearly maps to the same product and events
 
 ### Tasks
 
-- [ ] Update `TransparencyScreen.vue` to lead with the canonical product identity.
-- [ ] Display:
-  - [ ] Product name: `Andes Trace Coffee Lot 001`.
-  - [ ] Asset ID: `ASSET-COFFEE-2026-001`.
-  - [ ] Verification status.
-  - [ ] Last verified timestamp.
-  - [ ] Short trust summary.
-- [ ] Add a `Verified Product Journey` section summarizing the supply-chain path.
-- [ ] Ensure event timeline steps align with Admin seeded events:
-  - [ ] Origin.
-  - [ ] Transform.
-  - [ ] Transport.
-  - [ ] Audit.
-- [ ] Show invalid or unauthorized events only if they are meant to educate the user; otherwise summarize them as auditor-only findings.
-- [ ] Add plain-language copy explaining what was verified.
-- [ ] Add CTA: `Open Auditor Workstation` using `VITE_ADMIN_URL`.
-- [ ] Add fallback copy if `VITE_ADMIN_URL` is missing.
+- [x] Update `TransparencyScreen.vue` to lead with the canonical product identity.
+- [x] Display:
+  - [x] Product name: `Andes Trace Coffee Lot 001`.
+  - [x] Asset ID: `ASSET-COFFEE-2026-001`.
+  - [x] Verification status.
+  - [x] Last verified timestamp.
+  - [x] Short trust summary.
+- [x] Add a `Verified Product Journey` section summarizing the supply-chain path.
+- [x] Ensure event timeline steps align with Admin seeded events:
+  - [x] Origin.
+  - [x] Transform.
+  - [x] Transport.
+  - [x] Audit.
+- [x] Show invalid or unauthorized events only if they are meant to educate the user; otherwise summarize them as auditor-only findings.
+- [x] Add plain-language copy explaining what was verified.
+- [x] Add CTA: `Open Auditor Workstation` using `VITE_ADMIN_URL`.
+- [x] Add fallback copy if `VITE_ADMIN_URL` is missing.
 
 ### Exit Criteria
 
-- [ ] Consumer view and Admin scenario tell the same story.
-- [ ] Product verification is understandable without ESG domain knowledge.
-- [ ] The Consumer app feels like the public trust surface of the Admin system.
+- [x] Consumer view and Admin scenario tell the same story.
+- [x] Product verification is understandable without ESG domain knowledge.
+- [x] The Consumer app feels like the public trust surface of the Admin system.
 
 ---
 
@@ -216,27 +216,27 @@ Make the authenticity result immediate, credible, and easy to understand.
 
 ### Tasks
 
-- [ ] Review `AuthenticityBadge.vue` for all supported integrity states.
-- [ ] Ensure states map consistently to the data dictionary:
-  - [ ] `VALID`.
-  - [ ] `WARNING`.
-  - [ ] `INVALID`.
-  - [ ] `UNAUTHORIZED`.
-- [ ] Add short plain-English explanations:
-  - [ ] `VALID`: `The product history matches trusted actor signatures.`
-  - [ ] `WARNING`: `The product data is readable, but one validation check needs review.`
-  - [ ] `INVALID`: `The payload appears modified or failed integrity checks.`
-  - [ ] `UNAUTHORIZED`: `The signature may be valid, but the actor is not trusted.`
-- [ ] Ensure badge colors use `@eco-trace/ui` tokens only.
-- [ ] Ensure contrast meets WCAG 2.1 AA.
-- [ ] Add a compact mobile layout.
-- [ ] Add tests for badge state rendering.
+- [x] Review `AuthenticityBadge.vue` for all supported integrity states.
+- [x] Ensure states map consistently to the data dictionary:
+  - [x] `VALID`.
+  - [x] `WARNING`.
+  - [x] `INVALID`.
+  - [x] `UNAUTHORIZED`.
+- [x] Add short plain-English explanations:
+  - [x] `VALID`: `The product history matches trusted actor signatures.`
+  - [x] `WARNING`: `The product data is readable, but one validation check needs review.`
+  - [x] `INVALID`: `The payload appears modified or failed integrity checks.`
+  - [x] `UNAUTHORIZED`: `The signature may be valid, but the actor is not trusted.`
+- [x] Ensure badge colors use `@eco-trace/ui` tokens only.
+- [x] Ensure contrast meets WCAG 2.1 AA.
+- [x] Add a compact mobile layout.
+- [x] Add tests for badge state rendering.
 
 ### Exit Criteria
 
-- [ ] Trust status is understandable in less than five seconds.
-- [ ] Integrity language is accurate and not overclaimed.
-- [ ] Badge visual states remain token-compliant and accessible.
+- [x] Trust status is understandable in less than five seconds.
+- [x] Integrity language is accurate and not overclaimed.
+- [x] Badge visual states remain token-compliant and accessible.
 
 ---
 
@@ -249,23 +249,23 @@ Explain the deterministic carbon-footprint calculation without overwhelming the 
 
 ### Tasks
 
-- [ ] Review `FormulaRenderer.vue` for clarity and responsiveness.
-- [ ] Display the formula:
-  - [ ] `CF_total = Σ(E_i × EF_i)`.
-- [ ] Add plain-English helper text:
-  - [ ] `Each supply-chain step contributes energy usage multiplied by its emissions factor.`
-- [ ] Show the final calculated value for the canonical product.
-- [ ] Show individual event contributions only if the UI remains clear.
-- [ ] Add a note that the calculation is deterministic and shared with the Admin verification model.
-- [ ] Avoid claiming regulatory compliance unless clearly marked as demo/future-ready.
-- [ ] Ensure mathematical values come from the existing verified event data, not hardcoded UI strings.
-- [ ] Add tests for formula rendering and value display.
+- [x] Review `FormulaRenderer.vue` for clarity and responsiveness.
+- [x] Display the formula:
+  - [x] `CF_total = Σ(E_i × EF_i)`.
+- [x] Add plain-English helper text:
+  - [x] `Each supply-chain step contributes energy usage multiplied by its emissions factor.`
+- [x] Show the final calculated value for the canonical product.
+- [x] Show individual event contributions only if the UI remains clear.
+- [x] Add a note that the calculation is deterministic and shared with the Admin verification model.
+- [x] Avoid claiming regulatory compliance unless clearly marked as demo/future-ready.
+- [x] Ensure mathematical values come from the existing verified event data, not hardcoded UI strings.
+- [x] Add tests for formula rendering and value display.
 
 ### Exit Criteria
 
-- [ ] The formula supports the technical story without confusing non-technical reviewers.
-- [ ] Values remain connected to the verification data path.
-- [ ] No unsupported compliance claim is introduced.
+- [x] The formula supports the technical story without confusing non-technical reviewers.
+- [x] Values remain connected to the verification data path.
+- [x] No unsupported compliance claim is introduced.
 
 ---
 
@@ -278,25 +278,25 @@ Make the audit timeline feel like a consumer-friendly version of the Admin event
 
 ### Tasks
 
-- [ ] Review `AuditTimeline.vue` event ordering and labels.
-- [ ] Ensure timeline events are chronological.
-- [ ] Use human-readable event labels:
-  - [ ] `Origin registered`.
-  - [ ] `Processing verified`.
-  - [ ] `Transport verified`.
-  - [ ] `Auditor reviewed`.
-- [ ] Show actor names from the canonical scenario.
-- [ ] Show integrity status per event with accessible labels.
-- [ ] Add compact mobile timeline behavior.
-- [ ] Add an `Auditor-only findings` summary if invalid/unauthorized events are included in consumer data.
-- [ ] Ensure timeline does not expose confusing raw cryptographic data by default.
-- [ ] Add optional `Technical details` disclosure for reviewers who want to inspect IDs, public keys, or signatures.
+- [x] Review `AuditTimeline.vue` event ordering and labels.
+- [x] Ensure timeline events are chronological.
+- [x] Use human-readable event labels:
+  - [x] `Origin registered`.
+  - [x] `Processing verified`.
+  - [x] `Transport verified`.
+  - [x] `Auditor reviewed`.
+- [x] Show actor names from the canonical scenario.
+- [x] Show integrity status per event with accessible labels.
+- [x] Add compact mobile timeline behavior.
+- [x] Add an `Auditor-only findings` summary if invalid/unauthorized events are included in consumer data.
+- [x] Ensure timeline does not expose confusing raw cryptographic data by default.
+- [x] Add optional `Technical details` disclosure for reviewers who want to inspect IDs, public keys, or signatures.
 
 ### Exit Criteria
 
-- [ ] The timeline is readable on mobile.
-- [ ] The journey maps to Admin seeded data.
-- [ ] Technical depth is available without overwhelming the default view.
+- [x] The timeline is readable on mobile.
+- [x] The journey maps to Admin seeded data.
+- [x] Technical depth is available without overwhelming the default view.
 
 ---
 
@@ -309,29 +309,29 @@ Refine the Consumer landing page so it becomes a clear public demo entry instead
 
 ### Tasks
 
-- [ ] Update hero positioning to match Phase 8:
-  - [ ] Title: `Product claims, verified.`
-  - [ ] Subtitle: `A public verification surface for a two-app enterprise trust architecture.`
-- [ ] Add primary CTA: `Use Demo Product`.
-- [ ] Add secondary CTA: `Open QR Scanner`.
-- [ ] Add tertiary link: `Open Auditor Workstation` using `VITE_ADMIN_URL`.
-- [ ] Add a short `How to evaluate this demo` section:
-  - [ ] `1. Open the demo product.`
-  - [ ] `2. Review authenticity and carbon footprint.`
-  - [ ] `3. Compare the same product in the Admin Workstation.`
-- [ ] Add a visual explanation of the two-surface architecture:
-  - [ ] Consumer App: public verification.
-  - [ ] Admin App: auditor governance.
-  - [ ] Go/Wasm: shared trust engine.
-  - [ ] D1: edge persistence.
-- [ ] Remove or reword unsupported trust signals such as real transaction counts, real ISO certification, or unverifiable ratings.
-- [ ] Preserve the existing industrial editorial identity if it is token-compliant.
+- [x] Update hero positioning to match Phase 8:
+  - [x] Title: `Product claims, verified.`
+  - [x] Subtitle: `A public verification surface for a two-app enterprise trust architecture.`
+- [x] Add primary CTA: `Use Demo Product`.
+- [x] Add secondary CTA: `Open QR Scanner`.
+- [x] Add tertiary link: `Open Auditor Workstation` using `VITE_ADMIN_URL`.
+- [x] Add a short `How to evaluate this demo` section:
+  - [x] `1. Open the demo product.`
+  - [x] `2. Review authenticity and carbon footprint.`
+  - [x] `3. Compare the same product in the Admin Workstation.`
+- [x] Add a visual explanation of the two-surface architecture:
+  - [x] Consumer App: public verification.
+  - [x] Admin App: auditor governance.
+  - [x] Go/Wasm: shared trust engine.
+  - [x] D1: edge persistence.
+- [x] Remove or reword unsupported trust signals such as real transaction counts, real ISO certification, or unverifiable ratings.
+- [x] Preserve the existing industrial editorial identity if it is token-compliant.
 
 ### Exit Criteria
 
-- [ ] A recruiter understands within 30 seconds what the Consumer app does.
-- [ ] The landing page routes users to both demo paths.
-- [ ] No marketing claim exceeds what the repository demonstrates.
+- [x] A recruiter understands within 30 seconds what the Consumer app does.
+- [x] The landing page routes users to both demo paths.
+- [x] No marketing claim exceeds what the repository demonstrates.
 
 ---
 
@@ -344,23 +344,23 @@ The Consumer app must feel connected to the React Admin Workstation as part of o
 
 ### Tasks
 
-- [ ] Add `VITE_ADMIN_URL` to `.env.example`.
-- [ ] Add `VITE_CASE_STUDY_URL` to `.env.example` if needed.
-- [ ] Add a shared environment helper for external demo URLs.
-- [ ] Add `Open Auditor Workstation` CTA in:
-  - [ ] Landing page.
-  - [ ] Scanner view.
-  - [ ] Transparency screen.
-  - [ ] Footer.
-- [ ] Ensure missing environment variables produce safe fallback text instead of broken links.
-- [ ] Add `Back to Consumer Demo` copy guidelines for Admin handoff, if referenced.
-- [ ] Ensure external links have accessible labels and safe target attributes.
+- [x] Add `VITE_ADMIN_URL` to `.env.example`.
+- [x] Add `VITE_CASE_STUDY_URL` to `.env.example` if needed.
+- [x] Add a shared environment helper for external demo URLs.
+- [x] Add `Open Auditor Workstation` CTA in:
+  - [x] Landing page.
+  - [x] Scanner view.
+  - [x] Transparency screen.
+  - [x] Footer.
+- [x] Ensure missing environment variables produce safe fallback text instead of broken links.
+- [x] Add `Back to Consumer Demo` copy guidelines for Admin handoff, if referenced.
+- [x] Ensure external links have accessible labels and safe target attributes.
 
 ### Exit Criteria
 
-- [ ] Consumer and Admin feel like two surfaces of the same system.
-- [ ] Environment-specific URLs are configurable without code changes.
-- [ ] Missing URLs do not break the public demo.
+- [x] Consumer and Admin feel like two surfaces of the same system.
+- [x] Environment-specific URLs are configurable without code changes.
+- [x] Missing URLs do not break the public demo.
 
 ---
 
@@ -373,21 +373,21 @@ Ensure the Consumer app consumes the same canonical scenario used by the Admin a
 
 ### Tasks
 
-- [ ] Review `src/lib/api/types.ts` against the shared data dictionary.
-- [ ] Review `src/lib/api/client.ts` for asset-specific lookup support.
-- [ ] Add or confirm support for fetching events by `asset_id`.
-- [ ] Ensure Consumer app router accepts the querystring contract `?asset=${assetId}` sent by the Admin Workstation.
-- [ ] Ensure `ASSET-COFFEE-2026-001` maps to the seeded Admin scenario.
-- [ ] Ensure Consumer does not mutate or sign events.
-- [ ] Ensure Consumer only verifies, calculates, and displays read-only data.
-- [ ] Add fallback demo data only if clearly labeled and isolated from production-like API paths.
-- [ ] Add tests confirming Consumer event types match the expected scenario shape.
+- [x] Review `src/lib/api/types.ts` against the shared data dictionary.
+- [x] Review `src/lib/api/client.ts` for asset-specific lookup support.
+- [x] Add or confirm support for fetching events by `asset_id`.
+- [x] Ensure Consumer app router accepts the querystring contract `?asset=${assetId}` sent by the Admin Workstation.
+- [x] Ensure `ASSET-COFFEE-2026-001` maps to the seeded Admin scenario.
+- [x] Ensure Consumer does not mutate or sign events.
+- [x] Ensure Consumer only verifies, calculates, and displays read-only data.
+- [x] Add fallback demo data only if clearly labeled and isolated from production-like API paths.
+- [x] Add tests confirming Consumer event types match the expected scenario shape.
 
 ### Exit Criteria
 
-- [ ] Consumer product data matches Admin seed data.
-- [ ] Consumer remains read-only.
-- [ ] Type contracts stay aligned with the shared traceability schema.
+- [x] Consumer product data matches Admin seed data.
+- [x] Consumer remains read-only.
+- [x] Type contracts stay aligned with the shared traceability schema.
 
 ---
 
@@ -400,30 +400,30 @@ Preserve the Consumer app's credibility as a mobile-first public verification su
 
 ### Tasks
 
-- [ ] Run accessibility audit for:
-  - [ ] Landing page.
-  - [ ] Scanner view.
-  - [ ] Camera denied state.
-  - [ ] Demo product path.
-  - [ ] Transparency screen.
-- [ ] Ensure all CTAs have accessible names.
-- [ ] Ensure all trust badges have non-color-only indicators.
-- [ ] Ensure QR image has descriptive alt text.
-- [ ] Ensure keyboard navigation works across demo-critical paths.
-- [ ] Ensure touch targets are large enough for mobile.
-- [ ] Ensure reduced-motion preferences are respected if animations exist.
-- [ ] Validate mobile layout at common widths:
-  - [ ] 320px.
-  - [ ] 375px.
-  - [ ] 430px.
-  - [ ] 768px.
-- [ ] Validate desktop layout for recruiter review.
+- [x] Run accessibility audit for:
+  - [x] Landing page.
+  - [x] Scanner view.
+  - [x] Camera denied state.
+  - [x] Demo product path.
+  - [x] Transparency screen.
+- [x] Ensure all CTAs have accessible names.
+- [x] Ensure all trust badges have non-color-only indicators.
+- [x] Ensure QR image has descriptive alt text.
+- [x] Ensure keyboard navigation works across demo-critical paths.
+- [x] Ensure touch targets are large enough for mobile.
+- [x] Ensure reduced-motion preferences are respected if animations exist.
+- [x] Validate mobile layout at common widths:
+  - [x] 320px.
+  - [x] 375px.
+  - [x] 430px.
+  - [x] 768px.
+- [x] Validate desktop layout for recruiter review.
 
 ### Exit Criteria
 
-- [ ] Recruiter-critical paths pass WCAG 2.1 AA expectations.
-- [ ] Mobile and desktop demo paths are both usable.
-- [ ] Trust states are accessible without relying only on color.
+- [x] Recruiter-critical paths pass WCAG 2.1 AA expectations.
+- [x] Mobile and desktop demo paths are both usable.
+- [x] Trust states are accessible without relying only on color.
 
 ---
 
@@ -436,14 +436,14 @@ Maintain the existing performance story while adding demo polish.
 
 ### Tasks
 
-- [ ] Ensure no new heavy dependency is added for simple demo interactions.
-- [ ] Confirm scanner fallback and demo product path do not increase startup cost significantly.
-- [ ] Confirm Wasm loading remains lazy or appropriately scoped.
-- [ ] Confirm no unnecessary re-renders are introduced in transparency view updates.
-- [ ] Confirm landing page remains lightweight.
-- [ ] Run existing latency and Vapor-related tests.
-- [ ] Run Lighthouse mobile validation after UI changes.
-- [ ] Document any performance exception if unavoidable.
+- [x] Ensure no new heavy dependency is added for simple demo interactions.
+- [x] Confirm scanner fallback and demo product path do not increase startup cost significantly.
+- [x] Confirm Wasm loading remains lazy or appropriately scoped.
+- [x] Confirm no unnecessary re-renders are introduced in transparency view updates.
+- [x] Confirm landing page remains lightweight.
+- [x] Run existing latency and Vapor-related tests.
+- [x] Run Lighthouse mobile validation after UI changes.
+- [x] Document any performance exception if unavoidable.
 
 ### Required Commands
 
@@ -457,10 +457,10 @@ If project scripts differ, use the closest existing workspace-specific equivalen
 
 ### Exit Criteria
 
-- [ ] Consumer demo remains fast enough for public review.
-- [ ] No-camera path feels instant.
-- [ ] QR verification flow remains performant.
-- [ ] Added demo polish does not undermine the Vapor/performance narrative.
+- [x] Consumer demo remains fast enough for public review.
+- [x] No-camera path feels instant.
+- [x] QR verification flow remains performant.
+- [x] Added demo polish does not undermine the Vapor/performance narrative.
 
 ---
 
@@ -473,26 +473,26 @@ Document how to run, test, and evaluate the Consumer app as part of the Phase 8 
 
 ### Tasks
 
-- [ ] Update `apps/consumer/README.md` or create it if missing.
-- [ ] Document:
-  - [ ] App purpose.
-  - [ ] Demo product path.
-  - [ ] QR scanner path.
-  - [ ] Required environment variables.
-  - [ ] How to link to Admin.
-  - [ ] How to run locally.
-  - [ ] How to test.
-  - [ ] What is seeded/demo data.
-- [ ] Add a short `Recruiter evaluation path` section.
-- [ ] Add `Troubleshooting camera access` section.
-- [ ] Add note that Consumer is read-only and cannot mutate event state.
-- [ ] Cross-link to root `PLAN.md` and future `docs/demo/demo-scenario.md`.
+- [x] Update `apps/consumer/README.md` or create it if missing.
+- [x] Document:
+  - [x] App purpose.
+  - [x] Demo product path.
+  - [x] QR scanner path.
+  - [x] Required environment variables.
+  - [x] How to link to Admin.
+  - [x] How to run locally.
+  - [x] How to test.
+  - [x] What is seeded/demo data.
+- [x] Add a short `Recruiter evaluation path` section.
+- [x] Add `Troubleshooting camera access` section.
+- [x] Add note that Consumer is read-only and cannot mutate event state.
+- [x] Cross-link to root `PLAN.md` and future `docs/demo/demo-scenario.md`.
 
 ### Exit Criteria
 
-- [ ] A reviewer can run or evaluate the Consumer app without private explanation.
-- [ ] Camera fallback is documented.
-- [ ] Consumer's role in the two-app ecosystem is clear.
+- [x] A reviewer can run or evaluate the Consumer app without private explanation.
+- [x] Camera fallback is documented.
+- [x] Consumer's role in the two-app ecosystem is clear.
 
 ---
 
@@ -505,21 +505,21 @@ Before publishing the demo, verify the Consumer app works as a standalone public
 
 ### Tasks
 
-- [ ] Validate landing page loads.
-- [ ] Validate `Use Demo Product` works.
-- [ ] Validate QR scanner initializes when camera is allowed.
-- [ ] Validate camera denied state works.
-- [ ] Validate static QR maps to the demo product.
-- [ ] Validate transparency screen loads canonical product data.
-- [ ] Validate authenticity badge states.
-- [ ] Validate carbon formula and final value display.
-- [ ] Validate audit timeline order and labels.
-- [ ] Validate `Open Auditor Workstation` links.
-- [ ] Validate environment-variable fallbacks.
-- [ ] Validate mobile layout.
-- [ ] Validate accessibility.
-- [ ] Validate production build.
-- [ ] Capture current screenshots only after all copy and data are truthful.
+- [x] Validate landing page loads.
+- [x] Validate `Use Demo Product` works.
+- [x] Validate QR scanner initializes when camera is allowed.
+- [x] Validate camera denied state works.
+- [x] Validate static QR maps to the demo product.
+- [x] Validate transparency screen loads canonical product data.
+- [x] Validate authenticity badge states.
+- [x] Validate carbon formula and final value display.
+- [x] Validate audit timeline order and labels.
+- [x] Validate `Open Auditor Workstation` links.
+- [x] Validate environment-variable fallbacks.
+- [x] Validate mobile layout.
+- [x] Validate accessibility.
+- [x] Validate production build.
+- [x] Capture current screenshots only after all copy and data are truthful.
 
 ### Required Commands
 
@@ -539,11 +539,11 @@ pnpm lint --filter consumer
 
 ### Exit Criteria
 
-- [ ] Public Consumer demo has no dead ends.
-- [ ] Camera access is optional.
-- [ ] Consumer and Admin scenario data align.
-- [ ] No unsupported claims remain.
-- [ ] The Consumer app is ready for LinkedIn, portfolio, and recruiter review.
+- [x] Public Consumer demo has no dead ends.
+- [x] Camera access is optional.
+- [x] Consumer and Admin scenario data align.
+- [x] No unsupported claims remain.
+- [x] The Consumer app is ready for LinkedIn, portfolio, and recruiter review.
 
 ---
 
@@ -566,20 +566,20 @@ pnpm lint --filter consumer
 
 The Consumer Phase 8 work is complete when:
 
-- [ ] `apps/consumer/TASKS.md` is aligned with root `PLAN.md`.
-- [ ] Consumer demo has a no-camera path.
-- [ ] Static QR demo asset is available.
-- [ ] Scanner errors gracefully route to the demo product.
-- [ ] Transparency screen shows the canonical product journey.
-- [ ] Authenticity badge explains trust states clearly.
-- [ ] Carbon formula is accurate and understandable.
-- [ ] Audit timeline matches Admin seeded scenario.
-- [ ] Landing page explains the recruiter path.
-- [ ] Consumer links back to Admin Workstation.
-- [ ] Accessibility and mobile QA pass.
-- [ ] Performance/Vapor story is preserved.
-- [ ] Documentation explains how to evaluate the Consumer app.
-- [ ] No unsupported production, certification, AI, or customer claims remain.
+- [x] `apps/consumer/TASKS.md` is aligned with root `PLAN.md`.
+- [x] Consumer demo has a no-camera path.
+- [x] Static QR demo asset is available.
+- [x] Scanner errors gracefully route to the demo product.
+- [x] Transparency screen shows the canonical product journey.
+- [x] Authenticity badge explains trust states clearly.
+- [x] Carbon formula is accurate and understandable.
+- [x] Audit timeline matches Admin seeded scenario.
+- [x] Landing page explains the recruiter path.
+- [x] Consumer links back to Admin Workstation.
+- [x] Accessibility and mobile QA pass.
+- [x] Performance/Vapor story is preserved.
+- [x] Documentation explains how to evaluate the Consumer app.
+- [x] No unsupported production, certification, AI, or customer claims remain.
 
 ---
 

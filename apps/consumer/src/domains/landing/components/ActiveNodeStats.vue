@@ -84,7 +84,7 @@ defineProps<{
             class="text-xs font-medium"
             style="color: var(--color-bp-on-surface-variant);"
           >
-            {{ isError ? 'Failed to load data' : (isLoading ? 'Fetching status...' : (!hasEvents ? 'No events recorded' : (isFullyCompliant ? 'ISO-14064 Ready' : 'Audit Required'))) }}
+            {{ isError ? 'Failed to load data' : (isLoading ? 'Fetching status...' : (!hasEvents ? 'No events recorded' : (isFullyCompliant ? 'Scenario Verified' : 'Audit Required'))) }}
           </span>
         </div>
       </div>

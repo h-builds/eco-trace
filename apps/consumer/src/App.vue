@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useWasm } from '@/composables/useWasm';
-import NavBar from './components/NavBar.vue';
-import LandingPage from './components/LandingPage.vue';
-import ScannerView from './components/ScannerView.vue';
-import TransparencyScreen from './components/TransparencyScreen.vue';
+import { SCENARIO_METADATA } from '@/lib/demo/demoScenario';
+import NavBar from './domains/layout/NavBar.vue';
+import DemoModeBanner from './domains/layout/DemoModeBanner.vue';
+import LandingPage from './domains/landing/LandingPage.vue';
+import ScannerView from './domains/scanner/ScannerView.vue';
+import TransparencyScreen from './domains/verification/TransparencyScreen.vue';
 
 type ViewState = 'landing' | 'scanner' | 'transparency';
 
@@ -37,6 +39,16 @@ declare global {
 if (typeof window !== 'undefined') {
   window.__simulateScan = handleScan;
 }
+
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    const params = new URLSearchParams(window.location.search);
+    const assetParam = params.get('asset');
+    if (assetParam) {
+      handleScan(assetParam);
+    }
+  }
+});
 
 const handleReset = () => {
   activeAssetId.value = null;
@@ -75,9 +87,11 @@ const handleReset = () => {
     </div>
 
     <main class="max-w-7xl mx-auto px-4 md:px-8 pt-20 pb-16">
+      <DemoModeBanner class="mb-8 rounded-sm shadow-subtle" />
       <LandingPage
         v-if="currentView === 'landing'"
         @navigate="navigate"
+        @demo-product="handleScan(SCENARIO_METADATA.assetId)"
       />
       <ScannerView
         v-else-if="currentView === 'scanner'"

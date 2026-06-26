@@ -9,7 +9,7 @@ Active state and recent operational focus for the Eco-Trace monorepo.
 
 ## Active Blockers
 
-- **None:** All core documentation and directory structures are initialized.
+- **None:** Consumer tasks complete (Orders 1-10). The Admin app is now the sole active section of Phase 8.
 
 ## Project Brief
 
@@ -70,6 +70,7 @@ Eco-Trace is a high-performance, Edge-native supply chain traceability platform 
 - **(2026-06-24)** Trusted Actors & Assets Page Polish (Phase 8 Task 6, Execution Order 6): Upgraded `/dashboard/entities` to demonstrate enterprise governance. Integrated the `DemoScenario` context filter, dynamically derived Actor Roles, relational Asset counts via Edge SQL subqueries, and timestamped Asset tables containing direct traversal links to the Integrity Events log. Added explicit demo disclaimers to registration forms while validating and maintaining `DATA_DICTIONARY.md` D1 constraints.
 - **(2026-06-24)** Integrity Events Page Polish (Phase 8 Task 7, Execution Order 6): Refactored the `/dashboard/events` route to serve as the core technical proof of the portfolio demo. Integrated readable event labels mapped dynamically to integrity statuses, introduced a Canonical Product Journey grouping for the deterministic seed data, and added a compact Ed25519 verification explainer. Preserved all Wasm-backed testing flows while retaining strictly-typed `@eco-trace/ui` compliance.
 - **(2026-06-24)** Compliance Export Page Polish (Phase 8 Task 8, Execution Order 6): Refactored the `/dashboard/compliance` route to finalize the evidence extraction step of the demo. Renamed the heading to "Compliance Export", integrated a `Recommended demo export` pre-select option using `DemoScenario` metadata, and enriched the PDF generation with canonical metadata (Scenario Name, Asset ID, Demo-Data Disclaimer). Refactored export handlers to support user-facing success and failure states, and maintained the cross-app Consumer View CTA.
+- **(2026-06-24)** Consumer App Phase 8 Completion (Orders 1-10): Finalized Consumer demonstration readiness. Implemented the camera-less fallback route with static QR code (`qr-demo.png`), built deterministic deep-linking via `?asset=...`, corrected WCAG AA color contrasts for a11y compliance, and completed the final app explanatory documentation (`README.md`). The Admin application is now the sole active domain for Phase 8.
 
 ## Working Context
 

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { getAdminUrl } from '@/lib/env';
 
 defineEmits<{
   (e: 'navigate', view: 'scanner'): void;
+  (e: 'demoProduct'): void;
 }>();
 
 const viewLedgerHover = ref(false);
@@ -35,15 +37,50 @@ const viewLedgerHover = ref(false);
           class="font-['Space_Grotesk'] text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] uppercase italic"
           style="color: var(--color-bp-on-surface);"
         >
-          High-Performance <br />
-          <span style="color: var(--color-bp-primary);">ESG Product</span> <br />
-          Transparency.
+          Product claims, <br />
+          <span style="color: var(--color-bp-primary);">verified.</span>
         </h1>
+        
+        <p
+          class="font-mono text-sm leading-relaxed"
+          style="color: var(--color-bp-on-surface-variant); max-width: 480px;"
+        >
+          A public verification surface for a two-app enterprise trust architecture.
+        </p>
 
         <div class="flex flex-col sm:flex-row gap-4">
           <button
-            id="cta-launch-scanner"
+            id="cta-use-demo-product"
             class="cta-primary w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest text-[color:var(--color-bp-on-primary-container)] flex items-center justify-center gap-3 hover:opacity-90 active:scale-95 transition-all"
+            @click="$emit('demoProduct')"
+          >
+            <svg
+              class="w-5 h-5 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Use Demo Product
+          </button>
+
+          <button
+            id="cta-launch-scanner"
+            class="w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest transition-colors flex items-center justify-center gap-3"
+            :style="{
+              border: '1px solid var(--color-bp-primary)',
+              color: 'var(--color-bp-primary)',
+              backgroundColor: viewLedgerHover ? 'rgba(142,213,180,0.1)' : 'transparent'
+            }"
+            @mouseover="viewLedgerHover = true"
+            @mouseleave="viewLedgerHover = false"
+            @focus="viewLedgerHover = true"
+            @blur="viewLedgerHover = false"
             @click="$emit('navigate', 'scanner')"
           >
             <svg
@@ -54,6 +91,7 @@ const viewLedgerHover = ref(false);
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
+              aria-hidden="true"
             >
               <path d="M3 7V5a2 2 0 012-2h2" />
               <path d="M17 3h2a2 2 0 012 2v2" />
@@ -66,23 +104,34 @@ const viewLedgerHover = ref(false);
                 height="10"
               />
             </svg>
-            Launch QR Scanner
+            Open QR Scanner
           </button>
+        </div>
 
-          <button
-            class="w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest transition-colors"
-            :style="{
-              border: '1px solid var(--color-bp-primary)',
-              color: 'var(--color-bp-primary)',
-              backgroundColor: viewLedgerHover ? 'rgba(142,213,180,0.1)' : 'transparent'
-            }"
-            @mouseover="viewLedgerHover = true"
-            @mouseleave="viewLedgerHover = false"
-            @focus="viewLedgerHover = true"
-            @blur="viewLedgerHover = false"
+        <div class="pt-4">
+          <a
+            :href="getAdminUrl()"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest hover:underline transition-all"
+            style="color: var(--color-bp-primary);"
           >
-            View Ledger
-          </button>
+            Open Auditor Workstation
+            <svg
+              class="w-3 h-3"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </a>
         </div>
       </div>
 

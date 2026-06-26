@@ -87,20 +87,19 @@ defineProps<{
             class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight uppercase mb-2"
             style="color: var(--color-bp-on-surface);"
           >
-            Eliminate ESG Fraud
+            Demonstrate Traceability
           </h3>
           <p
             class="text-sm leading-relaxed"
             style="color: var(--color-bp-on-surface-variant);"
           >
-            Transitioning from vague corporate "promises" to immutable
+            A seeded demo showing how supply-chain claims can become consumer-verifiable 
             <span
               class="italic font-bold"
               style="color: var(--color-bp-primary);"
             >
-              cryptographic proof
+              cryptographic evidence
             </span>.
-            Every carbon credit is traceable to its origin node.
           </p>
         </div>
       </div>
