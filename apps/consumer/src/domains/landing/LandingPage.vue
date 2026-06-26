@@ -2,12 +2,12 @@
 import { onMounted, computed, ref } from 'vue';
 import { useEventHistory } from '@/composables/useEventHistory';
 import { useWasm } from '@/composables/useWasm';
-import HeroSection from '@/components/landing/HeroSection.vue';
-import DemoGuideSection from '@/components/landing/DemoGuideSection.vue';
-import BentoDashboard from '@/components/landing/BentoDashboard.vue';
-import InteropCallout from '@/components/landing/InteropCallout.vue';
-import ActiveNodeStats from '@/components/landing/ActiveNodeStats.vue';
-import ConsumerFooter from '@/components/landing/ConsumerFooter.vue';
+import HeroSection from '@/domains/landing/components/HeroSection.vue';
+import DemoGuideSection from '@/domains/landing/components/DemoGuideSection.vue';
+import BentoDashboard from '@/domains/landing/components/BentoDashboard.vue';
+import InteropCallout from '@/domains/landing/components/InteropCallout.vue';
+import ActiveNodeStats from '@/domains/landing/components/ActiveNodeStats.vue';
+import ConsumerFooter from '@/domains/landing/components/ConsumerFooter.vue';
 
 defineEmits<{
   (e: 'navigate', view: 'scanner'): void;

@@ -3,10 +3,10 @@ import { onMounted, computed } from 'vue';
 import { useEventHistory } from '@/composables/useEventHistory';
 import { SCENARIO_METADATA, UI_CONSTANTS } from '@/lib/demo/demoScenario';
 import { getAdminUrl } from '@/lib/env';
-import FormulaRenderer from './FormulaRenderer.vue';
-import AuditTimeline from './AuditTimeline.vue';
-import AuthenticityBadge from './AuthenticityBadge.vue';
-import { useWasm, type WasmIntegrityResult } from '@/composables/useWasm';
+import FormulaRenderer from './components/FormulaRenderer.vue';
+import AuditTimeline from './components/AuditTimeline.vue';
+import AuthenticityBadge from './components/AuthenticityBadge.vue';
+import { useVerificationStatus } from './composables/useVerificationStatus';
 
 const ADMIN_URL = getAdminUrl();
 
@@ -19,26 +19,12 @@ const emit = defineEmits<{
 }>();
 
 const { events, isLoading, isError, error, fetchHistory } = useEventHistory();
-const { isReady, verifyIntegrity } = useWasm();
+const { overallStatus } = useVerificationStatus(events);
 
 const latestTimestamp = computed(() => {
   if (!events.value.length) return null;
   const sorted = [...events.value].sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
   return new Date(sorted[0].timestamp).toLocaleString();
-});
-
-const overallStatus = computed<WasmIntegrityResult['status']>(() => {
-  if (!events.value.length || !isReady.value) return 'PENDING';
-  let hasWarning = false;
-  for (const event of events.value) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { signature, public_key, integrity_status, ...payload } = event as any;
-    const res = verifyIntegrity(payload, event.signature, event.public_key);
-    if (res.status === 'INVALID') return 'INVALID';
-    if (res.status === 'VALID' && event.integrity_status === 'UNAUTHORIZED') return 'UNAUTHORIZED';
-    if (res.status === 'WARNING') hasWarning = true;
-  }
-  return hasWarning ? 'WARNING' : 'VALID';
 });
 
 onMounted(() => {
@@ -57,6 +43,7 @@ onMounted(() => {
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
@@ -87,6 +74,7 @@ onMounted(() => {
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
@@ -109,6 +97,7 @@ onMounted(() => {
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               stroke-linecap="round"
@@ -133,6 +122,7 @@ onMounted(() => {
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
@@ -184,7 +174,7 @@ onMounted(() => {
             class="bg-surface-card hover:bg-surface-container-high border border-surface-border transition px-6 py-3 rounded-pill text-brand-deep-charcoal font-bold shadow-subtle flex items-center gap-2 text-sm"
           >
             Open Auditor Workstation
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
           </a>

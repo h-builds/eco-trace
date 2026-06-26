@@ -14,15 +14,15 @@ const { verifyIntegrity, isReady } = useWasm();
 const getIntegrity = (event: SupplyChainEvent): WasmIntegrityResult['status'] => {
   if (!isReady.value) return 'PENDING';
   
-  const { signature, public_key, integrity_status, ...payload } = event as SupplyChainEvent & Record<string, unknown>;
+  const { signature, public_key, integrity_status, ...payload } = event;
   
-  const res = verifyIntegrity(payload, event.signature, event.public_key);
+  const integrityResult = verifyIntegrity(payload, event.signature, event.public_key);
   
-  if (res.status === 'VALID' && event.integrity_status === 'UNAUTHORIZED') {
+  if (integrityResult.status === 'VALID' && event.integrity_status === 'UNAUTHORIZED') {
      return 'UNAUTHORIZED';
   }
   
-  return res.status;
+  return integrityResult.status;
 };
 
 const sortedEvents = computed(() => {
@@ -98,7 +98,7 @@ const getEventLabel = (type: string) => ACTION_LABELS[type] || type;
           </div>
 
           <details class="text-xs mt-2 group">
-            <summary class="cursor-pointer text-brand-integrity-green font-medium select-none flex items-center gap-1">
+            <summary class="cursor-pointer text-brand-integrity-green font-medium select-none flex items-center gap-1 min-h-12 min-w-12">
               <svg class="w-3 h-3 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
               Technical details
             </summary>

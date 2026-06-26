@@ -4,11 +4,11 @@ import { SCENARIO_METADATA, UI_CONSTANTS } from '@/lib/demo/demoScenario';
 import { getAdminUrl } from '@/lib/env';
 
 const emit = defineEmits<{
-  (e: 'scan', value: string): void;
+  (e: 'scan', assetId: string): void;
 }>();
 
-const { state, error, videoRef, start } = useScanner((val) => {
-  emit('scan', val);
+const { state, error, videoRef, start } = useScanner((scannedAssetId) => {
+  emit('scan', scannedAssetId);
 });
 
 const ADMIN_URL = getAdminUrl();
@@ -35,6 +35,7 @@ const ADMIN_URL = getAdminUrl();
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
@@ -77,14 +78,17 @@ const ADMIN_URL = getAdminUrl();
             <img
               src="/qr-demo.png"
               alt="Demo QR Code for ASSET-COFFEE-2026-001"
+              width="128"
+              height="128"
+              fetchpriority="high"
               class="w-32 h-32 bg-white p-2 rounded shadow-md"
             />
-            <p class="text-white/40 text-[10px] mt-2 mb-4">Scan this code from another device or use the demo button.</p>
+            <p class="text-white/70 text-[10px] mt-2 mb-4">Scan this code from another device or use the demo button.</p>
             <a
               :href="ADMIN_URL"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-white/60 hover:text-white transition text-xs font-medium underline underline-offset-2"
+              class="text-white/60 hover:text-white transition text-xs font-medium underline underline-offset-2 py-3 px-4 inline-block"
             >
               Open Auditor Workstation
             </a>
@@ -101,6 +105,7 @@ const ADMIN_URL = getAdminUrl();
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
@@ -131,6 +136,7 @@ const ADMIN_URL = getAdminUrl();
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
@@ -163,7 +169,7 @@ const ADMIN_URL = getAdminUrl();
               :href="ADMIN_URL"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-white/60 hover:text-white transition text-xs font-medium underline underline-offset-2"
+              class="text-white/60 hover:text-white transition text-xs font-medium underline underline-offset-2 py-3 px-4 inline-block"
             >
               Open Auditor Workstation
             </a>

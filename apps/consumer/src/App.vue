@@ -2,11 +2,11 @@
 import { ref, onMounted } from 'vue';
 import { useWasm } from '@/composables/useWasm';
 import { SCENARIO_METADATA } from '@/lib/demo/demoScenario';
-import NavBar from './components/NavBar.vue';
-import DemoModeBanner from './components/DemoModeBanner.vue';
-import LandingPage from './components/LandingPage.vue';
-import ScannerView from './components/ScannerView.vue';
-import TransparencyScreen from './components/TransparencyScreen.vue';
+import NavBar from './domains/layout/NavBar.vue';
+import DemoModeBanner from './domains/layout/DemoModeBanner.vue';
+import LandingPage from './domains/landing/LandingPage.vue';
+import ScannerView from './domains/scanner/ScannerView.vue';
+import TransparencyScreen from './domains/verification/TransparencyScreen.vue';
 
 type ViewState = 'landing' | 'scanner' | 'transparency';
 

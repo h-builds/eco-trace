@@ -62,6 +62,7 @@ const viewLedgerHover = ref(false);
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
+              aria-hidden="true"
             >
               <polyline points="20 6 9 17 4 12" />
             </svg>
@@ -90,6 +91,7 @@ const viewLedgerHover = ref(false);
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
+              aria-hidden="true"
             >
               <path d="M3 7V5a2 2 0 012-2h2" />
               <path d="M17 3h2a2 2 0 012 2v2" />
@@ -123,6 +125,7 @@ const viewLedgerHover = ref(false);
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
+              aria-hidden="true"
             >
               <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
               <polyline points="15 3 21 3 21 9" />
