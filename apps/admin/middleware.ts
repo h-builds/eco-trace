@@ -56,7 +56,6 @@ export async function middleware(request: NextRequest) {
   
   if (isDashboardRoute && !sessionId) {
     const url = new URL('/login', request.url);
-    url.searchParams.set('error', 'session_expired');
     return NextResponse.redirect(url);
   }
 
