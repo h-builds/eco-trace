@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getRequestContext } from "@cloudflare/next-on-pages";
+import { Logger } from "../../lib/logger";
 
 export const runtime = "edge";
 export const dynamic = "force-dynamic";
@@ -42,7 +43,8 @@ export async function GET(request: NextRequest) {
     const db = (getRequestContext().env as unknown as Env).DB; 
     
     if (!db) {
-      return NextResponse.json({ error: "Database binding 'DB' not found in environment." }, { status: 500 });
+      Logger.error("Database binding 'DB' not found in environment.");
+      return NextResponse.json({ error: "Service Unavailable: Database binding missing. Please check your environment configuration." }, { status: 500 });
     }
 
     const { searchParams } = new URL(request.url);
@@ -82,8 +84,9 @@ export async function GET(request: NextRequest) {
     
     return NextResponse.json(events);
   } catch (error) {
-    console.error("D1 GET /api/events error:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    Logger.error(`D1 GET /api/events error: ${errorMessage}`, error);
+    return NextResponse.json({ error: `Failed to fetch events: ${errorMessage}` }, { status: 500 });
   }
 }
 
@@ -91,10 +94,11 @@ export async function POST(request: NextRequest) {
   try {
     const db = (getRequestContext().env as unknown as Env).DB;
     if (!db) {
-      return NextResponse.json({ error: "Database binding 'DB' not found in environment." }, { status: 500 });
+      Logger.error("Database binding 'DB' not found in environment.");
+      return NextResponse.json({ error: "Service Unavailable: Database binding missing. Please check your environment configuration." }, { status: 500 });
     }
 
-    const payload = await request.json();
+    const payload = (await request.json()) as Record<string, unknown>;
     
     const requiredFields = [
       "id", "event_id", "asset_id", "actor_id", "timestamp", 
@@ -133,7 +137,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Database rejected the insertion." }, { status: 500 });
     }
   } catch (error) {
-    console.error("D1 POST /api/events error:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    Logger.error(`D1 POST /api/events error: ${errorMessage}`, error);
+    return NextResponse.json({ error: `Failed to create event: ${errorMessage}` }, { status: 500 });
   }
 }

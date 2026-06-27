@@ -42,7 +42,8 @@ export async function GET(request: NextRequest) {
     const db = (getRequestContext().env as unknown as Env).DB; 
     
     if (!db) {
-      return NextResponse.json({ error: "Database binding 'DB' not found in environment." }, { status: 500 });
+      Logger.error("Database binding 'DB' not found in environment.");
+      return NextResponse.json({ error: "Service Unavailable: Database binding missing. Please check your environment configuration." }, { status: 500 });
     }
 
     const { searchParams } = new URL(request.url);
@@ -119,7 +120,8 @@ export async function GET(request: NextRequest) {
     
     return NextResponse.json(events);
   } catch (error) {
-    Logger.error("Failed to generate compliance export", error);
-    return NextResponse.json({ error: "Failed to generate compliance export securely" }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    Logger.error(`Failed to generate compliance export: ${errorMessage}`, error);
+    return NextResponse.json({ error: `Failed to generate compliance export: ${errorMessage}` }, { status: 500 });
   }
 }

@@ -26,6 +26,10 @@ interface Env {
 
 export async function addTrustedActor(formData: FormData) {
   const db = (getRequestContext().env as unknown as Env).DB;
+  if (!db) {
+    Logger.error("Database binding 'DB' not found in environment.");
+    throw new Error("Service Unavailable: Database binding missing. Please check your environment configuration.");
+  }
   const name = formData.get("name")?.toString();
   const public_key = formData.get("public_key")?.toString();
 
@@ -62,12 +66,16 @@ export async function addTrustedActor(formData: FormData) {
     return { success: true };
   } catch (error) {
     Logger.error("Failed to add trusted actor", error);
-    throw new Error("Failed to add trusted actor");
+    throw new Error("Unable to add trusted actor: Database operation failed. Please check connection and input values.");
   }
 }
 
 export async function registerAsset(formData: FormData) {
   const db = (getRequestContext().env as unknown as Env).DB;
+  if (!db) {
+    Logger.error("Database binding 'DB' not found in environment.");
+    throw new Error("Service Unavailable: Database binding missing. Please check your environment configuration.");
+  }
   const name = formData.get("name")?.toString();
   const description = formData.get("description")?.toString() || "";
   const owner_id = formData.get("owner_id")?.toString();
@@ -100,6 +108,6 @@ export async function registerAsset(formData: FormData) {
     return { success: true };
   } catch (error) {
     Logger.error("Failed to register asset", error);
-    throw new Error("Failed to register asset");
+    throw new Error("Unable to register asset: Database operation failed. Please check connection and input values.");
   }
 }

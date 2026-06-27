@@ -47,7 +47,8 @@ export async function loginAction(state: AuthState | undefined, formData: FormDa
 
   const db = (getRequestContext().env as unknown as Env).DB;
   if (!db) {
-    return { error: "Database unavailable." };
+    Logger.error("Database binding 'DB' not found in environment.");
+    return { error: "Service Unavailable: Database binding missing. Please check your environment configuration." };
   }
 
   try {
@@ -87,7 +88,7 @@ export async function loginAction(state: AuthState | undefined, formData: FormDa
 
   } catch (err) {
     Logger.error("Authentication operation failed during login", err);
-    return { error: "Authentication service unavailable. Please try again." };
+    return { error: "Authentication service unavailable: Database operation failed." };
   }
 
   redirect("/dashboard/overview");
