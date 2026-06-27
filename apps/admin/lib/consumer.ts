@@ -1,3 +1,7 @@
+export function isConsumerUrlConfigured(): boolean {
+  return !!process.env.NEXT_PUBLIC_CONSUMER_URL;
+}
+
 export function getConsumerProductUrl(assetId: string): string {
   const consumerUrl = process.env.NEXT_PUBLIC_CONSUMER_URL;
   if (!consumerUrl) {

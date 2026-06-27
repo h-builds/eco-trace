@@ -5,7 +5,7 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { tokens } from "@eco-trace/ui";
 import { DemoScenario } from "../../../lib/demoScenario";
-import { getConsumerProductUrl } from "../../../lib/consumer";
+import { getConsumerProductUrl, isConsumerUrlConfigured } from "../../../lib/consumer";
 
 interface ExportButtonsProps {
   startDate: string;
@@ -49,7 +49,10 @@ export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProp
       setSuccessMsg(null);
       
       const res = await fetch(`/api/compliance/export?${buildQueryString("csv")}`);
-      if (!res.ok) throw new Error("Failed to generate CSV data.");
+      if (!res.ok) {
+        const errorResponse = (await res.json().catch(() => ({}))) as { error?: string };
+        throw new Error(errorResponse.error || "Failed to generate CSV data.");
+      }
       
       const blob = await res.blob();
       const url = window.URL.createObjectURL(blob);
@@ -81,7 +84,10 @@ export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProp
       setSuccessMsg(null);
 
       const res = await fetch(`/api/compliance/export?${buildQueryString("json")}`);
-      if (!res.ok) throw new Error("Failed to fetch compliance data for PDF.");
+      if (!res.ok) {
+        const errorResponse = (await res.json().catch(() => ({}))) as { error?: string };
+        throw new Error(errorResponse.error || "Failed to fetch compliance data for PDF.");
+      }
       const data: ExportEvent[] = await res.json();
 
       if (!data || data.length === 0) {
@@ -172,14 +178,23 @@ export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProp
         <button onClick={handleExportPDF} className={buttonClasses} disabled={isExporting}>
           {isExporting ? "Exporting..." : "Export as PDF"}
         </button>
-        <a
-          href={getConsumerProductUrl(DemoScenario.assetId)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-4 py-2 bg-brand-deep-charcoal text-white border-none rounded-md font-bold inline-block no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-deep-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-card hover:opacity-90 transition-opacity"
-        >
-          Open in Consumer App ↗
-        </a>
+        {isConsumerUrlConfigured() ? (
+          <a
+            href={getConsumerProductUrl(DemoScenario.assetId)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 bg-brand-deep-charcoal text-white border-none rounded-md font-bold inline-block no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-deep-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-card hover:opacity-90 transition-opacity"
+          >
+            Open in Consumer App ↗
+          </a>
+        ) : (
+          <div
+            title="Consumer URL not configured"
+            className="px-4 py-2 bg-surface-border text-functional-neutral border-none rounded-md font-bold inline-block cursor-not-allowed"
+          >
+            Consumer App Unavailable
+          </div>
+        )}
       </div>
       {errorMsg && (
         <div className="mt-3 text-functional-alert text-sm">

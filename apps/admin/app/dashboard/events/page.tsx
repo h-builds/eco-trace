@@ -4,7 +4,7 @@ import React, { useEffect, useState, useTransition } from "react";
 import { tokens } from "@eco-trace/ui";
 import { useWasm } from "../../../hooks/useWasm";
 import { DemoScenario } from "../../../lib/demoScenario";
-import { getConsumerProductUrl } from "../../../lib/consumer";
+import { getConsumerProductUrl, isConsumerUrlConfigured } from "../../../lib/consumer";
 export interface SupplyChainEvent {
   id: string;
   actor: string;
@@ -237,14 +237,23 @@ export default function EventLogPage() {
           </p>
         </div>
         <div className="flex gap-3 items-center">
-          <a
-            href={getConsumerProductUrl(DemoScenario.assetId)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-3 py-1 bg-brand-verification-green text-white rounded-md no-underline font-bold text-base inline-block focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-verification-green focus-visible:ring-offset-2 focus-visible:ring-offset-surface-canvas"
-          >
-            Open this product in Consumer App ↗
-          </a>
+          {isConsumerUrlConfigured() ? (
+            <a
+              href={getConsumerProductUrl(DemoScenario.assetId)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1 bg-brand-verification-green text-white rounded-md no-underline font-bold text-base inline-block focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-verification-green focus-visible:ring-offset-2 focus-visible:ring-offset-surface-canvas"
+            >
+              Open this product in Consumer App ↗
+            </a>
+          ) : (
+            <div
+              title="Consumer URL not configured"
+              className="px-3 py-1 bg-surface-border text-functional-neutral rounded-md font-bold text-base inline-block cursor-not-allowed"
+            >
+              Consumer App Unavailable
+            </div>
+          )}
           <div className={`px-3 py-1 rounded-md font-bold text-base border ${nonValidUniqueIds > 0 ? 'bg-functional-alert text-white border-functional-alert' : 'bg-surface-canvas text-brand-deep-charcoal border-surface-border'}`} aria-live="polite">
             Security Counter: {nonValidUniqueIds} Compromised Flow{nonValidUniqueIds !== 1 ? "s" : ""}
           </div>
@@ -311,9 +320,14 @@ export default function EventLogPage() {
       </div>
 
       <div className="bg-surface-card border border-surface-border rounded-md shadow-subtle overflow-hidden">
-        {Object.keys(groupedEvents).length === 0 && !error ? (
-          <div className="p-6 text-center text-brand-deep-charcoal">
-            No live events match the filtered criteria from the Cloudflare D1 Edge Route.
+        {error ? (
+          <div className="p-6 text-center text-functional-alert font-medium bg-functional-alert/10">
+            Integrity Verification Unavailable. The Go/Wasm bridge failed to load: {error}
+          </div>
+        ) : Object.keys(groupedEvents).length === 0 ? (
+          <div className="p-6 text-center text-brand-deep-charcoal flex flex-col items-center gap-2">
+            <span className="font-medium text-lg">No demo data found.</span>
+            <span className="text-sm text-functional-neutral">Please run the seed script <code className="bg-surface-canvas border border-surface-border px-1.5 py-0.5 rounded">npx tsx lib/seed.ts</code> to populate the scenario.</span>
           </div>
         ) : (
           <table className="w-full border-collapse text-left">

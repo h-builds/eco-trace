@@ -168,7 +168,12 @@ export default async function EntitiesPage(
                 <tbody>
                   {actors.length === 0 ? (
                     <tr>
-                      <td colSpan={5} className="px-4 py-4 text-center">No actors registered.</td>
+                      <td colSpan={5} className="px-4 py-8 text-center">
+                        <div className="flex flex-col items-center gap-2">
+                          <span className="font-medium text-lg text-white">No demo data found.</span>
+                          <span className="text-sm text-[#607D8B]">Please run the seed script <code className="bg-[#1A1C1E] border border-[#607D8B]/30 px-1.5 py-0.5 rounded">npx tsx lib/seed.ts</code> to populate the scenario.</span>
+                        </div>
+                      </td>
                     </tr>
                   ) : actors.map((actor) => (
                     <tr key={actor.id} className="border-b border-[#607D8B]/10 hover:bg-white/5 transition-colors">
@@ -218,7 +223,12 @@ export default async function EntitiesPage(
                 <tbody>
                   {assets.length === 0 ? (
                     <tr>
-                      <td colSpan={5} className="px-4 py-4 text-center">No assets registered.</td>
+                      <td colSpan={5} className="px-4 py-8 text-center">
+                        <div className="flex flex-col items-center gap-2">
+                          <span className="font-medium text-lg text-white">No demo data found.</span>
+                          <span className="text-sm text-[#607D8B]">Please run the seed script <code className="bg-[#1A1C1E] border border-[#607D8B]/30 px-1.5 py-0.5 rounded">npx tsx lib/seed.ts</code> to populate the scenario.</span>
+                        </div>
+                      </td>
                     </tr>
                   ) : assets.map((asset) => (
                     <tr key={asset.id} className="border-b border-[#607D8B]/10 hover:bg-white/5 transition-colors">

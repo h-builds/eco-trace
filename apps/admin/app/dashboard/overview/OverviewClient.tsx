@@ -6,7 +6,7 @@ import { getAggregatedMetrics, type TimeRange, type AggregatedMetrics } from "./
 import { TimeRangeFilter } from "../../../components/analytics/TimeRangeFilter";
 import { MetricsGrid } from "../../../components/analytics/MetricsGrid";
 import { DemoScenario } from "../../../lib/demoScenario";
-import { getConsumerProductUrl } from "../../../lib/consumer";
+import { getConsumerProductUrl, isConsumerUrlConfigured } from "../../../lib/consumer";
 export function OverviewClient({ initialPromise }: { initialPromise: Promise<AggregatedMetrics> }) {
   const [range, setRange] = useState<TimeRange>("30d");
   const [metricsPromise, setMetricsPromise] = useState<Promise<AggregatedMetrics>>(initialPromise);
@@ -80,15 +80,21 @@ export function OverviewClient({ initialPromise }: { initialPromise: Promise<Agg
               <span className="font-medium text-sm text-brand-deep-charcoal group-hover:text-brand-verification-green transition-colors">Compliance Export</span>
               <span className="text-functional-neutral group-hover:text-brand-verification-green transition-colors">→</span>
             </Link>
-            <a 
-              href={consumerHref} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="group flex items-center justify-between p-3 rounded-lg bg-brand-deep-charcoal text-white hover:bg-brand-verification-green transition-colors mt-auto"
-            >
-              <span className="font-medium text-sm">Consumer Verification App</span>
-              <span>↗</span>
-            </a>
+            {isConsumerUrlConfigured() ? (
+              <a 
+                href={consumerHref} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between p-3 rounded-lg bg-brand-deep-charcoal text-white hover:bg-brand-verification-green transition-colors mt-auto"
+              >
+                <span className="font-medium text-sm">Consumer Verification App</span>
+                <span>↗</span>
+              </a>
+            ) : (
+              <div className="group flex items-center justify-between p-3 rounded-lg bg-surface-border text-functional-neutral cursor-not-allowed mt-auto" title="Consumer URL not configured in environment">
+                <span className="font-medium text-sm">Consumer App Unavailable</span>
+              </div>
+            )}
           </nav>
         </section>
       </div>
