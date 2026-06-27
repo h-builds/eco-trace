@@ -37,7 +37,8 @@ export async function createSession(userId: string, username: string, role: Role
     expiresAt,
   };
 
-  const kv = (getRequestContext().env as unknown as Env).SESSION_KV;
+  const env = getRequestContext()?.env as unknown as Env | undefined;
+  const kv = env?.SESSION_KV;
   if (!kv) throw new Error("SESSION_KV binding not found");
 
   await kv.put(sessionId, JSON.stringify(sessionData), { expirationTtl: SESSION_TTL });
@@ -60,7 +61,8 @@ export async function getSession(): Promise<SessionData | null> {
   if (!sessionId) return null;
 
   try {
-    const kv = (getRequestContext().env as unknown as Env).SESSION_KV;
+    const env = getRequestContext()?.env as unknown as Env | undefined;
+    const kv = env?.SESSION_KV;
     if (!kv) return null;
     
     const sessionStr = await kv.get(sessionId);
@@ -85,7 +87,8 @@ export async function deleteSession() {
   const cookieStore = await cookies();
   const sessionId = cookieStore.get(SESSION_COOKIE_NAME)?.value;
   if (sessionId) {
-    const kv = (getRequestContext().env as unknown as Env).SESSION_KV;
+    const env = getRequestContext()?.env as unknown as Env | undefined;
+    const kv = env?.SESSION_KV;
     if (kv) {
       await kv.delete(sessionId);
     }

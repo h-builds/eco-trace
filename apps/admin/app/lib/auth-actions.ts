@@ -45,7 +45,8 @@ export async function loginAction(state: AuthState | undefined, formData: FormDa
     return { error: "Username and password are required." };
   }
 
-  const db = (getRequestContext().env as unknown as Env).DB;
+  const env = getRequestContext()?.env as unknown as Env | undefined;
+  const db = env?.DB;
   if (!db) {
     Logger.error("Database binding 'DB' not found in environment.");
     return { error: "Service Unavailable: Database binding missing. Please check your environment configuration." };
@@ -97,7 +98,8 @@ export async function loginAction(state: AuthState | undefined, formData: FormDa
 export async function logoutAction() {
   const session = await getSession();
   if (session) {
-    const db = (getRequestContext().env as unknown as Env).DB;
+    const env = getRequestContext()?.env as unknown as Env | undefined;
+    const db = env?.DB;
     try {
       if (db) {
         await db.prepare(
