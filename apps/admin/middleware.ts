@@ -55,7 +55,9 @@ export async function middleware(request: NextRequest) {
   // But let's assume we can at least check if the cookie exists.
   
   if (isDashboardRoute && !sessionId) {
-    return NextResponse.redirect(new URL('/login', request.url));
+    const url = new URL('/login', request.url);
+    url.searchParams.set('error', 'session_expired');
+    return NextResponse.redirect(url);
   }
 
   if (isLoginRoute && sessionId) {
