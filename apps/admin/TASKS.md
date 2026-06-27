@@ -480,20 +480,20 @@ Make failures understandable during a live recruiter demo.
 
 ### Tasks
 
-- [ ] Ensure all Server Actions return meaningful user-facing errors.
-- [ ] Ensure API route failures use centralized logging.
-- [ ] Ensure export failures show actionable messages.
-- [ ] Ensure missing D1 data shows a guided empty state.
-- [ ] Ensure missing Wasm bridge shows a clear integrity-verification unavailable state.
-- [ ] Ensure missing Consumer URL shows a non-breaking fallback.
-- [ ] Ensure auth/session expiration returns the user to login with clear copy.
-- [ ] Do not swallow exceptions silently.
+- [x] Ensure all Server Actions return meaningful user-facing errors.
+- [x] Ensure API route failures use centralized logging.
+- [x] Ensure export failures show actionable messages.
+- [x] Ensure missing D1 data shows a guided empty state.
+- [x] Ensure missing Wasm bridge shows a clear integrity-verification unavailable state.
+- [x] Ensure missing Consumer URL shows a non-breaking fallback.
+- [x] Ensure auth/session expiration returns the user to login with clear copy.
+- [x] Do not swallow exceptions silently.
 
 ### Exit Criteria
 
-- [ ] A demo failure does not look like a broken app.
-- [ ] Error states reinforce engineering maturity.
-- [ ] Logs remain useful for debugging.
+- [x] A demo failure does not look like a broken app.
+- [x] Error states reinforce engineering maturity.
+- [x] Logs remain useful for debugging.
 
 ---
 
