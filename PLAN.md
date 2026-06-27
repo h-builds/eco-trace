@@ -321,32 +321,32 @@ Create a recruiter-friendly entry point that explains the ecosystem and routes u
 
 ### Tasks
 
-- [ ] Create or refine a public **Demo Hub** experience.
-- [ ] Add clear CTAs:
+- [x] Create or refine a public **Demo Hub** experience.
+- [x] Add clear CTAs:
   - `Start Guided Demo`
   - `Open Auditor Workstation`
   - `Open Consumer Verification App`
   - `Read Architecture Case Study`
 
-- [ ] Add a visual system map explaining:
+- [x] Add a visual system map explaining:
   - React Admin App.
   - Vue Consumer App.
   - Go/Wasm Verification Engine.
   - Cloudflare D1 persistence.
 
-- [ ] Add a 3-step recruiter flow:
+- [x] Add a 3-step recruiter flow:
   - `1. Audit the claim`
   - `2. Verify the product`
   - `3. Inspect the architecture`
 
-- [ ] Add frictionless cross-navigation between Admin and Consumer deployments.
-- [ ] Add a visible **Demo Mode** label to avoid pretending the system is production.
+- [x] Add frictionless cross-navigation between Admin and Consumer deployments.
+- [x] Add a visible **Demo Mode** label to avoid pretending the system is production.
 
 ### Exit Criteria
 
-- [ ] A recruiter understands within 30 seconds why there are two apps.
-- [ ] Both apps are reachable from the demo entry point.
-- [ ] The user can complete the fast demo path without reading repository docs.
+- [x] A recruiter understands within 30 seconds why there are two apps.
+- [x] Both apps are reachable from the demo entry point.
+- [x] The user can complete the fast demo path without reading repository docs.
 
 ---
 
@@ -362,26 +362,26 @@ Turn the Admin app into a guided enterprise workstation demo that highlights gov
 
 ### Tasks
 
-- [ ] Add a demo-friendly landing or dashboard intro inside the Admin app.
-- [ ] Add one-click demo credential autofill or visible demo credentials.
-- [ ] Add `Demo Scenario` context panel explaining the product journey.
-- [ ] Ensure `/dashboard/overview` immediately shows meaningful seeded metrics.
-- [ ] Ensure `/dashboard/entities` clearly shows trusted actors and assets for the canonical scenario.
-- [ ] Ensure `/dashboard/events` clearly shows:
+- [x] Add a demo-friendly landing or dashboard intro inside the Admin app.
+- [x] Add one-click demo credential autofill or visible demo credentials.
+- [x] Add `Demo Scenario` context panel explaining the product journey.
+- [x] Ensure `/dashboard/overview` immediately shows meaningful seeded metrics.
+- [x] Ensure `/dashboard/entities` clearly shows trusted actors and assets for the canonical scenario.
+- [x] Ensure `/dashboard/events` clearly shows:
   - Valid events.
   - Tampered event.
   - Unauthorized actor event.
   - Threaded audit history.
 
-- [ ] Add recruiter-friendly callouts explaining what each security status means.
-- [ ] Ensure `/dashboard/compliance` can export a report for the canonical scenario.
-- [ ] Add a CTA from Admin to open the matching Consumer product view.
+- [x] Add recruiter-friendly callouts explaining what each security status means.
+- [x] Ensure `/dashboard/compliance` can export a report for the canonical scenario.
+- [x] Add a CTA from Admin to open the matching Consumer product view.
 
 ### Exit Criteria
 
-- [ ] The Admin app demonstrates RBAC, trust, auditing, and export in one coherent story.
-- [ ] The reviewer can understand integrity violations without knowing Ed25519.
-- [ ] The Admin app feels like an enterprise workstation, not a generic dashboard.
+- [x] The Admin app demonstrates RBAC, trust, auditing, and export in one coherent story.
+- [x] The reviewer can understand integrity violations without knowing Ed25519.
+- [x] The Admin app feels like an enterprise workstation, not a generic dashboard.
 
 ---
 
@@ -397,20 +397,20 @@ Make the Consumer app easy to test even when a recruiter has no camera access or
 
 ### Tasks
 
-- [ ] Add a `Use Demo Product` button as a no-camera fallback.
-- [ ] Add a static QR image for the canonical product scenario.
-- [ ] Ensure the QR scanner gracefully handles camera denial.
-- [ ] Ensure the Product Transparency View clearly maps to the same product shown in Admin.
-- [ ] Add copy that explains authenticity, carbon footprint, and audit trail in plain English.
-- [ ] Add a CTA back to the Admin Workstation or Architecture Case Study.
-- [ ] Remove any trust signal that implies real-world certification unless it is clearly labeled as demo/future-ready.
+- [x] Add a `Use Demo Product` button as a no-camera fallback.
+- [x] Add a static QR image for the canonical product scenario.
+- [x] Ensure the QR scanner gracefully handles camera denial.
+- [x] Ensure the Product Transparency View clearly maps to the same product shown in Admin.
+- [x] Add copy that explains authenticity, carbon footprint, and audit trail in plain English.
+- [x] Add a CTA back to the Admin Workstation or Architecture Case Study.
+- [x] Remove any trust signal that implies real-world certification unless it is clearly labeled as demo/future-ready.
 
 ### Exit Criteria
 
-- [ ] The Consumer app can be evaluated from desktop or mobile.
-- [ ] Camera access is optional.
-- [ ] The product timeline matches the Admin demo scenario.
-- [ ] The app communicates trust quickly without overwhelming the user.
+- [x] The Consumer app can be evaluated from desktop or mobile.
+- [x] Camera access is optional.
+- [x] The product timeline matches the Admin demo scenario.
+- [x] The app communicates trust quickly without overwhelming the user.
 
 ---
 
