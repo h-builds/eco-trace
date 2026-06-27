@@ -31,7 +31,7 @@ export function OverviewClient({ initialPromise }: { initialPromise: Promise<Agg
           </span>
         </h1>
         <p className="text-lg text-functional-neutral max-w-3xl">
-          Govern trusted supply-chain claims, verify event integrity, and export audit-ready evidence.
+          Govern trusted supply-chain claims, verify event integrity, and export audit-ready evidence in this portfolio-grade architecture.
         </p>
       </section>
 
@@ -109,9 +109,9 @@ export function OverviewClient({ initialPromise }: { initialPromise: Promise<Agg
       <section className="mt-4 bg-functional-pending/5 border border-functional-pending/20 rounded-lg p-6">
         <h3 className="text-lg font-bold text-brand-deep-charcoal mb-2">Why this matters in 2026</h3>
         <p className="text-sm text-functional-neutral leading-relaxed max-w-4xl">
-          In an era of AI-generated claims and wrapper SaaS, the challenge isn't creating data—it's proving it. 
-          This architecture demonstrates real enterprise verification, establishing strong trust boundaries and governance. 
-          By combining role-based access, cryptographic signatures (Ed25519), and deterministic edge validation, 
+          The challenge isn't creating data—it's proving it. 
+          This portfolio-grade architecture demonstrates enterprise-inspired verification, establishing strong trust boundaries and governance. 
+          By combining role-based access control (RBAC), cryptographic signatures (Ed25519), and deterministic edge validation with Cloudflare D1, 
           Eco Trace ensures that supply-chain events are auditable, immutable, and trustworthy from origin to consumer.
         </p>
       </section>

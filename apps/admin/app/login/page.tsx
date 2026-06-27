@@ -8,10 +8,10 @@ export default function LoginPage() {
       <div className="w-full max-w-md p-8 bg-surface-card rounded-lg shadow-elevation-1 border border-surface-border">
         <h1 className="text-xl font-bold mb-2">Auditor Login</h1>
         <p className="text-functional-neutral mb-4 text-sm">
-          Sign in with your Ed25519-associated account.
+          Sign in with your Ed25519-associated account (Ed25519 is a public-key cryptography algorithm for secure digital signatures).
         </p>
         <div className="mb-6 p-4 bg-surface-canvas border border-brand-integrity-green/30 rounded-md text-sm text-brand-deep-charcoal">
-          <strong>Demo Context:</strong> This workstation uses role-based access control to simulate an enterprise auditor surface.
+          <strong>Demo Context:</strong> This workstation uses role-based access control (RBAC - restricting access based on roles) to simulate an enterprise-inspired auditor surface.
           <div className="mt-2 text-xs text-functional-neutral">
             Demo credentials: <code className="bg-surface-card px-1 py-0.5 rounded">auditor</code> / <code className="bg-surface-card px-1 py-0.5 rounded">demo2026</code>
           </div>

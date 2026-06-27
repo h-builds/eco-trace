@@ -19,7 +19,7 @@ export default function Home() {
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Eco Trace Admin Workstation</h1>
           <p className="text-lg md:text-xl text-functional-neutral max-w-2xl mx-auto leading-relaxed">
-            React 19 auditor surface for governing cryptographically verified supply-chain claims.
+            React 19 auditor surface showcasing an audit-ready architecture for governing cryptographically verified supply-chain claims.
           </p>
         </div>
 
@@ -93,7 +93,7 @@ export default function Home() {
           
           <div className="max-w-3xl mx-auto text-center text-sm opacity-90 leading-relaxed border-t border-surface-card/10 pt-8">
             <strong className="block mb-2 text-brand-integrity-green">Why are Admin and Consumer separate apps?</strong> 
-            The Admin app is a governed, authenticated Next.js environment designed for enterprise auditors to review supply-chain anomalies. The Consumer app is a lightweight, edge-deployed Vue application built for instantaneous public verification. By separating them, we ensure the public surface remains fast and immutable while the auditor surface retains rich analytical capabilities, both sharing the exact same cryptographic trust engine via WebAssembly.
+            The Admin app is a governed, authenticated Next.js environment designed for enterprise auditors to review supply-chain anomalies. The Consumer app is a lightweight, edge-deployed Vue application built for instantaneous public verification. By separating them, we ensure the public surface remains fast and immutable while the auditor surface retains rich analytical capabilities, both sharing the exact same cryptographic trust engine via Go/Wasm (Go code compiled to WebAssembly for secure, high-speed execution in the browser) and data persistence via Cloudflare D1 (a highly-available serverless SQL database at the edge).
           </div>
         </div>
         

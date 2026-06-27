@@ -410,33 +410,33 @@ Ensure all Admin UI text is accurate, recruiter-friendly, and not over-claiming.
 
 ### Tasks
 
-- [ ] Audit all Admin-facing copy.
-- [ ] Replace unsupported claims such as:
-  - [ ] Real certification.
-  - [ ] Real customers.
-  - [ ] Real production deployment.
-  - [ ] Real enterprise integrations.
-  - [ ] Real transaction volume.
-- [ ] Use accurate language:
-  - [ ] `demo`.
-  - [ ] `seeded data`.
-  - [ ] `portfolio-grade`.
-  - [ ] `enterprise-inspired`.
-  - [ ] `audit-ready architecture`.
-- [ ] Add short explanations for technical terms:
-  - [ ] RBAC.
-  - [ ] Ed25519.
-  - [ ] Go/Wasm.
-  - [ ] Cloudflare D1.
-  - [ ] Integrity status.
-- [ ] Keep copy concise and professional.
-- [ ] Avoid buzzword-heavy AI positioning.
+- [x] Audit all Admin-facing copy.
+- [x] Replace unsupported claims such as:
+  - [x] Real certification.
+  - [x] Real customers.
+  - [x] Real production deployment.
+  - [x] Real enterprise integrations.
+  - [x] Real transaction volume.
+- [x] Use accurate language:
+  - [x] `demo`.
+  - [x] `seeded data`.
+  - [x] `portfolio-grade`.
+  - [x] `enterprise-inspired`.
+  - [x] `audit-ready architecture`.
+- [x] Add short explanations for technical terms:
+  - [x] RBAC.
+  - [x] Ed25519.
+  - [x] Go/Wasm.
+  - [x] Cloudflare D1.
+  - [x] Integrity status.
+- [x] Keep copy concise and professional.
+- [x] Avoid buzzword-heavy AI positioning.
 
 ### Exit Criteria
 
-- [ ] Admin copy is truthful and strong.
-- [ ] The project reads as enterprise verification architecture.
-- [ ] The project does not read as a fake SaaS company.
+- [x] Admin copy is truthful and strong.
+- [x] The project reads as enterprise verification architecture.
+- [x] The project does not read as a fake SaaS company.
 
 ---
 

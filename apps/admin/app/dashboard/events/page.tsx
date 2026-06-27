@@ -47,10 +47,10 @@ export default function EventLogPage() {
   const fetchEvents = async () => {
     try {
       const url = filter === "ALL" ? "/api/events" : `/api/events?status=${filter}`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error("Failed to fetch events from D1");
-      const data: SupplyChainEvent[] = await res.json();
-      setEvents(data);
+      const eventResponse = await fetch(url);
+      if (!eventResponse.ok) throw new Error("Failed to fetch events from D1");
+      const retrievedEvents: SupplyChainEvent[] = await eventResponse.json();
+      setEvents(retrievedEvents);
     } catch (err) {
       console.error(err);
       setToastMsg({ message: "Failed to load events from D1.", type: "error" });
@@ -68,14 +68,14 @@ export default function EventLogPage() {
         const newStatuses: Record<string, SupplyChainEvent["status"]> = {};
         
         events.forEach((event: SupplyChainEvent) => {
-          const result = calculateFootprint([
+          const footprintCalculation = calculateFootprint([
             { energy_kwh: event.energyKwh, emission_factor: event.emissionFactor }
           ]);
-          if (!result.error) {
-            newFootprints[event.id] = result.result;
+          if (!footprintCalculation.error) {
+            newFootprints[event.id] = footprintCalculation.result;
           }
 
-          const payload = {
+          const verificationPayload = {
             event_id: event.event_id,
             asset_id: event.asset_id,
             actor_id: event.actor_id,
@@ -87,14 +87,14 @@ export default function EventLogPage() {
             }
           };
 
-          const integrityResult = verifyIntegrity(payload, event.signature, event.publicKey);
+          const integrityVerification = verifyIntegrity(verificationPayload, event.signature, event.publicKey);
           
-          if (integrityResult.status === "VALID") {
+          if (integrityVerification.status === "VALID") {
             newStatuses[event.id] = "VALID";
-          } else if (integrityResult.status === "UNAUTHORIZED") {
+          } else if (integrityVerification.status === "UNAUTHORIZED") {
             newStatuses[event.id] = "UNAUTHORIZED";
           } else {
-            if (integrityResult.error) console.error("Wasm Integrity Error:", integrityResult.error);
+            if (integrityVerification.error) console.error("Wasm Integrity Error:", integrityVerification.error);
             newStatuses[event.id] = "INVALID";
           }
         });
@@ -126,9 +126,9 @@ export default function EventLogPage() {
       esg_metadata: { energy_kwh: tamperedEnergy, emission_factor: event.emissionFactor }
     };
 
-    const integrityResult = verifyIntegrity(fraudPayloadForWasm, event.signature, event.publicKey);
+    const tamperedVerification = verifyIntegrity(fraudPayloadForWasm, event.signature, event.publicKey);
 
-    const payload = {
+    const persistencePayload = {
       id: crypto.randomUUID(),
       event_id: event.event_id,
       asset_id: event.asset_id,
@@ -143,13 +143,13 @@ export default function EventLogPage() {
     };
 
     try {
-      const res = await fetch("/api/events", {
+      const persistenceResponse = await fetch("/api/events", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(persistencePayload)
       });
-      if (!res.ok) throw new Error("Failed to persist");
-      showToast(`Audited and Persisted: ${integrityResult.status}`, "error");
+      if (!persistenceResponse.ok) throw new Error("Failed to persist");
+      showToast(`Audited and Persisted: ${tamperedVerification.status}`, "error");
       fetchEvents();
     } catch (err) {
       console.error(err);
@@ -173,15 +173,15 @@ export default function EventLogPage() {
       esg_metadata: { energy_kwh: event.energyKwh, emission_factor: event.emissionFactor }
     };
 
-    const spoofResult = generateUntrustedSignature(fraudPayloadForWasm);
-    if (!spoofResult || spoofResult.status !== "VALID" || !spoofResult.signature || !spoofResult.publicKey) {
+    const impersonationOutcome = generateUntrustedSignature(fraudPayloadForWasm);
+    if (!impersonationOutcome || impersonationOutcome.status !== "VALID" || !impersonationOutcome.signature || !impersonationOutcome.publicKey) {
       showToast("Failed to simulate trusted math locally", "error");
       return;
     }
 
-    const integrityResult = verifyIntegrity(fraudPayloadForWasm, spoofResult.signature, spoofResult.publicKey);
+    const spoofedVerification = verifyIntegrity(fraudPayloadForWasm, impersonationOutcome.signature, impersonationOutcome.publicKey);
 
-    const payload = {
+    const spoofedPersistencePayload = {
       id: crypto.randomUUID(),
       event_id: event.event_id,
       asset_id: event.asset_id,
@@ -190,19 +190,19 @@ export default function EventLogPage() {
       action_type: event.action_type,
       energy_kwh: event.energyKwh,
       emission_factor: event.emissionFactor,
-      signature: spoofResult.signature,
-      public_key: spoofResult.publicKey,
-      integrity_status: integrityResult.status
+      signature: impersonationOutcome.signature,
+      public_key: impersonationOutcome.publicKey,
+      integrity_status: spoofedVerification.status
     };
 
     try {
-      const res = await fetch("/api/events", {
+      const spoofedPersistenceResponse = await fetch("/api/events", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(spoofedPersistencePayload)
       });
-      if (!res.ok) throw new Error("Failed to persist");
-      showToast(`Audited and Persisted: ${integrityResult.status}`, "error");
+      if (!spoofedPersistenceResponse.ok) throw new Error("Failed to persist");
+      showToast(`Audited and Persisted: ${spoofedVerification.status}`, "error");
       fetchEvents();
     } catch (err) {
       console.error(err);
@@ -297,12 +297,15 @@ export default function EventLogPage() {
         <div style={{ backgroundColor: bgCard, border: `1px solid ${borderColor}`, padding: spacing.scale.value[4] + "px", borderRadius: radii.md.value, flex: 1 }}>
           <h3 style={{ fontSize: fontSizes.md.value, fontWeight: typography.weights.bold.value, marginBottom: spacing.scale.value[2] + "px" }}>Ed25519 Integrity Verification</h3>
           <p style={{ fontSize: fontSizes.sm.value, color: neutralColor, lineHeight: "1.5", maxWidth: "600px" }}>
-            Event payloads are cryptographically signed at origin. This workstation runs a local Go/Wasm engine to recalculate hashes, verify signatures, and check actors against the trusted registry in real-time. Any manipulation breaks the mathematical proof.
+            Event payloads are cryptographically signed at origin using Ed25519 (a fast, secure public-key signature system). This workstation runs a local Go/Wasm engine to recalculate hashes, verify signatures, and check actors against the trusted registry in real-time. Any manipulation breaks the mathematical proof.
           </p>
         </div>
 
         <div style={{ backgroundColor: bgCard, border: `1px solid ${borderColor}`, padding: spacing.scale.value[4] + "px", borderRadius: radii.md.value, display: "flex", flexDirection: "column", gap: spacing.scale.value[2] + "px", minWidth: "200px" }}>
-          <h3 style={{ fontSize: fontSizes.sm.value, fontWeight: typography.weights.bold.value, color: neutralColor, textTransform: "uppercase", letterSpacing: "0.05em" }}>Status Legend</h3>
+          <h3 style={{ fontSize: fontSizes.sm.value, fontWeight: typography.weights.bold.value, color: neutralColor, textTransform: "uppercase", letterSpacing: "0.05em" }}>Integrity Status Legend</h3>
+          <p style={{ fontSize: "11px", color: neutralColor, marginBottom: "4px" }}>
+            The Integrity Status indicates whether an event's cryptographic signature and actor authorization are valid.
+          </p>
           <div style={{ display: "flex", gap: spacing.scale.value[2] + "px", flexWrap: "wrap" }}>
             {(["VALID", "WARNING", "INVALID", "UNAUTHORIZED"] as const).map((status) => (
               <span key={status} style={{ display: "inline-block", padding: `${spacing.scale.value[1]}px ${spacing.scale.value[2]}px`, borderRadius: radii.lg.value, backgroundColor: getStatusColor(status), color: "#FFFFFF", fontSize: fontSizes.xs.value, fontWeight: typography.weights.bold.value }}>
@@ -371,7 +374,7 @@ export default function EventLogPage() {
       }}>
         {Object.keys(groupedEvents).length === 0 && !error ? (
           <div style={{ padding: spacing.scale.value[4] + "px", textAlign: "center", color: textPrimary }}>
-            No live events match the filtered criteria from D1 Edge Route.
+            No live events match the filtered criteria from the Cloudflare D1 Edge Route.
           </div>
         ) : (
           <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
