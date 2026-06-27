@@ -449,25 +449,25 @@ Preserve the project’s strict UI governance while polishing the Admin demo.
 
 ### Tasks
 
-- [ ] Use `@eco-trace/ui` tokens for colors, spacing, typography, radii, and shadows.
-- [ ] Do not introduce ad-hoc pixel values where tokens exist.
-- [ ] Validate integrity badges have sufficient contrast.
-- [ ] Validate form labels and error messages.
-- [ ] Validate keyboard navigation for:
-  - [ ] Login.
-  - [ ] Dashboard navigation.
-  - [ ] Entity forms.
-  - [ ] Event details expansion.
-  - [ ] Export buttons.
-- [ ] Validate focus states for all interactive elements.
-- [ ] Validate responsive layout for laptop and tablet widths.
-- [ ] Ensure loading and error states are accessible.
+- [x] Use `@eco-trace/ui` tokens for colors, spacing, typography, radii, and shadows.
+- [x] Do not introduce ad-hoc pixel values where tokens exist.
+- [x] Validate integrity badges have sufficient contrast.
+- [x] Validate form labels and error messages.
+- [x] Validate keyboard navigation for:
+  - [x] Login.
+  - [x] Dashboard navigation.
+  - [x] Entity forms.
+  - [x] Event details expansion.
+  - [x] Export buttons.
+- [x] Validate focus states for all interactive elements.
+- [x] Validate responsive layout for laptop and tablet widths.
+- [x] Ensure loading and error states are accessible.
 
 ### Exit Criteria
 
-- [ ] Admin UI remains consistent with shared design governance.
-- [ ] Recruiter-critical paths meet accessibility expectations.
-- [ ] No polish task weakens visual or accessibility quality.
+- [x] Admin UI remains consistent with shared design governance.
+- [x] Recruiter-critical paths meet accessibility expectations.
+- [x] No polish task weakens visual or accessibility quality.
 
 ---
 

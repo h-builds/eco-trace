@@ -31,82 +31,60 @@ export default function CompliancePage() {
   };
 
   return (
-    <div style={{ backgroundColor: bgCanvas, minHeight: "100vh", padding: spacing.scale.value[5] + "px", fontFamily, color: textPrimary }}>
-      <h1 style={{ fontSize: fontSizes.xl.value, fontWeight: typography.weights.bold.value, marginBottom: spacing.scale.value[2] + "px", display: "flex", alignItems: "center", gap: "8px" }}>
+    <div className="bg-surface-canvas min-h-screen p-8 font-sans text-brand-deep-charcoal">
+      <h1 className="text-2xl font-bold mb-2 flex items-center gap-2">
         Compliance Export
-        <span style={{ fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.05em", backgroundColor: "rgba(245, 158, 11, 0.1)", color: "#f59e0b", border: "1px solid rgba(245, 158, 11, 0.2)", padding: "2px 8px", borderRadius: "4px" }}>
+        <span className="text-[10px] uppercase tracking-wider bg-functional-pending/10 text-functional-pending border border-functional-pending/20 px-2 py-0.5 rounded">
           {DemoScenario.demoDataLabel}
         </span>
       </h1>
-      <p style={{ color: textSecondary, marginBottom: spacing.scale.value[5] + "px" }}>
+      <p className="text-functional-neutral mb-8">
         Generate audit evidence from verified event history without mutating trusted values.
       </p>
 
-      <div style={{
-        backgroundColor: bgCard,
-        padding: spacing.scale.value[4] + "px",
-        borderRadius: radii.md.value,
-        border: `1px solid ${borderColor}`,
-        boxShadow: shadows.subtle.value,
-        maxWidth: "600px"
-      }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: spacing.scale.value[2] + "px" }}>
-          <h2 style={{ fontSize: fontSizes.lg.value, fontWeight: typography.weights.bold.value }}>
+      <div className="bg-surface-card p-6 rounded-md border border-surface-border shadow-subtle max-w-[600px]">
+        <div className="flex justify-between items-center mb-2">
+          <h2 className="text-lg font-bold">
             Report Filters
           </h2>
           <button 
             onClick={applyDemoPreset}
-            style={{
-              padding: "4px 8px",
-              backgroundColor: infoBg,
-              color: infoText,
-              border: `1px solid ${infoBorder}`,
-              borderRadius: radii.sm.value,
-              fontSize: fontSizes.sm.value,
-              cursor: "pointer",
-              fontWeight: typography.weights.medium.value
-            }}
+            className="px-2 py-1 bg-brand-verification-green/10 text-brand-verification-green border border-brand-verification-green/20 rounded-sm text-sm cursor-pointer font-medium hover:bg-brand-verification-green/20 focus:outline-none focus:ring-2 focus:ring-brand-verification-green transition-colors"
           >
             Recommended demo export
           </button>
         </div>
-        <p style={{ fontSize: fontSizes.sm.value, color: textSecondary, marginBottom: spacing.scale.value[4] + "px" }}>
+        <p className="text-sm text-functional-neutral mb-6">
           The demo scenario preselects the canonical product journey.
         </p>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: spacing.scale.value[3] + "px" }}>
+        <div className="flex flex-col gap-4">
           <div>
-            <label style={{ display: "block", marginBottom: "4px", fontSize: fontSizes.sm.value, fontWeight: typography.weights.medium.value }}>
+            <label className="block mb-1 text-sm font-medium">
               Start Date
             </label>
             <input 
               type="date" 
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
-              style={{
-                width: "100%", padding: "8px", borderRadius: radii.sm.value, border: `1px solid ${borderColor}`,
-                fontFamily, fontSize: fontSizes.md.value
-              }}
+              className="w-full p-2 rounded-sm border border-surface-border font-sans text-base focus:outline-none focus:ring-2 focus:ring-brand-integrity-green focus:border-brand-integrity-green transition-colors"
             />
           </div>
 
           <div>
-            <label style={{ display: "block", marginBottom: "4px", fontSize: fontSizes.sm.value, fontWeight: typography.weights.medium.value }}>
+            <label className="block mb-1 text-sm font-medium">
               End Date
             </label>
             <input 
               type="date" 
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
-              style={{
-                width: "100%", padding: "8px", borderRadius: radii.sm.value, border: `1px solid ${borderColor}`,
-                fontFamily, fontSize: fontSizes.md.value
-              }}
+              className="w-full p-2 rounded-sm border border-surface-border font-sans text-base focus:outline-none focus:ring-2 focus:ring-brand-integrity-green focus:border-brand-integrity-green transition-colors"
             />
           </div>
 
           <div>
-            <label style={{ display: "block", marginBottom: "4px", fontSize: fontSizes.sm.value, fontWeight: typography.weights.medium.value }}>
+            <label className="block mb-1 text-sm font-medium">
               Actor ID
             </label>
             <input 
@@ -114,15 +92,12 @@ export default function CompliancePage() {
               placeholder="e.g. supplier-123 or Ed25519 public key..."
               value={actorId}
               onChange={(e) => setActorId(e.target.value)}
-              style={{
-                width: "100%", padding: "8px", borderRadius: radii.sm.value, border: `1px solid ${borderColor}`,
-                fontFamily, fontSize: fontSizes.md.value
-              }}
+              className="w-full p-2 rounded-sm border border-surface-border font-sans text-base focus:outline-none focus:ring-2 focus:ring-brand-integrity-green focus:border-brand-integrity-green transition-colors"
             />
           </div>
         </div>
 
-        <hr style={{ margin: `${spacing.scale.value[4]}px 0`, borderTop: `1px solid ${borderColor}`, borderBottom: "none" }} />
+        <hr className="my-6 border-t border-surface-border border-b-0" />
 
         <ExportButtons startDate={startDate} endDate={endDate} actorId={actorId} />
       </div>

@@ -139,7 +139,7 @@ export default function EventLogPage() {
       emission_factor: event.emissionFactor,
       signature: event.signature,
       public_key: event.publicKey,
-      integrity_status: integrityResult.status
+      integrity_status: tamperedVerification.status
     };
 
     try {
@@ -210,31 +210,6 @@ export default function EventLogPage() {
     }
   };
 
-  const { colors, typography, spacing, shadows, radii } = tokens.tokens;
-  const fontSizes = typography.sizes;
-
-  const bgCanvas = colors.surface.canvas.value;
-  const bgCard = colors.surface.card.value;
-  const borderColor = colors.surface.border.value;
-  const textPrimary = colors.brand["deep-charcoal"].value;
-
-  const validColor = colors.brand["verification-green"].value;
-  const warningColor = colors.functional.pending.value;
-  const invalidColor = colors.functional.alert.value;
-  const neutralColor = colors.functional.neutral.value;
-
-  const fontFamily = typography["font-family"].value;
-
-  const getStatusColor = (status: SupplyChainEvent["status"]) => {
-    switch (status) {
-      case "VALID": return validColor;
-      case "WARNING":
-      case "UNAUTHORIZED": return warningColor;
-      case "INVALID": return invalidColor;
-      default: return textPrimary;
-    }
-  };
-
   const groupedEvents: Record<string, SupplyChainEvent[]> = {};
   events.forEach((e: SupplyChainEvent) => {
     if (!groupedEvents[e.event_id]) groupedEvents[e.event_id] = [];
@@ -248,140 +223,104 @@ export default function EventLogPage() {
   const nonValidUniqueIds = new Set(events.filter((e: SupplyChainEvent) => e.status !== "VALID").map((e: SupplyChainEvent) => e.event_id)).size;
 
   return (
-    <div style={{ backgroundColor: bgCanvas, minHeight: "100vh", padding: spacing.scale.value[5] + "px", fontFamily, color: textPrimary }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: spacing.scale.value[4] + "px" }}>
+    <div className="bg-surface-canvas min-h-screen p-8 font-sans text-brand-deep-charcoal">
+      <div className="flex justify-between items-start mb-6">
         <div>
-          <h1 style={{ fontSize: fontSizes.xl.value, fontWeight: typography.weights.bold.value, display: "flex", alignItems: "center", gap: "8px", marginBottom: spacing.scale.value[2] + "px" }}>
+          <h1 className="text-2xl font-bold flex items-center gap-2 mb-2">
             Integrity Events
-            <span style={{ fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.05em", backgroundColor: "rgba(245, 158, 11, 0.1)", color: "#f59e0b", border: "1px solid rgba(245, 158, 11, 0.2)", padding: "2px 8px", borderRadius: "4px" }}>
+            <span className="text-[10px] uppercase tracking-wider bg-functional-pending/10 text-functional-pending border border-functional-pending/20 px-2 py-0.5 rounded">
               {DemoScenario.demoDataLabel}
             </span>
           </h1>
-          <p style={{ fontSize: fontSizes.md.value, color: neutralColor, maxWidth: "800px", lineHeight: "1.5" }}>
+          <p className="text-base text-functional-neutral max-w-3xl leading-relaxed">
             Every event is checked against payload integrity, actor trust, and deterministic ESG logic.
           </p>
         </div>
-        <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+        <div className="flex gap-3 items-center">
           <a
             href={getConsumerProductUrl(DemoScenario.assetId)}
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              padding: `${spacing.scale.value[1]}px ${spacing.scale.value[3]}px`,
-              backgroundColor: validColor,
-              color: "#FFFFFF",
-              borderRadius: radii.md.value,
-              textDecoration: "none",
-              fontWeight: typography.weights.bold.value,
-              fontSize: fontSizes.md.value,
-              display: "inline-block",
-            }}
+            className="px-3 py-1 bg-brand-verification-green text-white rounded-md no-underline font-bold text-base inline-block focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-verification-green focus-visible:ring-offset-2 focus-visible:ring-offset-surface-canvas"
           >
             Open this product in Consumer App ↗
           </a>
-          <div style={{
-            padding: `${spacing.scale.value[1]}px ${spacing.scale.value[3]}px`,
-            backgroundColor: nonValidUniqueIds > 0 ? invalidColor : bgCanvas,
-            color: nonValidUniqueIds > 0 ? "#FFFFFF" : textPrimary,
-            border: `1px solid ${nonValidUniqueIds > 0 ? invalidColor : borderColor}`,
-            borderRadius: radii.md.value,
-            fontWeight: typography.weights.bold.value,
-            fontSize: fontSizes.md.value,
-          }} aria-live="polite">
+          <div className={`px-3 py-1 rounded-md font-bold text-base border ${nonValidUniqueIds > 0 ? 'bg-functional-alert text-white border-functional-alert' : 'bg-surface-canvas text-brand-deep-charcoal border-surface-border'}`} aria-live="polite">
             Security Counter: {nonValidUniqueIds} Compromised Flow{nonValidUniqueIds !== 1 ? "s" : ""}
           </div>
         </div>
       </div>
 
-      <div style={{ display: "flex", gap: spacing.scale.value[4] + "px", marginBottom: spacing.scale.value[4] + "px", alignItems: "stretch" }}>
-        <div style={{ backgroundColor: bgCard, border: `1px solid ${borderColor}`, padding: spacing.scale.value[4] + "px", borderRadius: radii.md.value, flex: 1 }}>
-          <h3 style={{ fontSize: fontSizes.md.value, fontWeight: typography.weights.bold.value, marginBottom: spacing.scale.value[2] + "px" }}>Ed25519 Integrity Verification</h3>
-          <p style={{ fontSize: fontSizes.sm.value, color: neutralColor, lineHeight: "1.5", maxWidth: "600px" }}>
+      <div className="flex gap-6 mb-6 items-stretch">
+        <div className="bg-surface-card border border-surface-border p-6 rounded-md flex-1">
+          <h3 className="text-base font-bold mb-2">Ed25519 Integrity Verification</h3>
+          <p className="text-sm text-functional-neutral leading-relaxed max-w-2xl">
             Event payloads are cryptographically signed at origin using Ed25519 (a fast, secure public-key signature system). This workstation runs a local Go/Wasm engine to recalculate hashes, verify signatures, and check actors against the trusted registry in real-time. Any manipulation breaks the mathematical proof.
           </p>
         </div>
 
-        <div style={{ backgroundColor: bgCard, border: `1px solid ${borderColor}`, padding: spacing.scale.value[4] + "px", borderRadius: radii.md.value, display: "flex", flexDirection: "column", gap: spacing.scale.value[2] + "px", minWidth: "200px" }}>
-          <h3 style={{ fontSize: fontSizes.sm.value, fontWeight: typography.weights.bold.value, color: neutralColor, textTransform: "uppercase", letterSpacing: "0.05em" }}>Integrity Status Legend</h3>
-          <p style={{ fontSize: "11px", color: neutralColor, marginBottom: "4px" }}>
+        <div className="bg-surface-card border border-surface-border p-6 rounded-md flex flex-col gap-2 min-w-[200px]">
+          <h3 className="text-sm font-bold text-functional-neutral uppercase tracking-wider">Integrity Status Legend</h3>
+          <p className="text-[11px] text-functional-neutral mb-1">
             The Integrity Status indicates whether an event's cryptographic signature and actor authorization are valid.
           </p>
-          <div style={{ display: "flex", gap: spacing.scale.value[2] + "px", flexWrap: "wrap" }}>
-            {(["VALID", "WARNING", "INVALID", "UNAUTHORIZED"] as const).map((status) => (
-              <span key={status} style={{ display: "inline-block", padding: `${spacing.scale.value[1]}px ${spacing.scale.value[2]}px`, borderRadius: radii.lg.value, backgroundColor: getStatusColor(status), color: "#FFFFFF", fontSize: fontSizes.xs.value, fontWeight: typography.weights.bold.value }}>
-                {status}
-              </span>
-            ))}
+          <div className="flex gap-2 flex-wrap">
+            {(["VALID", "WARNING", "INVALID", "UNAUTHORIZED"] as const).map((status) => {
+              const bgClass = status === "VALID" ? "bg-brand-verification-green" : status === "INVALID" ? "bg-functional-alert" : "bg-functional-pending";
+              return (
+                <span key={status} className={`inline-block px-2 py-1 rounded-full ${bgClass} text-white text-xs font-bold`}>
+                  {status}
+                </span>
+              );
+            })}
           </div>
         </div>
       </div>
 
-      <div style={{ display: "flex", gap: spacing.scale.value[1] + "px", marginBottom: spacing.scale.value[4] + "px" }} role="group">
+      <div className="flex gap-1 mb-6" role="group">
         {[
           { label: "All Events", value: "ALL" },
           { label: "Integrity Failures (INVALID)", value: "INVALID" },
           { label: "Identity Alerts (UNAUTHORIZED)", value: "UNAUTHORIZED" }
-        ].map((btn) => (
-          <button
-            key={btn.value}
-            aria-pressed={filter === btn.value}
-            onClick={() => setFilter(btn.value as "ALL" | "INVALID" | "UNAUTHORIZED")}
-            style={{
-              padding: `${spacing.scale.value[2]}px ${spacing.scale.value[3]}px`,
-              backgroundColor: filter === btn.value ? textPrimary : bgCanvas,
-              color: filter === btn.value ? bgCanvas : textPrimary,
-              border: `1px solid ${filter === btn.value ? textPrimary : borderColor}`,
-              borderRadius: radii.pill.value,
-              cursor: "pointer",
-              fontWeight: typography.weights.medium.value,
-              fontSize: fontSizes.md.value,
-              transition: "all 0.2s"
-            }}
-          >
-            {btn.label}
-          </button>
-        ))}
+        ].map((btn) => {
+          const isActive = filter === btn.value;
+          return (
+             <button
+              key={btn.value}
+              aria-pressed={isActive}
+              onClick={() => setFilter(btn.value as "ALL" | "INVALID" | "UNAUTHORIZED")}
+              className={`px-3 py-2 rounded-full cursor-pointer font-medium text-base transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-deep-charcoal focus-visible:ring-offset-1 focus-visible:ring-offset-surface-canvas ${isActive ? 'bg-brand-deep-charcoal text-surface-canvas border border-brand-deep-charcoal' : 'bg-surface-canvas text-brand-deep-charcoal border border-surface-border hover:bg-surface-border'}`}
+            >
+              {btn.label}
+            </button>
+          );
+        })}
       </div>
 
       {toastMsg && (
-        <div style={{
-          padding: spacing.scale.value[3] + "px",
-          marginBottom: spacing.scale.value[4] + "px",
-          backgroundColor: toastMsg.type === "error" ? invalidColor : warningColor,
-          color: "#FFFFFF",
-          borderRadius: spacing.scale.value[1] + "px",
-          fontWeight: typography.weights.medium.value,
-          boxShadow: shadows.subtle.value,
-          transition: "opacity 0.3s ease-in-out"
-        }} role="alert">
+        <div className={`p-3 mb-6 text-white rounded font-medium shadow-subtle transition-opacity duration-300 ${toastMsg.type === "error" ? "bg-functional-alert" : "bg-functional-pending"}`} role="alert">
           {toastMsg.message}
         </div>
       )}
 
-      <div style={{ marginBottom: spacing.scale.value[3] + "px", padding: `${spacing.scale.value[2]}px ${spacing.scale.value[4]}px`, backgroundColor: "rgba(245, 158, 11, 0.05)", borderLeft: `4px solid ${validColor}`, borderRadius: radii.md.value }}>
-        <h2 style={{ fontSize: fontSizes.md.value, fontWeight: typography.weights.bold.value, display: "flex", alignItems: "center", gap: "8px" }}>
+      <div className="mb-4 px-6 py-2 bg-functional-pending/5 border-l-4 border-brand-verification-green rounded-md">
+        <h2 className="text-base font-bold flex items-center gap-2">
           Canonical Product Journey: {DemoScenario.productName}
         </h2>
-        <p style={{ fontSize: fontSizes.sm.value, color: neutralColor, marginTop: spacing.scale.value[1] + "px" }}>Chronological event trail bound to {DemoScenario.assetId}</p>
+        <p className="text-sm text-functional-neutral mt-1">Chronological event trail bound to {DemoScenario.assetId}</p>
       </div>
 
-      <div style={{
-        backgroundColor: bgCard,
-        border: `1px solid ${borderColor}`,
-        borderRadius: radii.md.value,
-        boxShadow: shadows.subtle.value,
-        overflow: "hidden"
-      }}>
+      <div className="bg-surface-card border border-surface-border rounded-md shadow-subtle overflow-hidden">
         {Object.keys(groupedEvents).length === 0 && !error ? (
-          <div style={{ padding: spacing.scale.value[4] + "px", textAlign: "center", color: textPrimary }}>
+          <div className="p-6 text-center text-brand-deep-charcoal">
             No live events match the filtered criteria from the Cloudflare D1 Edge Route.
           </div>
         ) : (
-          <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
-            <thead style={{ backgroundColor: bgCanvas, borderBottom: `1px solid ${borderColor}` }}>
+          <table className="w-full border-collapse text-left">
+            <thead className="bg-surface-canvas border-b border-surface-border">
               <tr>
                 {["Event ID", "Actor", "Action", "Energy (kWh)", "Footprint (kgCO2e)", "Status", "Actions"].map((header) => (
-                  <th key={header} style={{ padding: spacing.scale.value[3] + "px", fontWeight: typography.weights.medium.value, fontSize: fontSizes.md.value }} scope="col">{header}</th>
+                  <th key={header} className="p-3 font-medium text-base" scope="col">{header}</th>
                 ))}
               </tr>
             </thead>
@@ -390,39 +329,41 @@ export default function EventLogPage() {
                 const primaryEvent = threadLogs[0];
                 const auditHistory = threadLogs.slice(1);
                 const currentStatus = validityStatuses[primaryEvent.id] || "PENDING";
+                
+                const statusBg = currentStatus === "VALID" ? "bg-brand-verification-green" : currentStatus === "INVALID" ? "bg-functional-alert" : "bg-functional-pending";
 
                 return (
                   <React.Fragment key={eventGroupKey}>
-                    <tr style={{ borderBottom: `1px solid ${borderColor}` }}>
-                      <td style={{ padding: spacing.scale.value[3] + "px", fontSize: fontSizes.md.value }}>
-                        <div style={{ fontWeight: typography.weights.bold.value }}>{primaryEvent.event_id}</div>
-                        <div style={{ fontSize: fontSizes.xs.value, color: neutralColor, marginTop: spacing.scale.value[0] + "px" }}>LOG ID: {primaryEvent.id.substring(0,8)}...</div>
+                    <tr className="border-b border-surface-border">
+                      <td className="p-3 text-base">
+                        <div className="font-bold">{primaryEvent.event_id}</div>
+                        <div className="text-xs text-functional-neutral mt-1">LOG ID: {primaryEvent.id.substring(0,8)}...</div>
                       </td>
-                      <td style={{ padding: spacing.scale.value[3] + "px", fontSize: fontSizes.md.value, fontFamily: "monospace", textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap", maxWidth: "120px" }} title={primaryEvent.actor_id}>{primaryEvent.actor}</td>
-                      <td style={{ padding: spacing.scale.value[3] + "px", fontSize: fontSizes.md.value }}>{getReadableActionLabel(primaryEvent.action, currentStatus)}</td>
-                      <td style={{ padding: spacing.scale.value[3] + "px", fontSize: fontSizes.md.value }}>{primaryEvent.energyKwh}</td>
-                      <td style={{ padding: spacing.scale.value[3] + "px", fontSize: fontSizes.md.value }}>
+                      <td className="p-3 text-base font-mono text-ellipsis overflow-hidden whitespace-nowrap max-w-[120px]" title={primaryEvent.actor_id}>{primaryEvent.actor}</td>
+                      <td className="p-3 text-base">{getReadableActionLabel(primaryEvent.action, currentStatus)}</td>
+                      <td className="p-3 text-base">{primaryEvent.energyKwh}</td>
+                      <td className="p-3 text-base">
                         <div>{footprints[primaryEvent.id] !== undefined ? footprints[primaryEvent.id].toFixed(2) : "Calculating..."}</div>
-                        <div style={{ fontSize: fontSizes.xs.value, marginTop: spacing.scale.value[0] + "px", backgroundColor: bgCanvas, padding: "2px 4px", borderRadius: radii.sm.value, display: "inline-block", color: neutralColor }}>
+                        <div className="text-xs mt-1 bg-surface-canvas px-1 py-0.5 rounded-sm inline-block text-functional-neutral">
                           {"$$CF_{total} = \\sum (E_i \\times EF_i)$$"}
                         </div>
                       </td>
-                      <td style={{ padding: spacing.scale.value[3] + "px", fontSize: fontSizes.md.value }}>
-                        <span style={{ display: "inline-block", padding: `${spacing.scale.value[0]}px ${spacing.scale.value[1]}px`, borderRadius: radii.lg.value, backgroundColor: getStatusColor(currentStatus), color: "#FFFFFF", fontSize: fontSizes.sm.value, fontWeight: typography.weights.bold.value }}>
+                      <td className="p-3 text-base">
+                        <span className={`inline-block px-2 py-1 rounded-full text-white text-sm font-bold ${statusBg}`}>
                           {isPending ? "VERIFYING..." : currentStatus}
                         </span>
                       </td>
-                      <td style={{ padding: spacing.scale.value[3] + "px", fontSize: fontSizes.md.value }}>
-                        <div style={{ display: "flex", gap: spacing.scale.value[1] + "px" }}>
+                      <td className="p-3 text-base">
+                        <div className="flex gap-2">
                           <button 
                             onClick={() => handleTamperTest(primaryEvent)}
-                            style={{ padding: `${spacing.scale.value[1]}px ${spacing.scale.value[2]}px`, backgroundColor: warningColor, color: textPrimary, border: "none", borderRadius: radii.sm.value, cursor: "pointer", fontSize: fontSizes.sm.value, fontWeight: typography.weights.bold.value }}
+                            className="px-2 py-1 bg-functional-pending text-brand-deep-charcoal border-none rounded-sm cursor-pointer text-sm font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-functional-pending focus-visible:ring-offset-2 focus-visible:ring-offset-surface-card"
                           >
                             Tamper Data
                           </button>
                           <button 
                             onClick={() => handleImpersonatorTest(primaryEvent)}
-                            style={{ padding: `${spacing.scale.value[1]}px ${spacing.scale.value[2]}px`, backgroundColor: invalidColor, color: "#FFFFFF", border: "none", borderRadius: radii.sm.value, cursor: "pointer", fontSize: fontSizes.sm.value, fontWeight: typography.weights.bold.value }}
+                            className="px-2 py-1 bg-functional-alert text-white border-none rounded-sm cursor-pointer text-sm font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-functional-alert focus-visible:ring-offset-2 focus-visible:ring-offset-surface-card"
                           >
                             Impersonate
                           </button>
@@ -431,29 +372,30 @@ export default function EventLogPage() {
                     </tr>
                     
                     {auditHistory.length > 0 && (
-                      <tr style={{ backgroundColor: bgCanvas }}>
-                        <td colSpan={7} style={{ padding: "0" }}>
-                          <details style={{ width: "100%" }}>
-                            <summary style={{ padding: spacing.scale.value[2] + "px", paddingLeft: spacing.scale.value[4] + "px", cursor: "pointer", fontSize: fontSizes.sm.value, fontWeight: typography.weights.medium.value, color: invalidColor }}>
+                      <tr className="bg-surface-canvas">
+                        <td colSpan={7} className="p-0">
+                          <details className="w-full">
+                            <summary className="p-2 pl-6 cursor-pointer text-sm font-medium text-functional-alert focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-functional-alert">
                               View {auditHistory.length} Audit History Record{auditHistory.length !== 1 ? "s" : ""}
                             </summary>
-                            <table style={{ width: "100%", margin: "0", borderTop: `1px solid ${borderColor}` }}>
+                            <table className="w-full m-0 border-t border-surface-border">
                               <tbody>
                                 {auditHistory.map(auditLog => {
                                   const auditStatus = validityStatuses[auditLog.id] || "PENDING";
+                                  const auditStatusBg = auditStatus === "VALID" ? "bg-brand-verification-green" : auditStatus === "INVALID" ? "bg-functional-alert" : "bg-functional-pending";
                                   return (
-                                    <tr key={auditLog.id} style={{ borderBottom: `1px dotted ${borderColor}` }}>
-                                      <td style={{ padding: spacing.scale.value[2] + "px", paddingLeft: spacing.scale.value[5] + "px", fontSize: fontSizes.sm.value, color: neutralColor }}>...{auditLog.id.substring(auditLog.id.length-8)}</td>
-                                      <td style={{ padding: spacing.scale.value[2] + "px", fontSize: fontSizes.sm.value, fontFamily: "monospace" }}>{auditLog.actor}</td>
-                                      <td style={{ padding: spacing.scale.value[2] + "px", fontSize: fontSizes.sm.value, color: neutralColor }}>{getReadableActionLabel(auditLog.action, auditStatus)}</td>
-                                      <td style={{ padding: spacing.scale.value[2] + "px", fontSize: fontSizes.sm.value, color: neutralColor }}>{auditLog.energyKwh}</td>
-                                      <td style={{ padding: spacing.scale.value[2] + "px", fontSize: fontSizes.sm.value, color: neutralColor, fontStyle: "italic" }}>Persisted at: {new Date(auditLog.timestamp).toLocaleTimeString()}</td>
-                                      <td style={{ padding: spacing.scale.value[2] + "px", fontSize: fontSizes.sm.value }}>
-                                        <span style={{ display: "inline-block", padding: "2px 6px", borderRadius: radii.lg.value, backgroundColor: getStatusColor(auditStatus), color: "#FFFFFF", fontWeight: typography.weights.bold.value }}>
+                                    <tr key={auditLog.id} className="border-b border-dotted border-surface-border">
+                                      <td className="p-2 pl-8 text-sm text-functional-neutral">...{auditLog.id.substring(auditLog.id.length-8)}</td>
+                                      <td className="p-2 text-sm font-mono">{auditLog.actor}</td>
+                                      <td className="p-2 text-sm text-functional-neutral">{getReadableActionLabel(auditLog.action, auditStatus)}</td>
+                                      <td className="p-2 text-sm text-functional-neutral">{auditLog.energyKwh}</td>
+                                      <td className="p-2 text-sm text-functional-neutral italic">Persisted at: {new Date(auditLog.timestamp).toLocaleTimeString()}</td>
+                                      <td className="p-2 text-sm">
+                                        <span className={`inline-block px-2 py-0.5 rounded-full text-white font-bold ${auditStatusBg}`}>
                                           {auditStatus}
                                         </span>
                                       </td>
-                                      <td style={{ padding: spacing.scale.value[2] + "px", fontSize: fontSizes.sm.value, color: neutralColor }}>Historical Write</td>
+                                      <td className="p-2 text-sm text-functional-neutral">Historical Write</td>
                                     </tr>
                                   );
                                 })}

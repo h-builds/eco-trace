@@ -32,7 +32,7 @@ export function DashboardNavigation() {
               isActive
                 ? "text-brand-integrity-green"
                 : "text-brand-deep-charcoal hover:text-brand-integrity-green"
-            }`}
+            } focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-integrity-green rounded-sm`}
           >
             {link.name}
           </Link>
@@ -78,7 +78,7 @@ export function GuidedDemoStepper() {
                     isActive
                       ? "bg-brand-integrity-green text-brand-deep-charcoal font-bold"
                       : "bg-surface-canvas text-functional-neutral hover:bg-surface-border hover:text-brand-deep-charcoal"
-                  }`}
+                  } focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-integrity-green focus-visible:ring-offset-2 focus-visible:ring-offset-surface-card`}
                   title={step.external && consumerUrl === '#' ? "Consumer App URL not configured" : undefined}
                 >
                   {step.label}
@@ -96,7 +96,7 @@ export function GuidedDemoStepper() {
           href={caseStudyUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs font-medium text-functional-neutral hover:text-brand-deep-charcoal underline underline-offset-2"
+          className="text-xs font-medium text-functional-neutral hover:text-brand-deep-charcoal underline underline-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-integrity-green rounded-sm"
         >
           Architecture Case Study
         </Link>
@@ -108,7 +108,7 @@ export function GuidedDemoStepper() {
             consumerUrl !== '#'
               ? "bg-brand-deep-charcoal text-surface-card hover:bg-opacity-90"
               : "bg-surface-border text-functional-neutral cursor-not-allowed"
-          }`}
+          } focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-integrity-green focus-visible:ring-offset-2 focus-visible:ring-offset-surface-card`}
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
             if (consumerUrl === '#') {
               e.preventDefault();

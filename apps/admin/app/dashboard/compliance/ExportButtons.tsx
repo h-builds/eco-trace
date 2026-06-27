@@ -33,8 +33,6 @@ export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProp
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
   const { colors, typography, radii, spacing } = tokens.tokens;
-  const btnColor = colors.brand["verification-green"].value;
-  const textColor = "#FFFFFF";
 
   const buildQueryString = (format: string) => {
     const params = new URLSearchParams({ format });
@@ -163,47 +161,33 @@ export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProp
     }
   };
 
-  const buttonStyle = {
-    padding: `${spacing.scale.value[2]}px ${spacing.scale.value[4]}px`,
-    backgroundColor: btnColor,
-    color: textColor,
-    border: "none",
-    borderRadius: radii.md.value,
-    fontWeight: typography.weights.bold.value,
-    cursor: isExporting ? "not-allowed" : "pointer",
-    opacity: isExporting ? 0.7 : 1,
-  };
+  const buttonClasses = `px-4 py-2 bg-brand-verification-green text-white border-none rounded-md font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-verification-green focus-visible:ring-offset-2 focus-visible:ring-offset-surface-card transition-opacity ${isExporting ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer hover:opacity-90'}`;
 
   return (
     <div>
-      <div style={{ display: "flex", gap: "12px", marginTop: "16px" }}>
-        <button onClick={handleExportCSV} style={buttonStyle} disabled={isExporting}>
+      <div className="flex gap-3 mt-4">
+        <button onClick={handleExportCSV} className={buttonClasses} disabled={isExporting}>
           {isExporting ? "Exporting..." : "Export as CSV"}
         </button>
-        <button onClick={handleExportPDF} style={buttonStyle} disabled={isExporting}>
+        <button onClick={handleExportPDF} className={buttonClasses} disabled={isExporting}>
           {isExporting ? "Exporting..." : "Export as PDF"}
         </button>
         <a
           href={getConsumerProductUrl(DemoScenario.assetId)}
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            ...buttonStyle,
-            backgroundColor: colors.brand["deep-charcoal"].value,
-            textDecoration: "none",
-            display: "inline-block",
-          }}
+          className="px-4 py-2 bg-brand-deep-charcoal text-white border-none rounded-md font-bold inline-block no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-deep-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-card hover:opacity-90 transition-opacity"
         >
           Open in Consumer App ↗
         </a>
       </div>
       {errorMsg && (
-        <div style={{ marginTop: "12px", color: colors.functional.alert.value, fontSize: typography.sizes.sm.value }}>
+        <div className="mt-3 text-functional-alert text-sm">
           {errorMsg}
         </div>
       )}
       {successMsg && (
-        <div style={{ marginTop: "12px", color: colors.brand["verification-green"].value, fontSize: typography.sizes.sm.value }}>
+        <div className="mt-3 text-brand-verification-green text-sm">
           {successMsg}
         </div>
       )}
