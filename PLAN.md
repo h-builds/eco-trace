@@ -265,19 +265,19 @@ Its job is to show:
 
 > Phases are annotated with execution order `(N)`. Lower numbers must complete before higher ones start. Admin and Consumer TASKS.md files use the same numbering.
 
-| Order | Phase | Admin TASKS | Consumer TASKS | Root TASKS |
-|-------|-------|-------------|----------------|------------|
-| (1) | 8.0 Scope Lock & Truth Alignment | §0 | §0 | §0 |
-| (2) | 8.1 + 8.2 + 8.3 Demo Scenario | §1 | §1 | — |
-| (3) | 8.2 Seed Data | §5 | — (blocked until done) | — |
-| (4) | 8.2 + 8.3 Core Pages | §2, §4 | §2, §3, §4 | — |
-| (5) | 8.1 Cross-App Contracts | §10 | §10, §11 | — |
-| (6) | 8.2 + 8.3 Deep Pages | §3, §6, §7, §8 | §5, §6, §7, §8 | — |
-| (7) | 8.1 + 8.2 + 8.3 Landing Pages | §9 | §9 | §1 Demo Hub |
-| (8) | 8.0 + 8.5 Copy & QA | §11, §12, §13 | §12, §13 | — |
-| (9) | 8.4 Documentation | §14 | §14 | §2–§7 |
-| (10) | 8.5 Release Gate | §15 | §15 | §8–§10 |
-| (11) | 8.6 Optional | — | — | §11 |
+| Order | Phase                            | Admin TASKS    | Consumer TASKS         | Root TASKS  |
+| ----- | -------------------------------- | -------------- | ---------------------- | ----------- |
+| (1)   | 8.0 Scope Lock & Truth Alignment | §0             | §0                     | §0          |
+| (2)   | 8.1 + 8.2 + 8.3 Demo Scenario    | §1             | §1                     | —           |
+| (3)   | 8.2 Seed Data                    | §5             | — (blocked until done) | —           |
+| (4)   | 8.2 + 8.3 Core Pages             | §2, §4         | §2, §3, §4             | —           |
+| (5)   | 8.1 Cross-App Contracts          | §10            | §10, §11               | —           |
+| (6)   | 8.2 + 8.3 Deep Pages             | §3, §6, §7, §8 | §5, §6, §7, §8         | —           |
+| (7)   | 8.1 + 8.2 + 8.3 Landing Pages    | §9             | §9                     | §1 Demo Hub |
+| (8)   | 8.0 + 8.5 Copy & QA              | §11, §12, §13  | §12, §13               | —           |
+| (9)   | 8.4 Documentation                | §14            | §14                    | §2–§7       |
+| (10)  | 8.5 Release Gate                 | §15            | §15                    | §8–§10      |
+| (11)  | 8.6 Optional                     | —              | —                      | §11         |
 
 > [!IMPORTANT]
 > **Critical path:** Admin §5 (Seed Data) at order (3) blocks Consumer §5 and §11. The Admin seed data defines the D1 records that the Consumer app reads.
@@ -342,11 +342,24 @@ Create a recruiter-friendly entry point that explains the ecosystem and routes u
 - [x] Add frictionless cross-navigation between Admin and Consumer deployments.
 - [x] Add a visible **Demo Mode** label to avoid pretending the system is production.
 
+### Extended Tasks (Subdomain Migration)
+
+- [ ] Scaffold `apps/hub` as a Vite + Vanilla TypeScript package. This ensures the routing hub remains an ultra-lightweight, zero-overhead static surface on the edge.
+- [ ] Migrate the 3-step recruiter flow, architecture system map, and CTA marketing content from the Admin root into `apps/hub/index.html`.
+- [ ] Remove the `<AuditTester />` from the Hub surface. Diagnostics belong exclusively in the governed Admin environment; the Hub must remain strictly a routing/marketing surface.
+- [ ] Configure `.env` driven routing in `apps/hub` to link to Admin and Consumer URLs (e.g., `VITE_ADMIN_URL` and `VITE_CONSUMER_URL`), maintaining 12-factor compliance for both local ports and production subdomains.
+- [ ] Create `wrangler.toml` configuration for `apps/hub` to enable streamlined Cloudflare Pages deployment.
+- [ ] Configure and document Cloudflare Pages custom domain mappings (assigning `ecotrace.dev` to hub, `admin.ecotrace.dev` to admin, `verify.ecotrace.dev` to consumer).
+- [ ] Update `apps/admin/app/page.tsx` to execute a server-side redirect (`redirect('/dashboard/overview')`). The Admin subdomain should act strictly as an application gate, adhering to B2B SaaS entry patterns.
+- [ ] Update repository documentation to reflect the Cloudflare Pages deployment topology: `ecotrace.dev` (Hub), `admin.ecotrace.dev` (React), `verify.ecotrace.dev` (Vue).
+
 ### Exit Criteria
 
 - [x] A recruiter understands within 30 seconds why there are two apps.
 - [x] Both apps are reachable from the demo entry point.
 - [x] The user can complete the fast demo path without reading repository docs.
+- [ ] The standalone Demo Hub is deployed to the root domain.
+- [ ] Admin and Consumer apps are routed via distinct subdomains.
 
 ---
 
