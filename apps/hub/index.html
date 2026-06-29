@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eco Trace Hub — Enterprise Verification Architecture Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <div class="banner">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        <span><strong>Demo Mode:</strong> Portfolio demo — seeded supply-chain verification scenario</span>
+      </div>
+
+      <main class="container">
+        <div class="hero">
+          <h1>Eco Trace Hub</h1>
+          <p class="subtitle">
+            A collaborative enterprise verification architecture demo that turns supply-chain sustainability claims into cryptographically verifiable, audit-ready product histories.
+          </p>
+        </div>
+
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-number">1</div>
+            <h3>Audit the claim</h3>
+            <p>
+              Log in to the auditor workstation to review the cryptographically verified events, trace the supply chain, and view integrity checks.
+            </p>
+            <a href="#" id="link-admin" class="btn btn-primary">Enter Auditor Workstation</a>
+          </div>
+
+          <div class="card">
+            <div class="card-number">2</div>
+            <h3>Verify the product</h3>
+            <p>
+              Experience the public verification surface. This is what end-consumers see when they scan a product QR code to verify its authenticity.
+            </p>
+            <a href="#" id="link-consumer" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Open Consumer App ↗</a>
+          </div>
+
+          <div class="card">
+            <div class="card-number">3</div>
+            <h3>Inspect the architecture</h3>
+            <p>
+              Read the case study detailing how the shared Go/Wasm trust engine ensures edge verification across both React and Vue deployments.
+            </p>
+            <a href="https://github.com/h-builds/eco-trace/blob/main/docs/case-study.md" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Read Case Study ↗</a>
+          </div>
+        </div>
+
+        <div class="architecture-section">
+          <h2>System Architecture</h2>
+          
+          <div class="arch-flow">
+            <div class="arch-box">
+              <span class="arch-label">Auditor Surface</span>
+              <span class="arch-value">React Admin</span>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-box">
+              <span class="arch-label">Trust Engine</span>
+              <span class="arch-value">Go / Wasm</span>
+            </div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-box">
+              <span class="arch-label">Edge State</span>
+              <span class="arch-value">Cloudflare D1</span>
+            </div>
+            <div class="arch-arrow">→</div>
+             <div class="arch-box">
+              <span class="arch-label">Public Verification</span>
+              <span class="arch-value">Vue Consumer</span>
+            </div>
+          </div>
+
+          <div class="tags">
+            <span class="tag">React 19</span>
+            <span class="tag">Vue 3.5 Vapor</span>
+            <span class="tag">Cloudflare Workers</span>
+            <span class="tag">Cloudflare D1</span>
+            <span class="tag">Go/Wasm</span>
+            <span class="tag">Ed25519</span>
+          </div>
+          
+          <div class="arch-explanation">
+            <strong>Why are Admin and Consumer separate apps?</strong> 
+            The Admin app is a governed, authenticated environment designed for enterprise auditors. The Consumer app is a lightweight application built for public verification. Both run natively on Cloudflare Workers, sharing the exact same cryptographic trust engine via Go/Wasm and data persistence via Cloudflare D1.
+          </div>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
