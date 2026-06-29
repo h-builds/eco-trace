@@ -33,6 +33,16 @@ Standardized versioned system prompts for mission-critical workflows.
 - **Goal:** Maintain session integrity and prevent context drift.
 - **Action:** Update [CONTEXT.md](../context/CONTEXT.md) and [TASKS.md](../../packages/engine/TASKS.md) (or relevant local tasks) after a successful implementation or architectural change.
 
+### 4. `deploy-apps`
+
+- **Context:** Deploy all three monorepo applications to Cloudflare.
+- **Checklist:**
+  - [ ] **Build:** Run `pnpm run build` from the workspace root to compile all packages and apps.
+  - [ ] **Deploy Hub:** Navigate to `apps/hub` and execute `npx wrangler deploy`.
+  - [ ] **Deploy Consumer:** Navigate to `apps/consumer` and execute `npx wrangler deploy`.
+  - [ ] **Deploy Admin:** Navigate to `apps/admin` and execute `npx @cloudflare/next-on-pages && npx wrangler pages deploy .vercel/output/static --project-name eco-trace-admin`.
+  - [ ] **Verify:** Confirm all three deployments return valid Cloudflare URLs.
+
 ---
 
 _Note: Use these templates strictly when triggered by name to ensure repeatable, high-fidelity results._
