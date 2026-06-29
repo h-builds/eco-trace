@@ -38,6 +38,20 @@ interface Env {
   DB: D1Database;
 }
 
+interface EventCreateDTO {
+  id: string;
+  event_id: string;
+  asset_id: string;
+  actor_id: string;
+  timestamp: string;
+  action_type: string;
+  energy_kwh: number;
+  emission_factor: number;
+  signature: string;
+  public_key: string;
+  integrity_status: string;
+}
+
 export async function GET(request: NextRequest) {
   try {
     const db = (getRequestContext().env as unknown as Env).DB; 
@@ -49,15 +63,26 @@ export async function GET(request: NextRequest) {
 
     const { searchParams } = new URL(request.url);
     const statusParam = searchParams.get("status");
+    const assetIdParam = searchParams.get("asset_id");
 
     let query = "SELECT * FROM events";
     const params: unknown[] = [];
+    const conditions: string[] = [];
 
     if (statusParam === "alerts") {
-      query += " WHERE integrity_status IN ('INVALID', 'UNAUTHORIZED')";
+      conditions.push("integrity_status IN ('INVALID', 'UNAUTHORIZED')");
     } else if (statusParam === "INVALID" || statusParam === "UNAUTHORIZED") {
-      query += " WHERE integrity_status = ?";
+      conditions.push("integrity_status = ?");
       params.push(statusParam);
+    }
+
+    if (assetIdParam) {
+      conditions.push("asset_id = ?");
+      params.push(assetIdParam);
+    }
+
+    if (conditions.length > 0) {
+      query += " WHERE " + conditions.join(" AND ");
     }
 
     query += " ORDER BY timestamp DESC LIMIT 50";
@@ -82,6 +107,10 @@ export async function GET(request: NextRequest) {
       publicKey: row.public_key,
     }));
     
+    if (assetIdParam && events.length === 0) {
+      return NextResponse.json({ error: "Asset not found in the global ledger." }, { status: 404 });
+    }
+    
     return NextResponse.json(events);
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
@@ -98,19 +127,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Service Unavailable: Database binding missing. Please check your environment configuration." }, { status: 500 });
     }
 
-    const payload = (await request.json()) as Record<string, unknown>;
+    const rawPayload = (await request.json()) as Partial<EventCreateDTO>;
     
-    const requiredFields = [
+    const requiredFields: (keyof EventCreateDTO)[] = [
       "id", "event_id", "asset_id", "actor_id", "timestamp", 
       "action_type", "energy_kwh", "emission_factor", 
       "signature", "public_key", "integrity_status"
     ];
     
     for (const field of requiredFields) {
-      if (payload[field] === undefined || payload[field] === null) {
+      if (rawPayload[field] === undefined || rawPayload[field] === null) {
         return NextResponse.json({ error: `Missing required field: ${field}` }, { status: 400 });
       }
     }
+
+    const payload = rawPayload as EventCreateDTO;
 
     const { success } = await db.prepare(
       `INSERT INTO events (
