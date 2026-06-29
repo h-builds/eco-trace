@@ -7,6 +7,8 @@ import { TimeRangeFilter } from "../../../components/analytics/TimeRangeFilter";
 import { MetricsGrid } from "../../../components/analytics/MetricsGrid";
 import { DemoScenario } from "../../../lib/demoScenario";
 import { getConsumerProductUrl, isConsumerUrlConfigured } from "../../../lib/consumer";
+import { AuditTester } from "../../../components/AuditTester";
+
 export function OverviewClient({ initialPromise }: { initialPromise: Promise<AggregatedMetrics> }) {
   const [range, setRange] = useState<TimeRange>("30d");
   const [metricsPromise, setMetricsPromise] = useState<Promise<AggregatedMetrics>>(initialPromise);
@@ -120,6 +122,20 @@ export function OverviewClient({ initialPromise }: { initialPromise: Promise<Agg
           By combining role-based access control (RBAC), cryptographic signatures (Ed25519), and deterministic edge validation with Cloudflare D1, 
           Eco Trace ensures that supply-chain events are auditable, immutable, and trustworthy from origin to consumer.
         </p>
+      </section>
+
+      <section className="mt-8 pt-8 border-t border-surface-border">
+        <div className="w-full max-w-2xl opacity-70 hover:opacity-100 transition-opacity">
+          <div className="border border-surface-border rounded-xl p-6 bg-surface-canvas shadow-sm">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-2 h-2 rounded-full bg-brand-verification-green"></div>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-functional-neutral">Trust Engine Diagnostics</h3>
+            </div>
+            <div className="text-sm">
+              <AuditTester />
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );
