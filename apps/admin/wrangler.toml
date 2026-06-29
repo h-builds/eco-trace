@@ -1,24 +1,22 @@
 name = "eco-trace-admin"
 compatibility_date = "2026-06-29"
+compatibility_flags = ["nodejs_compat"]
 
 # Deploying as a Cloudflare Worker with Native Static Assets
 main = ".vercel/output/static/_worker.js"
 assets = { directory = ".vercel/output/static" }
 
-# Route to custom domain
-routes = [
-  { pattern = "admin.ecotrace.dev/*", zone_name = "ecotrace.dev" }
-]
+
 
 # D1 Database Binding
 [[d1_databases]]
 binding = "DB" # Available as env.DB in Next.js/Workers Functions
 database_name = "eco-trace-events"
-database_id = "a68339af-3c78-46c3-987b-4f8792a5159b" # Replace in production
+database_id = "a68339af-3c78-46c3-987b-4f8792a5159b"
 preview_database_id = "preview-0000-0000-0000-00000000"
 
 # KV Namespaces Binding
 [[kv_namespaces]]
 binding = "SESSION_KV"
-id = "mock-session-kv-id"
+id = "cb6bc4acb797483f93a2a8cbbee561ff"
 preview_id = "preview-mock-session-kv"

@@ -2,10 +2,5 @@ name = "eco-trace-hub"
 compatibility_date = "2026-06-29"
 
 # Deploying as a Cloudflare Worker with Native Static Assets
-main = "dist/index.html" # A dummy main required by some wrangler versions, but the assets binding handles it
 assets = { directory = "./dist" }
 
-# Route to custom domain
-routes = [
-  { pattern = "ecotrace.dev/*", zone_name = "ecotrace.dev" }
-]

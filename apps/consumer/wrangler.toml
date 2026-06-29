@@ -2,10 +2,5 @@ name = "eco-trace-consumer"
 compatibility_date = "2026-06-29"
 
 # Deploying as a Cloudflare Worker with Native Static Assets
-main = "dist/index.html"
 assets = { directory = "./dist" }
 
-# Route to custom domain
-routes = [
-  { pattern = "verify.ecotrace.dev/*", zone_name = "ecotrace.dev" }
-]
