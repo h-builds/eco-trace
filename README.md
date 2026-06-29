@@ -46,7 +46,7 @@ Eco Trace has two separate applications because it demonstrates two different en
 ```mermaid
 graph TD
     subgraph Edge Network [Cloudflare Global Network]
-        API[Next.js Edge API Handlers]
+        API[Cloudflare Workers (Native Static Assets)]
         DB[(Cloudflare D1 SQLite)]
     end
 
@@ -184,7 +184,7 @@ All task files use a shared **execution order (1)–(11)** so work can be coordi
 - **Lucide React/Vue:** Consistent iconography.
 
 ### Backend / Edge Layer
-- **Next.js Route Handlers:** Running on the Edge runtime.
+- **Cloudflare Workers (Native Static Assets):** Unified deployment for React (Admin), Vue (Consumer), and Vanilla TS (Hub).
 - **Cloudflare D1:** Distributed serverless SQL database at the edge.
 - **Wrangler:** Local simulation and deployment for Cloudflare resources.
 
@@ -261,7 +261,7 @@ GOOS=js GOARCH=wasm go build -o main.wasm
 > Next.js production builds use the webpack bundler backend (`next build --webpack`) rather than Turbopack to prevent dynamic module import compatibility issues with client-side PDF generation dependencies.
 
 > [!NOTE]
-> Ensure `pages_build_output_dir` remains commented out in `apps/admin/wrangler.toml` during local development to prevent Wrangler proxy collisions.
+> The monorepo uses **Cloudflare Workers with Native Static Assets** for all deployments (`apps/admin`, `apps/consumer`, `apps/hub`). Cloudflare Pages is explicitly not used. Subdomain topology: `ecotrace.dev` (Hub), `admin.ecotrace.dev` (Admin), `verify.ecotrace.dev` (Consumer).
 
 ---
 
@@ -269,7 +269,6 @@ GOOS=js GOARCH=wasm go build -o main.wasm
 
 These items are planned but **not yet implemented**:
 
-- **Demo Hub:** Unified entry experience routing recruiters into both apps.
 - **Architecture Case Study:** Technical storytelling docs (`docs/case-study.md`).
 - **PWA / Offline Mode:** Service Worker with offline-first caching.
 - **i18n:** Multi-language support for global supply-chain actors.

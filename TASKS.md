@@ -72,21 +72,21 @@ Create or identify a unified entry point that routes recruiters into both applic
 
 ### Extended Tasks (Subdomain Migration)
 
-- [ ] Scaffold `apps/hub` as a Vite + Vanilla TS package (HTML/CSS only) for maximum edge performance.
-- [ ] Migrate Demo Hub marketing content (CTAs, architecture map, recruiter flow) from Admin root to `apps/hub/index.html`.
-- [ ] Omit the `<AuditTester />` from the Hub to strictly preserve diagnostic functionality within the authenticated Admin boundaries.
-- [ ] Implement environment-agnostic `.env` routing (`VITE_ADMIN_URL`, `VITE_CONSUMER_URL`) for local port vs. production subdomain resolution.
-- [ ] Create `wrangler.toml` configuration for `apps/hub` to enable streamlined Cloudflare Pages deployment.
-- [ ] Configure and document Cloudflare Pages custom domain mappings (assigning `ecotrace.dev` to hub, `admin.ecotrace.dev` to admin, `verify.ecotrace.dev` to consumer).
-- [ ] Refactor `apps/admin/app/page.tsx` to automatically redirect to `/dashboard/overview`, enforcing SaaS application entry patterns.
-- [ ] Update architecture and local setup documentation to reflect the new 3-tier Cloudflare Pages topology.
+- [x] Scaffold `apps/hub` as a Vite + Vanilla TS package (HTML/CSS only) for maximum edge performance.
+- [x] Migrate Demo Hub marketing content (CTAs, architecture map, recruiter flow) from Admin root to `apps/hub/index.html`.
+- [x] Omit the `<AuditTester />` from the Hub to strictly preserve diagnostic functionality within the authenticated Admin boundaries.
+- [x] Implement environment-agnostic `.env` routing (`VITE_ADMIN_URL`, `VITE_CONSUMER_URL`) for local port vs. production subdomain resolution.
+- [x] Create `wrangler.toml` configuration for `apps/hub` to enable streamlined Cloudflare Workers Native Static Assets deployment.
+- [x] Configure and document custom domain mappings (assigning `ecotrace.dev` to hub, `admin.ecotrace.dev` to admin, `verify.ecotrace.dev` to consumer) under the Workers architecture.
+- [x] Refactor `apps/admin/app/page.tsx` to automatically redirect to `/dashboard/overview`, enforcing SaaS application entry patterns.
+- [x] Update architecture and local setup documentation to reflect the new 3-tier Cloudflare Workers topology.
 
 ### Exit Criteria
 
 - [x] A recruiter understands within 30 seconds why there are two apps.
 - [x] Both apps are reachable from the entry point.
-- [ ] The standalone Demo Hub is deployed to the root domain.
-- [ ] Admin and Consumer apps are routed via distinct subdomains.
+- [x] The standalone Demo Hub is deployed to the root domain.
+- [x] Admin and Consumer apps are routed via distinct subdomains.
 
 ---
 

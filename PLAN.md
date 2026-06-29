@@ -344,14 +344,14 @@ Create a recruiter-friendly entry point that explains the ecosystem and routes u
 
 ### Extended Tasks (Subdomain Migration)
 
-- [ ] Scaffold `apps/hub` as a Vite + Vanilla TypeScript package. This ensures the routing hub remains an ultra-lightweight, zero-overhead static surface on the edge.
-- [ ] Migrate the 3-step recruiter flow, architecture system map, and CTA marketing content from the Admin root into `apps/hub/index.html`.
-- [ ] Remove the `<AuditTester />` from the Hub surface. Diagnostics belong exclusively in the governed Admin environment; the Hub must remain strictly a routing/marketing surface.
-- [ ] Configure `.env` driven routing in `apps/hub` to link to Admin and Consumer URLs (e.g., `VITE_ADMIN_URL` and `VITE_CONSUMER_URL`), maintaining 12-factor compliance for both local ports and production subdomains.
-- [ ] Create `wrangler.toml` configuration for `apps/hub` to enable streamlined Cloudflare Pages deployment.
-- [ ] Configure and document Cloudflare Pages custom domain mappings (assigning `ecotrace.dev` to hub, `admin.ecotrace.dev` to admin, `verify.ecotrace.dev` to consumer).
-- [ ] Update `apps/admin/app/page.tsx` to execute a server-side redirect (`redirect('/dashboard/overview')`). The Admin subdomain should act strictly as an application gate, adhering to B2B SaaS entry patterns.
-- [ ] Update repository documentation to reflect the Cloudflare Pages deployment topology: `ecotrace.dev` (Hub), `admin.ecotrace.dev` (React), `verify.ecotrace.dev` (Vue).
+- [x] Scaffold `apps/hub` as a Vite + Vanilla TypeScript package. This ensures the routing hub remains an ultra-lightweight, zero-overhead static surface on the edge.
+- [x] Migrate the 3-step recruiter flow, architecture system map, and CTA marketing content from the Admin root into `apps/hub/index.html`.
+- [x] Remove the `<AuditTester />` from the Hub surface. Diagnostics belong exclusively in the governed Admin environment; the Hub must remain strictly a routing/marketing surface.
+- [x] Configure `.env` driven routing in `apps/hub` to link to Admin and Consumer URLs (e.g., `VITE_ADMIN_URL` and `VITE_CONSUMER_URL`), maintaining 12-factor compliance for both local ports and production subdomains.
+- [x] Create `wrangler.toml` configuration for `apps/hub` to enable streamlined Cloudflare Workers with Native Static Assets deployment.
+- [x] Configure and document custom domain mappings (assigning `ecotrace.dev` to hub, `admin.ecotrace.dev` to admin, `verify.ecotrace.dev` to consumer) under the Workers architecture.
+- [x] Update `apps/admin/app/page.tsx` to execute a server-side redirect (`redirect('/dashboard/overview')`). The Admin subdomain should act strictly as an application gate, adhering to B2B SaaS entry patterns.
+- [x] Update repository documentation to reflect the unified Cloudflare Workers deployment topology: `ecotrace.dev` (Hub), `admin.ecotrace.dev` (React), `verify.ecotrace.dev` (Vue).
 
 ### Exit Criteria
 
