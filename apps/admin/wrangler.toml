@@ -2,9 +2,7 @@ name = "eco-trace-admin"
 compatibility_date = "2026-06-29"
 compatibility_flags = ["nodejs_compat"]
 
-# Deploying as a Cloudflare Worker with Native Static Assets
-main = ".vercel/output/static/_worker.js"
-assets = { directory = ".vercel/output/static" }
+pages_build_output_dir = ".vercel/output/static"
 
 
 
