@@ -15,7 +15,7 @@ export default async function DashboardLayout({
   const session = await getSession();
   
   if (!session) {
-    redirect("/login?error=session_expired");
+    redirect("/login");
   }
 
   return (
