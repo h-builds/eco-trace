@@ -30,6 +30,7 @@
 ├── anatomy.md
 ├── apps
 │   ├── admin
+│   │   ├── .env
 │   │   ├── .env.example
 │   │   ├── AGENTS.md
 │   │   ├── README.md
@@ -90,87 +91,107 @@
 │   │   │   ├── seed.ts
 │   │   │   ├── wasm.d.ts
 │   │   │   └── wasmLoader.ts
-│   │   ├── middleware.ts
 │   │   ├── next-env.d.ts
 │   │   ├── next.config.mjs
-│   │   ├── package-lock.json
 │   │   ├── package.json
 │   │   ├── postcss.config.mjs
-│   │   ├── public
-│   │   │   ├── engine.wasm
-│   │   │   └── wasm_exec.js
 │   │   ├── schema.sql
 │   │   ├── seed.sql
 │   │   ├── tsconfig.json
+│   │   ├── tsconfig.tsbuildinfo
 │   │   └── wrangler.toml
-│   └── consumer
+│   ├── consumer
+│   │   ├── .env
+│   │   ├── .env.example
+│   │   ├── .eslintrc.cjs
+│   │   ├── .lighthouserc.json
+│   │   ├── AGENTS.md
+│   │   ├── CODE_REVIEW_AUDIT.md
+│   │   ├── README.md
+│   │   ├── TASKS.md
+│   │   ├── archive
+│   │   │   └── TASKS.md
+│   │   ├── index.html
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── App.vue
+│   │   │   ├── composables
+│   │   │   │   ├── useEventHistory.ts
+│   │   │   │   ├── useScanner.ts
+│   │   │   │   └── useWasm.ts
+│   │   │   ├── domains
+│   │   │   │   ├── landing
+│   │   │   │   │   ├── LandingPage.spec.ts
+│   │   │   │   │   ├── LandingPage.vue
+│   │   │   │   │   └── components
+│   │   │   │   │       ├── ActiveNodeStats.vue
+│   │   │   │   │       ├── BentoDashboard.vue
+│   │   │   │   │       ├── ConsumerFooter.vue
+│   │   │   │   │       ├── DemoGuideSection.vue
+│   │   │   │   │       ├── HeroSection.spec.ts
+│   │   │   │   │       ├── HeroSection.vue
+│   │   │   │   │       └── InteropCallout.vue
+│   │   │   │   ├── layout
+│   │   │   │   │   ├── DemoModeBanner.vue
+│   │   │   │   │   └── NavBar.vue
+│   │   │   │   ├── scanner
+│   │   │   │   │   └── ScannerView.vue
+│   │   │   │   └── verification
+│   │   │   │       ├── TransparencyScreen.vue
+│   │   │   │       ├── components
+│   │   │   │       │   ├── AuditTimeline.vue
+│   │   │   │       │   ├── AuthenticityBadge.vue
+│   │   │   │       │   └── FormulaRenderer.vue
+│   │   │   │       └── composables
+│   │   │   │           ├── __tests__
+│   │   │   │           │   └── useVerificationStatus.spec.ts
+│   │   │   │           └── useVerificationStatus.ts
+│   │   │   ├── lib
+│   │   │   │   ├── api
+│   │   │   │   │   ├── cache.ts
+│   │   │   │   │   ├── client.ts
+│   │   │   │   │   └── types.ts
+│   │   │   │   ├── demo
+│   │   │   │   │   └── demoScenario.ts
+│   │   │   │   ├── env.ts
+│   │   │   │   └── wasm
+│   │   │   │       └── engine.ts
+│   │   │   ├── main.ts
+│   │   │   ├── style.css
+│   │   │   ├── tokens.css
+│   │   │   └── vite-env.d.ts
+│   │   ├── test
+│   │   │   ├── a11y.test.ts
+│   │   │   ├── api.test.ts
+│   │   │   ├── e2e-latency.test.ts
+│   │   │   ├── latency.test.ts
+│   │   │   ├── logic.test.ts
+│   │   │   ├── reactivity.test.ts
+│   │   │   ├── stress-latency.test.ts
+│   │   │   ├── stress-vapor.test.ts
+│   │   │   └── wasm.test.ts
+│   │   ├── tsconfig.json
+│   │   ├── tsconfig.node.json
+│   │   ├── vite.config.ts
+│   │   ├── vitest.config.ts
+│   │   └── wrangler.toml
+│   └── hub
+│       ├── .env
 │       ├── .env.example
-│       ├── .eslintrc.cjs
-│       ├── .lighthouserc.json
-│       ├── AGENTS.md
-│       ├── README.md
-│       ├── TASKS.md
-│       ├── archive
-│       │   └── TASKS.md
+│       ├── .env.production
+│       ├── .gitignore
 │       ├── index.html
 │       ├── package.json
-│       ├── public
-│       │   ├── engine.wasm
-│       │   ├── qr-demo.png
-│       │   ├── robots.txt
-│       │   └── wasm_exec.js
 │       ├── src
-│       │   ├── App.vue
-│       │   ├── components
-│       │   │   ├── AuditTimeline.vue
-│       │   │   ├── AuthenticityBadge.vue
-│       │   │   ├── DemoModeBanner.vue
-│       │   │   ├── FormulaRenderer.vue
-│       │   │   ├── LandingPage.spec.ts
-│       │   │   ├── LandingPage.vue
-│       │   │   ├── NavBar.vue
-│       │   │   ├── ScannerView.vue
-│       │   │   ├── TransparencyScreen.vue
-│       │   │   └── landing
-│       │   │       ├── ActiveNodeStats.vue
-│       │   │       ├── BentoDashboard.vue
-│       │   │       ├── ConsumerFooter.vue
-│       │   │       ├── DemoGuideSection.vue
-│       │   │       ├── HeroSection.spec.ts
-│       │   │       ├── HeroSection.vue
-│       │   │       └── InteropCallout.vue
-│       │   ├── composables
-│       │   │   ├── useEventHistory.ts
-│       │   │   ├── useScanner.ts
-│       │   │   └── useWasm.ts
-│       │   ├── lib
-│       │   │   ├── api
-│       │   │   │   ├── cache.ts
-│       │   │   │   ├── client.ts
-│       │   │   │   └── types.ts
-│       │   │   ├── demo
-│       │   │   │   └── demoScenario.ts
-│       │   │   ├── env.ts
-│       │   │   └── wasm
-│       │   │       └── engine.ts
+│       │   ├── assets
+│       │   │   ├── hero.png
+│       │   │   ├── typescript.svg
+│       │   │   └── vite.svg
+│       │   ├── counter.ts
 │       │   ├── main.ts
-│       │   ├── style.css
-│       │   ├── tokens.css
-│       │   └── vite-env.d.ts
-│       ├── test
-│       │   ├── a11y.test.ts
-│       │   ├── api.test.ts
-│       │   ├── e2e-latency.test.ts
-│       │   ├── latency.test.ts
-│       │   ├── logic.test.ts
-│       │   ├── reactivity.test.ts
-│       │   ├── stress-latency.test.ts
-│       │   ├── stress-vapor.test.ts
-│       │   └── wasm.test.ts
+│       │   └── style.css
 │       ├── tsconfig.json
-│       ├── tsconfig.node.json
-│       ├── vite.config.ts
-│       └── vitest.config.ts
+│       └── wrangler.toml
 ├── docs
 │   └── demo
 │       └── truth-and-scope.md
@@ -183,6 +204,7 @@
 │   │   ├── cmd
 │   │   │   └── test_verify
 │   │   │       └── main.go
+│   │   ├── engine.wasm
 │   │   ├── go.mod
 │   │   ├── internal
 │   │   │   ├── crypto
@@ -206,8 +228,7 @@
 │       └── variables.css
 ├── pnpm-lock.yaml
 ├── pnpm-workspace.yaml
-├── public
-│   └── wasm_exec.js
+├── tail.log
 └── turbo.json
 
-57 directories, 154 files
+63 directories, 168 files

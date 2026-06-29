@@ -261,7 +261,7 @@ GOOS=js GOARCH=wasm go build -o main.wasm
 > Next.js production builds use the webpack bundler backend (`next build --webpack`) rather than Turbopack to prevent dynamic module import compatibility issues with client-side PDF generation dependencies.
 
 > [!NOTE]
-> The monorepo uses **Cloudflare Workers with Native Static Assets** for all deployments (`apps/admin`, `apps/consumer`, `apps/hub`). Cloudflare Pages is explicitly not used. Subdomain topology: `ecotrace.dev` (Hub), `admin.ecotrace.dev` (Admin), `verify.ecotrace.dev` (Consumer).
+> The monorepo uses **Cloudflare Workers with Native Static Assets** for `apps/consumer` and `apps/hub`. However, due to `@cloudflare/next-on-pages` architectural requirements, `apps/admin` (Next.js) is deployed exclusively to **Cloudflare Pages**. Subdomain topology: `ecotrace.dev` (Hub), `admin.ecotrace.dev` (Admin on Pages), `verify.ecotrace.dev` (Consumer).
 
 ---
 
