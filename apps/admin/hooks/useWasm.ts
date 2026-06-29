@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { getWasmInit } from "@/lib/wasmLoader";
 import type { WasmFootprintResult, WasmIntegrityResult } from "@/lib/wasm.d";
 
@@ -38,26 +38,26 @@ export function useWasm(): UseWasmReturn {
       });
   }, []);
 
-  const calculateFootprint = (entries: ESGEntry[]): WasmFootprintResult => {
+  const calculateFootprint = useCallback((entries: ESGEntry[]): WasmFootprintResult => {
     if (!isEngineReady || typeof window.calculateFootprint !== "function") {
       return NOOP_RESULT;
     }
     return window.calculateFootprint(entries);
-  };
+  }, [isEngineReady]);
 
-  const verifyIntegrity = (event: Record<string, unknown>, signature: string, publicKey: string): WasmIntegrityResult => {
+  const verifyIntegrity = useCallback((event: Record<string, unknown>, signature: string, publicKey: string): WasmIntegrityResult => {
     if (!isEngineReady || typeof window.verifyIntegrity !== "function") {
       return NOOP_INTEGRITY;
     }
     return window.verifyIntegrity(event, signature, publicKey);
-  };
+  }, [isEngineReady]);
 
-  const generateUntrustedSignature = (event: Record<string, unknown>): WasmIntegrityResult => {
+  const generateUntrustedSignature = useCallback((event: Record<string, unknown>): WasmIntegrityResult => {
     if (!isEngineReady || typeof window.generateUntrustedSignature !== "function") {
       return NOOP_INTEGRITY;
     }
     return window.generateUntrustedSignature(event);
-  };
+  }, [isEngineReady]);
 
   return { isLoading, isEngineReady, error, calculateFootprint, verifyIntegrity, generateUntrustedSignature };
 }
