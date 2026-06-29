@@ -5,6 +5,16 @@ import { Logger } from "../../lib/logger";
 export const runtime = "edge";
 export const dynamic = "force-dynamic";
 
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Accept",
+};
+
+export async function OPTIONS() {
+  return new NextResponse(null, { headers: corsHeaders });
+}
+
 interface D1Database {
   prepare(query: string): D1PreparedStatement;
 }
@@ -58,7 +68,7 @@ export async function GET(request: NextRequest) {
     
     if (!db) {
       Logger.error("Database binding 'DB' not found in environment.");
-      return NextResponse.json({ error: "Service Unavailable: Database binding missing. Please check your environment configuration." }, { status: 500 });
+      return NextResponse.json({ error: "Service Unavailable: Database binding missing. Please check your environment configuration." }, { status: 500, headers: corsHeaders });
     }
 
     const { searchParams } = new URL(request.url);
@@ -108,14 +118,14 @@ export async function GET(request: NextRequest) {
     }));
     
     if (assetIdParam && events.length === 0) {
-      return NextResponse.json({ error: "Asset not found in the global ledger." }, { status: 404 });
+      return NextResponse.json({ error: "Asset not found in the global ledger." }, { status: 404, headers: corsHeaders });
     }
     
-    return NextResponse.json(events);
+    return NextResponse.json(events, { headers: corsHeaders });
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
     Logger.error(`D1 GET /api/events error: ${errorMessage}`, error);
-    return NextResponse.json({ error: `Failed to fetch events: ${errorMessage}` }, { status: 500 });
+    return NextResponse.json({ error: `Failed to fetch events: ${errorMessage}` }, { status: 500, headers: corsHeaders });
   }
 }
 
@@ -124,7 +134,7 @@ export async function POST(request: NextRequest) {
     const db = (getRequestContext().env as unknown as Env).DB;
     if (!db) {
       Logger.error("Database binding 'DB' not found in environment.");
-      return NextResponse.json({ error: "Service Unavailable: Database binding missing. Please check your environment configuration." }, { status: 500 });
+      return NextResponse.json({ error: "Service Unavailable: Database binding missing. Please check your environment configuration." }, { status: 500, headers: corsHeaders });
     }
 
     const rawPayload = (await request.json()) as Partial<EventCreateDTO>;
@@ -137,7 +147,7 @@ export async function POST(request: NextRequest) {
     
     for (const field of requiredFields) {
       if (rawPayload[field] === undefined || rawPayload[field] === null) {
-        return NextResponse.json({ error: `Missing required field: ${field}` }, { status: 400 });
+        return NextResponse.json({ error: `Missing required field: ${field}` }, { status: 400, headers: corsHeaders });
       }
     }
 
@@ -163,13 +173,13 @@ export async function POST(request: NextRequest) {
     ).run();
 
     if (success) {
-      return NextResponse.json({ success: true, id: payload.id }, { status: 201 });
+      return NextResponse.json({ success: true, id: payload.id }, { status: 201, headers: corsHeaders });
     } else {
-      return NextResponse.json({ error: "Database rejected the insertion." }, { status: 500 });
+      return NextResponse.json({ error: "Database rejected the insertion." }, { status: 500, headers: corsHeaders });
     }
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
     Logger.error(`D1 POST /api/events error: ${errorMessage}`, error);
-    return NextResponse.json({ error: `Failed to create event: ${errorMessage}` }, { status: 500 });
+    return NextResponse.json({ error: `Failed to create event: ${errorMessage}` }, { status: 500, headers: corsHeaders });
   }
 }
