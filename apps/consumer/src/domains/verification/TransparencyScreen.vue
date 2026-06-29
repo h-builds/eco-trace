@@ -57,7 +57,7 @@ onMounted(() => {
       </h1>
 
       <button
-        class="text-sm border border-white/30 px-3 py-1 rounded-pill hover:bg-white/10 transition active:scale-95 font-medium"
+        class="text-sm border border-white/30 px-3 py-1 rounded-pill hover:bg-white/10 transition active:scale-95 font-medium cursor-pointer"
         @click="emit('reset')"
       >
         Scan Again
@@ -171,7 +171,7 @@ onMounted(() => {
             :href="ADMIN_URL"
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-surface-card hover:bg-surface-container-high border border-surface-border transition px-6 py-3 rounded-pill text-brand-deep-charcoal font-bold shadow-subtle flex items-center gap-2 text-sm"
+            class="bg-surface-card hover:bg-surface-container-high border border-surface-border transition px-6 py-3 rounded-pill text-brand-deep-charcoal font-bold shadow-subtle flex items-center gap-2 text-sm cursor-pointer"
           >
             Open Auditor Workstation
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

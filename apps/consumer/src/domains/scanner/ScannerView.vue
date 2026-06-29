@@ -55,7 +55,7 @@ const ADMIN_URL = getAdminUrl();
 
         <div class="w-full px-8 space-y-6 max-w-sm">
           <button
-            class="bg-brand-integrity-green text-white px-6 py-3 rounded-pill font-bold shadow-subtle hover:bg-opacity-90 transition active:scale-95 text-lg w-full"
+            class="bg-brand-integrity-green text-white px-6 py-3 rounded-pill font-bold shadow-subtle hover:bg-opacity-90 transition active:scale-95 text-lg w-full cursor-pointer"
             @click="start"
           >
             Start Scanner
@@ -66,7 +66,7 @@ const ADMIN_URL = getAdminUrl();
               {{ UI_CONSTANTS.NO_CAMERA_REQUIRED }}
             </span>
             <button
-              class="text-brand-integrity-green hover:underline font-bold text-sm uppercase tracking-wider"
+              class="text-brand-integrity-green hover:underline font-bold text-sm uppercase tracking-wider cursor-pointer"
               @click="emit('scan', SCENARIO_METADATA.assetId)"
             >
               {{ UI_CONSTANTS.SCANNER_FALLBACK }}
@@ -88,7 +88,7 @@ const ADMIN_URL = getAdminUrl();
               :href="ADMIN_URL"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-white/60 hover:text-white transition text-xs font-medium underline underline-offset-2 py-3 px-4 inline-block"
+              class="text-white/60 hover:text-white transition text-xs font-medium underline underline-offset-2 py-3 px-4 inline-block cursor-pointer"
             >
               Open Auditor Workstation
             </a>
@@ -151,14 +151,14 @@ const ADMIN_URL = getAdminUrl();
 
         <div class="flex flex-col gap-4 w-full max-w-xs">
           <button
-            class="border border-white text-white px-4 py-2 rounded-pill font-medium hover:bg-white/10 transition"
+            class="border border-white text-white px-4 py-2 rounded-pill font-medium hover:bg-white/10 transition cursor-pointer"
             @click="start"
           >
             Try Again
           </button>
 
           <button
-            class="bg-brand-integrity-green text-white px-4 py-3 rounded-pill font-bold hover:bg-opacity-90 transition shadow-subtle"
+            class="bg-brand-integrity-green text-white px-4 py-3 rounded-pill font-bold hover:bg-opacity-90 transition shadow-subtle cursor-pointer"
             @click="emit('scan', SCENARIO_METADATA.assetId)"
           >
             {{ UI_CONSTANTS.SCANNER_FALLBACK }}
@@ -169,7 +169,7 @@ const ADMIN_URL = getAdminUrl();
               :href="ADMIN_URL"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-white/60 hover:text-white transition text-xs font-medium underline underline-offset-2 py-3 px-4 inline-block"
+              class="text-white/60 hover:text-white transition text-xs font-medium underline underline-offset-2 py-3 px-4 inline-block cursor-pointer"
             >
               Open Auditor Workstation
             </a>

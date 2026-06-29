@@ -70,15 +70,15 @@ export function OverviewClient({ initialPromise }: { initialPromise: Promise<Agg
         <section className="flex flex-col gap-4 bg-surface-card p-6 rounded-lg border border-surface-border shadow-sm">
           <h2 className="text-lg font-bold text-brand-deep-charcoal">Quick Links</h2>
           <nav className="flex flex-col gap-3 h-full justify-center">
-            <Link href="/dashboard/entities" className="group flex items-center justify-between p-3 rounded-lg border border-surface-border hover:border-brand-verification-green hover:bg-brand-verification-green/5 transition-colors">
+            <Link href="/dashboard/entities" className="group flex items-center justify-between p-3 rounded-lg border border-surface-border hover:border-brand-verification-green hover:bg-brand-verification-green/5 transition-colors cursor-pointer">
               <span className="font-medium text-sm text-brand-deep-charcoal group-hover:text-brand-verification-green transition-colors">Trusted Actors & Assets</span>
               <span className="text-functional-neutral group-hover:text-brand-verification-green transition-colors">→</span>
             </Link>
-            <Link href="/dashboard/events" className="group flex items-center justify-between p-3 rounded-lg border border-surface-border hover:border-brand-verification-green hover:bg-brand-verification-green/5 transition-colors">
+            <Link href="/dashboard/events" className="group flex items-center justify-between p-3 rounded-lg border border-surface-border hover:border-brand-verification-green hover:bg-brand-verification-green/5 transition-colors cursor-pointer">
               <span className="font-medium text-sm text-brand-deep-charcoal group-hover:text-brand-verification-green transition-colors">Integrity Events</span>
               <span className="text-functional-neutral group-hover:text-brand-verification-green transition-colors">→</span>
             </Link>
-            <Link href="/dashboard/compliance" className="group flex items-center justify-between p-3 rounded-lg border border-surface-border hover:border-brand-verification-green hover:bg-brand-verification-green/5 transition-colors">
+            <Link href="/dashboard/compliance" className="group flex items-center justify-between p-3 rounded-lg border border-surface-border hover:border-brand-verification-green hover:bg-brand-verification-green/5 transition-colors cursor-pointer">
               <span className="font-medium text-sm text-brand-deep-charcoal group-hover:text-brand-verification-green transition-colors">Compliance Export</span>
               <span className="text-functional-neutral group-hover:text-brand-verification-green transition-colors">→</span>
             </Link>
@@ -87,7 +87,7 @@ export function OverviewClient({ initialPromise }: { initialPromise: Promise<Agg
                 href={consumerHref} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between p-3 rounded-lg bg-brand-deep-charcoal text-white hover:bg-brand-verification-green transition-colors mt-auto"
+                className="group flex items-center justify-between p-3 rounded-lg bg-brand-deep-charcoal text-white hover:bg-brand-verification-green transition-colors mt-auto cursor-pointer"
               >
                 <span className="font-medium text-sm">Consumer Verification App</span>
                 <span>↗</span>

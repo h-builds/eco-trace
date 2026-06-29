@@ -26,7 +26,7 @@ import { getAdminUrl } from '@/lib/env';
         <div class="p-6 border border-[color:var(--outline-bp-ghost)] bg-[color:var(--color-bp-surface-container-lowest)] space-y-4">
           <div class="font-mono text-xl font-bold text-[color:var(--color-bp-primary)]">03</div>
           <p class="font-['Space_Grotesk'] font-bold text-[color:var(--color-bp-on-surface)]">Compare in the Admin Workstation.</p>
-          <p class="text-sm text-[color:var(--color-bp-on-surface-variant)]">See how the <a :href="getAdminUrl()" target="_blank" rel="noopener noreferrer" class="underline hover:text-[color:var(--color-bp-primary)]">Admin app</a> seeded these events before verification.</p>
+          <p class="text-sm text-[color:var(--color-bp-on-surface-variant)]">See how the <a :href="getAdminUrl()" target="_blank" rel="noopener noreferrer" class="underline hover:text-[color:var(--color-bp-primary)] cursor-pointer">Admin app</a> seeded these events before verification.</p>
         </div>
       </div>
     </div>

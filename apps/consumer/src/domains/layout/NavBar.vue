@@ -21,7 +21,7 @@ const ADMIN_URL = getAdminUrl();
     <div class="nav-actions">
       <div class="nav-dashboard-group">
         <a
-          class="nav-link-primary"
+          class="nav-link-primary cursor-pointer"
           target="_blank"
           rel="noopener noreferrer"
           :href="ADMIN_URL"

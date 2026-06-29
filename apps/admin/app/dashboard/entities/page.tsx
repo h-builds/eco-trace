@@ -109,7 +109,7 @@ export default async function EntitiesPage(
         </div>
         <a 
           href={`/dashboard/entities?q=${DemoScenario.assetId}`}
-          className="bg-[#607D8B]/20 text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-[#607D8B]/40 transition-colors"
+          className="bg-[#607D8B]/20 text-white text-sm font-medium py-2 px-4 rounded-md hover:bg-[#607D8B]/40 transition-colors cursor-pointer"
         >
           Filter by Scenario
         </a>
@@ -130,11 +130,11 @@ export default async function EntitiesPage(
               placeholder="Search actors or assets..."
               className="flex-1 bg-[#1A1C1E] border border-[#607D8B]/50 rounded-md py-2 px-3 text-white focus:outline-none focus:border-[#8ED5B4] transition-colors"
             />
-            <button type="submit" className="bg-[#8ED5B4] text-[#1A1C1E] font-medium py-2 px-4 rounded-md hover:bg-[#8ED5B4]/90 transition-colors">
+            <button type="submit" className="bg-[#8ED5B4] text-[#1A1C1E] font-medium py-2 px-4 rounded-md hover:bg-[#8ED5B4]/90 transition-colors cursor-pointer">
               Search
             </button>
             {q && (
-              <a href="/dashboard/entities" className="bg-[#607D8B]/20 text-white font-medium py-2 px-4 rounded-md hover:bg-[#607D8B]/40 transition-colors">
+              <a href="/dashboard/entities" className="bg-[#607D8B]/20 text-white font-medium py-2 px-4 rounded-md hover:bg-[#607D8B]/40 transition-colors cursor-pointer">
                 Clear
               </a>
             )}
@@ -149,9 +149,9 @@ export default async function EntitiesPage(
                 </span>
               </h3>
               <div className="flex gap-2">
-                <a href={`?actorPage=${Math.max(1, actorPage - 1)}${q ? `&q=${q}` : ''}${assetPage > 1 ? `&assetPage=${assetPage}` : ''}`} className="text-xs px-2 py-1 bg-[#607D8B]/20 rounded text-white hover:bg-[#607D8B]/40">Prev</a>
+                <a href={`?actorPage=${Math.max(1, actorPage - 1)}${q ? `&q=${q}` : ''}${assetPage > 1 ? `&assetPage=${assetPage}` : ''}`} className="text-xs px-2 py-1 bg-[#607D8B]/20 rounded text-white hover:bg-[#607D8B]/40 cursor-pointer">Prev</a>
                 <span className="text-xs text-[#607D8B] py-1">Page {actorPage}</span>
-                <a href={`?actorPage=${actorPage + 1}${q ? `&q=${q}` : ''}${assetPage > 1 ? `&assetPage=${assetPage}` : ''}`} className="text-xs px-2 py-1 bg-[#607D8B]/20 rounded text-white hover:bg-[#607D8B]/40">Next</a>
+                <a href={`?actorPage=${actorPage + 1}${q ? `&q=${q}` : ''}${assetPage > 1 ? `&assetPage=${assetPage}` : ''}`} className="text-xs px-2 py-1 bg-[#607D8B]/20 rounded text-white hover:bg-[#607D8B]/40 cursor-pointer">Next</a>
               </div>
             </div>
             <div className="overflow-x-auto">
@@ -204,9 +204,9 @@ export default async function EntitiesPage(
                 </span>
               </h3>
               <div className="flex gap-2">
-                <a href={`?assetPage=${Math.max(1, assetPage - 1)}${q ? `&q=${q}` : ''}${actorPage > 1 ? `&actorPage=${actorPage}` : ''}`} className="text-xs px-2 py-1 bg-[#607D8B]/20 rounded text-white hover:bg-[#607D8B]/40">Prev</a>
+                <a href={`?assetPage=${Math.max(1, assetPage - 1)}${q ? `&q=${q}` : ''}${actorPage > 1 ? `&actorPage=${actorPage}` : ''}`} className="text-xs px-2 py-1 bg-[#607D8B]/20 rounded text-white hover:bg-[#607D8B]/40 cursor-pointer">Prev</a>
                 <span className="text-xs text-[#607D8B] py-1">Page {assetPage}</span>
-                <a href={`?assetPage=${assetPage + 1}${q ? `&q=${q}` : ''}${actorPage > 1 ? `&actorPage=${actorPage}` : ''}`} className="text-xs px-2 py-1 bg-[#607D8B]/20 rounded text-white hover:bg-[#607D8B]/40">Next</a>
+                <a href={`?assetPage=${assetPage + 1}${q ? `&q=${q}` : ''}${actorPage > 1 ? `&actorPage=${actorPage}` : ''}`} className="text-xs px-2 py-1 bg-[#607D8B]/20 rounded text-white hover:bg-[#607D8B]/40 cursor-pointer">Next</a>
               </div>
             </div>
             <div className="overflow-x-auto">
@@ -239,7 +239,7 @@ export default async function EntitiesPage(
                         {new Date(asset.created_at).toLocaleDateString()}
                       </td>
                       <td className="px-4 py-3 text-right">
-                        <a href={`/dashboard/events?q=${asset.id}`} className="text-[#8ED5B4] hover:underline text-xs">
+                        <a href={`/dashboard/events?q=${asset.id}`} className="text-[#8ED5B4] hover:underline text-xs cursor-pointer">
                           View Events &rarr;
                         </a>
                       </td>

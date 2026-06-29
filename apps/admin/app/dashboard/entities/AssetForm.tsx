@@ -69,7 +69,7 @@ export default function AssetForm({ actors }: { actors: { id: string, name: stri
         <button
           type="submit"
           disabled={isPending}
-          className="w-full bg-brand-integrity-green text-brand-deep-charcoal font-medium py-2 px-4 rounded-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-integrity-green focus:ring-offset-2 focus:ring-offset-brand-deep-charcoal transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-brand-integrity-green text-brand-deep-charcoal font-medium py-2 px-4 rounded-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-integrity-green focus:ring-offset-2 focus:ring-offset-brand-deep-charcoal transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isPending ? "Registering..." : "Register Asset"}
         </button>

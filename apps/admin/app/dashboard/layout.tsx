@@ -36,7 +36,7 @@ export default async function DashboardLayout({
           <form action={logoutAction}>
             <button
               type="submit"
-              className="text-sm font-medium text-functional-alert hover:underline"
+              className="text-sm font-medium text-functional-alert hover:underline cursor-pointer"
             >
               Logout
             </button>

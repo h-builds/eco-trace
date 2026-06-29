@@ -34,6 +34,7 @@ export function AuditTester() {
 
       <button
         id="audit-tester-run"
+        className="cursor-pointer"
         onClick={runCalculation}
         disabled={isLoading}
       >

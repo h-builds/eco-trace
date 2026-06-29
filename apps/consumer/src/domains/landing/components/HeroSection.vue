@@ -51,7 +51,7 @@ const viewLedgerHover = ref(false);
         <div class="flex flex-col sm:flex-row gap-4">
           <button
             id="cta-use-demo-product"
-            class="cta-primary w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest text-[color:var(--color-bp-on-primary-container)] flex items-center justify-center gap-3 hover:opacity-90 active:scale-95 transition-all"
+            class="cta-primary w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest text-[color:var(--color-bp-on-primary-container)] flex items-center justify-center gap-3 hover:opacity-90 active:scale-95 transition-all cursor-pointer"
             @click="$emit('demoProduct')"
           >
             <svg
@@ -71,7 +71,7 @@ const viewLedgerHover = ref(false);
 
           <button
             id="cta-launch-scanner"
-            class="w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest transition-colors flex items-center justify-center gap-3"
+            class="w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest transition-colors flex items-center justify-center gap-3 cursor-pointer"
             :style="{
               border: '1px solid var(--color-bp-primary)',
               color: 'var(--color-bp-primary)',

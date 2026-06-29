@@ -18,7 +18,7 @@ export default function LoginForm() {
       <button
         type="button"
         onClick={handleDemoFill}
-        className="p-3 bg-surface-canvas border border-surface-border text-brand-deep-charcoal rounded-md text-sm font-medium hover:bg-surface-border transition-colors w-full text-left"
+        className="p-3 bg-surface-canvas border border-surface-border text-brand-deep-charcoal rounded-md text-sm font-medium hover:bg-surface-border transition-colors w-full text-left cursor-pointer"
       >
         <span className="block font-bold">Use Demo Auditor</span>
         <span className="block text-xs text-functional-neutral font-normal mt-1">Fills credentials without auto-submitting</span>
@@ -63,7 +63,7 @@ export default function LoginForm() {
         <button
           type="submit"
           disabled={isPending}
-          className="mt-2 p-3 bg-brand-integrity-green text-brand-deep-charcoal font-bold rounded-md hover:opacity-90 disabled:opacity-50 transition-opacity w-full"
+          className="mt-2 p-3 bg-brand-integrity-green text-brand-deep-charcoal font-bold rounded-md hover:opacity-90 disabled:opacity-50 transition-opacity w-full cursor-pointer disabled:cursor-not-allowed"
         >
           {isPending ? "Authenticating..." : "Sign In"}
         </button>

@@ -242,7 +242,7 @@ export default function EventLogPage() {
               href={getConsumerProductUrl(DemoScenario.assetId)}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3 py-1 bg-brand-verification-green text-white rounded-md no-underline font-bold text-base inline-block focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-verification-green focus-visible:ring-offset-2 focus-visible:ring-offset-surface-canvas"
+              className="px-3 py-1 bg-brand-verification-green text-white rounded-md no-underline font-bold text-base inline-block focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-verification-green focus-visible:ring-offset-2 focus-visible:ring-offset-surface-canvas cursor-pointer"
             >
               Open this product in Consumer App ↗
             </a>

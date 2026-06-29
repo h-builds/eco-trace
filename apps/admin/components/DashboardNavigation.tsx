@@ -32,7 +32,7 @@ export function DashboardNavigation() {
               isActive
                 ? "text-brand-integrity-green"
                 : "text-brand-deep-charcoal hover:text-brand-integrity-green"
-            } focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-integrity-green rounded-sm`}
+            } focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-integrity-green rounded-sm cursor-pointer`}
           >
             {link.name}
           </Link>
@@ -78,7 +78,7 @@ export function GuidedDemoStepper() {
                     isActive
                       ? "bg-brand-integrity-green text-brand-deep-charcoal font-bold"
                       : "bg-surface-canvas text-functional-neutral hover:bg-surface-border hover:text-brand-deep-charcoal"
-                  } focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-integrity-green focus-visible:ring-offset-2 focus-visible:ring-offset-surface-card`}
+                  } focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-integrity-green focus-visible:ring-offset-2 focus-visible:ring-offset-surface-card cursor-pointer`}
                   title={step.external && consumerUrl === '#' ? "Consumer App URL not configured" : undefined}
                 >
                   {step.label}
@@ -96,7 +96,7 @@ export function GuidedDemoStepper() {
           href={caseStudyUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs font-medium text-functional-neutral hover:text-brand-deep-charcoal underline underline-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-integrity-green rounded-sm"
+          className="text-xs font-medium text-functional-neutral hover:text-brand-deep-charcoal underline underline-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-integrity-green rounded-sm cursor-pointer"
         >
           Architecture Case Study
         </Link>
@@ -106,7 +106,7 @@ export function GuidedDemoStepper() {
           rel={consumerUrl !== '#' ? "noopener noreferrer" : undefined}
           className={`text-xs font-bold px-3 py-1.5 rounded-md transition-colors ${
             consumerUrl !== '#'
-              ? "bg-brand-deep-charcoal text-surface-card hover:bg-opacity-90"
+              ? "bg-brand-deep-charcoal text-surface-card hover:bg-opacity-90 cursor-pointer"
               : "bg-surface-border text-functional-neutral cursor-not-allowed"
           } focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-integrity-green focus-visible:ring-offset-2 focus-visible:ring-offset-surface-card`}
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {

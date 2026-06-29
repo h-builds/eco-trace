@@ -183,7 +183,7 @@ export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProp
             href={getConsumerProductUrl(DemoScenario.assetId)}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2 bg-brand-deep-charcoal text-white border-none rounded-md font-bold inline-block no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-deep-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-card hover:opacity-90 transition-opacity"
+            className="px-4 py-2 bg-brand-deep-charcoal text-white border-none rounded-md font-bold inline-block no-underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-deep-charcoal focus-visible:ring-offset-2 focus-visible:ring-offset-surface-card hover:opacity-90 transition-opacity cursor-pointer"
           >
             Open in Consumer App ↗
           </a>

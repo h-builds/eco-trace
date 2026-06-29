@@ -24,7 +24,7 @@ export function TimeRangeFilter({ currentRange, onRangeChange }: TimeRangeFilter
         <button
           key={range}
           onClick={() => handleChange(range)}
-          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+          className={`px-4 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer ${
             currentRange === range
               ? "bg-surface-card shadow-elevation-1 text-brand-deep-charcoal"
               : "text-functional-neutral hover:text-brand-deep-charcoal hover:bg-surface-card/50"
