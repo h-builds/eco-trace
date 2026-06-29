@@ -32,6 +32,7 @@
 │   ├── admin
 │   │   ├── .env
 │   │   ├── .env.example
+│   │   ├── .env.production
 │   │   ├── AGENTS.md
 │   │   ├── README.md
 │   │   ├── TASKS.md
@@ -103,10 +104,10 @@
 │   ├── consumer
 │   │   ├── .env
 │   │   ├── .env.example
+│   │   ├── .env.production
 │   │   ├── .eslintrc.cjs
 │   │   ├── .lighthouserc.json
 │   │   ├── AGENTS.md
-│   │   ├── CODE_REVIEW_AUDIT.md
 │   │   ├── README.md
 │   │   ├── TASKS.md
 │   │   ├── archive
@@ -228,7 +229,6 @@
 │       └── variables.css
 ├── pnpm-lock.yaml
 ├── pnpm-workspace.yaml
-├── tail.log
 └── turbo.json
 
 63 directories, 168 files
