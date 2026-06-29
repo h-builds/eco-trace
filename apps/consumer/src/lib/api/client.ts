@@ -1,6 +1,6 @@
 import { EventsApiResponse } from "./types";
 
-export const API_BASE_URL = "/api";
+export const API_BASE_URL = import.meta.env.VITE_API_URL || "/api";
 
 export class ApiError extends Error {
   public status: number;
@@ -13,8 +13,12 @@ export class ApiError extends Error {
 }
 
 export async function fetchEvents(assetId?: string): Promise<EventsApiResponse> {
-  const base = typeof window !== "undefined" ? window.location.origin : "http://localhost";
-  const url = new URL(`${base}${API_BASE_URL}/events`);
+  const isAbsoluteUrl = API_BASE_URL.startsWith("http");
+  const baseUrl = isAbsoluteUrl 
+    ? API_BASE_URL 
+    : (typeof window !== "undefined" ? window.location.origin + API_BASE_URL : "http://localhost" + API_BASE_URL);
+  
+  const url = new URL(`${baseUrl}/events`);
   if (assetId) {
     url.searchParams.append("asset_id", assetId);
   }
