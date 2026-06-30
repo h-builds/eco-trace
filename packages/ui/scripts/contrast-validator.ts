@@ -28,8 +28,7 @@ function getContrast(hex1: string, hex2: string) {
 }
 
 const combinations = [
-  { name: 'Brand Green on Canvas', fg: tokens.tokens.colors.brand['integrity-green'].value, bg: tokens.tokens.colors.surface.canvas.value },
-  { name: 'Brand Green on Card', fg: tokens.tokens.colors.brand['integrity-green'].value, bg: tokens.tokens.colors.surface.card.value },
+  { name: 'Deep Charcoal on Brand Green', fg: tokens.tokens.colors.brand['deep-charcoal'].value, bg: tokens.tokens.colors.brand['integrity-green'].value },
   { name: 'Deep Charcoal on Canvas', fg: tokens.tokens.colors.brand['deep-charcoal'].value, bg: tokens.tokens.colors.surface.canvas.value },
   { name: 'Deep Charcoal on Card', fg: tokens.tokens.colors.brand['deep-charcoal'].value, bg: tokens.tokens.colors.surface.card.value },
   { name: 'Verification Green on Canvas', fg: tokens.tokens.colors.brand['verification-green'].value, bg: tokens.tokens.colors.surface.canvas.value },
