@@ -35,37 +35,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-surface-canvas text-brand-deep-charcoal pb-8">
-    <header class="bg-brand-deep-charcoal text-white p-4 sticky top-0 z-20 shadow-elevation-1 flex items-center justify-between">
-      <h1 class="text-lg font-bold flex items-center gap-2">
-        <svg
-          class="w-5 h-5 text-brand-integrity-green"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-          />
-        </svg>
-
-        Traceability Report
-      </h1>
-
-      <button
-        class="text-sm border border-white/30 px-3 py-1 rounded-pill hover:bg-white/10 transition active:scale-95 font-medium cursor-pointer"
-        @click="emit('reset')"
-      >
-        Scan Again
-      </button>
-    </header>
-
-    <main class="w-full px-4 pt-6">
-      <div
+  <div class="flex flex-col gap-6 text-brand-deep-charcoal">
+    <div
         v-if="isLoading"
         class="flex flex-col items-center justify-center py-16 gap-4"
       >
@@ -140,19 +111,34 @@ onMounted(() => {
         v-else
         class="flex flex-col gap-6"
       >
+        <div class="flex items-center justify-between mb-4 bg-brand-deep-charcoal text-white p-4 rounded-md shadow-elevation-1">
+          <h2 class="text-xl font-bold flex items-center gap-2 text-white" style="color: white !important;">
+            <svg class="w-5 h-5 text-brand-integrity-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            Traceability Report
+          </h2>
+          <button
+            class="text-sm border border-white/30 px-4 py-2 rounded-md hover:bg-white/10 transition active:scale-95 font-medium cursor-pointer"
+            @click="emit('reset')"
+          >
+            Scan Again
+          </button>
+        </div>
+
         <div class="bg-surface-card p-4 rounded-md shadow-subtle border border-surface-border flex flex-col gap-4">
           <div class="text-center">
-            <h2 class="text-xl font-bold text-brand-deep-charcoal">{{ SCENARIO_METADATA.productName }}</h2>
+            <h2 class="text-2xl font-bold text-brand-deep-charcoal">{{ SCENARIO_METADATA.productName }}</h2>
             <div class="flex items-center justify-center gap-2 mt-1">
               <span class="font-mono text-xs text-functional-neutral">{{ SCENARIO_METADATA.assetId }}</span>
-              <span class="bp-chip text-[10px]">{{ UI_CONSTANTS.DEMO_DATA_ONLY }}</span>
+              <span class="text-[10px] border border-surface-border rounded-md px-1 text-[10px]">{{ UI_CONSTANTS.DEMO_DATA_ONLY }}</span>
             </div>
           </div>
 
-          <div class="bg-surface-canvas p-3 rounded text-center border border-surface-border/50 flex flex-col items-center gap-2">
-            <p class="text-xs text-functional-neutral font-bold uppercase tracking-wider">Overall Trust Status</p>
+          <div class="bg-brand-deep-charcoal text-white p-4 rounded-md text-center border border-brand-deep-charcoal flex flex-col items-center gap-2">
+            <p class="text-xs uppercase tracking-wider text-white/90">Overall Trust Status</p>
             <AuthenticityBadge :status="overallStatus" :showExplanation="true" class="items-center text-center" />
-            <p v-if="latestTimestamp" class="text-xs text-functional-neutral mt-1">
+            <p v-if="latestTimestamp" class="text-xs text-white/70 mt-1">
               Last verified: {{ latestTimestamp }}
             </p>
           </div>
@@ -171,7 +157,7 @@ onMounted(() => {
             :href="ADMIN_URL"
             target="_blank"
             rel="noopener noreferrer"
-            class="bg-surface-card hover:bg-surface-container-high border border-surface-border transition px-6 py-3 rounded-pill text-brand-deep-charcoal font-bold shadow-subtle flex items-center gap-2 text-sm cursor-pointer"
+            class="bg-brand-deep-charcoal hover:bg-brand-deep-charcoal/90 border-none transition px-6 py-3 rounded-pill text-white font-bold shadow-subtle flex items-center gap-2 text-sm cursor-pointer"
           >
             Open Auditor Workstation
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -179,7 +165,6 @@ onMounted(() => {
             </svg>
           </a>
         </div>
-      </div>
-    </main>
+    </div>
   </div>
 </template>

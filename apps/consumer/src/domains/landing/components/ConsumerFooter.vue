@@ -12,18 +12,18 @@ const ADMIN_URL = getAdminUrl();
 <template>
   <footer
     class="w-full px-8 py-12 flex flex-col md:flex-row justify-between items-center gap-8 mt-16"
-    style="background-color: var(--color-bp-surface-container-lowest); border-top: 1px solid var(--outline-bp-ghost);"
+    style="background-color: var(--color-surface-card); border-top: 1px solid var(--color-surface-border);"
   >
     <div class="space-y-4 max-w-lg">
       <div
         class="font-['Space_Grotesk'] text-lg font-black uppercase tracking-tighter"
-        style="color: var(--color-bp-primary);"
+        style="color: var(--color-brand-deep-charcoal);"
       >
         INDUSTRIAL EDITORIAL
       </div>
       <p
         class="font-['Geist_Mono'] text-[12px] leading-relaxed uppercase"
-        style="color: var(--color-bp-on-surface-variant);"
+        style="color: var(--color-functional-neutral);"
       >
         "We know how to collaborate, we know how to scale, and we know that technology must adapt to the business, not the other way around."
       </p>
@@ -33,7 +33,7 @@ const ADMIN_URL = getAdminUrl();
       <nav class="flex gap-8" aria-label="Footer navigation">
         <button
           class="footer-link"
-          :style="{ color: footerLinkHover === 'mission' ? 'var(--color-bp-primary)' : 'rgba(68, 71, 74, 1)' }"
+          :style="{ color: footerLinkHover === 'mission' ? 'var(--color-brand-deep-charcoal)' : 'rgba(68, 71, 74, 1)' }"
           @mouseover="footerLinkHover = 'mission'"
           @mouseleave="footerLinkHover = null"
           @focus="footerLinkHover = 'mission'"
@@ -43,7 +43,7 @@ const ADMIN_URL = getAdminUrl();
         </button>
         <button
           class="footer-link"
-          :style="{ color: footerLinkHover === 'specs' ? 'var(--color-bp-primary)' : 'rgba(68, 71, 74, 1)' }"
+          :style="{ color: footerLinkHover === 'specs' ? 'var(--color-brand-deep-charcoal)' : 'rgba(68, 71, 74, 1)' }"
           @mouseover="footerLinkHover = 'specs'"
           @mouseleave="footerLinkHover = null"
           @focus="footerLinkHover = 'specs'"
@@ -53,7 +53,7 @@ const ADMIN_URL = getAdminUrl();
         </button>
         <button
           class="footer-link"
-          :style="{ color: footerLinkHover === 'compliance' ? 'var(--color-bp-primary)' : 'rgba(68, 71, 74, 1)' }"
+          :style="{ color: footerLinkHover === 'compliance' ? 'var(--color-brand-deep-charcoal)' : 'rgba(68, 71, 74, 1)' }"
           @mouseover="footerLinkHover = 'compliance'"
           @mouseleave="footerLinkHover = null"
           @focus="footerLinkHover = 'compliance'"
@@ -67,7 +67,7 @@ const ADMIN_URL = getAdminUrl();
           rel="noopener noreferrer"
           class="footer-link"
           style="text-decoration: none;"
-          :style="{ color: footerLinkHover === 'admin' ? 'var(--color-bp-primary)' : 'rgba(68, 71, 74, 1)' }"
+          :style="{ color: footerLinkHover === 'admin' ? 'var(--color-brand-deep-charcoal)' : 'rgba(68, 71, 74, 1)' }"
           @mouseover="footerLinkHover = 'admin'"
           @mouseleave="footerLinkHover = null"
           @focus="footerLinkHover = 'admin'"

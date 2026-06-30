@@ -10,13 +10,13 @@ defineProps<{
     <div class="flex items-center justify-between mb-4">
       <h2
         class="font-mono text-[10px] font-bold uppercase tracking-[0.2em]"
-        style="color: var(--color-bp-on-surface-variant);"
+        style="color: var(--color-functional-neutral);"
       >
         Technical Specifications // v3.5
       </h2>
       <span
         class="font-mono text-[10px]"
-        style="color: var(--color-bp-primary); opacity: 1;"
+        style="color: var(--color-brand-deep-charcoal); opacity: 1;"
       >
         [SYS_AUTH_VERIFIED]
       </span>
@@ -25,7 +25,7 @@ defineProps<{
     <div class="bento-grid">
       <div
         class="bento-tile bento-tile--wide group"
-        style="background: var(--color-bp-surface-container-lowest); border: 1px solid var(--outline-bp-ghost);"
+        style="background: var(--color-surface-card); border: 1px solid var(--color-surface-border);"
       >
         <div class="bento-tile__header">
           <svg
@@ -34,7 +34,7 @@ defineProps<{
             stroke="currentColor"
             viewBox="0 0 24 24"
             stroke-width="1.5"
-            style="color: var(--color-bp-primary);"
+            style="color: var(--color-brand-deep-charcoal);"
           >
             <path
               stroke-linecap="round"
@@ -47,13 +47,13 @@ defineProps<{
         <div class="bento-tile__body">
           <h3
             class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight uppercase mb-2"
-            style="color: var(--color-bp-on-surface);"
+            style="color: var(--color-brand-deep-charcoal);"
           >
             Zero-Trust Scanner
           </h3>
           <p
             class="text-sm leading-relaxed"
-            style="color: var(--color-bp-on-surface-variant);"
+            style="color: var(--color-functional-neutral);"
           >
             High-speed verification of product integrity at the Edge. Our edge-native scanning engine
             ensures that every interaction is cryptographically signed before data retrieval.
@@ -63,7 +63,7 @@ defineProps<{
 
       <div
         class="bento-tile bento-tile--wide group"
-        style="background: var(--color-bp-surface-container-lowest); border: 1px solid var(--outline-bp-ghost);"
+        style="background: var(--color-surface-card); border: 1px solid var(--color-surface-border);"
       >
         <div class="bento-tile__header">
           <svg
@@ -72,7 +72,7 @@ defineProps<{
             stroke="currentColor"
             viewBox="0 0 24 24"
             stroke-width="1.5"
-            style="color: var(--color-bp-primary);"
+            style="color: var(--color-brand-deep-charcoal);"
           >
             <path
               stroke-linecap="round"
@@ -85,18 +85,18 @@ defineProps<{
         <div class="bento-tile__body">
           <h3
             class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight uppercase mb-2"
-            style="color: var(--color-bp-on-surface);"
+            style="color: var(--color-brand-deep-charcoal);"
           >
             Demonstrate Traceability
           </h3>
           <p
             class="text-sm leading-relaxed"
-            style="color: var(--color-bp-on-surface-variant);"
+            style="color: var(--color-functional-neutral);"
           >
             A seeded demo showing how supply-chain claims can become consumer-verifiable 
             <span
               class="italic font-bold"
-              style="color: var(--color-bp-primary);"
+              style="color: var(--color-brand-deep-charcoal);"
             >
               cryptographic evidence
             </span>.
@@ -106,25 +106,25 @@ defineProps<{
 
       <div
         class="bento-tile bento-tile--feature"
-        style="background: var(--color-bp-surface-container-lowest); border: 1px solid var(--outline-bp-ghost);"
+        style="background: var(--color-surface-card); border: 1px solid var(--color-surface-border);"
       >
         <div class="bento-tile__feature-content">
           <div class="space-y-4">
             <div
               class="font-mono text-[10px] font-bold"
-              style="color: var(--color-bp-success);"
+              style="color: var(--color-brand-verification-green);"
             >
               [RUNTIME_OPTIMIZED]
             </div>
             <h3
               class="font-['Space_Grotesk'] text-2xl font-bold tracking-tight uppercase"
-              style="color: var(--color-bp-on-surface);"
+              style="color: var(--color-brand-deep-charcoal);"
             >
               Vue 3.5 Vapor + Go/Wasm
             </h3>
             <p
               class="text-sm leading-relaxed"
-              style="color: var(--color-bp-on-surface-variant);"
+              style="color: var(--color-functional-neutral);"
             >
               Zero-overhead rendering designed for mobile efficiency. Shared validation logic via WebAssembly
               ensures consistency across platforms.
@@ -136,7 +136,7 @@ defineProps<{
           </div>
           <div
             class="hidden md:block bento-tile__feature-img"
-            style="background-color: var(--color-bp-surface-container);"
+            style="background-color: var(--color-surface-canvas);"
           >
             <img
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPuaoLg6LZuQpsdOX4jjmfmD6HFkxzYAMI8lo5-0aNrTVT4tdlwRHVyOYX1cFprb8BSzc_spa_X-JmA8iED0BjmyKlJObw5nurq0l73C6U3cVl7MCKO4K6sfG9rCBT3rqL8TvQwXH1P9LyUB1Y0mqBY0NhrV1Dx-62SsMBkYrIt9qaiPl42iz1EfOm58dQVeQ1xaX99pYzqwVDMSB962IuWPDUiG46EYJfupFbm9QLG7Gm0awnhxC-BBNK4cLl86XYLvKsK1pKqT8"
@@ -149,30 +149,30 @@ defineProps<{
 
       <div
         class="bento-tile bento-tile--accent"
-        style="background-color: var(--color-bp-primary-container);"
+        style="background-color: var(--color-brand-deep-charcoal);"
       >
         <div
           class="font-mono text-4xl font-black italic tracking-tighter leading-none"
-          style="color: var(--color-bp-on-primary-container);"
+          style="color: #ffffff;"
         >
           &lt;100ms
         </div>
         <div class="space-y-4">
           <h3
             class="font-['Space_Grotesk'] font-bold text-xl uppercase leading-tight"
-            style="color: var(--color-bp-on-primary-container);"
+            style="color: #ffffff;"
           >
             Edge Database (D1)
           </h3>
           <p
             class="text-xs font-medium"
-            style="color: var(--color-bp-on-primary-container); opacity: 0.9;"
+            style="color: #ffffff; opacity: 0.9;"
           >
             Real-time carbon footprint calculations delivered via Cloudflare's global edge network.
           </p>
           <div
             class="bento-progress-bar"
-            style="background-color: var(--color-bp-surface-variant);"
+            style="background-color: var(--color-surface-border);"
             role="progressbar"
             :aria-valuenow="complianceRatio"
             aria-valuemin="0"
@@ -181,7 +181,7 @@ defineProps<{
           >
             <div
               class="bento-progress-bar__fill"
-              :style="{ backgroundColor: 'var(--color-bp-on-primary-container)', width: complianceRatio + '%' }"
+              :style="{ backgroundColor: '#ffffff', width: complianceRatio + '%' }"
             />
           </div>
         </div>
@@ -280,22 +280,22 @@ defineProps<{
 }
 
 .bento-chip {
-  font-family: var(--font-bp-mono, 'Geist Mono', monospace);
+  font-family: var(--font-family-base);
   font-size: 10px;
-  background-color: var(--color-bp-surface-container);
-  color: var(--color-bp-on-surface-variant);
+  background-color: var(--color-surface-canvas);
+  color: var(--color-functional-neutral);
   padding: 3px 8px;
 }
 
 .bento-metric-chip {
   display: inline-block;
-  font-family: var(--font-bp-mono, 'Geist Mono', monospace);
+  font-family: var(--font-family-base);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.05em;
   padding: 3px 8px;
-  background-color: var(--color-bp-primary-container);
-  color: var(--color-bp-on-primary-container);
+  background-color: var(--color-brand-deep-charcoal);
+  color: #ffffff;
 }
 
 .bento-progress-bar {

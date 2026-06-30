@@ -56,5 +56,12 @@ export async function fetchEvents(assetId?: string): Promise<EventsApiResponse> 
     throw new ApiError(errorMessage, response.status);
   }
 
-  return response.json();
+  const rawEvents = await response.json() as any[];
+  return rawEvents.map((event: any) => ({
+    ...event,
+    energy_kwh: event.energyKwh ?? event.energy_kwh,
+    emission_factor: event.emissionFactor ?? event.emission_factor,
+    integrity_status: event.status ?? event.integrity_status,
+    public_key: event.publicKey ?? event.public_key,
+  })) as EventsApiResponse;
 }

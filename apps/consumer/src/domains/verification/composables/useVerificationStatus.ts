@@ -9,7 +9,14 @@ export function useVerificationStatus(events: Ref<SupplyChainEvent[]>) {
     if (!events.value.length || !isReady.value) return 'PENDING';
     let hasWarning = false;
     for (const event of events.value) {
-      const { signature, public_key, integrity_status, ...payload } = event;
+      const { signature, public_key, integrity_status, ...rest } = event;
+      const payload = {
+        ...rest,
+        esg_metadata: {
+          energy_kwh: event.energy_kwh,
+          emission_factor: event.emission_factor,
+        }
+      };
       const integrityResult = verifyIntegrity(payload, event.signature, event.public_key);
       if (integrityResult.status === 'INVALID') return 'INVALID';
       if (integrityResult.status === 'VALID' && event.integrity_status === 'UNAUTHORIZED') return 'UNAUTHORIZED';
