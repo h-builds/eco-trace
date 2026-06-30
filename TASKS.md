@@ -136,14 +136,14 @@ Create or identify a unified entry point that routes recruiters into both applic
 
 ### Tasks
 
-- [ ] Create `docs/demo/demo-scenario.md`.
-- [ ] Document the canonical `Verified Product Journey` scenario.
-- [ ] List all seeded actors, assets, events, and their expected integrity states.
-- [ ] Cross-reference Admin and Consumer views.
+- [x] Create `docs/demo/demo-scenario.md`.
+- [x] Document the canonical `Verified Product Journey` scenario.
+- [x] List all seeded actors, assets, events, and their expected integrity states.
+- [x] Cross-reference Admin and Consumer views.
 
 ### Exit Criteria
 
-- [ ] Another developer can recreate or verify the demo scenario from this document alone.
+- [x] Another developer can recreate or verify the demo scenario from this document alone.
 
 ---
 
