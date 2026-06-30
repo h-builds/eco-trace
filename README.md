@@ -46,8 +46,8 @@ Eco Trace has two separate applications because it demonstrates two different en
 ```mermaid
 graph TD
     subgraph Edge Network [Cloudflare Global Network]
-        API[Cloudflare Workers (Native Static Assets)]
-        DB[(Cloudflare D1 SQLite)]
+        API["Cloudflare Workers (Native Static Assets)"]
+        DB[("Cloudflare D1 SQLite")]
     end
 
     subgraph User Interfaces
