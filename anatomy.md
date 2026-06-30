@@ -223,7 +223,8 @@
 │   │   │   │   └── calculator_test.go
 │   │   │   └── types
 │   │   │       └── types.go
-│   │   └── main.go
+│   │   ├── main.go
+│   │   └── main.wasm
 │   └── ui
 │       ├── index.ts
 │       ├── package.json
@@ -237,4 +238,4 @@
 ├── pnpm-workspace.yaml
 └── turbo.json
 
-64 directories, 173 files
+64 directories, 174 files
