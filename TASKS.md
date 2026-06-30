@@ -238,17 +238,17 @@ cd packages/engine && GOOS=js GOARCH=wasm go build -o main.wasm
 
 ### Tasks
 
-- [ ] Validate all workspace builds pass.
-- [ ] Validate all workspace tests pass.
-- [ ] Validate lint passes.
-- [ ] Validate Wasm engine compiles.
-- [ ] Validate all links between Admin, Consumer, README, and docs.
-- [ ] Document any justified exceptions.
+- [x] Validate all workspace builds pass.
+- [x] Validate all workspace tests pass.
+- [x] Validate lint passes. (Exception: No workspace lint configuration exists in baseline. Prettier runs on formatting.)
+- [x] Validate Wasm engine compiles.
+- [x] Validate all links between Admin, Consumer, README, and docs.
+- [x] Document any justified exceptions.
 
 ### Exit Criteria
 
-- [ ] Monorepo is clean and buildable.
-- [ ] No broken cross-references.
+- [x] Monorepo is clean and buildable.
+- [x] No broken cross-references.
 
 ---
 

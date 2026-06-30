@@ -36,7 +36,7 @@ Experience the live deployments running on Cloudflare's Edge Network:
 *   🌐 **[Unified Demo Hub Entry Point](https://eco-trace-hub.achegideas.workers.dev/)** — The central landing page explaining the ecosystem and routing users.
 *   🖥️ **[Auditor Workstation (Admin App)](https://eco-trace-admin.pages.dev/)** — Secure, authenticated dashboard for managing entities and inspecting supply chain integrity.
 *   📱 **[Consumer Verification App](https://eco-trace-consumer.achegideas.workers.dev/?asset=ASSET-COFFEE-2026-001)** — High-performance scanner and product transparency viewer (pre-loaded with the demo asset).
-*   📖 **[Technical Case Study](file:///home/hguerra/eco-trace/docs/case-study.md)** — Architectural write-up detailing business problems, trade-offs, and verification methodologies.
+*   📖 **[Technical Case Study](./docs/case-study.md)** — Architectural write-up detailing business problems, trade-offs, and verification methodologies.
 
 ---
 
@@ -52,7 +52,7 @@ To evaluate the system quickly, choose one of the following structured paths:
 5. **Review Provenance**: On the Consumer transparency page, see the green **Authenticity Badge** and the detailed carbon footprint calculation calculated by Go/WebAssembly.
 
 ### 2. Technical Reviewer Path (7 to 10 Minutes)
-1. **Inspect Trust boundaries**: Read the [Case Study](file:///home/hguerra/eco-trace/docs/case-study.md) explaining how the Go/Wasm sandbox isolates cryptographic operations from browser-based XSS.
+1. **Inspect Trust boundaries**: Read the [Case Study](./docs/case-study.md) explaining how the Go/Wasm sandbox isolates cryptographic operations from browser-based XSS.
 2. **Verify Edge RBAC**: Check the Next.js Middleware configuration that protects `/dashboard/*` routes and verifies session tokens stored in Cloudflare KV at the edge.
 3. **Examine Vue 3.5 Vapor**: Review the Consumer codebase to see compile-time reactive signals rendering raw DOM nodes without virtual-DOM overhead.
 4. **Export Compliance Evidence**: Go to `/dashboard/compliance` and download the client-side generated PDF containing Ed25519 signatures and public keys to verify offline auditable evidence.
@@ -240,10 +240,10 @@ go test -v ./...
 ## Intelligence Infrastructure (.ai/)
 
 Project governance and system context are stored in a structured workspace intelligence layer:
-- **Context**: Active state history and session memory ([CONTEXT.md](file:///home/hguerra/eco-trace/.ai/context/CONTEXT.md)).
-- **Rules**: Strict engineering guidelines, zero-hallucination policies, and commenting rules ([rules/](file:///home/hguerra/eco-trace/.ai/rules)).
-- **Knowledge**: System architecture specifications, evaluation gates, and data dictionaries ([knowledge/](file:///home/hguerra/eco-trace/.ai/knowledge)).
-- **Prompts**: Versioned system instructions for agent workflows ([prompts/](file:///home/hguerra/eco-trace/.ai/prompts)).
+- **Context**: Active state history and session memory ([CONTEXT.md](./.ai/context/CONTEXT.md)).
+- **Rules**: Strict engineering guidelines, zero-hallucination policies, and commenting rules ([rules/](./.ai/rules)).
+- **Knowledge**: System architecture specifications, evaluation gates, and data dictionaries ([knowledge/](./.ai/knowledge)).
+- **Prompts**: Versioned system instructions for agent workflows ([prompts/](./.ai/prompts)).
 
 ---
 
