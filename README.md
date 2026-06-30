@@ -6,38 +6,69 @@
 
 ---
 
-## What is Eco Trace?
+## Executive Positioning
 
-Eco Trace is a **collaborative enterprise verification architecture demo** that turns supply-chain sustainability claims into cryptographically verifiable, audit-ready product histories.
+Eco Trace is a **collaborative enterprise verification architecture demo** built to show how modern engineering teams can make supply-chain sustainability claims trustworthy, auditable, and consumer-verifiable using **React 19, Vue 3.5 Vapor, Go/WebAssembly, Cloudflare D1**, and deterministic governance.
 
-It demonstrates how a modern engineering team can design trustworthy, auditable workflows across distributed supply-chain actors using role-specific interfaces, cryptographic validation, edge-native persistence, deterministic carbon-footprint logic, compliance-style reporting, a shared design system, and a collaborative multi-application architecture.
+In 2026, the hard problem is not generating another interface. The hard problem is making enterprise data trustworthy, verifiable, governable, and usable across different actors. Eco Trace demonstrates how to solve this challenge through a role-specific, cryptographically verified supply-chain architecture.
 
-### What Eco Trace Is
+> [!NOTE]
+> ### What Eco Trace Is
+> - A portfolio-grade architecture showcase.
+> - A two-app ecosystem: **Admin Workstation** (React 19) + **Consumer Verification App** (Vue 3.5 Vapor).
+> - A proof of engineering judgment across frontend frameworks, edge computing, cryptography, and UX.
+> - A recruiter-friendly technical case study.
 
-- A portfolio-grade architecture demo.
-- A two-app ecosystem: **Admin Workstation** (React 19) + **Consumer Verification App** (Vue 3.5 Vapor).
-- A proof of engineering judgment across frontend, edge, cryptography, governance, and UX.
-- A recruiter-friendly technical case study.
+> [!WARNING]
+> ### What Eco Trace Is Not
+> - **Not a production ESG compliance company.**
+> - **Not a blockchain project.**
+> - **Not a SaaS billing or multi-tenant product.**
+> - **Not an AI wrapper.**
+> - **Not a claim of real ISO certification, real customers, or real enterprise deployment.** All metrics, certifications, and compliance logs shown in the app are seeded for demo purposes.
 
-### What Eco Trace Is Not
+---
 
-- Not a production ESG compliance company.
-- Not a blockchain project.
-- Not a SaaS billing product.
-- Not an AI wrapper.
-- Not a claim of real ISO certification, real customers, or real enterprise deployment.
+## Live Demo Links
+
+Experience the live deployments running on Cloudflare's Edge Network:
+
+*   🌐 **[Unified Demo Hub Entry Point](https://eco-trace-hub.achegideas.workers.dev/)** — The central landing page explaining the ecosystem and routing users.
+*   🖥️ **[Auditor Workstation (Admin App)](https://eco-trace-admin.pages.dev/)** — Secure, authenticated dashboard for managing entities and inspecting supply chain integrity.
+*   📱 **[Consumer Verification App](https://eco-trace-consumer.achegideas.workers.dev/?asset=ASSET-COFFEE-2026-001)** — High-performance scanner and product transparency viewer (pre-loaded with the demo asset).
+*   📖 **[Technical Case Study](file:///home/hguerra/eco-trace/docs/case-study.md)** — Architectural write-up detailing business problems, trade-offs, and verification methodologies.
+
+---
+
+## Guided Recruiter Journeys
+
+To evaluate the system quickly, choose one of the following structured paths:
+
+### 1. Fast Recruiter Path (2 to 3 Minutes)
+1. **Start at the Hub**: Open the [Unified Demo Hub](https://eco-trace-hub.achegideas.workers.dev/).
+2. **Audit the Claim**: Click **Audit the Claim** to go to the Auditor Workstation login. Click the **Use Demo Auditor** button to automatically pre-fill credentials, and sign in.
+3. **Verify Integrity**: Go to **Integrity Events** in the sidebar. Look at `ASSET-COFFEE-2026-001`. Expand **Event 4 (INVALID)** to see how the system flags a retroactively tampered carbon payload, and **Event 5 (UNAUTHORIZED)** to see an unregistered supplier key block.
+4. **Open Consumer View**: Go to **Compliance Export**, select the coffee asset, and click the **View in Consumer App** link.
+5. **Review Provenance**: On the Consumer transparency page, see the green **Authenticity Badge** and the detailed carbon footprint calculation calculated by Go/WebAssembly.
+
+### 2. Technical Reviewer Path (7 to 10 Minutes)
+1. **Inspect Trust boundaries**: Read the [Case Study](file:///home/hguerra/eco-trace/docs/case-study.md) explaining how the Go/Wasm sandbox isolates cryptographic operations from browser-based XSS.
+2. **Verify Edge RBAC**: Check the Next.js Middleware configuration that protects `/dashboard/*` routes and verifies session tokens stored in Cloudflare KV at the edge.
+3. **Examine Vue 3.5 Vapor**: Review the Consumer codebase to see compile-time reactive signals rendering raw DOM nodes without virtual-DOM overhead.
+4. **Export Compliance Evidence**: Go to `/dashboard/compliance` and download the client-side generated PDF containing Ed25519 signatures and public keys to verify offline auditable evidence.
+5. **Run Local Validation**: Follow the local commands below to verify that the entire test suite and compiler gates pass.
 
 ---
 
 ## Why Two Applications?
 
-Eco Trace has two separate applications because it demonstrates two different enterprise surfaces:
+Eco Trace separates user interfaces into two distinct applications to match the access control, runtime, and latency requirements of different surfaces:
 
-| Surface | App | Technology | Purpose |
-|---------|-----|-----------|---------|
-| Internal Auditor | Admin Workstation | React 19, Server Components, Next.js Edge | Governance, RBAC, actor/asset control, integrity violations, compliance exports |
-| External Consumer | Consumer Verification | Vue 3.5 Vapor, Vite | QR-driven verification, read-only transparency, mobile-first trust |
-| Shared Trust Layer | Go/Wasm Engine | Go 1.22+, WebAssembly | Deterministic calculation, Ed25519 signing/verification, shared across both apps |
+| Surface | Stack | Purpose |
+| :--- | :--- | :--- |
+| **Admin Workstation** | React 19, Next.js (App Router), Cloudflare Pages | **Internal Auditor Workspace:** Write-heavy, authenticated, governed by Next.js Middleware RBAC. Features RSC data streaming and Server Actions targeting D1. |
+| **Consumer App** | Vue 3.5 Vapor Mode, Vite, Workers Native Static Assets | **Public Verification Surface:** Read-only, unauthenticated, mobile-first scanner. Vapor mode eliminates virtual-DOM overhead to achieve sub-100ms loading speeds. |
+| **Shared Engine** | Go 1.22+, WebAssembly (Go/Wasm) | **Shared Trust boundary:** Executes identical Ed25519 signature checks and deterministic carbon calculations inside a browser WebWorker sandbox on both platforms. |
 
 ---
 
@@ -46,8 +77,8 @@ Eco Trace has two separate applications because it demonstrates two different en
 ```mermaid
 graph TD
     subgraph Edge Network [Cloudflare Global Network]
-        API["Cloudflare Workers (Native Static Assets)"]
-        DB[("Cloudflare D1 SQLite")]
+        API["Cloudflare Workers & Pages API"]
+        DB[("Cloudflare D1 (SQLite Edge)")]
     end
 
     subgraph User Interfaces
@@ -55,21 +86,21 @@ graph TD
         Consumer[Vue 3.5 Consumer App]
     end
 
-    subgraph Cryptographic Engine
-        Wasm[Go WebAssembly Wasm binary]
+    subgraph Cryptographic Engine [Go WebAssembly Sandbox]
+        Wasm[Go Verification Engine]
     end
 
-    Admin <-->|JSON Payloads| API
-    Consumer <-->|Read-only Audits| API
+    Admin <-->|JSON Payloads & Server Actions| API
+    Consumer <-->|Read-only Provenance APIs| API
     API <-->|SQL Queries| DB
     
-    Admin -->|In-Browser Verification| Wasm
-    Consumer -->|In-Browser Verification| Wasm
+    Admin -->|Client-Side Verification| Wasm
+    Consumer -->|Client-Side Verification| Wasm
 ```
 
 ### Deterministic Validation Flow
 
-Every event undergoes strict Ed25519 verification before persistence:
+Every supply chain event undergoes cryptographic verification using Ed25519 keys prior to database persistence and client presentation:
 
 ```mermaid
 sequenceDiagram
@@ -78,18 +109,17 @@ sequenceDiagram
     participant API as Edge Route
     participant D1 as Cloudflare D1
 
-    User->>Wasm: Modifies Data (Tamper/Impersonate)
+    User->>Wasm: Submits Event Data (or attempts modification)
     Wasm-->>User: Recalculates Hash & Validates Signature
     alt Signature Matches & Actor is Trusted
-        Wasm-->>User: Status: VALID
-    else Signature Fails
+        User->>API: POST /api/events (Includes Payload + Signature + Status)
+        API->>D1: INSERT INTO events
+        D1-->>User: Confirms Persistence
+    else Signature Fails (Tampered Payload)
         Wasm-->>User: Status: INVALID (Integrity Alert)
     else Signature Matches but Actor Untrusted
         Wasm-->>User: Status: UNAUTHORIZED (Identity Alert)
     end
-    User->>API: POST /api/events (Includes Status & Signature)
-    API->>D1: INSERT INTO events
-    D1-->>User: Confirms Persistence
 ```
 
 ---
@@ -97,104 +127,43 @@ sequenceDiagram
 ## Implemented Features
 
 ### Admin Workstation (React 19)
-
-- Auditor login flow with Edge-compatible session tokens (Cloudflare Workers KV).
-- RBAC roles: `ADMIN`, `AUDITOR`, `VIEWER` with middleware-enforced route protection.
-- Audit logging for all authentication events.
-- `/dashboard/overview` — Macro analytics with React Server Components, Suspense streaming, time-range filters.
-- `/dashboard/entities` — Trusted Actor onboarding, Asset registration, search, pagination.
-- `/dashboard/events` — Threaded audit trail grouped by `event_id`, Wasm-backed integrity verification, tamper/impersonation testing.
-- `/dashboard/compliance` — PDF and CSV compliance export with date-range and actor filters, immutable verified values.
+- **Edge Authentication**: Session state managed via Next.js Middleware and Cloudflare Workers KV.
+- **Granular RBAC**: Role gates enforcing routes and mutations for `ADMIN`, `AUDITOR`, and `VIEWER` roles.
+- **Streaming Overview Analytics**: PROGRESSIVE loading of dashboard counters via React Server Components (RSC) and Suspense boundaries.
+- **Entity Management**: Onboard trusted suppliers, register trackable SKUs, and associate Ed25519 public keys.
+- **Wasm-Backed Verification Log**: Visual audit trail demonstrating interactive tamper and unauthorized key testing.
+- **Evidence Export**: Client-side generated compliance PDFs and CSV extracts carrying raw signatures and keys.
+- **Unified Navigation**: Guided demo stepper providing recruiters with step-by-step UI assistance.
 
 ### Consumer Verification App (Vue 3.5 Vapor)
+- **Vapor Rendering**: Zero virtual-DOM overhead compiled to vanilla JS for lightning-fast mobile loading.
+- **QR Scanner**: Direct HTML5 camera scanner running in a separate WebWorker thread.
+- **No-Camera Fallback**: A "Use Demo Product" bypass button enabling instant evaluation on any device.
+- **SWR Data Hydration**: Reactive composables fetching read-only event histories from edge endpoints.
+- **Product Transparency Screen**: Green authenticity badge, plain-English carbon formula breakdowns, and a chronological history timeline.
 
-- Vue 3.5 + Vite with Vapor-mode-oriented rendering.
-- Read-only Wasm bridge: `VerifySignature` + `CalculateCarbonFootprint`.
-- Native QR scanner with camera permission handling.
-- Product Transparency View: Authenticity Badge, Carbon Formula, Audit Trail Timeline.
-- SWR-style event hydration with typed API client.
-- Industrial Editorial landing page (Precision Blueprint design system).
-- Mobile-first responsive layout.
-
-### Go/Wasm Engine
-
-- Deterministic carbon-footprint calculation: $CF_{total} = \sum_{i=1}^{n} (E_i \times EF_i)$
-- Ed25519 signing and verification.
-- Trusted Actor Registry with unauthorized actor detection.
-- Wasm bridge for both frontend applications.
-
-### Shared Infrastructure
-
-- `@eco-trace/ui` design tokens (colors, spacing, typography, radii, shadows).
-- Data dictionary (`DATA_DICTIONARY.md`).
-- Evaluation framework with 10 golden test cases.
-- Governance rules (Zero-Slop Commenting, UI Dependency First, Mobile-First).
+### Go/Wasm Cryptographic Engine
+- **Deterministic Math**: Precision aggregation of carbon calculations ($CF_{total} = \sum E_i \times EF_i$).
+- **Signature Security**: Ed25519 verification using internal registry public keys.
+- **Sandboxed Execution**: Isolated JS bridge allowing standard browser worker scripts to interact with compiled Go binaries.
 
 ---
 
-## Demo Scenario: Verified Product Journey
+## Canonical Demo Scenario: Verified Product Journey
 
-All demo work revolves around one clear scenario with deterministic seeded data:
+All live and local demo scenarios revolve around a single, pre-seeded supply chain flow:
 
-| Element | Value |
-|---------|-------|
-| Asset ID | `ASSET-COFFEE-2026-001` |
-| Product | Andes Trace Coffee Lot 001 |
-| Supplier | Andes Organic Cooperative |
-| Processor | Veridian Processing Node |
-| Logistics | NorthStar Logistics |
+| Element | Seeded Value |
+| :--- | :--- |
+| **Asset ID** | `ASSET-COFFEE-2026-001` (Andes Trace Coffee Lot 001) |
+| **Trusted Supplier** | Andes Organic Cooperative (Harvest Origin) |
+| **Processing Node** | Veridian Processing Node (Milling/Packaging) |
+| **Logistics Actor** | NorthStar Logistics (Global Freight) |
+| **Demo Auditor** | Eco Trace Demo Auditor (Final Inspection) |
 
-The scenario includes valid supply-chain events (ORIGIN → TRANSFORM → TRANSPORT → AUDIT), a tampered event (`INVALID`), and an unauthorized actor event (`UNAUTHORIZED`).
-
-> [!NOTE]
-> All demo data is seeded and clearly labeled. No claim of real customers, certifications, or production deployment.
-
----
-
-## Current Operational Status
-
-**Phase 8 — Portfolio Demo Excellence**
-
-All core functionality (Phases 1–7) is implemented and archived. Phase 8 is additive: demo polish, recruiter journey, truth alignment, cross-app contracts, and documentation.
-
-Active task files:
-
-| File | Scope |
-|------|-------|
-| `PLAN.md` | Source of truth for Phase 8 roadmap |
-| `TASKS.md` | Root-level cross-cutting deliverables |
-| `apps/admin/TASKS.md` | Admin Workstation demo polish |
-| `apps/consumer/TASKS.md` | Consumer Verification demo polish |
-| `apps/admin/archive/TASKS.md` | Phases 1–4 (archived, all complete) |
-| `apps/consumer/archive/TASKS.md` | Phases 1–6 (archived, all complete) |
-
-All task files use a shared **execution order (1)–(11)** so work can be coordinated across apps.
-
-> [!CAUTION]
-> **Strict Governance:** Any changes to the Go/Wasm engine or cryptographic bridge require validation against `EVALS.md` golden test cases.
-
----
-
-## Tech Stack
-
-### Frontend / Client Layer
-- **React 19:** Server Components and Server Actions for the Admin Dashboard.
-- **Vue 3.5 (Vapor Mode):** Ultra-lightweight Consumer application.
-- **`@eco-trace/ui`:** Internal design system with shared tokens.
-- **Lucide React/Vue:** Consistent iconography.
-
-### Backend / Edge Layer
-- **Cloudflare Workers (Native Static Assets):** Unified deployment for React (Admin), Vue (Consumer), and Vanilla TS (Hub).
-- **Cloudflare D1:** Distributed serverless SQL database at the edge.
-- **Wrangler:** Local simulation and deployment for Cloudflare resources.
-
-### Core Cryptography
-- **Go (Golang) v1.22+:** Compiled to `.wasm` for Ed25519 cryptography and deterministic validation at near-native speeds in the browser.
-
-### Tooling & Infrastructure
-- **pnpm:** Workspace-aware monorepo management.
-- **TypeScript 5.x:** End-to-end strict type safety.
-- **Node.js 22.x (LTS).**
+### Seeded Anomalies (For Testing Verification)
+- **Event 4 (INVALID)**: Veridian Processing Node attempts to modify the carbon emissions payload retroactively. The signature verification fails.
+- **Event 5 (UNAUTHORIZED)**: An unrecognized transporter logs a delivery event using an intact Ed25519 signature from a key not listed in the Go registry.
 
 ---
 
@@ -202,7 +171,7 @@ All task files use a shared **execution order (1)–(11)** so work can be coordi
 
 ### 1. Prerequisites
 - **Node.js**: v22.x (LTS)
-- **Go**: v1.22+ (for Wasm compilation)
+- **Go**: v1.22+ (required to compile Go to WebAssembly)
 - **pnpm**: `npm install -g pnpm`
 
 ### 2. Installation
@@ -212,86 +181,87 @@ cd eco-trace
 pnpm install
 ```
 
-### 3. Engine Compilation (WebAssembly)
+### 3. Engine Compilation (Go/WebAssembly)
+Build the Go cryptography engine and copy the binary to the static assets:
 ```bash
 cd packages/engine
 ./build.sh
 cd ../..
 ```
 
-### 4. Database Setup (Cloudflare D1)
+### 4. Database Setup & Seeding (Cloudflare D1)
+Initialize the local SQLite simulation database and seed it with the demo scenario:
 ```bash
 cd apps/admin
-# Apply Schema
+# Create schema
 npx wrangler d1 execute eco-trace-events --local --file=./schema.sql
-# Generate Deterministic Key Pairs and Mock Data
+# Generate actor key pairs and seed SQL
 npx tsx lib/seed.ts
-# Seed Database
+# Seed the database
 npx wrangler d1 execute eco-trace-events --local --file=./seed.sql
+cd ../..
 ```
 
-### 5. Running the Admin App (Edge Server)
+### 5. Running the Applications
+Start all dev servers concurrently from the monorepo root:
 ```bash
-# In apps/admin
-pnpm run dev:edge
+pnpm dev
 ```
-Access the Admin Dashboard at http://localhost:8788/dashboard/overview.
-
-### 6. Running the Consumer App
-```bash
-# In apps/consumer
-pnpm run dev
-```
-Access the Consumer App at the Vite dev server URL shown in the terminal.
-
-### 7. Validation Commands
-```bash
-pnpm build       # Build all workspaces
-pnpm test        # Run all tests
-pnpm lint        # Lint all workspaces
-```
-
-Engine-specific:
-```bash
-cd packages/engine
-GOOS=js GOARCH=wasm go build -o main.wasm
-```
-
-> [!NOTE]
-> Next.js production builds use the webpack bundler backend (`next build --webpack`) rather than Turbopack to prevent dynamic module import compatibility issues with client-side PDF generation dependencies.
-
-> [!NOTE]
-> The monorepo uses **Cloudflare Workers with Native Static Assets** for `apps/consumer` and `apps/hub`. However, due to `@cloudflare/next-on-pages` architectural requirements, `apps/admin` (Next.js) is deployed exclusively to **Cloudflare Pages**. Subdomain topology: `ecotrace.dev` (Hub), `admin.ecotrace.dev` (Admin on Pages), `verify.ecotrace.dev` (Consumer).
+Individual ports are mapped as:
+- **Demo Hub**: [http://localhost:5173](http://localhost:5173) (or `5174` depending on port availability)
+- **Consumer App**: [http://localhost:5173](http://localhost:5173)
+- **Admin Workstation (Edge Proxy)**: [http://localhost:8788](http://localhost:8788) (Run `pnpm --filter admin run dev:edge` within `apps/admin`)
 
 ---
 
-## Future Scope
+## Validation & Test Commands
 
-These items are planned but **not yet implemented**:
+Maintain codebase health by executing the verification suite:
 
-- **Architecture Case Study:** Technical storytelling docs (`docs/case-study.md`).
-- **PWA / Offline Mode:** Service Worker with offline-first caching.
-- **i18n:** Multi-language support for global supply-chain actors.
-- **AI Anomaly Detection:** Pinecone vector embeddings for statistical anomaly detection.
-- **ERP Webhooks:** Outbound event schemas for SAP/Oracle-style systems.
-- **Supply Chain Map:** Interactive geographic visualization of supplier journeys.
+```bash
+# Build all workspaces
+pnpm build
+
+# Run all vitest unit/integration tests
+pnpm test
+
+# Lint the monorepo
+pnpm lint
+```
+
+### Go Engine Unit Tests
+```bash
+cd packages/engine
+go test -v ./...
+```
 
 ---
 
 ## Intelligence Infrastructure (.ai/)
 
-Project governance resides in a structured intelligence layer:
-- **Context:** Active state and session memory (`CONTEXT.md`).
-- **Rules:** Zero-Hallucination, Zero-Slop Commenting, UI Dependency First (`RULES.md`).
-- **Knowledge:** Data dictionary, architecture, evaluation framework.
-- **Library:** Versioned prompt templates for mission-critical workflows.
+Project governance and system context are stored in a structured workspace intelligence layer:
+- **Context**: Active state history and session memory ([CONTEXT.md](file:///home/hguerra/eco-trace/.ai/context/CONTEXT.md)).
+- **Rules**: Strict engineering guidelines, zero-hallucination policies, and commenting rules ([rules/](file:///home/hguerra/eco-trace/.ai/rules)).
+- **Knowledge**: System architecture specifications, evaluation gates, and data dictionaries ([knowledge/](file:///home/hguerra/eco-trace/.ai/knowledge)).
+- **Prompts**: Versioned system instructions for agent workflows ([prompts/](file:///home/hguerra/eco-trace/.ai/prompts)).
 
 ---
 
-## Portfolio Positioning
+## Future Scope (Conceptual Roadmap)
 
-> **Eco Trace is a collaborative enterprise verification architecture demo built to show how modern teams can make supply-chain claims trustworthy, auditable, and consumer-verifiable using React 19, Vue 3.5 Vapor, Go/WebAssembly, Cloudflare D1, and deterministic governance.**
+The following capabilities are architecturally designed but **not implemented** in the current demo:
+
+- 📶 **PWA / Offline Support**: Service worker caching for auditors logging events in rural farms with poor connectivity.
+- 🌍 **Dynamic Locales (i18n)**: Translation mapping for global logistics and farming cooperatives.
+- 📡 **Live IoT Cold Chain Telemetry**: Continuous streaming of GPS and temperature sensor data rather than static D1 snapshots.
+- 🔌 **Enterprise ERP Connectors**: Direct outbound webhooks sending verified logs to SAP or Oracle NetSuite.
 
 ---
 
-Built for the Edge. Engineered for Trust. Managed from South America.
+## Collaborator Credits
+
+Designed and engineered for portfolios, edge execution, and technical reviews:
+
+*   **[h-builds](https://github.com/h-builds)** — Lead Solutions Architect & Admin Workstation Engineer
+*   **[LuismGil](https://github.com/LuismGil)** — Lead Consumer Verification App Engineer
+*   **Antigravity** — Google DeepMind Agentic AI Coding Assistant

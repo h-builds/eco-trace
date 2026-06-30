@@ -190,17 +190,17 @@ Create or identify a unified entry point that routes recruiters into both applic
 
 ### Tasks
 
-- [ ] Rewrite README with Phase 8 positioning from PLAN.md §14.
-- [ ] Add: system diagram, demo links, recruiter evaluation path.
-- [ ] Add: implemented features (from archive TASKS.md), demo data explanation, future scope.
-- [ ] Add: Consumer app local setup instructions.
-- [ ] Add: validation commands.
-- [ ] Add: collaborator credits.
-- [ ] Remove all unsupported production claims.
+- [x] Rewrite README with Phase 8 positioning from PLAN.md §14.
+- [x] Add: system diagram, demo links, recruiter evaluation path.
+- [x] Add: implemented features (from archive TASKS.md), demo data explanation, future scope.
+- [x] Add: Consumer app local setup instructions.
+- [x] Add: validation commands.
+- [x] Add: collaborator credits.
+- [x] Remove all unsupported production claims.
 
 ### Exit Criteria
 
-- [ ] The project can be fully understood from the README alone.
+- [x] The project can be fully understood from the README alone.
 
 ---
 
