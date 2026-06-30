@@ -117,15 +117,15 @@ Create or identify a unified entry point that routes recruiters into both applic
 
 ### Tasks
 
-- [ ] Create `docs/architecture-flow.md`.
-- [ ] Include data flow from Admin → D1 → Consumer.
-- [ ] Include Wasm verification flow.
-- [ ] Include Ed25519 signing and verification paths.
-- [ ] Use Mermaid diagrams where possible.
+- [x] Create `docs/architecture-flow.md`.
+- [x] Include data flow from Admin → D1 → Consumer.
+- [x] Include Wasm verification flow.
+- [x] Include Ed25519 signing and verification paths.
+- [x] Use Mermaid diagrams where possible.
 
 ### Exit Criteria
 
-- [ ] A developer can understand the full data flow from one document.
+- [x] A developer can understand the full data flow from one document.
 
 ---
 
