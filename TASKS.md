@@ -172,14 +172,14 @@ Create or identify a unified entry point that routes recruiters into both applic
 
 ### Tasks
 
-- [ ] Create `docs/validation.md`.
-- [ ] Summarize golden test cases from `.ai/knowledge/EVALS.md`.
-- [ ] Document verification commands and expected results.
-- [ ] Map tests to the features they validate.
+- [x] Create `docs/validation.md`.
+- [x] Summarize golden test cases from `.ai/knowledge/EVALS.md`.
+- [x] Document verification commands and expected results.
+- [x] Map tests to the features they validate.
 
 ### Exit Criteria
 
-- [ ] A reviewer can understand how the system is validated without reading EVALS.md.
+- [x] A reviewer can understand how the system is validated without reading EVALS.md.
 
 ---
 
