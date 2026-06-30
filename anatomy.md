@@ -84,6 +84,8 @@
 │   │   │       ├── MetricCard.tsx
 │   │   │       ├── MetricsGrid.tsx
 │   │   │       └── TimeRangeFilter.tsx
+│   │   ├── docs
+│   │   │   └── demo-flow.md
 │   │   ├── hooks
 │   │   │   └── useWasm.ts
 │   │   ├── lib
@@ -196,7 +198,6 @@
 ├── docs
 │   └── demo
 │       └── truth-and-scope.md
-├── package-lock.json
 ├── package.json
 ├── packages
 │   ├── engine
@@ -231,4 +232,4 @@
 ├── pnpm-workspace.yaml
 └── turbo.json
 
-63 directories, 168 files
+64 directories, 168 files

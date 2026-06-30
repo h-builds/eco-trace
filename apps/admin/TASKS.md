@@ -506,29 +506,29 @@ Add only the Admin-specific documentation needed to support the demo.
 
 ### Tasks
 
-- [ ] Add or update `apps/admin/README.md`.
-- [ ] Include:
-  - [ ] Admin purpose.
-  - [ ] Demo credentials.
-  - [ ] Local setup commands.
-  - [ ] Seed reset commands.
-  - [ ] Required environment variables.
-  - [ ] Routes overview.
-  - [ ] Consumer URL contract.
-- [ ] Add `apps/admin/docs/demo-flow.md` if local docs folder exists or is desired.
-- [ ] Document recruiter path:
-  - [ ] Login.
-  - [ ] Overview.
-  - [ ] Entities.
-  - [ ] Events.
-  - [ ] Compliance.
-  - [ ] Consumer handoff.
+- [x] Add or update `apps/admin/README.md`.
+- [x] Include:
+  - [x] Admin purpose.
+  - [x] Demo credentials.
+  - [x] Local setup commands.
+  - [x] Seed reset commands.
+  - [x] Required environment variables.
+  - [x] Routes overview.
+  - [x] Consumer URL contract.
+- [x] Add `apps/admin/docs/demo-flow.md` if local docs folder exists or is desired.
+- [x] Document recruiter path:
+  - [x] Login.
+  - [x] Overview.
+  - [x] Entities.
+  - [x] Events.
+  - [x] Compliance.
+  - [x] Consumer handoff.
 
 ### Exit Criteria
 
-- [ ] Another developer can run and present the Admin demo.
-- [ ] Admin-specific setup does not depend on hidden knowledge.
-- [ ] Documentation remains concise.
+- [x] Another developer can run and present the Admin demo.
+- [x] Admin-specific setup does not depend on hidden knowledge.
+- [x] Documentation remains concise.
 
 ---
 
