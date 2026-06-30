@@ -154,14 +154,14 @@ Create or identify a unified entry point that routes recruiters into both applic
 
 ### Tasks
 
-- [ ] Create `docs/demo/recruiter-script.md`.
-- [ ] Document the 6-step demo flow from PLAN.md §8.
-- [ ] Include talking points for each step.
-- [ ] Include fallback instructions if a step fails.
+- [x] Create `docs/demo/recruiter-script.md`.
+- [x] Document the 6-step demo flow from PLAN.md §8.
+- [x] Include talking points for each step.
+- [x] Include fallback instructions if a step fails.
 
 ### Exit Criteria
 
-- [ ] A presenter can follow the script without prior rehearsal.
+- [x] A presenter can follow the script without prior rehearsal.
 
 ---
 
