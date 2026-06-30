@@ -551,26 +551,26 @@ If workspace filtering differs in the repo, use the equivalent package scripts f
 
 ### Additional Validation
 
-- [ ] Validate login with demo credentials.
-- [ ] Validate session expiration behavior.
-- [ ] Validate dashboard overview metrics load.
-- [ ] Validate seeded actors and assets appear.
-- [ ] Validate event integrity statuses appear correctly.
-- [ ] Validate threaded audit trail expansion.
-- [ ] Validate PDF export.
-- [ ] Validate CSV export.
-- [ ] Validate Consumer link generation.
-- [ ] Validate missing Consumer URL fallback.
-- [ ] Validate mobile/tablet dashboard layout.
-- [ ] Validate keyboard-only navigation.
-- [ ] Validate no unsupported production claims remain.
+- [x] Validate login with demo credentials.
+- [x] Validate session expiration behavior.
+- [x] Validate dashboard overview metrics load.
+- [x] Validate seeded actors and assets appear.
+- [x] Validate event integrity statuses appear correctly.
+- [x] Validate threaded audit trail expansion.
+- [x] Validate PDF export.
+- [x] Validate CSV export.
+- [x] Validate Consumer link generation.
+- [x] Validate missing Consumer URL fallback.
+- [x] Validate mobile/tablet dashboard layout.
+- [x] Validate keyboard-only navigation.
+- [x] Validate no unsupported production claims remain.
 
 ### Exit Criteria
 
-- [ ] Admin app can be demoed in under 7 minutes.
-- [ ] All recruiter-critical routes work.
-- [ ] QA commands pass or documented exceptions are justified.
-- [ ] Admin is ready to pair with the Consumer demo.
+- [x] Admin app can be demoed in under 7 minutes.
+- [x] All recruiter-critical routes work.
+- [x] QA commands pass or documented exceptions are justified.
+- [x] Admin is ready to pair with the Consumer demo.
 
 ---
 
@@ -593,20 +593,20 @@ If workspace filtering differs in the repo, use the equivalent package scripts f
 
 The Admin app Phase 8 work is complete when:
 
-- [ ] `apps/admin/TASKS.md` reflects this Phase 8 roadmap.
-- [ ] Demo mode is visible across the Admin experience.
-- [ ] Login is recruiter-friendly with demo credentials.
-- [ ] Overview explains the Admin value proposition clearly.
-- [ ] Entities page demonstrates trusted actor governance.
-- [ ] Events page demonstrates valid, invalid, and unauthorized integrity states.
-- [ ] Compliance export works for the canonical scenario.
-- [ ] Admin links to the matching Consumer demo asset.
-- [ ] Admin root route provides a clear entry point.
-- [ ] Seeded data restores the canonical scenario.
-- [ ] Admin copy contains no unsupported claims.
-- [ ] Accessibility and UI token standards are preserved.
-- [ ] Build, test, and lint pass for Admin.
-- [ ] A recruiter can understand and test the Admin app without private explanation.
+- [x] `apps/admin/TASKS.md` reflects this Phase 8 roadmap.
+- [x] Demo mode is visible across the Admin experience.
+- [x] Login is recruiter-friendly with demo credentials.
+- [x] Overview explains the Admin value proposition clearly.
+- [x] Entities page demonstrates trusted actor governance.
+- [x] Events page demonstrates valid, invalid, and unauthorized integrity states.
+- [x] Compliance export works for the canonical scenario.
+- [x] Admin links to the matching Consumer demo asset.
+- [x] Admin root route provides a clear entry point.
+- [x] Seeded data restores the canonical scenario.
+- [x] Admin copy contains no unsupported claims.
+- [x] Accessibility and UI token standards are preserved.
+- [x] Build, test, and lint pass for Admin.
+- [x] A recruiter can understand and test the Admin app without private explanation.
 
 ---
 
