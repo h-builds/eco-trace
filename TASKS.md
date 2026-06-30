@@ -97,16 +97,16 @@ Create or identify a unified entry point that routes recruiters into both applic
 
 ### Tasks
 
-- [ ] Create `docs/case-study.md`.
-- [ ] Cover: business problem, architecture decisions, trade-offs, validation approach.
-- [ ] Explain why Admin and Consumer are separate apps.
-- [ ] Explain Go/Wasm trust boundary design.
-- [ ] Add `Why this matters in 2026` section focused on enterprise verification.
-- [ ] Add collaborator credits.
+- [x] Create `docs/case-study.md`.
+- [x] Cover: business problem, architecture decisions, trade-offs, validation approach.
+- [x] Explain why Admin and Consumer are separate apps.
+- [x] Explain Go/Wasm trust boundary design.
+- [x] Add `Why this matters in 2026` section focused on enterprise verification.
+- [x] Add collaborator credits.
 
 ### Exit Criteria
 
-- [ ] The case study explains the architecture without requiring repository exploration.
+- [x] The case study explains the architecture without requiring repository exploration.
 
 ---
 
