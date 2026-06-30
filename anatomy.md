@@ -196,8 +196,13 @@
 │       ├── tsconfig.json
 │       └── wrangler.toml
 ├── docs
-│   └── demo
-│       └── truth-and-scope.md
+│   ├── architecture-flow.md
+│   ├── case-study.md
+│   ├── demo
+│   │   ├── demo-scenario.md
+│   │   ├── recruiter-script.md
+│   │   └── truth-and-scope.md
+│   └── validation.md
 ├── package.json
 ├── packages
 │   ├── engine
@@ -232,4 +237,4 @@
 ├── pnpm-workspace.yaml
 └── turbo.json
 
-64 directories, 168 files
+64 directories, 173 files
