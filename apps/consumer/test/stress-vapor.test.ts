@@ -46,8 +46,10 @@ describe('Vapor Mode Stress Test', () => {
             actor_id: `actor-${i}`,
             timestamp: new Date().toISOString(),
             action_type: 'TRANSFORM',
-            energy_kwh: 100,
-            emission_factor: 0.5,
+            esg_metadata: {
+              energy_kwh: 100,
+              emission_factor: 0.5
+            },
             signature: `sig-${i}`,
             public_key: `pub-${i}`,
             integrity_status: 'VALID'

@@ -86,16 +86,17 @@ const handleReset = () => {
       </p>
     </div>
 
-    <main class="max-w-7xl mx-auto px-4 md:px-8 pt-20 pb-16">
+    <div v-if="currentView === 'scanner'" class="pt-16">
+      <DemoModeBanner class="max-w-7xl mx-auto px-4 md:px-8 mb-0 shadow-subtle" />
+      <ScannerView @scan="handleScan" />
+    </div>
+
+    <main v-else class="max-w-7xl mx-auto px-4 md:px-8 pt-20 pb-16">
       <DemoModeBanner class="mb-8 rounded-sm shadow-subtle" />
       <LandingPage
         v-if="currentView === 'landing'"
         @navigate="navigate"
         @demo-product="handleScan(SCENARIO_METADATA.assetId)"
-      />
-      <ScannerView
-        v-else-if="currentView === 'scanner'"
-        @scan="handleScan"
       />
       <TransparencyScreen
         v-else-if="currentView === 'transparency' && activeAssetId"

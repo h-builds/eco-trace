@@ -14,10 +14,10 @@ const calculationResult = computed(() => {
   if (!isReady.value) return { result: 0, error: 'Engine not ready' };
   
   const entries = props.events
-    .filter(e => e.energy_kwh != null && e.emission_factor != null)
+    .filter(e => e.esg_metadata?.energy_kwh != null && e.esg_metadata?.emission_factor != null)
     .map(e => ({
-      energy_kwh: Number(e.energy_kwh),
-      emission_factor: Number(e.emission_factor)
+      energy_kwh: Number(e.esg_metadata.energy_kwh),
+      emission_factor: Number(e.esg_metadata.emission_factor)
     }));
     
   return calculateFootprint(entries);
@@ -28,7 +28,7 @@ const calculationResult = computed(() => {
   <div class="bg-surface-card p-4 rounded-md shadow-subtle border border-surface-border">
     <div class="flex items-center justify-between mb-2">
       <h3 class="text-md font-medium text-brand-deep-charcoal">Carbon Footprint</h3>
-      <span class="bp-chip text-[10px]">{{ UI_CONSTANTS.DEMO_DATA_ONLY }}</span>
+      <span class="text-[10px] border border-surface-border rounded-md px-1 text-[10px]">{{ UI_CONSTANTS.DEMO_DATA_ONLY }}</span>
     </div>
 
     <p class="text-xs text-functional-neutral mb-3 leading-relaxed">
@@ -44,8 +44,8 @@ const calculationResult = computed(() => {
         v-for="(event, idx) in events"
         :key="idx"
       >
-        <span v-if="event.energy_kwh !== undefined && event.emission_factor !== undefined">
-          + ({{ event.energy_kwh }} × {{ event.emission_factor }})
+        <span v-if="event.esg_metadata?.energy_kwh !== undefined && event.esg_metadata?.emission_factor !== undefined">
+          + ({{ event.esg_metadata.energy_kwh }} × {{ event.esg_metadata.emission_factor }})
         </span>
       </div>
     </div>

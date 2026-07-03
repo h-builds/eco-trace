@@ -55,8 +55,10 @@ interface EventCreateDTO {
   actor_id: string;
   timestamp: string;
   action_type: string;
-  energy_kwh: number;
-  emission_factor: number;
+  esg_metadata: {
+    energy_kwh: number;
+    emission_factor: number;
+  };
   signature: string;
   public_key: string;
   integrity_status: string;
@@ -108,13 +110,13 @@ export async function GET(request: NextRequest) {
       actor_id: row.actor_id,
       timestamp: row.timestamp,
       action_type: row.action_type,
-      actor: row.actor_id,
-      action: row.action_type,
-      energyKwh: row.energy_kwh,
-      emissionFactor: row.emission_factor,
-      status: row.integrity_status,
+      esg_metadata: {
+        energy_kwh: row.energy_kwh,
+        emission_factor: row.emission_factor,
+      },
       signature: row.signature,
-      publicKey: row.public_key,
+      public_key: row.public_key,
+      integrity_status: row.integrity_status,
     }));
     
     if (assetIdParam && events.length === 0) {
@@ -139,16 +141,24 @@ export async function POST(request: NextRequest) {
 
     const rawPayload = (await request.json()) as Partial<EventCreateDTO>;
     
-    const requiredFields: (keyof EventCreateDTO)[] = [
+    const requiredFields: (keyof Omit<EventCreateDTO, "esg_metadata">)[] = [
       "id", "event_id", "asset_id", "actor_id", "timestamp", 
-      "action_type", "energy_kwh", "emission_factor", 
-      "signature", "public_key", "integrity_status"
+      "action_type", "signature", "public_key", "integrity_status"
     ];
     
     for (const field of requiredFields) {
       if (rawPayload[field] === undefined || rawPayload[field] === null) {
         return NextResponse.json({ error: `Missing required field: ${field}` }, { status: 400, headers: corsHeaders });
       }
+    }
+
+    if (
+      !rawPayload.esg_metadata || 
+      typeof rawPayload.esg_metadata !== "object" ||
+      rawPayload.esg_metadata.energy_kwh === undefined || 
+      rawPayload.esg_metadata.emission_factor === undefined
+    ) {
+      return NextResponse.json({ error: "Missing or invalid required field: esg_metadata" }, { status: 400, headers: corsHeaders });
     }
 
     const payload = rawPayload as EventCreateDTO;
@@ -165,8 +175,8 @@ export async function POST(request: NextRequest) {
       payload.actor_id,
       payload.timestamp,
       payload.action_type,
-      payload.energy_kwh,
-      payload.emission_factor,
+      payload.esg_metadata.energy_kwh,
+      payload.esg_metadata.emission_factor,
       payload.signature,
       payload.public_key,
       payload.integrity_status

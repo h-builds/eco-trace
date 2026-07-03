@@ -13,21 +13,21 @@ const viewLedgerHover = ref(false);
 <template>
   <section
     class="w-full"
-    style="border-bottom: 1px solid var(--outline-bp-ghost);"
+    style="border-bottom: 1px solid var(--color-surface-border);"
   >
     <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pb-16">
       <div class="lg:col-span-8 space-y-8">
         <div
           class="inline-flex items-center gap-3 px-3 py-1"
-          style="background-color: var(--color-bp-tertiary-container);"
+          style="background-color: var(--color-brand-integrity-green);"
         >
           <span
-            class="w-2 h-2 bg-[--color-bp-success]"
+            class="w-2 h-2 bg-brand-verification-green"
             style="box-shadow: 0 0 8px rgba(40,122,51,0.5);"
           />
           <span
             class="font-mono text-[10px] uppercase tracking-widest font-bold"
-            style="color: var(--color-bp-on-tertiary-container);"
+            style="color: #ffffff;"
           >
             Edge Node: Connected
           </span>
@@ -35,15 +35,15 @@ const viewLedgerHover = ref(false);
 
         <h1
           class="font-['Space_Grotesk'] text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] uppercase italic"
-          style="color: var(--color-bp-on-surface);"
+          style="color: var(--color-brand-deep-charcoal);"
         >
           Product claims, <br />
-          <span style="color: var(--color-bp-primary);">verified.</span>
+          <span style="color: var(--color-brand-deep-charcoal);">verified.</span>
         </h1>
         
         <p
           class="font-mono text-sm leading-relaxed"
-          style="color: var(--color-bp-on-surface-variant); max-width: 480px;"
+          style="color: var(--color-functional-neutral); max-width: 480px;"
         >
           A public verification surface for a two-app enterprise trust architecture.
         </p>
@@ -51,7 +51,7 @@ const viewLedgerHover = ref(false);
         <div class="flex flex-col sm:flex-row gap-4">
           <button
             id="cta-use-demo-product"
-            class="cta-primary w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest text-[color:var(--color-bp-on-primary-container)] flex items-center justify-center gap-3 hover:opacity-90 active:scale-95 transition-all cursor-pointer"
+            class="cta-primary w-full sm:w-auto px-6 py-3 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest text-[color:#ffffff] flex items-center justify-center gap-3 hover:opacity-90 active:scale-95 transition-all cursor-pointer"
             @click="$emit('demoProduct')"
           >
             <svg
@@ -71,10 +71,10 @@ const viewLedgerHover = ref(false);
 
           <button
             id="cta-launch-scanner"
-            class="w-full sm:w-auto px-8 py-4 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest transition-colors flex items-center justify-center gap-3 cursor-pointer"
+            class="w-full sm:w-auto px-6 py-3 font-['Space_Grotesk'] font-bold text-sm uppercase tracking-widest transition-colors flex items-center justify-center gap-3 cursor-pointer"
             :style="{
-              border: '1px solid var(--color-bp-primary)',
-              color: 'var(--color-bp-primary)',
+              border: '1px solid var(--color-brand-deep-charcoal)',
+              color: 'var(--color-brand-deep-charcoal)',
               backgroundColor: viewLedgerHover ? 'rgba(142,213,180,0.1)' : 'transparent'
             }"
             @mouseover="viewLedgerHover = true"
@@ -114,7 +114,7 @@ const viewLedgerHover = ref(false);
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest hover:underline transition-all"
-            style="color: var(--color-bp-primary);"
+            style="color: var(--color-brand-deep-charcoal);"
           >
             Open Auditor Workstation
             <svg
@@ -137,7 +137,7 @@ const viewLedgerHover = ref(false);
 
       <div
         class="hidden md:block lg:col-span-4 aspect-square bg-white overflow-hidden group"
-        style="border: 1px solid var(--outline-bp-ghost);"
+        style="border: 1px solid var(--color-surface-border);"
       >
         <img
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcjp2OswkdUAjvl_uLAILrUDQAWm-lmyvtFSbtEZd4vRubV1vBx8EVUllI72DH7rOOMaBLVltEMJOzUuTb_jQPJ4vKpLoh5qGn4FnaAgTBxF_za3Cyjc9-hWqh-PUmY9mt0oKlJ9HMkV1r2UUaFj05EYAevzFv4v1YOUg3eyLW5GPfc0dJ1FyZQQNIYcbCUFQ3c6nGnM55x6Q3mmPdgHbmuklQiDSfKUd0xZa_i9eaakvMbujDRVVLJz1v2ibNGsYn8-VJb0v8pF4"
@@ -151,7 +151,7 @@ const viewLedgerHover = ref(false);
 
 <style scoped>
 .cta-primary {
-  background: var(--gradient-bp-integrity);
+  background: var(--color-brand-deep-charcoal);
   position: relative;
 }
 .cta-primary::after {

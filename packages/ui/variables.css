@@ -1,4 +1,4 @@
-@theme inline {
+@theme {
   /* Brand Colors */
   --color-brand-deep-charcoal: #1A1C1E;
   --color-brand-integrity-green: #8ED5B4;
@@ -13,7 +13,9 @@
   --color-surface-canvas: #F8F9FA;
   --color-surface-card: #FFFFFF;
   --color-surface-border: #E0E0E0;
+}
 
+:root {
   /* Typography */
   --font-family-base: Inter, system-ui, sans-serif;
   --font-size-base: 16px;

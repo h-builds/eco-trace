@@ -21,8 +21,10 @@ describe('G08: Validation Latency SLA', () => {
             asset_id: "A1",
             actor_id: "actor1",
             stage: "MANUFACTURING",
-            energy_kwh: 100,
-            emission_factor: 0.5,
+            esg_metadata: {
+              energy_kwh: 100,
+              emission_factor: 0.5
+            },
             timestamp: new Date().toISOString(),
             signature: "sig1",
             public_key: "pub1"
@@ -67,7 +69,7 @@ describe('G08: Validation Latency SLA', () => {
     
     expect(integRes.status).toBe('VALID');
     const formulaEntries = [
-      { energy_kwh: Number(event.energy_kwh), emission_factor: Number(event.emission_factor) }
+      { energy_kwh: Number((event as any).esg_metadata.energy_kwh), emission_factor: Number((event as any).esg_metadata.emission_factor) }
     ];
     const fpRes = globalThis.calculateFootprint(formulaEntries);
     expect(fpRes.result).toBe(50);

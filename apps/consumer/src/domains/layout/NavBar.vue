@@ -57,36 +57,36 @@ const ADMIN_URL = getAdminUrl();
   top: 0;
   left: 0;
   right: 0;
-  z-index: var(--z-bp-nav);
+  z-index: 50;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   width: 100%;
-  padding: var(--spacing-bp-2) var(--spacing-bp-4);
+  padding: 0.5rem 1rem;
 
-  background-color: var(--color-bp-surface-glass);
-  backdrop-filter: blur(var(--blur-bp-nav));
-  -webkit-backdrop-filter: blur(var(--blur-bp-nav));
+  background-color: rgba(248,249,250,0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
-  border-bottom: 1px solid var(--outline-bp-ghost);
+  border-bottom: 1px solid var(--color-surface-border);
 }
 
 .nav-wordmark {
-  font-family: var(--font-bp-display);
+  font-family: var(--font-family-base);
   font-size: 1.25rem;
-  font-weight: var(--font-weight-bp-bold);
-  letter-spacing: var(--tracking-bp-tight);
+  font-weight: 700;
+  letter-spacing: -0.025em;
   text-transform: uppercase;
-  color: var(--color-bp-primary);
+  color: var(--color-brand-deep-charcoal);
 
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
 
-  transition: var(--transition-bp-colors);
+  transition: all 0.15s ease;
 }
 
 .nav-wordmark:hover {
@@ -96,7 +96,7 @@ const ADMIN_URL = getAdminUrl();
 .nav-dashboard-group {
   display: flex;
   align-items: center;
-  gap: var(--spacing-bp-2);
+  gap: 0.5rem;
 }
 
 .nav-dashboard-group .nav-link-primary {
@@ -110,18 +110,18 @@ const ADMIN_URL = getAdminUrl();
 }
 
 .nav-link-primary {
-  font-family: var(--font-bp-display);
-  font-size: var(--font-size-bp-sm);
-  font-weight: var(--font-weight-bp-bold);
-  letter-spacing: var(--tracking-bp-tight);
+  font-family: var(--font-family-base);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
   text-transform: uppercase;
-  color: var(--color-bp-primary);
+  color: var(--color-brand-deep-charcoal);
   text-decoration: none;
 
-  border-bottom: 2px solid var(--color-bp-primary);
+  border-bottom: 2px solid var(--color-brand-deep-charcoal);
   padding-bottom: 0.25rem;
 
-  transition: var(--transition-bp-colors);
+  transition: all 0.15s ease;
 }
 
 .nav-link-primary:hover {
@@ -131,7 +131,7 @@ const ADMIN_URL = getAdminUrl();
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: var(--spacing-bp-4);
+  gap: 1rem;
 }
 
 .nav-icon-btn {
@@ -139,8 +139,8 @@ const ADMIN_URL = getAdminUrl();
   align-items: center;
   justify-content: center;
 
-  padding: var(--spacing-bp-2);
-  color: var(--color-bp-on-surface-variant);
+  padding: 0.5rem;
+  color: var(--color-functional-neutral);
   opacity: 0.60;
 
   background: none;
@@ -149,12 +149,12 @@ const ADMIN_URL = getAdminUrl();
   text-decoration: none;
 
   transition:
-    background-color var(--duration-bp-fast) var(--ease-bp-standard),
-    transform var(--duration-bp-instant) var(--ease-bp-standard);
+    background-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-icon-btn:hover {
-  background-color: var(--color-bp-surface-container-high);
+  background-color: var(--color-surface-border);
 }
 
 .nav-icon-btn:active {

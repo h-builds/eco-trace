@@ -1,4 +1,10 @@
-import { EventsApiResponse } from "./types";
+import {
+  EventsApiResponse,
+  BackendEventDto,
+  SupplyChainEvent,
+  ActionType,
+  IntegrityStatus,
+} from "./types";
 
 export const API_BASE_URL = import.meta.env.VITE_API_URL || "/api";
 
@@ -12,12 +18,16 @@ export class ApiError extends Error {
   }
 }
 
-export async function fetchEvents(assetId?: string): Promise<EventsApiResponse> {
+export async function fetchEvents(
+  assetId?: string,
+): Promise<EventsApiResponse> {
   const isAbsoluteUrl = API_BASE_URL.startsWith("http");
-  const baseUrl = isAbsoluteUrl 
-    ? API_BASE_URL 
-    : (typeof window !== "undefined" ? window.location.origin + API_BASE_URL : "http://localhost" + API_BASE_URL);
-  
+  const baseUrl = isAbsoluteUrl
+    ? API_BASE_URL
+    : typeof window !== "undefined"
+      ? window.location.origin + API_BASE_URL
+      : "http://localhost" + API_BASE_URL;
+
   const url = new URL(`${baseUrl}/events`);
   if (assetId) {
     url.searchParams.append("asset_id", assetId);
@@ -28,33 +38,102 @@ export async function fetchEvents(assetId?: string): Promise<EventsApiResponse> 
     response = await fetch(url.toString(), {
       method: "GET",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
       },
     });
   } catch (err: unknown) {
     console.error("Network failure during fetchEvents:", err);
-    throw new ApiError("A network error occurred while reaching the server. Please check your connection.", 0);
+    throw new ApiError(
+      "A network error occurred while reaching the server. Please check your connection.",
+      0,
+    );
   }
 
   if (!response.ok) {
     let errorMessage = `API request failed with status ${response.status}`;
     try {
       const errorBody = await response.json();
-      if (typeof errorBody === "object" && errorBody !== null && "error" in errorBody) {
+      if (
+        typeof errorBody === "object" &&
+        errorBody !== null &&
+        "error" in errorBody
+      ) {
         errorMessage = errorBody.error as string;
       }
     } catch (err: unknown) {
       console.error("Failed to parse backend error response:", err);
       errorMessage = "The server returned an invalid response format.";
     }
-    
-    console.error(`Traceable Backend Failure: [${response.status}] ${errorMessage}`);
-    
+
+    console.error(
+      `Traceable Backend Failure: [${response.status}] ${errorMessage}`,
+    );
+
     if (response.status >= 500) {
-      throw new ApiError("An internal server error occurred while retrieving event history.", response.status);
+      throw new ApiError(
+        "An internal server error occurred while retrieving event history.",
+        response.status,
+      );
     }
     throw new ApiError(errorMessage, response.status);
   }
 
-  return response.json();
+  const rawEvents = (await response.json()) as unknown;
+  if (!Array.isArray(rawEvents)) {
+    throw new ApiError(
+      "The server returned an invalid response format: expected an array.",
+      response.status,
+    );
+  }
+
+  const events: SupplyChainEvent[] = [];
+  for (const item of rawEvents) {
+    if (typeof item !== "object" || item === null) {
+      throw new ApiError(
+        "The server returned an invalid event object.",
+        response.status,
+      );
+    }
+    const dto = item as BackendEventDto;
+
+    // Map action type safely
+    let action_type: ActionType = "ORIGIN";
+    if (
+      dto.action_type === "ORIGIN" ||
+      dto.action_type === "TRANSFORM" ||
+      dto.action_type === "TRANSPORT" ||
+      dto.action_type === "AUDIT"
+    ) {
+      action_type = dto.action_type;
+    }
+
+    // Map integrity status safely
+    let integrity_status: IntegrityStatus = "VALID";
+    if (
+      dto.integrity_status === "VALID" ||
+      dto.integrity_status === "WARNING" ||
+      dto.integrity_status === "INVALID" ||
+      dto.integrity_status === "UNAUTHORIZED"
+    ) {
+      integrity_status = dto.integrity_status;
+    }
+
+    events.push({
+      id: dto.id ?? "",
+      event_id: dto.event_id ?? "",
+      asset_id: dto.asset_id ?? "",
+      actor_id: dto.actor_id ?? "",
+      timestamp: dto.timestamp ?? "",
+      action_type,
+      esg_metadata: {
+        energy_kwh: dto.esg_metadata?.energy_kwh ?? 0,
+        emission_factor: dto.esg_metadata?.emission_factor ?? 0,
+      },
+      signature: dto.signature ?? "",
+      public_key: dto.public_key ?? "",
+      integrity_status,
+    });
+  }
+
+  return events;
 }

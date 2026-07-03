@@ -14,11 +14,23 @@ export interface SupplyChainEvent {
   actor_id: string;
   timestamp: string;
   action_type: ActionType;
-  energy_kwh: number;
-  emission_factor: number;
+  esg_metadata: EsgMetadata;
   signature: string;
   public_key: string;
   integrity_status: IntegrityStatus;
+}
+
+export interface BackendEventDto {
+  id?: string;
+  event_id?: string;
+  asset_id?: string;
+  actor_id?: string;
+  timestamp?: string;
+  action_type?: string;
+  esg_metadata?: EsgMetadata;
+  signature?: string;
+  public_key?: string;
+  integrity_status?: string;
 }
 
 export type EventsApiResponse = SupplyChainEvent[];
@@ -27,4 +39,9 @@ export interface EventsApiError {
   error: string;
 }
 
-export type EventHistoryState = 'idle' | 'loading' | 'success' | 'empty' | 'error';
+export type EventHistoryState =
+  | "idle"
+  | "loading"
+  | "success"
+  | "empty"
+  | "error";

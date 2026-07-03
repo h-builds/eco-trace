@@ -11,22 +11,22 @@ const props = withDefaults(defineProps<{
 const badgeStyle = computed(() => {
   switch (props.status) {
     case 'VALID':
-      return 'bg-brand-verification-green/10 text-brand-verification-green border-brand-verification-green';
+      return 'bg-brand-verification-green text-white border-brand-verification-green';
     case 'INVALID':
     case 'UNAUTHORIZED':
-      return 'bg-functional-alert/10 text-functional-alert border-functional-alert';
+      return 'bg-functional-alert text-white border-functional-alert';
     case 'WARNING':
-      return 'bg-functional-pending/10 text-functional-pending border-functional-pending';
+      return 'bg-functional-pending text-white border-functional-pending';
     default:
-      return 'bg-functional-neutral/10 text-functional-neutral border-functional-neutral';
+      return 'bg-functional-neutral text-white border-functional-neutral';
   }
 });
 </script>
 
 <template>
-  <div class="flex flex-col items-start gap-1">
+  <div class="flex flex-col gap-1">
     <div
-      class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-pill border text-sm font-medium"
+      class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs font-bold"
       :class="badgeStyle"
     >
       <svg
@@ -86,7 +86,7 @@ const badgeStyle = computed(() => {
       />
     </svg>
 
-    <span>{{ status }}</span>
+    <span class="font-mono uppercase tracking-widest">{{ status }}</span>
     </div>
     
     <p
