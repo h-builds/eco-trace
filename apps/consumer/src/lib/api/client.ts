@@ -1,4 +1,10 @@
-import { EventsApiResponse } from "./types";
+import {
+  EventsApiResponse,
+  BackendEventDto,
+  SupplyChainEvent,
+  ActionType,
+  IntegrityStatus,
+} from "./types";
 
 export const API_BASE_URL = import.meta.env.VITE_API_URL || "/api";
 
@@ -12,12 +18,16 @@ export class ApiError extends Error {
   }
 }
 
-export async function fetchEvents(assetId?: string): Promise<EventsApiResponse> {
+export async function fetchEvents(
+  assetId?: string,
+): Promise<EventsApiResponse> {
   const isAbsoluteUrl = API_BASE_URL.startsWith("http");
-  const baseUrl = isAbsoluteUrl 
-    ? API_BASE_URL 
-    : (typeof window !== "undefined" ? window.location.origin + API_BASE_URL : "http://localhost" + API_BASE_URL);
-  
+  const baseUrl = isAbsoluteUrl
+    ? API_BASE_URL
+    : typeof window !== "undefined"
+      ? window.location.origin + API_BASE_URL
+      : "http://localhost" + API_BASE_URL;
+
   const url = new URL(`${baseUrl}/events`);
   if (assetId) {
     url.searchParams.append("asset_id", assetId);
@@ -28,40 +38,102 @@ export async function fetchEvents(assetId?: string): Promise<EventsApiResponse> 
     response = await fetch(url.toString(), {
       method: "GET",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
       },
     });
   } catch (err: unknown) {
     console.error("Network failure during fetchEvents:", err);
-    throw new ApiError("A network error occurred while reaching the server. Please check your connection.", 0);
+    throw new ApiError(
+      "A network error occurred while reaching the server. Please check your connection.",
+      0,
+    );
   }
 
   if (!response.ok) {
     let errorMessage = `API request failed with status ${response.status}`;
     try {
       const errorBody = await response.json();
-      if (typeof errorBody === "object" && errorBody !== null && "error" in errorBody) {
+      if (
+        typeof errorBody === "object" &&
+        errorBody !== null &&
+        "error" in errorBody
+      ) {
         errorMessage = errorBody.error as string;
       }
     } catch (err: unknown) {
       console.error("Failed to parse backend error response:", err);
       errorMessage = "The server returned an invalid response format.";
     }
-    
-    console.error(`Traceable Backend Failure: [${response.status}] ${errorMessage}`);
-    
+
+    console.error(
+      `Traceable Backend Failure: [${response.status}] ${errorMessage}`,
+    );
+
     if (response.status >= 500) {
-      throw new ApiError("An internal server error occurred while retrieving event history.", response.status);
+      throw new ApiError(
+        "An internal server error occurred while retrieving event history.",
+        response.status,
+      );
     }
     throw new ApiError(errorMessage, response.status);
   }
 
-  const rawEvents = await response.json() as any[];
-  return rawEvents.map((event: any) => ({
-    ...event,
-    energy_kwh: event.energyKwh ?? event.energy_kwh,
-    emission_factor: event.emissionFactor ?? event.emission_factor,
-    integrity_status: event.status ?? event.integrity_status,
-    public_key: event.publicKey ?? event.public_key,
-  })) as EventsApiResponse;
+  const rawEvents = (await response.json()) as unknown;
+  if (!Array.isArray(rawEvents)) {
+    throw new ApiError(
+      "The server returned an invalid response format: expected an array.",
+      response.status,
+    );
+  }
+
+  const events: SupplyChainEvent[] = [];
+  for (const item of rawEvents) {
+    if (typeof item !== "object" || item === null) {
+      throw new ApiError(
+        "The server returned an invalid event object.",
+        response.status,
+      );
+    }
+    const dto = item as BackendEventDto;
+
+    // Map action type safely
+    const rawAction = dto.action_type ?? dto.actionType;
+    let action_type: ActionType = "ORIGIN";
+    if (
+      rawAction === "ORIGIN" ||
+      rawAction === "TRANSFORM" ||
+      rawAction === "TRANSPORT" ||
+      rawAction === "AUDIT"
+    ) {
+      action_type = rawAction;
+    }
+
+    // Map integrity status safely
+    const rawStatus = dto.integrity_status ?? dto.status;
+    let integrity_status: IntegrityStatus = "VALID";
+    if (
+      rawStatus === "VALID" ||
+      rawStatus === "WARNING" ||
+      rawStatus === "INVALID" ||
+      rawStatus === "UNAUTHORIZED"
+    ) {
+      integrity_status = rawStatus;
+    }
+
+    events.push({
+      id: dto.id ?? "",
+      event_id: dto.event_id ?? dto.eventId ?? "",
+      asset_id: dto.asset_id ?? dto.assetId ?? "",
+      actor_id: dto.actor_id ?? dto.actorId ?? "",
+      timestamp: dto.timestamp ?? "",
+      action_type,
+      energy_kwh: dto.energy_kwh ?? dto.energyKwh ?? 0,
+      emission_factor: dto.emission_factor ?? dto.emissionFactor ?? 0,
+      signature: dto.signature ?? "",
+      public_key: dto.public_key ?? dto.publicKey ?? "",
+      integrity_status,
+    });
+  }
+
+  return events;
 }
