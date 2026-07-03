@@ -7,21 +7,21 @@ import { DemoScenario } from "../../../lib/demoScenario";
 import { getConsumerProductUrl, isConsumerUrlConfigured } from "../../../lib/consumer";
 export interface SupplyChainEvent {
   id: string;
-  actor: string;
-  action: string;
-  energyKwh: number;
-  emissionFactor: number;
-  status: "VALID" | "WARNING" | "INVALID" | "PENDING" | "UNAUTHORIZED";
-  signature: string;
-  publicKey: string;
   event_id: string;
   asset_id: string;
   actor_id: string;
   timestamp: string;
   action_type: string;
+  esg_metadata: {
+    energy_kwh: number;
+    emission_factor: number;
+  };
+  signature: string;
+  public_key: string;
+  integrity_status: "VALID" | "WARNING" | "INVALID" | "PENDING" | "UNAUTHORIZED";
 }
 
-const getReadableActionLabel = (action: string, status: SupplyChainEvent["status"]) => {
+const getReadableActionLabel = (action: string, status: SupplyChainEvent["integrity_status"]) => {
   if (status === "INVALID") return "Tamper attempt detected";
   if (status === "UNAUTHORIZED") return "Unauthorized actor blocked";
   switch(action) {
@@ -36,7 +36,7 @@ const getReadableActionLabel = (action: string, status: SupplyChainEvent["status
 export default function EventLogPage() {
   const [events, setEvents] = useState<SupplyChainEvent[]>([]);
   const [footprints, setFootprints] = useState<Record<string, number>>({});
-  const [validityStatuses, setValidityStatuses] = useState<Record<string, SupplyChainEvent["status"]>>({});
+  const [validityStatuses, setValidityStatuses] = useState<Record<string, SupplyChainEvent["integrity_status"]>>({});
   const [toastMsg, setToastMsg] = useState<{ message: string; type: "success" | "error" | "warning" } | null>(null);
   
   const [filter, setFilter] = useState<"ALL" | "INVALID" | "UNAUTHORIZED">("ALL");
@@ -65,29 +65,19 @@ export default function EventLogPage() {
     if (isEngineReady && !error && events.length > 0) {
       startTransition(() => {
         const newFootprints: Record<string, number> = {};
-        const newStatuses: Record<string, SupplyChainEvent["status"]> = {};
+        const newStatuses: Record<string, SupplyChainEvent["integrity_status"]> = {};
         
         events.forEach((event: SupplyChainEvent) => {
           const footprintCalculation = calculateFootprint([
-            { energy_kwh: event.energyKwh, emission_factor: event.emissionFactor }
+            { energy_kwh: event.esg_metadata.energy_kwh, emission_factor: event.esg_metadata.emission_factor }
           ]);
           if (!footprintCalculation.error) {
             newFootprints[event.id] = footprintCalculation.result;
           }
 
-          const verificationPayload = {
-            event_id: event.event_id,
-            asset_id: event.asset_id,
-            actor_id: event.actor_id,
-            timestamp: event.timestamp,
-            action_type: event.action_type,
-            esg_metadata: {
-              energy_kwh: event.energyKwh,
-              emission_factor: event.emissionFactor
-            }
-          };
+          const { signature, public_key, integrity_status, ...verificationPayload } = event;
 
-          const integrityVerification = verifyIntegrity(verificationPayload, event.signature, event.publicKey);
+          const integrityVerification = verifyIntegrity(verificationPayload, event.signature, event.public_key);
           
           if (integrityVerification.status === "VALID") {
             newStatuses[event.id] = "VALID";
@@ -114,7 +104,7 @@ export default function EventLogPage() {
     if (!isEngineReady) return;
     showToast("Auditing & Persisting fraud attempt...", "warning");
 
-    const tamperedEnergy = event.energyKwh + 1;
+    const tamperedEnergy = event.esg_metadata.energy_kwh + 1;
     const ts = new Date().toISOString();
     
     const fraudPayloadForWasm = {
@@ -123,10 +113,10 @@ export default function EventLogPage() {
       actor_id: event.actor_id,
       timestamp: ts,
       action_type: event.action_type,
-      esg_metadata: { energy_kwh: tamperedEnergy, emission_factor: event.emissionFactor }
+      esg_metadata: { energy_kwh: tamperedEnergy, emission_factor: event.esg_metadata.emission_factor }
     };
 
-    const tamperedVerification = verifyIntegrity(fraudPayloadForWasm, event.signature, event.publicKey);
+    const tamperedVerification = verifyIntegrity(fraudPayloadForWasm, event.signature, event.public_key);
 
     const persistencePayload = {
       id: crypto.randomUUID(),
@@ -135,10 +125,12 @@ export default function EventLogPage() {
       actor_id: event.actor_id,
       timestamp: ts,
       action_type: event.action_type,
-      energy_kwh: tamperedEnergy,
-      emission_factor: event.emissionFactor,
+      esg_metadata: {
+        energy_kwh: tamperedEnergy,
+        emission_factor: event.esg_metadata.emission_factor,
+      },
       signature: event.signature,
-      public_key: event.publicKey,
+      public_key: event.public_key,
       integrity_status: tamperedVerification.status
     };
 
@@ -170,7 +162,7 @@ export default function EventLogPage() {
       actor_id: fraudulentActor,
       timestamp: ts,
       action_type: event.action_type,
-      esg_metadata: { energy_kwh: event.energyKwh, emission_factor: event.emissionFactor }
+      esg_metadata: { energy_kwh: event.esg_metadata.energy_kwh, emission_factor: event.esg_metadata.emission_factor }
     };
 
     const impersonationOutcome = generateUntrustedSignature(fraudPayloadForWasm);
@@ -188,8 +180,10 @@ export default function EventLogPage() {
       actor_id: fraudulentActor,
       timestamp: ts,
       action_type: event.action_type,
-      energy_kwh: event.energyKwh,
-      emission_factor: event.emissionFactor,
+      esg_metadata: {
+        energy_kwh: event.esg_metadata.energy_kwh,
+        emission_factor: event.esg_metadata.emission_factor,
+      },
       signature: impersonationOutcome.signature,
       public_key: impersonationOutcome.publicKey,
       integrity_status: spoofedVerification.status
@@ -220,7 +214,7 @@ export default function EventLogPage() {
     groupedEvents[key].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
   });
 
-  const nonValidUniqueIds = new Set(events.filter((e: SupplyChainEvent) => e.status !== "VALID").map((e: SupplyChainEvent) => e.event_id)).size;
+  const nonValidUniqueIds = new Set(events.filter((e: SupplyChainEvent) => e.integrity_status !== "VALID").map((e: SupplyChainEvent) => e.event_id)).size;
 
   return (
     <div className="bg-surface-canvas min-h-screen p-8 font-sans text-brand-deep-charcoal">
@@ -353,9 +347,9 @@ export default function EventLogPage() {
                         <div className="font-bold">{primaryEvent.event_id}</div>
                         <div className="text-xs text-functional-neutral mt-1">LOG ID: {primaryEvent.id.substring(0,8)}...</div>
                       </td>
-                      <td className="p-3 text-base font-mono text-ellipsis overflow-hidden whitespace-nowrap max-w-[120px]" title={primaryEvent.actor_id}>{primaryEvent.actor}</td>
-                      <td className="p-3 text-base">{getReadableActionLabel(primaryEvent.action, currentStatus)}</td>
-                      <td className="p-3 text-base">{primaryEvent.energyKwh}</td>
+                      <td className="p-3 text-base font-mono text-ellipsis overflow-hidden whitespace-nowrap max-w-[120px]" title={primaryEvent.actor_id}>{primaryEvent.actor_id}</td>
+                      <td className="p-3 text-base">{getReadableActionLabel(primaryEvent.action_type, currentStatus)}</td>
+                      <td className="p-3 text-base">{primaryEvent.esg_metadata.energy_kwh}</td>
                       <td className="p-3 text-base">
                         <div>{footprints[primaryEvent.id] !== undefined ? footprints[primaryEvent.id].toFixed(2) : "Calculating..."}</div>
                         <div className="text-xs mt-1 bg-surface-canvas px-1 py-0.5 rounded-sm inline-block text-functional-neutral">
@@ -400,9 +394,9 @@ export default function EventLogPage() {
                                   return (
                                     <tr key={auditLog.id} className="border-b border-dotted border-surface-border">
                                       <td className="p-2 pl-8 text-sm text-functional-neutral">...{auditLog.id.substring(auditLog.id.length-8)}</td>
-                                      <td className="p-2 text-sm font-mono">{auditLog.actor}</td>
-                                      <td className="p-2 text-sm text-functional-neutral">{getReadableActionLabel(auditLog.action, auditStatus)}</td>
-                                      <td className="p-2 text-sm text-functional-neutral">{auditLog.energyKwh}</td>
+                                      <td className="p-2 text-sm font-mono">{auditLog.actor_id}</td>
+                                      <td className="p-2 text-sm text-functional-neutral">{getReadableActionLabel(auditLog.action_type, auditStatus)}</td>
+                                      <td className="p-2 text-sm text-functional-neutral">{auditLog.esg_metadata.energy_kwh}</td>
                                       <td className="p-2 text-sm text-functional-neutral italic">Persisted at: {new Date(auditLog.timestamp).toLocaleTimeString()}</td>
                                       <td className="p-2 text-sm">
                                         <span className={`inline-block px-2 py-0.5 rounded-full text-white font-bold ${auditStatusBg}`}>

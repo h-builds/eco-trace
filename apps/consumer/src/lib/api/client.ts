@@ -97,40 +97,40 @@ export async function fetchEvents(
     const dto = item as BackendEventDto;
 
     // Map action type safely
-    const rawAction = dto.action_type ?? dto.actionType;
     let action_type: ActionType = "ORIGIN";
     if (
-      rawAction === "ORIGIN" ||
-      rawAction === "TRANSFORM" ||
-      rawAction === "TRANSPORT" ||
-      rawAction === "AUDIT"
+      dto.action_type === "ORIGIN" ||
+      dto.action_type === "TRANSFORM" ||
+      dto.action_type === "TRANSPORT" ||
+      dto.action_type === "AUDIT"
     ) {
-      action_type = rawAction;
+      action_type = dto.action_type;
     }
 
     // Map integrity status safely
-    const rawStatus = dto.integrity_status ?? dto.status;
     let integrity_status: IntegrityStatus = "VALID";
     if (
-      rawStatus === "VALID" ||
-      rawStatus === "WARNING" ||
-      rawStatus === "INVALID" ||
-      rawStatus === "UNAUTHORIZED"
+      dto.integrity_status === "VALID" ||
+      dto.integrity_status === "WARNING" ||
+      dto.integrity_status === "INVALID" ||
+      dto.integrity_status === "UNAUTHORIZED"
     ) {
-      integrity_status = rawStatus;
+      integrity_status = dto.integrity_status;
     }
 
     events.push({
       id: dto.id ?? "",
-      event_id: dto.event_id ?? dto.eventId ?? "",
-      asset_id: dto.asset_id ?? dto.assetId ?? "",
-      actor_id: dto.actor_id ?? dto.actorId ?? "",
+      event_id: dto.event_id ?? "",
+      asset_id: dto.asset_id ?? "",
+      actor_id: dto.actor_id ?? "",
       timestamp: dto.timestamp ?? "",
       action_type,
-      energy_kwh: dto.energy_kwh ?? dto.energyKwh ?? 0,
-      emission_factor: dto.emission_factor ?? dto.emissionFactor ?? 0,
+      esg_metadata: {
+        energy_kwh: dto.esg_metadata?.energy_kwh ?? 0,
+        emission_factor: dto.esg_metadata?.emission_factor ?? 0,
+      },
       signature: dto.signature ?? "",
-      public_key: dto.public_key ?? dto.publicKey ?? "",
+      public_key: dto.public_key ?? "",
       integrity_status,
     });
   }

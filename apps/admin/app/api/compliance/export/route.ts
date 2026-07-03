@@ -111,8 +111,10 @@ export async function GET(request: NextRequest) {
       actor_id: row.actor_id,
       timestamp: row.timestamp,
       action_type: row.action_type,
-      energy_kwh: row.energy_kwh,
-      emission_factor: row.emission_factor,
+      esg_metadata: {
+        energy_kwh: row.energy_kwh,
+        emission_factor: row.emission_factor,
+      },
       signature: row.signature,
       public_key: row.public_key,
       integrity_status: row.integrity_status

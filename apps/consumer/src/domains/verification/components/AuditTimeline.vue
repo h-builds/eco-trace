@@ -14,15 +14,7 @@ const { verifyIntegrity, isReady } = useWasm();
 const getIntegrity = (event: SupplyChainEvent): WasmIntegrityResult['status'] => {
   if (!isReady.value) return 'PENDING';
   
-  const { signature, public_key, integrity_status, ...rest } = event;
-  
-  const payload = {
-    ...rest,
-    esg_metadata: {
-      energy_kwh: event.energy_kwh,
-      emission_factor: event.emission_factor,
-    }
-  };
+  const { signature, public_key, integrity_status, ...payload } = event;
   
   const integrityResult = verifyIntegrity(payload, event.signature, event.public_key);
   
@@ -98,11 +90,11 @@ const getEventLabel = (type: string) => ACTION_LABELS[type] || type;
           </div>
 
           <div
-            v-if="event.energy_kwh !== undefined && event.emission_factor !== undefined"
+            v-if="event.esg_metadata?.energy_kwh !== undefined && event.esg_metadata?.emission_factor !== undefined"
             class="text-xs bg-surface-canvas p-2 rounded-md border border-surface-border flex justify-between"
           >
-            <span><span class="font-medium">Energy:</span> <span class="font-mono font-medium text-brand-deep-charcoal">{{ event.energy_kwh }} kWh</span></span>
-            <span><span class="font-medium">Intensity:</span> <span class="font-mono font-medium text-brand-deep-charcoal">{{ event.emission_factor }} kgCO2e/kWh</span></span>
+            <span><span class="font-medium">Energy:</span> <span class="font-mono font-medium text-brand-deep-charcoal">{{ event.esg_metadata.energy_kwh }} kWh</span></span>
+            <span><span class="font-medium">Intensity:</span> <span class="font-mono font-medium text-brand-deep-charcoal">{{ event.esg_metadata.emission_factor }} kgCO2e/kWh</span></span>
           </div>
 
           <details class="text-xs mt-2 group">

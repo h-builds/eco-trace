@@ -14,10 +14,10 @@ const calculationResult = computed(() => {
   if (!isReady.value) return { result: 0, error: 'Engine not ready' };
   
   const entries = props.events
-    .filter(e => e.energy_kwh != null && e.emission_factor != null)
+    .filter(e => e.esg_metadata?.energy_kwh != null && e.esg_metadata?.emission_factor != null)
     .map(e => ({
-      energy_kwh: Number(e.energy_kwh),
-      emission_factor: Number(e.emission_factor)
+      energy_kwh: Number(e.esg_metadata.energy_kwh),
+      emission_factor: Number(e.esg_metadata.emission_factor)
     }));
     
   return calculateFootprint(entries);
@@ -44,8 +44,8 @@ const calculationResult = computed(() => {
         v-for="(event, idx) in events"
         :key="idx"
       >
-        <span v-if="event.energy_kwh !== undefined && event.emission_factor !== undefined">
-          + ({{ event.energy_kwh }} × {{ event.emission_factor }})
+        <span v-if="event.esg_metadata?.energy_kwh !== undefined && event.esg_metadata?.emission_factor !== undefined">
+          + ({{ event.esg_metadata.energy_kwh }} × {{ event.esg_metadata.emission_factor }})
         </span>
       </div>
     </div>

@@ -14,8 +14,7 @@ export interface SupplyChainEvent {
   actor_id: string;
   timestamp: string;
   action_type: ActionType;
-  energy_kwh: number;
-  emission_factor: number;
+  esg_metadata: EsgMetadata;
   signature: string;
   public_key: string;
   integrity_status: IntegrityStatus;
@@ -24,23 +23,14 @@ export interface SupplyChainEvent {
 export interface BackendEventDto {
   id?: string;
   event_id?: string;
-  eventId?: string;
   asset_id?: string;
-  assetId?: string;
   actor_id?: string;
-  actorId?: string;
   timestamp?: string;
   action_type?: string;
-  actionType?: string;
-  energy_kwh?: number;
-  energyKwh?: number;
-  emission_factor?: number;
-  emissionFactor?: number;
+  esg_metadata?: EsgMetadata;
   signature?: string;
   public_key?: string;
-  publicKey?: string;
   integrity_status?: string;
-  status?: string;
 }
 
 export type EventsApiResponse = SupplyChainEvent[];

@@ -12,8 +12,10 @@ const mockEvents: SupplyChainEvent[] = [
     actor_id: "actor1",
     timestamp: "2026-03-20T10:00:00Z",
     action_type: "ORIGIN",
-    energy_kwh: 10,
-    emission_factor: 0.5,
+    esg_metadata: {
+      energy_kwh: 10,
+      emission_factor: 0.5
+    },
     signature: "sig1",
     public_key: "pub1",
     integrity_status: "VALID"

@@ -20,8 +20,10 @@ interface ExportEvent {
   actor_id: string;
   timestamp: string;
   action_type: string;
-  energy_kwh: number;
-  emission_factor: number;
+  esg_metadata: {
+    energy_kwh: number;
+    emission_factor: number;
+  };
   signature: string;
   public_key: string;
   integrity_status: string;
@@ -127,8 +129,8 @@ export function ExportButtons({ startDate, endDate, actorId }: ExportButtonsProp
         new Date(row.timestamp).toLocaleString(),
         row.actor_id.substring(0, 8) + "...",
         row.action_type,
-        row.energy_kwh.toString(),
-        row.emission_factor.toString(),
+        row.esg_metadata.energy_kwh.toString(),
+        row.esg_metadata.emission_factor.toString(),
         row.integrity_status,
         row.signature ? row.signature.substring(0, 16) + "..." : "N/A"
       ]);
