@@ -439,12 +439,12 @@ Create a technical case-study layer that explains the engineering decisions behi
 
 ### Tasks
 
-- [ ] Add `docs/case-study.md`.
-- [ ] Add `docs/architecture-flow.md`.
-- [ ] Add `docs/demo/recruiter-script.md`.
-- [ ] Add `docs/demo/demo-scenario.md`.
-- [ ] Add `docs/validation.md` summarizing tests and verification gates.
-- [ ] Update README with:
+- [x] Add `docs/case-study.md`.
+- [x] Add `docs/architecture-flow.md`.
+- [x] Add `docs/demo/recruiter-script.md`.
+- [x] Add `docs/demo/demo-scenario.md`.
+- [x] Add `docs/validation.md` summarizing tests and verification gates.
+- [x] Update README with:
   - New positioning.
   - System diagram.
   - Demo links.
@@ -453,14 +453,14 @@ Create a technical case-study layer that explains the engineering decisions behi
   - What is demo data.
   - What is future scope.
 
-- [ ] Add a `Why this matters in 2026` section focused on enterprise verification, not wrapper SaaS.
-- [ ] Add collaborator credits and ownership narrative.
+- [x] Add a `Why this matters in 2026` section focused on enterprise verification, not wrapper SaaS.
+- [x] Add collaborator credits and ownership narrative.
 
 ### Exit Criteria
 
-- [ ] The project can be understood from the README alone.
-- [ ] The case study explains business problem, architecture, trade-offs, and validation.
-- [ ] The project reads as AI Solutions Engineering-adjacent without falsely claiming AI implementation.
+- [x] The project can be understood from the README alone.
+- [x] The case study explains business problem, architecture, trade-offs, and validation.
+- [x] The project reads as AI Solutions Engineering-adjacent without falsely claiming AI implementation.
 
 ---
 

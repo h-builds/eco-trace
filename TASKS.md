@@ -97,16 +97,16 @@ Create or identify a unified entry point that routes recruiters into both applic
 
 ### Tasks
 
-- [ ] Create `docs/case-study.md`.
-- [ ] Cover: business problem, architecture decisions, trade-offs, validation approach.
-- [ ] Explain why Admin and Consumer are separate apps.
-- [ ] Explain Go/Wasm trust boundary design.
-- [ ] Add `Why this matters in 2026` section focused on enterprise verification.
-- [ ] Add collaborator credits.
+- [x] Create `docs/case-study.md`.
+- [x] Cover: business problem, architecture decisions, trade-offs, validation approach.
+- [x] Explain why Admin and Consumer are separate apps.
+- [x] Explain Go/Wasm trust boundary design.
+- [x] Add `Why this matters in 2026` section focused on enterprise verification.
+- [x] Add collaborator credits.
 
 ### Exit Criteria
 
-- [ ] The case study explains the architecture without requiring repository exploration.
+- [x] The case study explains the architecture without requiring repository exploration.
 
 ---
 
@@ -117,15 +117,15 @@ Create or identify a unified entry point that routes recruiters into both applic
 
 ### Tasks
 
-- [ ] Create `docs/architecture-flow.md`.
-- [ ] Include data flow from Admin → D1 → Consumer.
-- [ ] Include Wasm verification flow.
-- [ ] Include Ed25519 signing and verification paths.
-- [ ] Use Mermaid diagrams where possible.
+- [x] Create `docs/architecture-flow.md`.
+- [x] Include data flow from Admin → D1 → Consumer.
+- [x] Include Wasm verification flow.
+- [x] Include Ed25519 signing and verification paths.
+- [x] Use Mermaid diagrams where possible.
 
 ### Exit Criteria
 
-- [ ] A developer can understand the full data flow from one document.
+- [x] A developer can understand the full data flow from one document.
 
 ---
 
@@ -136,14 +136,14 @@ Create or identify a unified entry point that routes recruiters into both applic
 
 ### Tasks
 
-- [ ] Create `docs/demo/demo-scenario.md`.
-- [ ] Document the canonical `Verified Product Journey` scenario.
-- [ ] List all seeded actors, assets, events, and their expected integrity states.
-- [ ] Cross-reference Admin and Consumer views.
+- [x] Create `docs/demo/demo-scenario.md`.
+- [x] Document the canonical `Verified Product Journey` scenario.
+- [x] List all seeded actors, assets, events, and their expected integrity states.
+- [x] Cross-reference Admin and Consumer views.
 
 ### Exit Criteria
 
-- [ ] Another developer can recreate or verify the demo scenario from this document alone.
+- [x] Another developer can recreate or verify the demo scenario from this document alone.
 
 ---
 
@@ -154,14 +154,14 @@ Create or identify a unified entry point that routes recruiters into both applic
 
 ### Tasks
 
-- [ ] Create `docs/demo/recruiter-script.md`.
-- [ ] Document the 6-step demo flow from PLAN.md §8.
-- [ ] Include talking points for each step.
-- [ ] Include fallback instructions if a step fails.
+- [x] Create `docs/demo/recruiter-script.md`.
+- [x] Document the 6-step demo flow from PLAN.md §8.
+- [x] Include talking points for each step.
+- [x] Include fallback instructions if a step fails.
 
 ### Exit Criteria
 
-- [ ] A presenter can follow the script without prior rehearsal.
+- [x] A presenter can follow the script without prior rehearsal.
 
 ---
 
@@ -172,14 +172,14 @@ Create or identify a unified entry point that routes recruiters into both applic
 
 ### Tasks
 
-- [ ] Create `docs/validation.md`.
-- [ ] Summarize golden test cases from `.ai/knowledge/EVALS.md`.
-- [ ] Document verification commands and expected results.
-- [ ] Map tests to the features they validate.
+- [x] Create `docs/validation.md`.
+- [x] Summarize golden test cases from `.ai/knowledge/EVALS.md`.
+- [x] Document verification commands and expected results.
+- [x] Map tests to the features they validate.
 
 ### Exit Criteria
 
-- [ ] A reviewer can understand how the system is validated without reading EVALS.md.
+- [x] A reviewer can understand how the system is validated without reading EVALS.md.
 
 ---
 
@@ -190,17 +190,17 @@ Create or identify a unified entry point that routes recruiters into both applic
 
 ### Tasks
 
-- [ ] Rewrite README with Phase 8 positioning from PLAN.md §14.
-- [ ] Add: system diagram, demo links, recruiter evaluation path.
-- [ ] Add: implemented features (from archive TASKS.md), demo data explanation, future scope.
-- [ ] Add: Consumer app local setup instructions.
-- [ ] Add: validation commands.
-- [ ] Add: collaborator credits.
-- [ ] Remove all unsupported production claims.
+- [x] Rewrite README with Phase 8 positioning from PLAN.md §14.
+- [x] Add: system diagram, demo links, recruiter evaluation path.
+- [x] Add: implemented features (from archive TASKS.md), demo data explanation, future scope.
+- [x] Add: Consumer app local setup instructions.
+- [x] Add: validation commands.
+- [x] Add: collaborator credits.
+- [x] Remove all unsupported production claims.
 
 ### Exit Criteria
 
-- [ ] The project can be fully understood from the README alone.
+- [x] The project can be fully understood from the README alone.
 
 ---
 
@@ -238,17 +238,17 @@ cd packages/engine && GOOS=js GOARCH=wasm go build -o main.wasm
 
 ### Tasks
 
-- [ ] Validate all workspace builds pass.
-- [ ] Validate all workspace tests pass.
-- [ ] Validate lint passes.
-- [ ] Validate Wasm engine compiles.
-- [ ] Validate all links between Admin, Consumer, README, and docs.
-- [ ] Document any justified exceptions.
+- [x] Validate all workspace builds pass.
+- [x] Validate all workspace tests pass.
+- [x] Validate lint passes. (Exception: No workspace lint configuration exists in baseline. Prettier runs on formatting.)
+- [x] Validate Wasm engine compiles.
+- [x] Validate all links between Admin, Consumer, README, and docs.
+- [x] Document any justified exceptions.
 
 ### Exit Criteria
 
-- [ ] Monorepo is clean and buildable.
-- [ ] No broken cross-references.
+- [x] Monorepo is clean and buildable.
+- [x] No broken cross-references.
 
 ---
 
