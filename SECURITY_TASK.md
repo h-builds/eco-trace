@@ -14,7 +14,7 @@ This file tracks security findings detected in the Eco Trace codebase. Future de
 
 ### 🔴 Medium Severity Findings
 
-- [ ] **Prototype Pollution / Arbitrary Code Execution (Bracket notation with user input)**
+- [x] **Prototype Pollution / Arbitrary Code Execution (Bracket notation with user input)**
   - File: [route.ts:L88](./apps/admin/app/api/compliance/export/route.ts#L88)
     - *Issue:* Bracket object notation with user input is present, this might allow an attacker to access all properties of the object and even its prototype, leading to possible code execution.
   - File: [route.ts:L150](./apps/admin/app/api/events/route.ts#L150)
@@ -48,7 +48,7 @@ This file tracks security findings detected in the Eco Trace codebase. Future de
   - File: [wasm_exec.js:L530](./public/wasm_exec.js#L530)
     - *Issue:* Bracket object notation with user input is present, this might allow an attacker to access all properties of the object and even its prototype, leading to possible code execution.
 
-- [ ] **Path Traversal Vulnerabilities (Dynamic path construction)**
+- [x] **Path Traversal Vulnerabilities (Dynamic path construction)**
   - File: [seed.ts:L37](./apps/admin/lib/seed.ts#L37)
     - *Issue:* The application dynamically constructs file or path information. If the path information comes from user-supplied input, it could be abused to read sensitive files, access other users' data, or aid in exploitation to gain further system access. Use `path.normalize` and verification paths.
   - File: [seed.ts:L49](./apps/admin/lib/seed.ts#L49)
@@ -60,7 +60,7 @@ This file tracks security findings detected in the Eco Trace codebase. Future de
 
 ### 🟡 Low Severity Findings
 
-- [ ] **Dependency Hijacking / Confusion Attacks (Variant dependency versions)**
+- [x] **Dependency Hijacking / Confusion Attacks (Variant dependency versions)**
   - File: [package.json:L14](./apps/admin/apps/consumer/package.json#L14)
     - *Issue:* Package dependencies with variant versions. Better to specify exact versions or lock files.
   - File: [package.json:L14](./apps/admin/package.json#L14)
@@ -78,6 +78,6 @@ This file tracks security findings detected in the Eco Trace codebase. Future de
   - File: [package.json:L13](./packages/ui/package.json#L13)
     - *Issue:* Package dependencies with variant versions. Better to specify exact versions or lock files.
 
-- [ ] **Cross-Site Scripting (XSS) Vulnerability (innerHTML usage)**
+- [x] **Cross-Site Scripting (XSS) Vulnerability (innerHTML usage)**
   - File: [counter.ts:L5](./apps/hub/src/counter.ts#L5)
     - *Issue:* User controlled data in methods like `innerHTML`, `outerHTML`, or `document.write` can lead to XSS vulnerabilities.

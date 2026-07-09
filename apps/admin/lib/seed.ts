@@ -5,6 +5,20 @@ import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const workspaceRoot = path.resolve(__dirname, '../../..');
+const adminRoot = path.resolve(__dirname, '..');
+
+function resolveInside(basePath: string, ...segments: string[]): string {
+  const normalizedBase = path.normalize(basePath);
+  const resolvedPath = path.normalize(path.resolve(normalizedBase, ...segments));
+  const relativePath = path.relative(normalizedBase, resolvedPath);
+
+  if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
+    throw new Error(`Refusing to access path outside ${normalizedBase}: ${resolvedPath}`);
+  }
+
+  return resolvedPath;
+}
 
 function getRawPublicKey(keyPair: crypto.KeyPairKeyObjectResult): string {
   return keyPair.publicKey.export({ type: 'spki', format: 'der' }).subarray(12).toString('hex');
@@ -30,7 +44,7 @@ console.log(`[+] Generated Ed25519 Pair - Veridian Node \t(${pubVeridian.slice(0
 console.log(`[+] Generated Ed25519 Pair - NorthStar Log \t(${pubNorthStar.slice(0, 16)}...)`);
 console.log(`[+] Generated Ed25519 Pair - Demo Auditor \t(${pubAuditor.slice(0, 16)}...)`);
 
-const registryPath = path.resolve(__dirname, '../../../packages/engine/internal/crypto/registry.go');
+const registryPath = resolveInside(workspaceRoot, 'packages', 'engine', 'internal', 'crypto', 'registry.go');
 let registryGo: string;
 
 try {
@@ -130,7 +144,7 @@ for (const e of mockEvents) {
   sql += `INSERT INTO events (id, event_id, asset_id, actor_id, timestamp, action_type, energy_kwh, emission_factor, signature, public_key, integrity_status) VALUES ('${e.uuid}', '${e.ev_id}', '${ASSET_ID}', '${e.actor_id}', '${e.ts}', '${e.act}', ${e.e}, ${e.f}, '${signature}', '${e.pub}', '${status}');\n`;
 }
 
-const sqlTarget = path.resolve(__dirname, '../seed.sql');
+const sqlTarget = resolveInside(adminRoot, 'seed.sql');
 
 try {
   fs.writeFileSync(sqlTarget, sql);

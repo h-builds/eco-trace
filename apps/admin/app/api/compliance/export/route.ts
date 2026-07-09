@@ -75,17 +75,25 @@ export async function GET(request: NextRequest) {
     const { results } = await stmt.all<DBRow>();
 
     if (format === "csv") {
-      const headers = [
-        "id", "event_id", "asset_id", "actor_id", "public_key", 
-        "timestamp", "action_type", "energy_kwh", "emission_factor", 
-        "signature", "integrity_status"
+      const csvColumns = [
+        { header: "id", getValue: (row: DBRow) => row.id },
+        { header: "event_id", getValue: (row: DBRow) => row.event_id },
+        { header: "asset_id", getValue: (row: DBRow) => row.asset_id },
+        { header: "actor_id", getValue: (row: DBRow) => row.actor_id },
+        { header: "public_key", getValue: (row: DBRow) => row.public_key },
+        { header: "timestamp", getValue: (row: DBRow) => row.timestamp },
+        { header: "action_type", getValue: (row: DBRow) => row.action_type },
+        { header: "energy_kwh", getValue: (row: DBRow) => row.energy_kwh },
+        { header: "emission_factor", getValue: (row: DBRow) => row.emission_factor },
+        { header: "signature", getValue: (row: DBRow) => row.signature },
+        { header: "integrity_status", getValue: (row: DBRow) => row.integrity_status },
       ];
-      
-      const csvRows = [headers.join(",")];
-      
+
+      const csvRows = [csvColumns.map(column => column.header).join(",")];
+
       for (const row of results) {
-        const values = headers.map(header => {
-          const val = row[header as keyof DBRow];
+        const values = csvColumns.map(column => {
+          const val = column.getValue(row);
           if (val === null || val === undefined) return '""';
           const strVal = String(val);
           if (strVal.includes(',') || strVal.includes('"') || strVal.includes('\n')) {

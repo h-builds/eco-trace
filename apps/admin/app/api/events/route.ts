@@ -141,13 +141,20 @@ export async function POST(request: NextRequest) {
 
     const rawPayload = (await request.json()) as Partial<EventCreateDTO>;
     
-    const requiredFields: (keyof Omit<EventCreateDTO, "esg_metadata">)[] = [
-      "id", "event_id", "asset_id", "actor_id", "timestamp", 
-      "action_type", "signature", "public_key", "integrity_status"
+    const requiredFields = [
+      { field: "id", value: rawPayload.id },
+      { field: "event_id", value: rawPayload.event_id },
+      { field: "asset_id", value: rawPayload.asset_id },
+      { field: "actor_id", value: rawPayload.actor_id },
+      { field: "timestamp", value: rawPayload.timestamp },
+      { field: "action_type", value: rawPayload.action_type },
+      { field: "signature", value: rawPayload.signature },
+      { field: "public_key", value: rawPayload.public_key },
+      { field: "integrity_status", value: rawPayload.integrity_status },
     ];
     
-    for (const field of requiredFields) {
-      if (rawPayload[field] === undefined || rawPayload[field] === null) {
+    for (const { field, value } of requiredFields) {
+      if (value === undefined || value === null) {
         return NextResponse.json({ error: `Missing required field: ${field}` }, { status: 400, headers: corsHeaders });
       }
     }

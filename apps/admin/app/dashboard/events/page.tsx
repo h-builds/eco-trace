@@ -35,8 +35,8 @@ const getReadableActionLabel = (action: string, status: SupplyChainEvent["integr
 
 export default function EventLogPage() {
   const [events, setEvents] = useState<SupplyChainEvent[]>([]);
-  const [footprints, setFootprints] = useState<Record<string, number>>({});
-  const [validityStatuses, setValidityStatuses] = useState<Record<string, SupplyChainEvent["integrity_status"]>>({});
+  const [footprints, setFootprints] = useState<Map<string, number>>(new Map());
+  const [validityStatuses, setValidityStatuses] = useState<Map<string, SupplyChainEvent["integrity_status"]>>(new Map());
   const [toastMsg, setToastMsg] = useState<{ message: string; type: "success" | "error" | "warning" } | null>(null);
   
   const [filter, setFilter] = useState<"ALL" | "INVALID" | "UNAUTHORIZED">("ALL");
@@ -64,15 +64,15 @@ export default function EventLogPage() {
   useEffect(() => {
     if (isEngineReady && !error && events.length > 0) {
       startTransition(() => {
-        const newFootprints: Record<string, number> = {};
-        const newStatuses: Record<string, SupplyChainEvent["integrity_status"]> = {};
+        const newFootprints = new Map<string, number>();
+        const newStatuses = new Map<string, SupplyChainEvent["integrity_status"]>();
         
         events.forEach((event: SupplyChainEvent) => {
           const footprintCalculation = calculateFootprint([
             { energy_kwh: event.esg_metadata.energy_kwh, emission_factor: event.esg_metadata.emission_factor }
           ]);
           if (!footprintCalculation.error) {
-            newFootprints[event.id] = footprintCalculation.result;
+            newFootprints.set(event.id, footprintCalculation.result);
           }
 
           const { signature, public_key, integrity_status, ...verificationPayload } = event;
@@ -80,12 +80,12 @@ export default function EventLogPage() {
           const integrityVerification = verifyIntegrity(verificationPayload, event.signature, event.public_key);
           
           if (integrityVerification.status === "VALID") {
-            newStatuses[event.id] = "VALID";
+            newStatuses.set(event.id, "VALID");
           } else if (integrityVerification.status === "UNAUTHORIZED") {
-            newStatuses[event.id] = "UNAUTHORIZED";
+            newStatuses.set(event.id, "UNAUTHORIZED");
           } else {
             if (integrityVerification.error) console.error("Wasm Integrity Error:", integrityVerification.error);
-            newStatuses[event.id] = "INVALID";
+            newStatuses.set(event.id, "INVALID");
           }
         });
 
@@ -204,15 +204,21 @@ export default function EventLogPage() {
     }
   };
 
-  const groupedEvents: Record<string, SupplyChainEvent[]> = {};
+  const groupedEvents = new Map<string, SupplyChainEvent[]>();
   events.forEach((e: SupplyChainEvent) => {
-    if (!groupedEvents[e.event_id]) groupedEvents[e.event_id] = [];
-    groupedEvents[e.event_id].push(e);
+    const existingEvents = groupedEvents.get(e.event_id);
+    if (existingEvents) {
+      existingEvents.push(e);
+    } else {
+      groupedEvents.set(e.event_id, [e]);
+    }
   });
   
-  Object.keys(groupedEvents).forEach(key => {
-    groupedEvents[key].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+  groupedEvents.forEach(threadLogs => {
+    threadLogs.sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
   });
+
+  const groupedEventEntries = Array.from(groupedEvents.entries());
 
   const nonValidUniqueIds = new Set(events.filter((e: SupplyChainEvent) => e.integrity_status !== "VALID").map((e: SupplyChainEvent) => e.event_id)).size;
 
@@ -318,7 +324,7 @@ export default function EventLogPage() {
           <div className="p-6 text-center text-functional-alert font-medium bg-functional-alert/10">
             Integrity Verification Unavailable. The Go/Wasm bridge failed to load: {error}
           </div>
-        ) : Object.keys(groupedEvents).length === 0 ? (
+        ) : groupedEventEntries.length === 0 ? (
           <div className="p-6 text-center text-brand-deep-charcoal flex flex-col items-center gap-2">
             <span className="font-medium text-lg">No demo data found.</span>
             <span className="text-sm text-functional-neutral">Please run the seed script <code className="bg-surface-canvas border border-surface-border px-1.5 py-0.5 rounded">npx tsx lib/seed.ts</code> to populate the scenario.</span>
@@ -333,10 +339,11 @@ export default function EventLogPage() {
               </tr>
             </thead>
             <tbody>
-              {Object.entries(groupedEvents).map(([eventGroupKey, threadLogs]) => {
+              {groupedEventEntries.map(([eventGroupKey, threadLogs]) => {
                 const primaryEvent = threadLogs[0];
                 const auditHistory = threadLogs.slice(1);
-                const currentStatus = validityStatuses[primaryEvent.id] || "PENDING";
+                const currentStatus = validityStatuses.get(primaryEvent.id) || "PENDING";
+                const primaryFootprint = footprints.get(primaryEvent.id);
                 
                 const statusBg = currentStatus === "VALID" ? "bg-brand-verification-green" : currentStatus === "INVALID" ? "bg-functional-alert" : "bg-functional-pending";
 
@@ -351,7 +358,7 @@ export default function EventLogPage() {
                       <td className="p-3 text-base">{getReadableActionLabel(primaryEvent.action_type, currentStatus)}</td>
                       <td className="p-3 text-base">{primaryEvent.esg_metadata.energy_kwh}</td>
                       <td className="p-3 text-base">
-                        <div>{footprints[primaryEvent.id] !== undefined ? footprints[primaryEvent.id].toFixed(2) : "Calculating..."}</div>
+                        <div>{primaryFootprint !== undefined ? primaryFootprint.toFixed(2) : "Calculating..."}</div>
                         <div className="text-xs mt-1 bg-surface-canvas px-1 py-0.5 rounded-sm inline-block text-functional-neutral">
                           {"$$CF_{total} = \\sum (E_i \\times EF_i)$$"}
                         </div>
@@ -389,7 +396,7 @@ export default function EventLogPage() {
                             <table className="w-full m-0 border-t border-surface-border">
                               <tbody>
                                 {auditHistory.map(auditLog => {
-                                  const auditStatus = validityStatuses[auditLog.id] || "PENDING";
+                                  const auditStatus = validityStatuses.get(auditLog.id) || "PENDING";
                                   const auditStatusBg = auditStatus === "VALID" ? "bg-brand-verification-green" : auditStatus === "INVALID" ? "bg-functional-alert" : "bg-functional-pending";
                                   return (
                                     <tr key={auditLog.id} className="border-b border-dotted border-surface-border">
