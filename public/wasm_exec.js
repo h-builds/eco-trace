@@ -203,9 +203,9 @@
 			const loadSliceOfValues = (addr) => {
 				const array = getInt64(addr + 0);
 				const len = getInt64(addr + 8);
-				const a = new Array(len);
+				const a = [];
 				for (let i = 0; i < len; i++) {
-					a[i] = loadValue(array + i * 8);
+					a.push(loadValue(array + i * 8));
 				}
 				return a;
 			}
@@ -525,9 +525,9 @@
 			});
 			argvPtrs.push(0);
 
-			const keys = Object.keys(this.env).sort();
-			keys.forEach((key) => {
-				argvPtrs.push(strPtr(`${key}=${this.env[key]}`));
+			const entries = Object.entries(this.env).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0));
+			entries.forEach(([key, value]) => {
+				argvPtrs.push(strPtr(`${key}=${value}`));
 			});
 			argvPtrs.push(0);
 

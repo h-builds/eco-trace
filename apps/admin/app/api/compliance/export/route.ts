@@ -9,17 +9,19 @@ interface D1Database {
   prepare(query: string): D1PreparedStatement;
 }
 
+type D1Param = string | number | boolean | null;
+
 interface D1PreparedStatement {
-  bind(...values: unknown[]): D1PreparedStatement;
-  all<T = unknown>(): Promise<D1Result<T>>;
+  bind(...values: D1Param[]): D1PreparedStatement;
+  all<T = Record<string, unknown>>(): Promise<D1Result<T>>;
 }
 
-interface D1Result<T = unknown> {
+interface D1Result<T = Record<string, unknown>> {
   success: boolean;
   results: T[];
 }
 
-interface DBRow {
+interface ExportEventRow {
   id: string;
   event_id: string;
   asset_id: string;
@@ -33,13 +35,46 @@ interface DBRow {
   integrity_status: string;
 }
 
-interface Env {
+interface CloudflareEnv {
   DB: D1Database;
+}
+
+function formatAsCsv(results: ExportEventRow[]): string {
+  const csvColumns = [
+    { header: "id", getValue: (row: ExportEventRow) => row.id },
+    { header: "event_id", getValue: (row: ExportEventRow) => row.event_id },
+    { header: "asset_id", getValue: (row: ExportEventRow) => row.asset_id },
+    { header: "actor_id", getValue: (row: ExportEventRow) => row.actor_id },
+    { header: "public_key", getValue: (row: ExportEventRow) => row.public_key },
+    { header: "timestamp", getValue: (row: ExportEventRow) => row.timestamp },
+    { header: "action_type", getValue: (row: ExportEventRow) => row.action_type },
+    { header: "energy_kwh", getValue: (row: ExportEventRow) => row.energy_kwh },
+    { header: "emission_factor", getValue: (row: ExportEventRow) => row.emission_factor },
+    { header: "signature", getValue: (row: ExportEventRow) => row.signature },
+    { header: "integrity_status", getValue: (row: ExportEventRow) => row.integrity_status },
+  ];
+
+  const csvRows = [csvColumns.map(column => column.header).join(",")];
+
+  for (const row of results) {
+    const values = csvColumns.map(column => {
+      const val = column.getValue(row);
+      if (val === null || val === undefined) return '""';
+      const strVal = String(val);
+      if (strVal.includes(',') || strVal.includes('"') || strVal.includes('\n')) {
+        return `"${strVal.replace(/"/g, '""')}"`;
+      }
+      return strVal;
+    });
+    csvRows.push(values.join(","));
+  }
+
+  return csvRows.join("\n");
 }
 
 export async function GET(request: NextRequest) {
   try {
-    const db = (getRequestContext().env as unknown as Env).DB; 
+    const db = (getRequestContext().env as unknown as CloudflareEnv).DB; 
     
     if (!db) {
       Logger.error("Database binding 'DB' not found in environment.");
@@ -53,7 +88,7 @@ export async function GET(request: NextRequest) {
     const actorId = searchParams.get("actorId");
 
     let query = "SELECT * FROM events WHERE 1=1";
-    const params: unknown[] = [];
+    const params: D1Param[] = [];
 
     if (startDate) {
       query += " AND timestamp >= ?";
@@ -72,32 +107,10 @@ export async function GET(request: NextRequest) {
 
     let stmt = db.prepare(query);
     if (params.length > 0) stmt = stmt.bind(...params);
-    const { results } = await stmt.all<DBRow>();
+    const { results } = await stmt.all<ExportEventRow>();
 
     if (format === "csv") {
-      const headers = [
-        "id", "event_id", "asset_id", "actor_id", "public_key", 
-        "timestamp", "action_type", "energy_kwh", "emission_factor", 
-        "signature", "integrity_status"
-      ];
-      
-      const csvRows = [headers.join(",")];
-      
-      for (const row of results) {
-        const values = headers.map(header => {
-          const val = row[header as keyof DBRow];
-          if (val === null || val === undefined) return '""';
-          const strVal = String(val);
-          if (strVal.includes(',') || strVal.includes('"') || strVal.includes('\n')) {
-            return `"${strVal.replace(/"/g, '""')}"`;
-          }
-          return strVal;
-        });
-        csvRows.push(values.join(","));
-      }
-
-      const csvContent = csvRows.join("\n");
-      
+      const csvContent = formatAsCsv(results);
       const response = new NextResponse(csvContent);
       response.headers.set('Content-Type', 'text/csv');
       response.headers.set('Content-Disposition', 'attachment; filename="compliance_export.csv"');
@@ -124,6 +137,6 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
     Logger.error(`Failed to generate compliance export: ${errorMessage}`, error);
-    return NextResponse.json({ error: `Failed to generate compliance export: ${errorMessage}` }, { status: 500 });
+    return NextResponse.json({ error: "Failed to generate compliance export" }, { status: 500 });
   }
 }

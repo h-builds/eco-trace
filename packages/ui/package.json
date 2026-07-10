@@ -9,8 +9,8 @@
   },
   "description": "Eco-Trace Design System tokens and validators.",
   "devDependencies": {
-    "@types/node": "latest",
-    "tailwindcss": "^4.0.0",
-    "typescript": "latest"
+    "@types/node": "25.5.0",
+    "tailwindcss": "4.0.0",
+    "typescript": "6.0.2"
   }
 }

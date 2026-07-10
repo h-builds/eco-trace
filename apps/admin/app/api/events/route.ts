@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, OPTIONS",
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Accept",
 };
 
@@ -19,18 +19,20 @@ interface D1Database {
   prepare(query: string): D1PreparedStatement;
 }
 
+type D1Param = string | number | boolean | null;
+
 interface D1PreparedStatement {
-  bind(...values: unknown[]): D1PreparedStatement;
-  all<T = unknown>(): Promise<D1Result<T>>;
-  run<T = unknown>(): Promise<D1Result<T>>;
+  bind(...values: D1Param[]): D1PreparedStatement;
+  all<T = Record<string, unknown>>(): Promise<D1Result<T>>;
+  run<T = Record<string, unknown>>(): Promise<D1Result<T>>;
 }
 
-interface D1Result<T = unknown> {
+interface D1Result<T = Record<string, unknown>> {
   success: boolean;
   results: T[];
 }
 
-interface DBRow {
+interface EventEntity {
   id: string;
   event_id: string;
   asset_id: string;
@@ -44,7 +46,7 @@ interface DBRow {
   integrity_status: string;
 }
 
-interface Env {
+interface CloudflareEnv {
   DB: D1Database;
 }
 
@@ -64,9 +66,40 @@ interface EventCreateDTO {
   integrity_status: string;
 }
 
+function validateEventCreateDTO(rawPayload: Partial<EventCreateDTO>): string | null {
+  const requiredFields = [
+    { field: "id", value: rawPayload.id },
+    { field: "event_id", value: rawPayload.event_id },
+    { field: "asset_id", value: rawPayload.asset_id },
+    { field: "actor_id", value: rawPayload.actor_id },
+    { field: "timestamp", value: rawPayload.timestamp },
+    { field: "action_type", value: rawPayload.action_type },
+    { field: "signature", value: rawPayload.signature },
+    { field: "public_key", value: rawPayload.public_key },
+    { field: "integrity_status", value: rawPayload.integrity_status },
+  ];
+  
+  for (const { field, value } of requiredFields) {
+    if (value === undefined || value === null) {
+      return `Missing required field: ${field}`;
+    }
+  }
+
+  if (
+    !rawPayload.esg_metadata || 
+    typeof rawPayload.esg_metadata !== "object" ||
+    rawPayload.esg_metadata.energy_kwh === undefined || 
+    rawPayload.esg_metadata.emission_factor === undefined
+  ) {
+    return "Missing or invalid required field: esg_metadata";
+  }
+
+  return null;
+}
+
 export async function GET(request: NextRequest) {
   try {
-    const db = (getRequestContext().env as unknown as Env).DB; 
+    const db = (getRequestContext().env as unknown as CloudflareEnv).DB; 
     
     if (!db) {
       Logger.error("Database binding 'DB' not found in environment.");
@@ -78,7 +111,7 @@ export async function GET(request: NextRequest) {
     const assetIdParam = searchParams.get("asset_id");
 
     let query = "SELECT * FROM events";
-    const params: unknown[] = [];
+    const params: string[] = [];
     const conditions: string[] = [];
 
     if (statusParam === "alerts") {
@@ -101,7 +134,7 @@ export async function GET(request: NextRequest) {
 
     let stmt = db.prepare(query);
     if (params.length > 0) stmt = stmt.bind(...params);
-    const { results } = await stmt.all<DBRow>();
+    const { results } = await stmt.all<EventEntity>();
 
     const events = results.map(row => ({
       id: row.id,
@@ -127,13 +160,13 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
     Logger.error(`D1 GET /api/events error: ${errorMessage}`, error);
-    return NextResponse.json({ error: `Failed to fetch events: ${errorMessage}` }, { status: 500, headers: corsHeaders });
+    return NextResponse.json({ error: "Failed to fetch events" }, { status: 500, headers: corsHeaders });
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const db = (getRequestContext().env as unknown as Env).DB;
+    const db = (getRequestContext().env as unknown as CloudflareEnv).DB;
     if (!db) {
       Logger.error("Database binding 'DB' not found in environment.");
       return NextResponse.json({ error: "Service Unavailable: Database binding missing. Please check your environment configuration." }, { status: 500, headers: corsHeaders });
@@ -141,24 +174,9 @@ export async function POST(request: NextRequest) {
 
     const rawPayload = (await request.json()) as Partial<EventCreateDTO>;
     
-    const requiredFields: (keyof Omit<EventCreateDTO, "esg_metadata">)[] = [
-      "id", "event_id", "asset_id", "actor_id", "timestamp", 
-      "action_type", "signature", "public_key", "integrity_status"
-    ];
-    
-    for (const field of requiredFields) {
-      if (rawPayload[field] === undefined || rawPayload[field] === null) {
-        return NextResponse.json({ error: `Missing required field: ${field}` }, { status: 400, headers: corsHeaders });
-      }
-    }
-
-    if (
-      !rawPayload.esg_metadata || 
-      typeof rawPayload.esg_metadata !== "object" ||
-      rawPayload.esg_metadata.energy_kwh === undefined || 
-      rawPayload.esg_metadata.emission_factor === undefined
-    ) {
-      return NextResponse.json({ error: "Missing or invalid required field: esg_metadata" }, { status: 400, headers: corsHeaders });
+    const validationError = validateEventCreateDTO(rawPayload);
+    if (validationError) {
+      return NextResponse.json({ error: validationError }, { status: 400, headers: corsHeaders });
     }
 
     const payload = rawPayload as EventCreateDTO;
@@ -190,6 +208,6 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
     Logger.error(`D1 POST /api/events error: ${errorMessage}`, error);
-    return NextResponse.json({ error: `Failed to create event: ${errorMessage}` }, { status: 500, headers: corsHeaders });
+    return NextResponse.json({ error: "Failed to create event" }, { status: 500, headers: corsHeaders });
   }
 }
