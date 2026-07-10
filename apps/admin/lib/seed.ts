@@ -98,25 +98,25 @@ interface SeedEvent {
   uuid: string;
   actor_id: string;
   key: crypto.KeyObject;
-  pub: string;
-  ev_id: string;
-  act: string;
-  ts: string;
-  e: number;
-  f: number;
+  publicKey: string;
+  eventId: string;
+  actionType: string;
+  timestamp: string;
+  energyKwh: number;
+  emissionFactor: number;
   tamper?: boolean;
   override?: string;
 }
 
 const mockEvents: SeedEvent[] = [
-  { uuid: crypto.randomUUID(), actor_id: "Andes Organic Cooperative", key: keyAndes.privateKey, pub: pubAndes, ev_id: "EVT-COFFEE-001", act: "ORIGIN", ts: t1, e: 120.0, f: 0.2 },
-  { uuid: crypto.randomUUID(), actor_id: "Veridian Processing Node", key: keyVeridian.privateKey, pub: pubVeridian, ev_id: "EVT-COFFEE-002", act: "TRANSFORM", ts: t2, e: 450.5, f: 0.8 },
-  { uuid: crypto.randomUUID(), actor_id: "NorthStar Logistics", key: keyNorthStar.privateKey, pub: pubNorthStar, ev_id: "EVT-COFFEE-003", act: "TRANSPORT", ts: t3, e: 310.0, f: 1.1 },
+  { uuid: crypto.randomUUID(), actor_id: "Andes Organic Cooperative", key: keyAndes.privateKey, publicKey: pubAndes, eventId: "EVT-COFFEE-001", actionType: "ORIGIN", timestamp: t1, energyKwh: 120.0, emissionFactor: 0.2 },
+  { uuid: crypto.randomUUID(), actor_id: "Veridian Processing Node", key: keyVeridian.privateKey, publicKey: pubVeridian, eventId: "EVT-COFFEE-002", actionType: "TRANSFORM", timestamp: t2, energyKwh: 450.5, emissionFactor: 0.8 },
+  { uuid: crypto.randomUUID(), actor_id: "NorthStar Logistics", key: keyNorthStar.privateKey, publicKey: pubNorthStar, eventId: "EVT-COFFEE-003", actionType: "TRANSPORT", timestamp: t3, energyKwh: 310.0, emissionFactor: 1.1 },
   // Tamper simulation to trigger the INVALID IntegrityStatus constraint in the Go/Wasm verification flow
-  { uuid: crypto.randomUUID(), actor_id: "Veridian Processing Node", key: keyVeridian.privateKey, pub: pubVeridian, ev_id: "EVT-COFFEE-004", act: "TRANSFORM", ts: t4, e: 200.0, f: 0.5, tamper: true },
+  { uuid: crypto.randomUUID(), actor_id: "Veridian Processing Node", key: keyVeridian.privateKey, publicKey: pubVeridian, eventId: "EVT-COFFEE-004", actionType: "TRANSFORM", timestamp: t4, energyKwh: 200.0, emissionFactor: 0.5, tamper: true },
   // Simulate an UNAUTHORIZED actor error (G07 Check Failure) by using a key not present in the TrustedActor registry
-  { uuid: crypto.randomUUID(), actor_id: "Unknown Logistics", key: keyRogue.privateKey, pub: pubRogue, ev_id: "EVT-COFFEE-005", act: "TRANSPORT", ts: t5, e: 150.0, f: 1.5, override: "UNAUTHORIZED" },
-  { uuid: crypto.randomUUID(), actor_id: "Eco Trace Demo Auditor", key: keyAuditor.privateKey, pub: pubAuditor, ev_id: "EVT-COFFEE-006", act: "AUDIT", ts: t6, e: 0.0, f: 0.0 }
+  { uuid: crypto.randomUUID(), actor_id: "Unknown Logistics", key: keyRogue.privateKey, publicKey: pubRogue, eventId: "EVT-COFFEE-005", actionType: "TRANSPORT", timestamp: t5, energyKwh: 150.0, emissionFactor: 1.5, override: "UNAUTHORIZED" },
+  { uuid: crypto.randomUUID(), actor_id: "Eco Trace Demo Auditor", key: keyAuditor.privateKey, publicKey: pubAuditor, eventId: "EVT-COFFEE-006", actionType: "AUDIT", timestamp: t6, energyKwh: 0.0, emissionFactor: 0.0 }
 ];
 
 let sql = "DELETE FROM events;\nDELETE FROM users;\nDELETE FROM trusted_actors;\nDELETE FROM assets;\n";
@@ -132,16 +132,16 @@ sql += `INSERT INTO trusted_actors (id, name, public_key, status) VALUES ('actor
 
 sql += `INSERT INTO assets (id, name, description, owner_id) VALUES ('${ASSET_ID}', 'Andes Trace Coffee Lot 001', 'Verified Product Journey', 'actor-1');\n`;
 
-for (const e of mockEvents) {
-  let signature = signPayload(e.ev_id, ASSET_ID, e.actor_id, e.ts, e.act, e.e, e.f, e.key);
+for (const event of mockEvents) {
+  let signature = signPayload(event.eventId, ASSET_ID, event.actor_id, event.timestamp, event.actionType, event.energyKwh, event.emissionFactor, event.key);
   
-  let status = e.override || "VALID";
-  if (e.tamper) {
+  let status = event.override || "VALID";
+  if (event.tamper) {
     signature = signature.substring(0, 4) === 'ffff' ? 'aaaa' + signature.substring(4) : 'ffff' + signature.substring(4);
     status = "INVALID";
   }
   
-  sql += `INSERT INTO events (id, event_id, asset_id, actor_id, timestamp, action_type, energy_kwh, emission_factor, signature, public_key, integrity_status) VALUES ('${e.uuid}', '${e.ev_id}', '${ASSET_ID}', '${e.actor_id}', '${e.ts}', '${e.act}', ${e.e}, ${e.f}, '${signature}', '${e.pub}', '${status}');\n`;
+  sql += `INSERT INTO events (id, event_id, asset_id, actor_id, timestamp, action_type, energy_kwh, emission_factor, signature, public_key, integrity_status) VALUES ('${event.uuid}', '${event.eventId}', '${ASSET_ID}', '${event.actor_id}', '${event.timestamp}', '${event.actionType}', ${event.energyKwh}, ${event.emissionFactor}, '${signature}', '${event.publicKey}', '${status}');\n`;
 }
 
 const sqlTarget = resolveInside(adminRoot, 'seed.sql');
